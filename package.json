@@ -1,0 +1,29 @@
+{
+  "name": "waveform-display",
+  "version": "0.1.0",
+  "type": "module",
+  "main": "./dist/waveform-display.umd.cjs",
+  "module": "./dist/waveform-display.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/waveform-display.js",
+      "require": "./dist/waveform-display.umd.cjs"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -p tsconfig.build.json && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "d3": "^7.9.0"
+  },
+  "devDependencies": {
+    "@types/d3": "^7.4.3",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.0"
+  }
+}
