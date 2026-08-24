@@ -2,17 +2,19 @@ import { Waveform, type WaveformSeries } from '../index'
 
 const series: WaveformSeries[] = [
   {
-    name: 'CH1',
+    name: 'Voltage',
     unit: 'V',
-    order: 2,
+    order: 1,
+    yAxis: 'left',
     data: Array.from({ length: 240 }, (_, i) => ({ x: i / 20, y: Math.sin(i / 10) * 0.8 + Math.sin(i / 3) * 0.08 })),
     style: { color: '#2563eb', lineWidth: 2, area: { visible: true, opacity: 0.08 } },
   },
   {
-    name: 'CH2',
-    unit: 'V',
-    order: 1,
-    data: Array.from({ length: 240 }, (_, i) => ({ x: i / 20, y: Math.cos(i / 14) * 0.45 })),
+    name: 'Current',
+    unit: 'mA',
+    order: 2,
+    yAxis: 'right',
+    data: Array.from({ length: 240 }, (_, i) => ({ x: i / 20, y: 40 + Math.cos(i / 14) * 16 })),
     style: { color: '#dc2626', lineWidth: 1.5, lineStyle: 'dashed', point: { visible: true, type: 'diamond', size: 2.5, color: '#dc2626' } },
   },
 ]
@@ -23,11 +25,11 @@ document.body.style.background = '#f8fafc'
 document.body.style.fontFamily = 'Inter, system-ui, sans-serif'
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = '<div style="max-width:1200px;margin:auto"><div id="waveform" style="width:100%"></div></div>'
 
-new Waveform('#waveform', series, {
+const chart = new Waveform('#waveform', series, {
   width: '100%',
   responsive: { enabled: true, aspectRatio: 2.6 },
   title: { visible: true, text: 'Configurable Waveform Display' },
-  legend: { visible: true, position: 'top-right' },
+  legend: { visible: true, position: 'top-left', orientation: 'horizontal' },
   frame: {
     backgroundColor: '#ffffff',
     top: { color: '#475569', width: 2 },
@@ -36,6 +38,10 @@ new Waveform('#waveform', series, {
     left: { color: '#475569', width: 2 },
   },
   xAxis: { tickFormat: '.1f', title: { visible: true, text: 'Time', unit: 's' } },
-  yAxis: { position: 'right', tickFormat: '.2f', title: { visible: true, text: 'Amplitude', unit: 'V' } },
+  yAxis: { position: 'left', tickFormat: '.2f', title: { visible: true, text: 'Voltage', unit: 'V' } },
+  secondaryYAxis: { visible: true, position: 'right', tickFormat: '.0f', title: { visible: true, text: 'Current', unit: 'mA' } },
   grid: { x: { dash: '2 4' }, y: { dash: '2 4' } },
 })
+
+console.info('SVG export available via chart.toSVGString() or chart.downloadSVG()')
+void chart
