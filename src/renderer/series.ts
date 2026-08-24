@@ -11,10 +11,13 @@ function symbolType(type: WaveformPointType) {
 }
 
 export function renderSeries(ctx: RenderContext) {
-  const { plot, series, x, y, yDomain, options, clipId } = ctx
+  const { plot, series, x, y, yRight, yDomain, yRightDomain, options, clipId } = ctx
   const layer = plot.append('g').attr('clip-path', `url(#${clipId})`)
 
   series.forEach(s => {
+    const useRight = s.yAxis === 'right' && yRight && yRightDomain
+    const yScale = useRight ? yRight : y
+    const domain = useRight ? yRightDomain : yDomain
     const lineStyle = {
       color: options.line.color,
       lineWidth: options.line.width,
@@ -26,12 +29,12 @@ export function renderSeries(ctx: RenderContext) {
     const areaStyle = { ...options.area, ...s.style?.area }
 
     if (areaStyle.visible) {
-      const baseline = Math.min(yDomain[1], Math.max(yDomain[0], areaStyle.baseline))
+      const baseline = Math.min(domain[1], Math.max(domain[0], areaStyle.baseline))
       const area = d3.area<WaveformPoint>()
         .defined(d => Number.isFinite(d.x) && Number.isFinite(d.y))
         .x(d => x(d.x))
-        .y0(y(baseline))
-        .y1(d => y(d.y))
+        .y0(yScale(baseline))
+        .y1(d => yScale(d.y))
         .curve(curveFor(lineStyle.lineType))
 
       layer.append('path')
@@ -45,7 +48,7 @@ export function renderSeries(ctx: RenderContext) {
       const line = d3.line<WaveformPoint>()
         .defined(d => Number.isFinite(d.x) && Number.isFinite(d.y))
         .x(d => x(d.x))
-        .y(d => y(d.y))
+        .y(d => yScale(d.y))
         .curve(curveFor(lineStyle.lineType))
 
       layer.append('path')
@@ -66,7 +69,7 @@ export function renderSeries(ctx: RenderContext) {
         .selectAll('path')
         .data(s.data.filter(d => Number.isFinite(d.x) && Number.isFinite(d.y)))
         .join('path')
-        .attr('transform', d => `translate(${x(d.x)},${y(d.y)})`)
+        .attr('transform', d => `translate(${x(d.x)},${yScale(d.y)})`)
         .attr('d', symbol)
         .attr('fill', pointStyle.color || lineStyle.color)
         .attr('stroke', pointStyle.borderColor)
