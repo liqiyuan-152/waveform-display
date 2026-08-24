@@ -81,6 +81,7 @@ export class Waveform {
       area: { ...base.area, ...next.area },
       xAxis: { ...base.xAxis, ...next.xAxis, title: { ...base.xAxis?.title, ...next.xAxis?.title } },
       yAxis: { ...base.yAxis, ...next.yAxis, title: { ...base.yAxis?.title, ...next.yAxis?.title } },
+      secondaryYAxis: { ...base.secondaryYAxis, ...next.secondaryYAxis, title: { ...base.secondaryYAxis?.title, ...next.secondaryYAxis?.title } },
       grid: { ...base.grid, ...next.grid, x: { ...base.grid?.x, ...next.grid?.x }, y: { ...base.grid?.y, ...next.grid?.y } },
       zeroLine: { ...base.zeroLine, ...next.zeroLine },
       title: { ...base.title, ...next.title },
@@ -106,11 +107,20 @@ export class Waveform {
       if (options.yAxis.position === 'right') p.right = Math.max(p.right, options.yAxis.title.visible ? 72 : 52)
       else p.left = Math.max(p.left, options.yAxis.title.visible ? 72 : 52)
     }
+    if (options.secondaryYAxis.visible) p.right = Math.max(p.right, options.secondaryYAxis.title.visible ? 72 : 52)
     if (options.legend.visible && options.legend.orientation === 'vertical') {
       if (options.legend.position.includes('right')) p.right = Math.max(p.right, 96)
       else p.left = Math.max(p.left, 96)
     }
     return p
+  }
+
+  private resolveDomain(values: number[], min?: number, max?: number): [number, number] {
+    const extent = d3.extent(values) as [number | undefined, number | undefined]
+    let start = Number.isFinite(min) ? min! : (extent[0] ?? 0)
+    let end = Number.isFinite(max) ? max! : (extent[1] ?? 1)
+    if (start === end) { start -= 1; end += 1 }
+    return [start, end]
   }
 
   render() {
@@ -150,21 +160,26 @@ export class Waveform {
     const innerWidth = Math.max(1, width - p.left - p.right)
     const innerHeight = Math.max(1, height - p.top - p.bottom)
     const points = series.flatMap(s => s.data)
-    const xExtent = d3.extent(points, d => d.x) as [number, number]
-    const yExtent = d3.extent(points, d => d.y) as [number, number]
-    const xDomain: [number, number] = [Number.isFinite(options.xAxis.min) ? options.xAxis.min! : xExtent[0], Number.isFinite(options.xAxis.max) ? options.xAxis.max! : xExtent[1]]
-    const yDomain: [number, number] = [Number.isFinite(options.yAxis.min) ? options.yAxis.min! : yExtent[0], Number.isFinite(options.yAxis.max) ? options.yAxis.max! : yExtent[1]]
-    if (xDomain[0] === xDomain[1]) { xDomain[0] -= 1; xDomain[1] += 1 }
-    if (yDomain[0] === yDomain[1]) { yDomain[0] -= 1; yDomain[1] += 1 }
+    const xDomain = this.resolveDomain(points.map(d => d.x), options.xAxis.min, options.xAxis.max)
+
+    const leftSeries = series.filter(s => s.yAxis !== 'right')
+    const rightSeries = series.filter(s => s.yAxis === 'right')
+    const leftValues = (leftSeries.length ? leftSeries : series).flatMap(s => s.data.map(d => d.y))
+    const yDomain = this.resolveDomain(leftValues, options.yAxis.min, options.yAxis.max)
+    const hasRightAxis = options.secondaryYAxis.visible && rightSeries.length > 0
+    const yRightDomain = hasRightAxis
+      ? this.resolveDomain(rightSeries.flatMap(s => s.data.map(d => d.y)), options.secondaryYAxis.min, options.secondaryYAxis.max)
+      : undefined
 
     const x = d3.scaleLinear().domain(xDomain).range([0, innerWidth])
     const y = d3.scaleLinear().domain(yDomain).nice().range([innerHeight, 0])
+    const yRight = yRightDomain ? d3.scaleLinear().domain(yRightDomain).nice().range([innerHeight, 0]) : undefined
     const clipId = `waveform-clip-${this.instanceId}`
     svg.append('defs').append('clipPath').attr('id', clipId).append('rect').attr('width', innerWidth).attr('height', innerHeight)
     const plot = svg.append('g').attr('transform', `translate(${p.left},${p.top})`)
 
     const resolvedOptions = { ...options, padding: p }
-    const ctx: RenderContext = { svg, plot, series, options: resolvedOptions, width, height, innerWidth, innerHeight, x, y, xDomain, yDomain, clipId }
+    const ctx: RenderContext = { svg, plot, series, options: resolvedOptions, width, height, innerWidth, innerHeight, x, y, yRight, xDomain, yDomain, yRightDomain, clipId }
 
     renderFrame(ctx)
     renderGrid(ctx)
