@@ -7,14 +7,19 @@ A pure-display, configuration-driven waveform component built with Vite, TypeScr
 - No interaction dependencies: focused on waveform presentation
 - Single or multiple waveform series
 - Responsive SVG rendering with `ResizeObserver`
+- Automatic padding for axes, titles and legends
 - Independent top/right/bottom/left frame borders
 - Waveform color, width, line type, dash style and opacity
 - Optional area fill with configurable baseline
 - Global and per-series point styles: circle, square, triangle and diamond
 - X/Y domain, tick count, tick size, padding and D3 number format
+- Primary and secondary Y axes
 - Axis titles and units
+- Horizontal or vertical legends with line-style previews
 - X/Y grid styling
 - Zero reference line
+- Configurable empty-data state
+- SVG string/export API
 - Chart title
 - Per-series style overrides
 - Runtime `updateData()`, `updateOptions()` and `destroy()`
@@ -26,9 +31,10 @@ pnpm install
 pnpm dev
 ```
 
-## Build
+## Build and checks
 
 ```bash
+pnpm check
 pnpm build
 ```
 
@@ -44,6 +50,7 @@ const chart = new Waveform('#chart', [
 ], {
   width: '100%',
   responsive: { enabled: true, aspectRatio: 2.5 },
+  layout: { autoPadding: true },
   frame: {
     top: { color: '#334155', width: 2 },
     right: { visible: false },
@@ -63,13 +70,15 @@ const chart = new Waveform('#chart', [
 })
 ```
 
-## Multiple series
+## Multiple series and dual Y axes
 
 ```ts
 new Waveform('#chart', [
   {
-    name: 'CH1',
-    data: channel1,
+    name: 'Voltage',
+    unit: 'V',
+    yAxis: 'left',
+    data: voltageData,
     style: {
       color: '#2563eb',
       lineWidth: 2,
@@ -77,15 +86,49 @@ new Waveform('#chart', [
     },
   },
   {
-    name: 'CH2',
-    data: channel2,
+    name: 'Current',
+    unit: 'mA',
+    yAxis: 'right',
+    data: currentData,
     style: {
       color: '#dc2626',
       lineStyle: 'dashed',
       point: { visible: true, type: 'diamond', size: 3 },
     },
   },
-])
+], {
+  legend: {
+    visible: true,
+    position: 'top-left',
+    orientation: 'horizontal',
+  },
+  yAxis: {
+    title: { visible: true, text: 'Voltage', unit: 'V' },
+  },
+  secondaryYAxis: {
+    visible: true,
+    tickFormat: '.0f',
+    title: { visible: true, text: 'Current', unit: 'mA' },
+  },
+})
+```
+
+## SVG export
+
+```ts
+const svgSource = chart.toSVGString()
+chart.downloadSVG('waveform.svg')
+```
+
+## Empty state
+
+```ts
+new Waveform('#chart', [], {
+  emptyState: {
+    visible: true,
+    text: 'No data available',
+  },
+})
 ```
 
 `tickFormat` accepts either a D3 number-format string such as `.2f` or a custom `(value: number) => string` formatter.
