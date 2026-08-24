@@ -28,5 +28,6 @@ export function resolveOptions(options: WaveformOptions = {}) {
     },
     zeroLine: { ...defaultOptions.zeroLine, ...options.zeroLine },
     title: { ...defaultOptions.title, ...options.title },
+    legend: { ...defaultOptions.legend, ...options.legend },
   }
 }
