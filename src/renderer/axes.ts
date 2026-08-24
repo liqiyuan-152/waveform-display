@@ -9,8 +9,37 @@ function formatTick(axis: AxisOptions, value: d3.NumberValue): string {
   return `${number}${axis.unit ? ` ${axis.unit}` : ''}`
 }
 
+function renderYAxis(ctx: RenderContext, axisOptions: AxisOptions, scale: d3.ScaleLinear<number, number>, position: 'left' | 'right') {
+  const { plot, svg, innerWidth, innerHeight, options } = ctx
+  const axis = position === 'right' ? d3.axisRight(scale) : d3.axisLeft(scale)
+  axis.ticks(axisOptions.tickCount)
+    .tickSize(axisOptions.tickSize)
+    .tickPadding(axisOptions.tickPadding)
+    .tickFormat(v => formatTick(axisOptions, v))
+
+  plot.append('g')
+    .attr('transform', position === 'right' ? `translate(${innerWidth},0)` : null)
+    .call(axis)
+    .call(g => g.selectAll('path,line').attr('stroke', axisOptions.color).attr('stroke-width', axisOptions.width))
+    .call(g => g.selectAll('text').attr('fill', axisOptions.fontColor).attr('font-size', axisOptions.fontSize))
+
+  const titleText = axisOptions.title?.text || axisOptions.label
+  if (axisOptions.title?.visible && titleText) {
+    const xPos = position === 'right'
+      ? options.padding.left + innerWidth + (axisOptions.title.offset || 52)
+      : options.padding.left - (axisOptions.title.offset || 52)
+    svg.append('text')
+      .attr('transform', `translate(${xPos},${options.padding.top + innerHeight / 2}) rotate(-90)`)
+      .attr('text-anchor', 'middle')
+      .attr('fill', axisOptions.title.color)
+      .attr('font-size', axisOptions.title.fontSize)
+      .attr('font-weight', axisOptions.title.fontWeight)
+      .text(`${titleText}${axisOptions.title.unit ? ` (${axisOptions.title.unit})` : ''}`)
+  }
+}
+
 export function renderAxes(ctx: RenderContext) {
-  const { plot, svg, x, y, innerHeight, innerWidth, options } = ctx
+  const { plot, svg, x, y, yRight, innerHeight, innerWidth, options } = ctx
   const p = options.padding
 
   if (options.xAxis.visible) {
@@ -27,19 +56,8 @@ export function renderAxes(ctx: RenderContext) {
       .call(g => g.selectAll('text').attr('fill', options.xAxis.fontColor).attr('font-size', options.xAxis.fontSize))
   }
 
-  if (options.yAxis.visible) {
-    const axis = options.yAxis.position === 'right' ? d3.axisRight(y) : d3.axisLeft(y)
-    axis.ticks(options.yAxis.tickCount)
-      .tickSize(options.yAxis.tickSize)
-      .tickPadding(options.yAxis.tickPadding)
-      .tickFormat(v => formatTick(options.yAxis, v))
-
-    plot.append('g')
-      .attr('transform', options.yAxis.position === 'right' ? `translate(${innerWidth},0)` : null)
-      .call(axis)
-      .call(g => g.selectAll('path,line').attr('stroke', options.yAxis.color).attr('stroke-width', options.yAxis.width))
-      .call(g => g.selectAll('text').attr('fill', options.yAxis.fontColor).attr('font-size', options.yAxis.fontSize))
-  }
+  if (options.yAxis.visible) renderYAxis(ctx, options.yAxis, y, options.yAxis.position)
+  if (options.secondaryYAxis.visible && yRight) renderYAxis(ctx, options.secondaryYAxis, yRight, 'right')
 
   const xTitleText = options.xAxis.title.text || options.xAxis.label
   if (options.xAxis.title.visible && xTitleText) {
@@ -51,19 +69,5 @@ export function renderAxes(ctx: RenderContext) {
       .attr('font-size', options.xAxis.title.fontSize)
       .attr('font-weight', options.xAxis.title.fontWeight)
       .text(`${xTitleText}${options.xAxis.title.unit ? ` (${options.xAxis.title.unit})` : ''}`)
-  }
-
-  const yTitleText = options.yAxis.title.text || options.yAxis.label
-  if (options.yAxis.title.visible && yTitleText) {
-    const xPos = options.yAxis.position === 'right'
-      ? p.left + innerWidth + options.yAxis.title.offset
-      : p.left - options.yAxis.title.offset
-    svg.append('text')
-      .attr('transform', `translate(${xPos},${p.top + innerHeight / 2}) rotate(-90)`)
-      .attr('text-anchor', 'middle')
-      .attr('fill', options.yAxis.title.color)
-      .attr('font-size', options.yAxis.title.fontSize)
-      .attr('font-weight', options.yAxis.title.fontWeight)
-      .text(`${yTitleText}${options.yAxis.title.unit ? ` (${options.yAxis.title.unit})` : ''}`)
   }
 }
