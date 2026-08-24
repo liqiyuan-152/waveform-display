@@ -21,6 +21,7 @@ export interface AreaOptions { visible?: boolean; color?: string; opacity?: numb
 export interface AxisLabelOptions { visible?: boolean; text?: string; unit?: string; color?: string; fontSize?: number; fontWeight?: number | string; offset?: number }
 export interface AxisOptions {
   visible?: boolean
+  position?: 'left' | 'right'
   min?: number
   max?: number
   tickCount?: number
@@ -40,6 +41,13 @@ export interface GridOptions { visible?: boolean; x?: GridAxisOptions; y?: GridA
 export interface ZeroLineOptions { visible?: boolean; color?: string; width?: number; dash?: string }
 export interface TitleOptions { visible?: boolean; text?: string; align?: 'left' | 'center' | 'right'; color?: string; fontSize?: number; fontWeight?: number | string }
 export interface ResponsiveOptions { enabled?: boolean; aspectRatio?: number; minHeight?: number; maxHeight?: number }
+export interface LegendOptions {
+  visible?: boolean
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+  color?: string
+  fontSize?: number
+  itemGap?: number
+}
 
 export interface WaveformOptions {
   width?: number | string
@@ -55,4 +63,5 @@ export interface WaveformOptions {
   grid?: GridOptions
   zeroLine?: ZeroLineOptions
   title?: TitleOptions
+  legend?: LegendOptions
 }
