@@ -44,15 +44,27 @@ export interface ResponsiveOptions { enabled?: boolean; aspectRatio?: number; mi
 export interface LegendOptions {
   visible?: boolean
   position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
+  orientation?: 'vertical' | 'horizontal'
   color?: string
   fontSize?: number
   itemGap?: number
+  lineLength?: number
+}
+export interface EmptyStateOptions {
+  visible?: boolean
+  text?: string
+  color?: string
+  fontSize?: number
+}
+export interface LayoutOptions {
+  autoPadding?: boolean
 }
 
 export interface WaveformOptions {
   width?: number | string
   height?: number | string
   responsive?: ResponsiveOptions
+  layout?: LayoutOptions
   padding?: PaddingOptions
   frame?: FrameOptions
   line?: LineOptions
@@ -64,4 +76,5 @@ export interface WaveformOptions {
   zeroLine?: ZeroLineOptions
   title?: TitleOptions
   legend?: LegendOptions
+  emptyState?: EmptyStateOptions
 }
