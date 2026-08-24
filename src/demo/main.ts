@@ -4,12 +4,14 @@ const series: WaveformSeries[] = [
   {
     name: 'CH1',
     unit: 'V',
+    order: 2,
     data: Array.from({ length: 240 }, (_, i) => ({ x: i / 20, y: Math.sin(i / 10) * 0.8 + Math.sin(i / 3) * 0.08 })),
     style: { color: '#2563eb', lineWidth: 2, area: { visible: true, opacity: 0.08 } },
   },
   {
     name: 'CH2',
     unit: 'V',
+    order: 1,
     data: Array.from({ length: 240 }, (_, i) => ({ x: i / 20, y: Math.cos(i / 14) * 0.45 })),
     style: { color: '#dc2626', lineWidth: 1.5, lineStyle: 'dashed', point: { visible: true, type: 'diamond', size: 2.5, color: '#dc2626' } },
   },
@@ -25,6 +27,7 @@ new Waveform('#waveform', series, {
   width: '100%',
   responsive: { enabled: true, aspectRatio: 2.6 },
   title: { visible: true, text: 'Configurable Waveform Display' },
+  legend: { visible: true, position: 'top-right' },
   frame: {
     backgroundColor: '#ffffff',
     top: { color: '#475569', width: 2 },
@@ -33,6 +36,6 @@ new Waveform('#waveform', series, {
     left: { color: '#475569', width: 2 },
   },
   xAxis: { tickFormat: '.1f', title: { visible: true, text: 'Time', unit: 's' } },
-  yAxis: { tickFormat: '.2f', title: { visible: true, text: 'Amplitude', unit: 'V' } },
+  yAxis: { position: 'right', tickFormat: '.2f', title: { visible: true, text: 'Amplitude', unit: 'V' } },
   grid: { x: { dash: '2 4' }, y: { dash: '2 4' } },
 })
