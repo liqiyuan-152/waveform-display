@@ -27,6 +27,11 @@ export const defaultOptions = {
     color: '#64748b', width: 1, fontSize: 11, fontColor: '#475569', label: '', unit: '',
     title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 52 },
   },
+  secondaryYAxis: {
+    visible: false, position: 'right', min: undefined, max: undefined, tickCount: 6, tickSize: 6, tickPadding: 6, tickFormat: '',
+    color: '#64748b', width: 1, fontSize: 11, fontColor: '#475569', label: '', unit: '',
+    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 52 },
+  },
   grid: { visible: true, x: { visible: true, color: '#e2e8f0', width: 1, dash: '3 3' }, y: { visible: true, color: '#e2e8f0', width: 1, dash: '3 3' } },
   zeroLine: { visible: true, color: '#94a3b8', width: 1, dash: '4 4' },
   title: { visible: false, text: '', align: 'center', color: '#0f172a', fontSize: 16, fontWeight: 600 },
