@@ -8,7 +8,7 @@ import { renderAxes } from '../renderer/axes'
 import { renderLegend } from '../renderer/legend'
 import type { RenderContext } from '../renderer/context'
 import type { WaveformData } from '../types/data'
-import type { WaveformOptions } from '../types/options'
+import type { PaddingOptions, WaveformOptions } from '../types/options'
 
 let instanceCounter = 0
 
@@ -40,6 +40,24 @@ export class Waveform {
     this.render()
   }
 
+  toSVGString(): string {
+    const svg = this.container.querySelector('svg')
+    if (!svg) return ''
+    return new XMLSerializer().serializeToString(svg)
+  }
+
+  downloadSVG(filename = 'waveform.svg') {
+    const source = this.toSVGString()
+    if (!source) return
+    const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' })
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    link.click()
+    URL.revokeObjectURL(url)
+  }
+
   destroy() {
     this.resizeObserver?.disconnect()
     this.container.replaceChildren()
@@ -49,6 +67,7 @@ export class Waveform {
     return {
       ...base, ...next,
       responsive: { ...base.responsive, ...next.responsive },
+      layout: { ...base.layout, ...next.layout },
       padding: { ...base.padding, ...next.padding },
       frame: {
         ...base.frame, ...next.frame,
@@ -66,6 +85,7 @@ export class Waveform {
       zeroLine: { ...base.zeroLine, ...next.zeroLine },
       title: { ...base.title, ...next.title },
       legend: { ...base.legend, ...next.legend },
+      emptyState: { ...base.emptyState, ...next.emptyState },
     }
   }
 
@@ -76,12 +96,25 @@ export class Waveform {
     this.resizeObserver.observe(this.container)
   }
 
+  private resolvePadding(options: ReturnType<typeof resolveOptions>): Required<PaddingOptions> {
+    const p = { ...options.padding }
+    if (!options.layout.autoPadding) return p
+
+    if (options.title.visible && options.title.text) p.top = Math.max(p.top, 42)
+    if (options.xAxis.visible) p.bottom = Math.max(p.bottom, options.xAxis.title.visible ? 62 : 42)
+    if (options.yAxis.visible) {
+      if (options.yAxis.position === 'right') p.right = Math.max(p.right, options.yAxis.title.visible ? 72 : 52)
+      else p.left = Math.max(p.left, options.yAxis.title.visible ? 72 : 52)
+    }
+    if (options.legend.visible && options.legend.orientation === 'vertical') {
+      if (options.legend.position.includes('right')) p.right = Math.max(p.right, 96)
+      else p.left = Math.max(p.left, 96)
+    }
+    return p
+  }
+
   render() {
     const options = resolveOptions(this.rawOptions)
-    const series = normalizeData(this.data)
-    this.container.replaceChildren()
-    if (!series.length) return
-
     const measuredWidth = this.container.clientWidth || 800
     const width = typeof options.width === 'number' ? options.width : measuredWidth
     let height = typeof options.height === 'number' ? options.height : this.container.clientHeight || 320
@@ -89,7 +122,31 @@ export class Waveform {
       height = Math.min(options.responsive.maxHeight, Math.max(options.responsive.minHeight, width / options.responsive.aspectRatio))
     }
 
-    const p = options.padding
+    this.container.replaceChildren()
+    const series = normalizeData(this.data)
+    const svg = d3.select(this.container)
+      .append('svg')
+      .attr('width', '100%')
+      .attr('height', height)
+      .attr('viewBox', `0 0 ${width} ${height}`)
+      .attr('preserveAspectRatio', 'xMidYMid meet')
+      .attr('xmlns', 'http://www.w3.org/2000/svg')
+
+    if (!series.length) {
+      if (options.emptyState.visible) {
+        svg.append('text')
+          .attr('x', width / 2)
+          .attr('y', height / 2)
+          .attr('text-anchor', 'middle')
+          .attr('dominant-baseline', 'middle')
+          .attr('fill', options.emptyState.color)
+          .attr('font-size', options.emptyState.fontSize)
+          .text(options.emptyState.text)
+      }
+      return
+    }
+
+    const p = this.resolvePadding(options)
     const innerWidth = Math.max(1, width - p.left - p.right)
     const innerHeight = Math.max(1, height - p.top - p.bottom)
     const points = series.flatMap(s => s.data)
@@ -102,18 +159,12 @@ export class Waveform {
 
     const x = d3.scaleLinear().domain(xDomain).range([0, innerWidth])
     const y = d3.scaleLinear().domain(yDomain).nice().range([innerHeight, 0])
-    const svg = d3.select(this.container)
-      .append('svg')
-      .attr('width', '100%')
-      .attr('height', height)
-      .attr('viewBox', `0 0 ${width} ${height}`)
-      .attr('preserveAspectRatio', 'xMidYMid meet')
-
     const clipId = `waveform-clip-${this.instanceId}`
     svg.append('defs').append('clipPath').attr('id', clipId).append('rect').attr('width', innerWidth).attr('height', innerHeight)
     const plot = svg.append('g').attr('transform', `translate(${p.left},${p.top})`)
 
-    const ctx: RenderContext = { svg, plot, series, options, width, height, innerWidth, innerHeight, x, y, xDomain, yDomain, clipId }
+    const resolvedOptions = { ...options, padding: p }
+    const ctx: RenderContext = { svg, plot, series, options: resolvedOptions, width, height, innerWidth, innerHeight, x, y, xDomain, yDomain, clipId }
 
     renderFrame(ctx)
     renderGrid(ctx)
