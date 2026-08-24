@@ -6,6 +6,7 @@ export function resolveOptions(options: WaveformOptions = {}) {
     ...defaultOptions,
     ...options,
     responsive: { ...defaultOptions.responsive, ...options.responsive },
+    layout: { ...defaultOptions.layout, ...options.layout },
     padding: { ...defaultOptions.padding, ...options.padding },
     frame: {
       ...defaultOptions.frame,
@@ -29,5 +30,6 @@ export function resolveOptions(options: WaveformOptions = {}) {
     zeroLine: { ...defaultOptions.zeroLine, ...options.zeroLine },
     title: { ...defaultOptions.title, ...options.title },
     legend: { ...defaultOptions.legend, ...options.legend },
+    emptyState: { ...defaultOptions.emptyState, ...options.emptyState },
   }
 }
