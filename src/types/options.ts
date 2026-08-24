@@ -72,6 +72,7 @@ export interface WaveformOptions {
   area?: AreaOptions
   xAxis?: AxisOptions
   yAxis?: AxisOptions
+  secondaryYAxis?: AxisOptions
   grid?: GridOptions
   zeroLine?: ZeroLineOptions
   title?: TitleOptions
