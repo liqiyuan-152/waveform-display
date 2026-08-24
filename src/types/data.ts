@@ -37,6 +37,7 @@ export interface WaveformSeries {
   id?: string
   name?: string
   unit?: string
+  order?: number
   data: WaveformPoint[]
   style?: WaveformSeriesStyle
 }
