@@ -21,6 +21,7 @@ export function resolveOptions(options: WaveformOptions = {}) {
     area: { ...defaultOptions.area, ...options.area },
     xAxis: { ...defaultOptions.xAxis, ...options.xAxis, title: { ...defaultOptions.xAxis.title, ...options.xAxis?.title } },
     yAxis: { ...defaultOptions.yAxis, ...options.yAxis, title: { ...defaultOptions.yAxis.title, ...options.yAxis?.title } },
+    secondaryYAxis: { ...defaultOptions.secondaryYAxis, ...options.secondaryYAxis, title: { ...defaultOptions.secondaryYAxis.title, ...options.secondaryYAxis?.title } },
     grid: {
       ...defaultOptions.grid,
       ...options.grid,
