@@ -13,7 +13,9 @@ export interface RenderContext {
   innerHeight: number
   x: d3.ScaleLinear<number, number>
   y: d3.ScaleLinear<number, number>
+  yRight?: d3.ScaleLinear<number, number>
   xDomain: [number, number]
   yDomain: [number, number]
+  yRightDomain?: [number, number]
   clipId: string
 }
