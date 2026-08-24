@@ -38,6 +38,7 @@ export interface WaveformSeries {
   name?: string
   unit?: string
   order?: number
+  yAxis?: 'left' | 'right'
   data: WaveformPoint[]
   style?: WaveformSeriesStyle
 }
