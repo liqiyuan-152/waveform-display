@@ -1,15 +1,15 @@
 import * as d3 from 'd3'
-import { resolveOptions } from '../config/resolve'
+import { resolveOptions, type ResolvedValueAxisOptions } from '../config/resolve'
 import { normalizeData } from './normalize'
 import { applyXDomainStrategy } from './domain'
 import { renderFrameBackground, renderFrameBorder } from '../renderer/frame'
 import { renderGrid } from '../renderer/grid'
 import { renderSeries } from '../renderer/series'
-import { renderAxes } from '../renderer/axes'
+import { estimateYAxisFootprint, renderAxes } from '../renderer/axes'
 import { renderLegend } from '../renderer/legend'
 import { renderShot } from '../renderer/shot'
-import type { RenderContext } from '../renderer/context'
-import type { WaveformData } from '../types/data'
+import type { RenderContext, ResolvedValueAxis } from '../renderer/context'
+import type { WaveformData, WaveformSeries } from '../types/data'
 import type { PaddingOptions, WaveformOptions } from '../types/options'
 
 let instanceCounter = 0
@@ -82,6 +82,7 @@ export class Waveform {
       xAxis: { ...base.xAxis, ...next.xAxis, title: { ...base.xAxis?.title, ...next.xAxis?.title } },
       yAxis: { ...base.yAxis, ...next.yAxis, title: { ...base.yAxis?.title, ...next.yAxis?.title } },
       secondaryYAxis: { ...base.secondaryYAxis, ...next.secondaryYAxis, title: { ...base.secondaryYAxis?.title, ...next.secondaryYAxis?.title } },
+      yAxes: next.yAxes ?? base.yAxes,
       grid: { ...base.grid, ...next.grid, x: { ...base.grid?.x, ...next.grid?.x }, y: { ...base.grid?.y, ...next.grid?.y } },
       zeroLine: { ...base.zeroLine, ...next.zeroLine },
       title: { ...base.title, ...next.title },
@@ -98,7 +99,10 @@ export class Waveform {
     this.resizeObserver.observe(this.container)
   }
 
-  private resolvePadding(options: ReturnType<typeof resolveOptions>): Required<PaddingOptions> {
+  private resolvePadding(
+    options: ReturnType<typeof resolveOptions>,
+    valueAxes: Array<{ options: ResolvedValueAxisOptions; offset: number; footprint: number }>,
+  ): Required<PaddingOptions> {
     const p = { ...options.padding }
     if (!options.layout.autoPadding) return p
 
@@ -109,11 +113,14 @@ export class Waveform {
       options.legend.position.startsWith('top')
     ) p.top = Math.max(p.top, 64)
     if (options.xAxis.visible) p.bottom = Math.max(p.bottom, options.xAxis.title.visible ? 62 : 42)
-    if (options.yAxis.visible) {
-      if (options.yAxis.position === 'right') p.right = Math.max(p.right, options.yAxis.title.visible ? 72 : 52)
-      else p.left = Math.max(p.left, options.yAxis.title.visible ? 72 : 52)
-    }
-    if (options.secondaryYAxis.visible) p.right = Math.max(p.right, options.secondaryYAxis.title.visible ? 72 : 52)
+    const leftExtent = Math.max(0, ...valueAxes
+      .filter(axis => axis.options.visible && axis.options.position === 'left')
+      .map(axis => axis.offset + axis.footprint))
+    const rightExtent = Math.max(0, ...valueAxes
+      .filter(axis => axis.options.visible && axis.options.position === 'right')
+      .map(axis => axis.offset + axis.footprint))
+    if (leftExtent) p.left = Math.max(p.left, Math.ceil(leftExtent + 8))
+    if (rightExtent) p.right = Math.max(p.right, Math.ceil(rightExtent + 8))
     if (options.legend.visible && options.legend.orientation === 'vertical') {
       if (options.legend.position.includes('right')) p.right = Math.max(p.right, 96)
       else p.left = Math.max(p.left, 96)
@@ -122,11 +129,40 @@ export class Waveform {
   }
 
   private resolveDomain(values: number[], min?: number, max?: number): [number, number] {
+    if (!values.length) {
+      if (Number.isFinite(min) && Number.isFinite(max)) {
+        if (min === max) return [min! - 1, max! + 1]
+        return [min!, max!]
+      }
+      if (Number.isFinite(min)) return [min!, min! + 1]
+      if (Number.isFinite(max)) return [max! - 1, max!]
+      return [0, 1]
+    }
     const extent = d3.extent(values) as [number | undefined, number | undefined]
     let start = Number.isFinite(min) ? min! : (extent[0] ?? 0)
     let end = Number.isFinite(max) ? max! : (extent[1] ?? 1)
     if (start === end) { start -= 1; end += 1 }
     return [start, end]
+  }
+
+  private resolveValueAxes(series: WaveformSeries[], options: ReturnType<typeof resolveOptions>) {
+    const primaryId = options.yAxes[0].id
+    const axisIds = new Set(options.yAxes.map(axis => axis.id))
+    const valuesByAxis = new Map(options.yAxes.map(axis => [axis.id, [] as number[]]))
+
+    for (const item of series) {
+      const axisId = item.yAxis && axisIds.has(item.yAxis) ? item.yAxis : primaryId
+      valuesByAxis.get(axisId)!.push(...item.data.map(point => point.y))
+    }
+
+    const offsets = { left: 0, right: 0 }
+    return options.yAxes.map((axis) => {
+      const domain = this.resolveDomain(valuesByAxis.get(axis.id) ?? [], axis.min, axis.max)
+      const footprint = estimateYAxisFootprint(axis, domain)
+      const offset = axis.visible ? offsets[axis.position] : 0
+      if (axis.visible) offsets[axis.position] += footprint + 12
+      return { options: axis, domain, offset, footprint }
+    })
   }
 
   render() {
@@ -162,7 +198,8 @@ export class Waveform {
       return
     }
 
-    const p = this.resolvePadding(options)
+    const valueAxisLayouts = this.resolveValueAxes(series, options)
+    const p = this.resolvePadding(options, valueAxisLayouts)
     const innerWidth = Math.max(1, width - p.left - p.right)
     const innerHeight = Math.max(1, height - p.top - p.bottom)
     const points = series.flatMap(s => s.data)
@@ -170,31 +207,33 @@ export class Waveform {
     const hasExplicitXDomain = Number.isFinite(options.xAxis.min) || Number.isFinite(options.xAxis.max)
     const xDomain = applyXDomainStrategy(rawXDomain, options.xDomainStrategy, hasExplicitXDomain)
 
-    const rightSeries = series.filter(s => s.yAxis === 'right')
-    const yValues = points.map(d => d.y)
-    const yDomain = this.resolveDomain(yValues, options.yAxis.min, options.yAxis.max)
-    const hasRightAxis = options.secondaryYAxis.visible && rightSeries.length > 0
-    const yRightDomain = hasRightAxis
-      ? this.resolveDomain(yValues, options.secondaryYAxis.min, options.secondaryYAxis.max)
-      : undefined
-
     const x = d3.scaleLinear().domain(xDomain).range([0, innerWidth])
-    const y = d3.scaleLinear().domain(yDomain).range([innerHeight, 0])
-    const yRight = yRightDomain ? d3.scaleLinear().domain(yRightDomain).range([innerHeight, 0]) : undefined
+    const yAxes: ResolvedValueAxis[] = valueAxisLayouts.map(axis => ({
+      ...axis,
+      scale: d3.scaleLinear().domain(axis.domain).range([innerHeight, 0]),
+    }))
+    const yAxisById = new Map(yAxes.map(axis => [axis.options.id, axis]))
+    const primaryYAxis = yAxes[0]
     const clipId = `waveform-clip-${this.instanceId}`
     svg.append('defs').append('clipPath').attr('id', clipId).append('rect').attr('width', innerWidth).attr('height', innerHeight)
     const plot = svg.append('g').attr('transform', `translate(${p.left},${p.top})`)
 
     const resolvedOptions = { ...options, padding: p }
-    const ctx: RenderContext = { svg, plot, series, options: resolvedOptions, width, height, innerWidth, innerHeight, x, y, yRight, xDomain, yDomain, yRightDomain, clipId }
+    const ctx: RenderContext = {
+      svg, plot, series, options: resolvedOptions, width, height, innerWidth, innerHeight,
+      x, yAxes, yAxisById, primaryYAxis, xDomain, clipId,
+    }
 
     renderFrameBackground(ctx)
     renderGrid(ctx)
 
-    if (options.zeroLine.visible && yDomain[0] <= 0 && yDomain[1] >= 0) {
+    const zeroAxis = yAxisById.get(options.zeroLine.axisId ?? '') ?? primaryYAxis
+    if (options.zeroLine.visible && zeroAxis.domain[0] <= 0 && zeroAxis.domain[1] >= 0) {
       plot.append('line')
+        .attr('class', 'waveform-zero-line')
+        .attr('data-axis-id', zeroAxis.options.id)
         .attr('x1', 0).attr('x2', innerWidth)
-        .attr('y1', y(0)).attr('y2', y(0))
+        .attr('y1', zeroAxis.scale(0)).attr('y2', zeroAxis.scale(0))
         .attr('stroke', options.zeroLine.color)
         .attr('stroke-width', options.zeroLine.width)
         .attr('stroke-dasharray', options.zeroLine.dash)

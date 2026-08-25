@@ -1,6 +1,7 @@
 import type { WaveformLineStyle, WaveformLineType, WaveformPointType } from './data'
 
 export type BorderStyle = 'solid' | 'dashed' | 'dotted'
+export type GridLineStyle = 'solid' | 'dashed'
 export interface PaddingOptions { top?: number; right?: number; bottom?: number; left?: number }
 export interface FrameOptions {
   visible?: boolean
@@ -32,9 +33,11 @@ export interface AxisOptions {
   unit?: string
   title?: AxisLabelOptions
 }
+export interface ValueAxisOptions extends AxisOptions { id: string }
 export interface GridAxisOptions { visible?: boolean; color?: string; width?: number; dash?: string }
-export interface GridOptions { visible?: boolean; x?: GridAxisOptions; y?: GridAxisOptions }
-export interface ZeroLineOptions { visible?: boolean; color?: string; width?: number; dash?: string }
+export interface ValueGridAxisOptions extends GridAxisOptions { axisId?: string }
+export interface GridOptions { visible?: boolean; color?: string; style?: GridLineStyle; x?: GridAxisOptions; y?: ValueGridAxisOptions }
+export interface ZeroLineOptions { visible?: boolean; color?: string; width?: number; dash?: string; axisId?: string }
 export interface TitleOptions { visible?: boolean; text?: string; align?: 'left' | 'center' | 'right'; color?: string; fontSize?: number; fontWeight?: number | string }
 export interface ShotOptions { visible?: boolean; text?: string; color?: string; fontSize?: number; fontWeight?: number | string }
 export interface ResponsiveOptions { enabled?: boolean; aspectRatio?: number; minHeight?: number; maxHeight?: number }
@@ -80,6 +83,7 @@ export interface WaveformOptions {
   xAxis?: AxisOptions
   yAxis?: AxisOptions
   secondaryYAxis?: AxisOptions
+  yAxes?: ValueAxisOptions[]
   grid?: GridOptions
   zeroLine?: ZeroLineOptions
   title?: TitleOptions

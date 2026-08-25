@@ -11,12 +11,11 @@ function symbolType(type: WaveformPointType) {
 }
 
 export function renderSeries(ctx: RenderContext) {
-  const { plot, series, x, y, yRight, yRightDomain, options, clipId } = ctx
+  const { plot, series, x, yAxisById, primaryYAxis, options, clipId } = ctx
   const layer = plot.append('g').attr('clip-path', `url(#${clipId})`)
 
   series.forEach(s => {
-    const useRight = s.yAxis === 'right' && yRight && yRightDomain
-    const yScale = useRight ? yRight : y
+    const yScale = yAxisById.get(s.yAxis ?? '')?.scale ?? primaryYAxis.scale
     const lineStyle = {
       color: options.line.color,
       lineWidth: options.line.width,

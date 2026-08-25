@@ -167,7 +167,7 @@ describe('Waveform axes', () => {
     expect(points[1][1]).toBe(0)
   })
 
-  it('uses the global Y extent for both visible Y axes', () => {
+  it('uses an independent data extent for each legacy Y axis', () => {
     const svg = render(
       [
         { name: 'left', data: [{ x: 0, y: -10 }, { x: 1, y: 0 }] },
@@ -180,12 +180,12 @@ describe('Waveform axes', () => {
     const rightPoints = seriesPathPoints(svg, 1)
 
     expect(leftPoints[0][1]).toBe(height)
-    expect(leftPoints[1][1]).toBeCloseTo(height * 0.75)
-    expect(rightPoints[0][1]).toBeCloseTo(height * 0.5)
+    expect(leftPoints[1][1]).toBe(0)
+    expect(rightPoints[0][1]).toBe(height)
     expect(rightPoints[1][1]).toBe(0)
   })
 
-  it('applies explicit Y bounds independently on top of the global extent', () => {
+  it('applies explicit Y bounds on top of each axis data extent', () => {
     const svg = render(
       [
         { name: 'left', data: [{ x: 0, y: -10 }, { x: 1, y: 0 }] },
@@ -197,10 +197,108 @@ describe('Waveform axes', () => {
     const leftPoints = seriesPathPoints(svg, 0)
     const rightPoints = seriesPathPoints(svg, 1)
 
-    expect(leftPoints[0][1]).toBeCloseTo(height * 0.8)
-    expect(leftPoints[1][1]).toBeCloseTo(height * 0.6)
-    expect(rightPoints[0][1]).toBeCloseTo(height * (2 / 3))
-    expect(rightPoints[1][1]).toBeCloseTo(height * (1 / 3))
+    expect(leftPoints[0][1]).toBeCloseTo(height * 0.5)
+    expect(leftPoints[1][1]).toBe(0)
+    expect(rightPoints[0][1]).toBe(height)
+    expect(rightPoints[1][1]).toBeCloseTo(height * 0.5)
+  })
+
+  it('renders arbitrary named axes with independent scales and stacked side offsets', () => {
+    const svg = render(
+      [
+        { name: 'temperature', yAxis: 'temperature', data: [{ x: 0, y: 10 }, { x: 1, y: 20 }] },
+        { name: 'pressure', yAxis: 'pressure', data: [{ x: 0, y: 1000 }, { x: 1, y: 2000 }] },
+        { name: 'flow', yAxis: 'flow', data: [{ x: 0, y: -5 }, { x: 1, y: 5 }] },
+      ],
+      {
+        yAxes: [
+          { id: 'temperature', position: 'left', title: { visible: true, text: 'Temperature' } },
+          { id: 'pressure', position: 'left', title: { visible: true, text: 'Pressure' } },
+          { id: 'flow', position: 'right', title: { visible: true, text: 'Flow' } },
+        ],
+      },
+    )
+    const height = frameHeight(svg)
+    const axes = Array.from(svg.querySelectorAll<SVGGElement>('.waveform-axis-y'))
+
+    expect(axes.map(axis => axis.getAttribute('data-axis-id'))).toEqual(['temperature', 'pressure', 'flow'])
+    expect(axes[0].getAttribute('transform')).toBeNull()
+    expect(Number(axes[1].getAttribute('transform')?.match(/translate\((-?[\d.]+)/)?.[1])).toBeLessThan(0)
+    expect(axes[2].getAttribute('transform')).toMatch(/^translate\([\d.]+,0\)$/)
+    expect(seriesPathPoints(svg, 0).map(point => point[1])).toEqual([height, 0])
+    expect(seriesPathPoints(svg, 1).map(point => point[1])).toEqual([height, 0])
+    expect(seriesPathPoints(svg, 2).map(point => point[1])).toEqual([height, 0])
+    expect(Number(svg.querySelector('svg > g')?.getAttribute('transform')?.match(/translate\(([\d.]+)/)?.[1])).toBeGreaterThan(72)
+  })
+
+  it('falls back invalid bindings and axis references to the first unique axis', () => {
+    const svg = render(
+      [{ name: 'fallback', yAxis: 'missing', data: [{ x: 0, y: 5 }, { x: 1, y: 15 }] }],
+      {
+        yAxes: [
+          { id: '', position: 'right' },
+          { id: 'primary', min: 0, max: 20 },
+          { id: 'primary', position: 'right' },
+        ],
+        grid: { y: { axisId: 'missing' } },
+        zeroLine: { axisId: 'missing' },
+      },
+    )
+
+    expect(svg.querySelectorAll('.waveform-axis-y')).toHaveLength(1)
+    expect(svg.querySelector('.waveform-grid-y')?.getAttribute('data-axis-id')).toBe('primary')
+    expect(svg.querySelector('.waveform-zero-line')?.getAttribute('data-axis-id')).toBe('primary')
+    expect(seriesPathPoints(svg)[0][1]).toBeCloseTo(frameHeight(svg) * 0.75)
+  })
+
+  it('falls back an empty axis array and supports an unbound axis domain', () => {
+    const fallback = render([{ x: 0, y: 2 }, { x: 1, y: 4 }], { yAxes: [] })
+    const unbound = render(
+      [{ x: 0, y: 2 }, { x: 1, y: 4 }],
+      { yAxes: [{ id: 'data' }, { id: 'empty', position: 'right', min: 10 }] },
+    )
+
+    expect(fallback.querySelector('.waveform-axis-y')?.getAttribute('data-axis-id')).toBe('left')
+    expect(labels(unbound, '[data-axis-id="empty"]')).toEqual(['10', '10.2', '10.4', '10.6', '10.8', '11'])
+  })
+
+  it('uses configured value axes for the Y grid and zero line', () => {
+    const svg = render(
+      [
+        { yAxis: 'positive', data: [{ x: 0, y: 10 }, { x: 1, y: 20 }] },
+        { yAxis: 'signed', data: [{ x: 0, y: -5 }, { x: 1, y: 5 }] },
+      ],
+      {
+        yAxes: [{ id: 'positive' }, { id: 'signed', position: 'right' }],
+        grid: { y: { axisId: 'signed' } },
+        zeroLine: { axisId: 'signed' },
+      },
+    )
+
+    expect(svg.querySelector('.waveform-grid-y')?.getAttribute('data-axis-id')).toBe('signed')
+    expect(svg.querySelector('.waveform-zero-line')?.getAttribute('data-axis-id')).toBe('signed')
+    expect(Number(svg.querySelector('.waveform-zero-line')?.getAttribute('y1'))).toBe(frameHeight(svg) / 2)
+  })
+
+  it('keeps hidden axis scales active and replaces named axes at runtime', () => {
+    const container = document.createElement('div')
+    Object.defineProperty(container, 'clientWidth', { value: 800, configurable: true })
+    document.body.append(container)
+    const chart = new Waveform(container, [
+      { yAxis: 'hidden', data: [{ x: 0, y: 10 }, { x: 1, y: 20 }] },
+    ], {
+      responsive: { enabled: false },
+      yAxes: [{ id: 'visible' }, { id: 'hidden', visible: false }],
+    })
+
+    expect(container.querySelectorAll('.waveform-axis-y')).toHaveLength(1)
+    expect(seriesPathPoints(container.querySelector('svg')!).map(point => point[1]))
+      .toEqual([frameHeight(container.querySelector('svg')!), 0])
+
+    chart.updateOptions({ yAxes: [{ id: 'replacement', min: 0, max: 40 }] })
+    const updated = container.querySelector('svg')!
+    expect(updated.querySelector('.waveform-axis-y')?.getAttribute('data-axis-id')).toBe('replacement')
+    expect(seriesPathPoints(updated)[0][1]).toBeCloseTo(frameHeight(updated) * 0.75)
   })
 
   it('keeps a usable Y domain when all values are equal', () => {
@@ -226,6 +324,36 @@ describe('Waveform axes', () => {
     expect(seriesPathPoints(updatedSvg)[1][1]).toBe(frameHeight(updatedSvg) * 0.75)
   })
 
+  it('includes the exact Y-domain endpoints and pins the end value to the top edge', () => {
+    const svg = render(
+      [{ x: 0, y: 1.1 }, { x: 1, y: 9.9 }],
+      { yAxis: { tickCount: 6 } },
+    )
+    const yAxis = svg.querySelector('.waveform-axis-y--left')!
+    const yLabels = labels(svg, '.waveform-axis-y--left')
+    const endLabel = yAxis.querySelector('.waveform-axis-y-end-value')!
+    const axisTickPositions = Array.from(yAxis.querySelectorAll('.tick'), tick => tick.getAttribute('transform'))
+    const gridTickPositions = Array.from(svg.querySelectorAll('.waveform-grid-y .tick'), tick => tick.getAttribute('transform'))
+
+    expect(yLabels).toHaveLength(6)
+    expect(yLabels[0]).toBe('1.1')
+    expect(yLabels[yLabels.length - 1]).toBe('9.9')
+    expect(endLabel.textContent).toBe('9.9')
+    expect(endLabel.parentElement?.getAttribute('transform')).toBe('translate(0,0.5)')
+    expect(gridTickPositions).toEqual(axisTickPositions)
+  })
+
+  it('places the shared scientific exponent on the exact Y-domain end value', () => {
+    const svg = render([{ x: 0, y: 32748.3 }, { x: 1, y: 33482.7 }])
+    const yLabels = labels(svg, '.waveform-axis-y--left')
+    const endLabel = svg.querySelector('.waveform-axis-y--left .waveform-axis-y-end-value')!
+
+    expect(yLabels[0]).toBe('3.2748')
+    expect(yLabels[yLabels.length - 1]).toBe('E+04 3.3483')
+    expect(endLabel.textContent).toBe('E+04 3.3483')
+    expect(yLabels.filter(label => label.startsWith('E'))).toHaveLength(1)
+  })
+
   it('uses one shared scientific exponent on each Y axis', () => {
     const svg = render(
       [
@@ -241,12 +369,13 @@ describe('Waveform axes', () => {
 
   it('keeps an explicit Y-axis tick formatter authoritative', () => {
     const svg = render(
-      [{ x: 0, y: 1000 }, { x: 1, y: 3000 }],
+      [{ x: 0, y: 1000 }, { x: 1, y: 3123 }],
       { yAxis: { tickFormat: value => `value:${value}` } },
     )
 
     const yLabels = labels(svg, '.waveform-axis-y--left')
     expect(yLabels.every(label => label.startsWith('value:'))).toBe(true)
     expect(yLabels.some(label => label.startsWith('E'))).toBe(false)
+    expect(svg.querySelector('.waveform-axis-y-end-value')?.textContent).toBe('value:3123')
   })
 })

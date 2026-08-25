@@ -15,7 +15,7 @@ describe('Y-axis scientific formatting', () => {
     expect(resolveScientificExponent(-10_000, 3000)).toBe(4)
   })
 
-  it('shows one shared exponent on the top tick and scales every tick', () => {
+  it('shows one shared exponent on the domain end tick and scales every tick', () => {
     const domain: [number, number] = [1000, 3000]
     expect(formatScientificAxisTick(1000, domain, 3000)).toBe('1')
     expect(formatScientificAxisTick(2000, domain, 3000)).toBe('2')

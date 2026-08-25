@@ -1,4 +1,5 @@
 import * as d3 from 'd3'
+import { resolveOptions } from '../config/resolve'
 import type { WaveformSeries, WaveformSeriesStyle } from '../types/data'
 import type { WaveformOptions } from '../types/options'
 
@@ -17,10 +18,17 @@ interface FieldDefinition {
   validate?: (raw: string) => boolean
 }
 
-interface SectionDefinition {
-  title: string
-  open?: boolean
+interface SubsectionDefinition {
+  id: string
+  label: string
   fields: FieldDefinition[]
+}
+
+interface TabDefinition {
+  id: string
+  label: string
+  subsections?: SubsectionDefinition[]
+  series?: boolean
 }
 
 export interface ParseResult<T> {
@@ -60,6 +68,10 @@ const lineStyles = [
   { label: '虚线', value: 'dashed' },
   { label: '点划线', value: 'dash-dot' },
 ] as const
+const gridLineStyles = [
+  { label: '实线', value: 'solid' },
+  { label: '虚线', value: 'dashed' },
+] as const
 const pointTypes = [
   { label: '圆形', value: 'circle' },
   { label: '方形', value: 'square' },
@@ -67,8 +79,7 @@ const pointTypes = [
   { label: '菱形', value: 'diamond' },
 ] as const
 
-function axisFields(prefix: 'xAxis' | 'yAxis' | 'secondaryYAxis'): FieldDefinition[] {
-  const isX = prefix === 'xAxis'
+function axisFields(prefix: string, isX = prefix === 'xAxis'): FieldDefinition[] {
   return [
     boolean('显示坐标轴', `${prefix}.visible`),
     select('位置', `${prefix}.position`, [{ label: '左侧', value: 'left' }, { label: '右侧', value: 'right' }]),
@@ -95,80 +106,96 @@ function axisFields(prefix: 'xAxis' | 'yAxis' | 'secondaryYAxis'): FieldDefiniti
   ]
 }
 
-const sections: SectionDefinition[] = [
+const tabs: TabDefinition[] = [
   {
-    title: '尺寸与布局', open: true, fields: [
-      { kind: 'text', label: '宽度', path: 'width', parse: parseDimension },
-      { kind: 'text', label: '高度', path: 'height', parse: parseDimension },
-      boolean('响应式布局', 'responsive.enabled'),
-      number('宽高比', 'responsive.aspectRatio', 0.1, 0.1),
-      number('最小高度', 'responsive.minHeight', 1, 1),
-      number('最大高度', 'responsive.maxHeight', 1, 1),
-      boolean('自动留白', 'layout.autoPadding'),
-      number('上留白', 'padding.top', 0),
-      number('右留白', 'padding.right', 0),
-      number('下留白', 'padding.bottom', 0),
-      number('左留白', 'padding.left', 0),
+    id: 'layout', label: '布局', subsections: [
+      { id: 'size', label: '尺寸与留白', fields: [
+        { kind: 'text', label: '宽度', path: 'width', parse: parseDimension },
+        { kind: 'text', label: '高度', path: 'height', parse: parseDimension },
+        boolean('响应式布局', 'responsive.enabled'),
+        number('宽高比', 'responsive.aspectRatio', 0.1, 0.1),
+        number('最小高度', 'responsive.minHeight', 1, 1),
+        number('最大高度', 'responsive.maxHeight', 1, 1),
+        boolean('自动留白', 'layout.autoPadding'),
+        number('上留白', 'padding.top', 0),
+        number('右留白', 'padding.right', 0),
+        number('下留白', 'padding.bottom', 0),
+        number('左留白', 'padding.left', 0),
+      ] },
+      { id: 'frame', label: '边框', fields: [
+        boolean('显示边框', 'frame.visible'), color('背景颜色', 'frame.backgroundColor'),
+        color('边框颜色', 'frame.borderColor'), number('边框宽度', 'frame.borderWidth', 0, 0.1),
+        select('边框样式', 'frame.borderStyle', [{ label: '实线', value: 'solid' }, { label: '虚线', value: 'dashed' }, { label: '点线', value: 'dotted' }]),
+        number('圆角', 'frame.radius', 0),
+      ] },
     ],
   },
   {
-    title: '边框', fields: [
-      boolean('显示边框', 'frame.visible'), color('背景颜色', 'frame.backgroundColor'),
-      color('边框颜色', 'frame.borderColor'), number('边框宽度', 'frame.borderWidth', 0, 0.1),
-      select('边框样式', 'frame.borderStyle', [{ label: '实线', value: 'solid' }, { label: '虚线', value: 'dashed' }, { label: '点线', value: 'dotted' }]),
-      number('圆角', 'frame.radius', 0),
+    id: 'stroke', label: '线点', subsections: [
+      { id: 'line', label: '线条', fields: [
+        boolean('显示线条', 'line.visible'), color('线条颜色', 'line.color'), number('线条宽度', 'line.width', 0, 0.1),
+        select('连线类型', 'line.type', lineTypes), select('线条样式', 'line.style', lineStyles), range('线条透明度', 'line.opacity', 0, 1, 0.05),
+      ] },
+      { id: 'point', label: '数据点', fields: [
+        boolean('显示数据点', 'point.visible'), select('数据点形状', 'point.type', pointTypes), number('数据点大小', 'point.size', 0, 0.5),
+        color('数据点颜色', 'point.color'), color('数据点边框', 'point.borderColor'), number('点边框宽度', 'point.borderWidth', 0, 0.1),
+      ] },
     ],
   },
   {
-    title: '全局线条与点', open: true, fields: [
-      boolean('显示线条', 'line.visible'), color('线条颜色', 'line.color'), number('线条宽度', 'line.width', 0, 0.1),
-      select('连线类型', 'line.type', lineTypes), select('线条样式', 'line.style', lineStyles), range('线条透明度', 'line.opacity', 0, 1, 0.05),
-      boolean('显示数据点', 'point.visible'), select('数据点形状', 'point.type', pointTypes), number('数据点大小', 'point.size', 0, 0.5),
-      color('数据点颜色', 'point.color'), color('数据点边框', 'point.borderColor'), number('点边框宽度', 'point.borderWidth', 0, 0.1),
+    id: 'axes', label: '坐标轴', subsections: [
+      { id: 'x', label: 'X 轴', fields: [
+        select('范围策略', 'xDomainStrategy.type', [{ label: '数据范围', value: 'data' }, { label: '易读范围', value: 'nice' }]),
+        select('扩展边界', 'xDomainStrategy.bounds', [{ label: '两端', value: 'both' }, { label: '仅终点', value: 'end' }]),
+        number('策略刻度数', 'xDomainStrategy.tickCount', 1, 1), boolean('包含手动范围', 'xDomainStrategy.includeExplicit'),
+        ...axisFields('xAxis'),
+      ] },
+      { id: 'value-y', label: '值轴', fields: [] },
     ],
   },
   {
-    title: 'X 轴', fields: [
-      select('范围策略', 'xDomainStrategy.type', [{ label: '数据范围', value: 'data' }, { label: '易读范围', value: 'nice' }]),
-      select('扩展边界', 'xDomainStrategy.bounds', [{ label: '两端', value: 'both' }, { label: '仅终点', value: 'end' }]),
-      number('策略刻度数', 'xDomainStrategy.tickCount', 1, 1), boolean('包含手动范围', 'xDomainStrategy.includeExplicit'),
-      ...axisFields('xAxis'),
-    ],
-  },
-  { title: '主 Y 轴', fields: axisFields('yAxis') },
-  { title: '副 Y 轴', fields: axisFields('secondaryYAxis') },
-  {
-    title: '网格与零线', fields: [
-      boolean('显示网格', 'grid.visible'), boolean('显示 X 网格', 'grid.x.visible'), color('X 网格颜色', 'grid.x.color'),
-      number('X 网格宽度', 'grid.x.width', 0, 0.1), text('X 网格虚线', 'grid.x.dash'),
-      boolean('显示 Y 网格', 'grid.y.visible'), color('Y 网格颜色', 'grid.y.color'), number('Y 网格宽度', 'grid.y.width', 0, 0.1),
-      text('Y 网格虚线', 'grid.y.dash'), boolean('显示零线', 'zeroLine.visible'), color('零线颜色', 'zeroLine.color'),
-      number('零线宽度', 'zeroLine.width', 0, 0.1), text('零线虚线', 'zeroLine.dash'),
+    id: 'grid', label: '网格', subsections: [
+      { id: 'grid-lines', label: '网格线', fields: [
+        boolean('显示网格', 'grid.visible'), select('辅助线样式', 'grid.style', gridLineStyles), color('辅助线颜色', 'grid.color'),
+        boolean('显示 X 网格', 'grid.x.visible'), number('X 网格宽度', 'grid.x.width', 0, 0.1),
+        boolean('显示 Y 网格', 'grid.y.visible'), number('Y 网格宽度', 'grid.y.width', 0, 0.1),
+        select('Y 网格参考轴', 'grid.y.axisId', []),
+      ] },
+      { id: 'zero-line', label: '零线', fields: [
+        boolean('显示零线', 'zeroLine.visible'), color('零线颜色', 'zeroLine.color'),
+        number('零线宽度', 'zeroLine.width', 0, 0.1), text('零线虚线', 'zeroLine.dash'),
+        select('零线参考轴', 'zeroLine.axisId', []),
+      ] },
     ],
   },
   {
-    title: '标题、炮号与图例', fields: [
-      boolean('显示图表标题', 'title.visible'), text('图表标题', 'title.text'),
-      select('标题对齐', 'title.align', [{ label: '左对齐', value: 'left' }, { label: '居中', value: 'center' }, { label: '右对齐', value: 'right' }]),
-      color('标题颜色', 'title.color'), number('标题字号', 'title.fontSize', 1), text('标题字重', 'title.fontWeight'),
-      boolean('显示炮号', 'shot.visible'), text('炮号文字', 'shot.text'), color('炮号颜色', 'shot.color'),
-      number('炮号字号', 'shot.fontSize', 1), text('炮号字重', 'shot.fontWeight'),
-      boolean('显示图例', 'legend.visible'),
-      select('图例位置', 'legend.position', [
-        { label: '左上', value: 'top-left' }, { label: '右上', value: 'top-right' },
-        { label: '左下', value: 'bottom-left' }, { label: '右下', value: 'bottom-right' },
-      ]),
-      select('图例方向', 'legend.orientation', [{ label: '横向', value: 'horizontal' }, { label: '纵向', value: 'vertical' }]),
-      color('图例文字颜色', 'legend.color'), number('图例字号', 'legend.fontSize', 1), number('图例间距', 'legend.itemGap', 0),
-      number('图例线长', 'legend.lineLength', 1),
+    id: 'text', label: '文字', subsections: [
+      { id: 'title', label: '标题', fields: [
+        boolean('显示图表标题', 'title.visible'), text('图表标题', 'title.text'),
+        select('标题对齐', 'title.align', [{ label: '左对齐', value: 'left' }, { label: '居中', value: 'center' }, { label: '右对齐', value: 'right' }]),
+        color('标题颜色', 'title.color'), number('标题字号', 'title.fontSize', 1), text('标题字重', 'title.fontWeight'),
+      ] },
+      { id: 'shot', label: '炮号', fields: [
+        boolean('显示炮号', 'shot.visible'), text('炮号文字', 'shot.text'), color('炮号颜色', 'shot.color'),
+        number('炮号字号', 'shot.fontSize', 1), text('炮号字重', 'shot.fontWeight'),
+      ] },
+      { id: 'legend', label: '图例', fields: [
+        boolean('显示图例', 'legend.visible'),
+        select('图例位置', 'legend.position', [
+          { label: '左上', value: 'top-left' }, { label: '右上', value: 'top-right' },
+          { label: '左下', value: 'bottom-left' }, { label: '右下', value: 'bottom-right' },
+        ]),
+        select('图例方向', 'legend.orientation', [{ label: '横向', value: 'horizontal' }, { label: '纵向', value: 'vertical' }]),
+        color('图例文字颜色', 'legend.color'), number('图例字号', 'legend.fontSize', 1), number('图例间距', 'legend.itemGap', 0),
+        number('图例线长', 'legend.lineLength', 1),
+      ] },
+      { id: 'empty', label: '空状态', fields: [
+        boolean('显示空数据文字', 'emptyState.visible'), text('提示文字', 'emptyState.text'),
+        color('提示颜色', 'emptyState.color'), number('提示字号', 'emptyState.fontSize', 1),
+      ] },
     ],
   },
-  {
-    title: '空数据状态', fields: [
-      boolean('显示空数据文字', 'emptyState.visible'), text('提示文字', 'emptyState.text'),
-      color('提示颜色', 'emptyState.color'), number('提示字号', 'emptyState.fontSize', 1),
-    ],
-  },
+  { id: 'series', label: '曲线', series: true },
 ]
 
 export function parseNumberInput(raw: string, optional = false): ParseResult<number | undefined> {
@@ -196,7 +223,10 @@ export function getAtPath(source: unknown, path: string): unknown {
 
 export function setAtPath<T>(source: T, path: string, value: unknown): T {
   const keys = path.split('.')
-  const root = { ...(source as Record<string, unknown>) }
+  const clone = (input: unknown): Record<string, unknown> => (
+    Array.isArray(input) ? [...input] : { ...(input as Record<string, unknown>) }
+  ) as unknown as Record<string, unknown>
+  const root = clone(source)
   let output = root
   let input = source as Record<string, unknown>
   keys.forEach((key, index) => {
@@ -206,7 +236,7 @@ export function setAtPath<T>(source: T, path: string, value: unknown): T {
     }
     const nextInput = input?.[key]
     const nextOutput = nextInput && typeof nextInput === 'object'
-      ? { ...(nextInput as Record<string, unknown>) }
+      ? clone(nextInput)
       : {}
     output[key] = nextOutput
     output = nextOutput
@@ -415,67 +445,112 @@ function createOverrideField(
   return wrapper
 }
 
-function renderSeriesSection(
+function renderSeriesPanel(
   parent: HTMLElement,
   getSeries: () => WaveformSeries[],
   getOptions: () => WaveformOptions,
+  getAxisIds: () => string[],
+  selectedIndex: number,
+  onSelect: (index: number) => void,
+  activeCategory: 'line' | 'point',
+  onCategoryChange: (category: 'line' | 'point') => void,
   updateSeries: (index: number, path: string, value: unknown) => void,
 ) {
-  const details = document.createElement('details')
-  details.className = 'config-section'
-  const summary = document.createElement('summary')
-  summary.textContent = '曲线样式'
-  const body = document.createElement('div')
-  body.className = 'series-list'
+  const series = getSeries()
+  if (!series.length) {
+    const empty = document.createElement('p')
+    empty.className = 'config-empty'
+    empty.textContent = '暂无曲线'
+    parent.append(empty)
+    return
+  }
 
-  getSeries().forEach((item, index) => {
-    const card = document.createElement('section')
-    card.className = 'series-card'
-    const title = document.createElement('h3')
-    title.textContent = item.name || item.id || `曲线 ${index + 1}`
-    const axis = seriesField('坐标轴', 'select', item.yAxis ?? 'left', value => updateSeries(index, 'yAxis', value), [
-      { label: '主 Y 轴', value: 'left' }, { label: '副 Y 轴', value: 'right' },
-    ])
-    const overrides = document.createElement('div')
-    overrides.className = 'series-overrides'
-    const definitions: Array<{
-      label: string
-      path: string
-      inherited: () => unknown
-      control: (value: unknown, commit: (value: unknown) => void) => HTMLElement
-    }> = [
-      { label: '颜色', path: 'style.color', inherited: () => getOptions().line?.color, control: (value, commit) => seriesField('颜色', 'color', value, commit) },
-      { label: '线宽', path: 'style.lineWidth', inherited: () => getOptions().line?.width, control: (value, commit) => seriesField('线宽', 'number', value, commit, undefined, 0, undefined, 0.1) },
-      { label: '连线类型', path: 'style.lineType', inherited: () => getOptions().line?.type, control: (value, commit) => seriesField('连线类型', 'select', value, commit, lineTypes) },
-      { label: '线条样式', path: 'style.lineStyle', inherited: () => getOptions().line?.style, control: (value, commit) => seriesField('线条样式', 'select', value, commit, lineStyles) },
-      { label: '透明度', path: 'style.opacity', inherited: () => getOptions().line?.opacity, control: (value, commit) => seriesField('透明度', 'range', value, commit, undefined, 0, 1, 0.05) },
-      { label: '显示数据点', path: 'style.point.visible', inherited: () => getOptions().point?.visible, control: (value, commit) => seriesField('显示数据点', 'boolean', value, commit) },
-      { label: '数据点形状', path: 'style.point.type', inherited: () => getOptions().point?.type, control: (value, commit) => seriesField('数据点形状', 'select', value, commit, pointTypes) },
-      { label: '数据点大小', path: 'style.point.size', inherited: () => getOptions().point?.size, control: (value, commit) => seriesField('数据点大小', 'number', value, commit, undefined, 0, undefined, 0.5) },
-      { label: '数据点颜色', path: 'style.point.color', inherited: () => getOptions().point?.color, control: (value, commit) => seriesField('数据点颜色', 'color', value, commit) },
-      { label: '点边框颜色', path: 'style.point.borderColor', inherited: () => getOptions().point?.borderColor, control: (value, commit) => seriesField('点边框颜色', 'color', value, commit) },
-      { label: '点边框宽度', path: 'style.point.borderWidth', inherited: () => getOptions().point?.borderWidth, control: (value, commit) => seriesField('点边框宽度', 'number', value, commit, undefined, 0, undefined, 0.1) },
-    ]
-    for (const definition of definitions) {
-      const current = getAtPath(item, definition.path)
-      overrides.append(createOverrideField(
-        definition.label,
-        current,
-        definition.inherited(),
-        definition.control,
-        value => updateSeries(index, definition.path, value),
-      ))
-    }
-    card.append(title, axis, overrides)
-    body.append(card)
+  const index = Math.min(selectedIndex, series.length - 1)
+  const item = series[index]
+  const toolbar = document.createElement('div')
+  toolbar.className = 'series-toolbar'
+  const selectorField = document.createElement('label')
+  const selectorLabel = document.createElement('span')
+  selectorLabel.textContent = '当前曲线'
+  const selector = document.createElement('select')
+  selector.setAttribute('aria-label', '选择曲线')
+  series.forEach((entry, entryIndex) => {
+    const option = document.createElement('option')
+    option.value = String(entryIndex)
+    option.textContent = entry.name || entry.id || `曲线 ${entryIndex + 1}`
+    selector.append(option)
   })
-  details.append(summary, body)
-  parent.append(details)
+  selector.value = String(index)
+  selector.addEventListener('change', () => onSelect(Number(selector.value)))
+  selectorField.className = 'series-selector'
+  selectorField.append(selectorLabel, selector)
+
+  const axisIds = getAxisIds()
+  const selectedAxisId = item.yAxis && axisIds.includes(item.yAxis) ? item.yAxis : axisIds[0]
+  const axis = seriesField(
+    '坐标轴', 'select', selectedAxisId, value => updateSeries(index, 'yAxis', value),
+    axisIds.map(id => ({ label: id, value: id })),
+  )
+  axis.classList.add('series-axis')
+  const segments = document.createElement('div')
+  segments.className = 'segment-control series-segment-control'
+  segments.setAttribute('aria-label', '曲线样式类型')
+  for (const category of [{ id: 'line', label: '线条' }, { id: 'point', label: '数据点' }] as const) {
+    const button = document.createElement('button')
+    button.type = 'button'
+    button.className = 'segment-button'
+    button.textContent = category.label
+    button.setAttribute('aria-pressed', String(category.id === activeCategory))
+    button.addEventListener('click', () => onCategoryChange(category.id))
+    segments.append(button)
+  }
+
+  const overrides = document.createElement('div')
+  overrides.className = 'series-overrides'
+  const definitions: Array<{
+    label: string
+    path: string
+    category: 'line' | 'point'
+    inherited: () => unknown
+    control: (value: unknown, commit: (value: unknown) => void) => HTMLElement
+  }> = [
+    { label: '颜色', path: 'style.color', category: 'line', inherited: () => getOptions().line?.color, control: (value, commit) => seriesField('颜色', 'color', value, commit) },
+    { label: '线宽', path: 'style.lineWidth', category: 'line', inherited: () => getOptions().line?.width, control: (value, commit) => seriesField('线宽', 'number', value, commit, undefined, 0, undefined, 0.1) },
+    { label: '连线类型', path: 'style.lineType', category: 'line', inherited: () => getOptions().line?.type, control: (value, commit) => seriesField('连线类型', 'select', value, commit, lineTypes) },
+    { label: '线条样式', path: 'style.lineStyle', category: 'line', inherited: () => getOptions().line?.style, control: (value, commit) => seriesField('线条样式', 'select', value, commit, lineStyles) },
+    { label: '透明度', path: 'style.opacity', category: 'line', inherited: () => getOptions().line?.opacity, control: (value, commit) => seriesField('透明度', 'range', value, commit, undefined, 0, 1, 0.05) },
+    { label: '显示数据点', path: 'style.point.visible', category: 'point', inherited: () => getOptions().point?.visible, control: (value, commit) => seriesField('显示数据点', 'boolean', value, commit) },
+    { label: '数据点形状', path: 'style.point.type', category: 'point', inherited: () => getOptions().point?.type, control: (value, commit) => seriesField('数据点形状', 'select', value, commit, pointTypes) },
+    { label: '数据点大小', path: 'style.point.size', category: 'point', inherited: () => getOptions().point?.size, control: (value, commit) => seriesField('数据点大小', 'number', value, commit, undefined, 0, undefined, 0.5) },
+    { label: '数据点颜色', path: 'style.point.color', category: 'point', inherited: () => getOptions().point?.color, control: (value, commit) => seriesField('数据点颜色', 'color', value, commit) },
+    { label: '点边框颜色', path: 'style.point.borderColor', category: 'point', inherited: () => getOptions().point?.borderColor, control: (value, commit) => seriesField('点边框颜色', 'color', value, commit) },
+    { label: '点边框宽度', path: 'style.point.borderWidth', category: 'point', inherited: () => getOptions().point?.borderWidth, control: (value, commit) => seriesField('点边框宽度', 'number', value, commit, undefined, 0, undefined, 0.1) },
+  ]
+  for (const definition of definitions.filter(entry => entry.category === activeCategory)) {
+    overrides.append(createOverrideField(
+      definition.label,
+      getAtPath(item, definition.path),
+      definition.inherited(),
+      definition.control,
+      value => updateSeries(index, definition.path, value),
+    ))
+  }
+  toolbar.append(selectorField, axis)
+  parent.append(toolbar, segments, overrides)
 }
 
+let configPanelCounter = 0
+
 export function createConfigPanel(container: HTMLElement, config: ConfigPanelOptions) {
-  let currentOptions = config.options
+  let currentOptions: WaveformOptions = { ...config.options, yAxes: resolveOptions(config.options).yAxes }
   let currentSeries = cloneSeries(config.series)
+  let activeTabId = tabs[0].id
+  let selectedSeriesIndex = 0
+  let activeSeriesCategory: 'line' | 'point' = 'line'
+  let selectedValueAxisIndex = 0
+  let emptyPreview = false
+  const activeSubsections = new Map(tabs.map(tab => [tab.id, tab.subsections?.[0]?.id ?? '']))
+  const instanceId = ++configPanelCounter
   container.replaceChildren()
   container.classList.add('config-panel')
 
@@ -484,48 +559,261 @@ export function createConfigPanel(container: HTMLElement, config: ConfigPanelOpt
   const title = document.createElement('h2')
   title.textContent = '实时配置'
   heading.append(title)
-  container.append(heading)
+  const tabList = document.createElement('div')
+  tabList.className = 'config-tabs'
+  tabList.setAttribute('role', 'tablist')
+  tabList.setAttribute('aria-label', '配置分类')
+  const panelHost = document.createElement('div')
+  panelHost.className = 'config-panels'
+  const tabButtons = new Map<string, HTMLButtonElement>()
+  const tabPanels = new Map<string, HTMLDivElement>()
 
-  for (const section of sections) {
-    const details = document.createElement('details')
-    details.className = 'config-section'
-    details.open = Boolean(section.open)
-    const summary = document.createElement('summary')
-    summary.textContent = section.title
+  const updateSeries = (index: number, path: string, value: unknown) => {
+    const next = cloneSeries(currentSeries)
+    next[index] = setAtPath(next[index], path, value)
+    currentSeries = next
+    config.onSeriesChange(cloneSeries(currentSeries))
+  }
+
+  const valueAxes = () => currentOptions.yAxes ?? resolveOptions(currentOptions).yAxes
+  const axisIds = () => valueAxes().map(axis => axis.id)
+
+  const commitOptions = (next: WaveformOptions) => {
+    currentOptions = next
+    config.onOptionsChange(currentOptions)
+  }
+
+  const rebindAxis = (oldId: string, newId: string) => {
+    currentSeries = currentSeries.map(series => series.yAxis === oldId ? { ...series, yAxis: newId } : series)
+    currentOptions = {
+      ...currentOptions,
+      grid: {
+        ...currentOptions.grid,
+        y: {
+          ...currentOptions.grid?.y,
+          axisId: currentOptions.grid?.y?.axisId === oldId ? newId : currentOptions.grid?.y?.axisId,
+        },
+      },
+      zeroLine: {
+        ...currentOptions.zeroLine,
+        axisId: currentOptions.zeroLine?.axisId === oldId ? newId : currentOptions.zeroLine?.axisId,
+      },
+    }
+    config.onSeriesChange(cloneSeries(currentSeries))
+  }
+
+  const renderFields = (fieldsDefinition: FieldDefinition[], subsectionId: string) => {
     const fields = document.createElement('div')
     fields.className = 'config-grid'
-    for (const field of section.fields) {
+    for (const field of fieldsDefinition) {
+      const dynamicField = field.path === 'grid.y.axisId' || field.path === 'zeroLine.axisId'
+        ? { ...field, options: [{ label: '第一条值轴', value: '' }, ...axisIds().map(id => ({ label: id, value: id }))] }
+        : field
       fields.append(createField(
-        field,
-        () => getAtPath(currentOptions, field.path),
+        dynamicField,
+        () => getAtPath(currentOptions, dynamicField.path),
         value => {
-          currentOptions = setAtPath(currentOptions, field.path, value)
-          config.onOptionsChange(currentOptions)
+          const nextValue = dynamicField === field ? value : value || undefined
+          commitOptions(setAtPath(currentOptions, dynamicField.path, nextValue))
         },
       ))
     }
-    if (section.title === '空数据状态') {
+    if (subsectionId === 'empty') {
       fields.prepend(createField(
         boolean('预览空数据状态', '__emptyPreview'),
-        () => false,
-        value => config.onEmptyPreviewChange(Boolean(value)),
+        () => emptyPreview,
+        value => {
+          emptyPreview = Boolean(value)
+          config.onEmptyPreviewChange(emptyPreview)
+        },
       ))
     }
-    details.append(summary, fields)
-    container.append(details)
+    return fields
   }
 
-  renderSeriesSection(
-    container,
-    () => currentSeries,
-    () => currentOptions,
-    (index, path, value) => {
-      const next = cloneSeries(currentSeries)
-      next[index] = setAtPath(next[index], path, value)
-      currentSeries = next
-      config.onSeriesChange(cloneSeries(currentSeries))
-    },
-  )
+  const renderValueAxes = (parent: HTMLElement) => {
+    const axes = valueAxes()
+    const index = Math.min(selectedValueAxisIndex, axes.length - 1)
+    const axis = axes[index]
+    const toolbar = document.createElement('div')
+    toolbar.className = 'value-axis-toolbar'
+    const selector = document.createElement('select')
+    selector.setAttribute('aria-label', '选择值轴')
+    axes.forEach((item, axisIndex) => {
+      const option = document.createElement('option')
+      option.value = String(axisIndex)
+      option.textContent = item.id
+      selector.append(option)
+    })
+    selector.value = String(index)
+    selector.addEventListener('change', () => {
+      selectedValueAxisIndex = Number(selector.value)
+      renderActivePanel()
+    })
+
+    const addButton = document.createElement('button')
+    addButton.type = 'button'
+    addButton.className = 'axis-command'
+    addButton.textContent = '+'
+    addButton.title = '新增值轴'
+    addButton.setAttribute('aria-label', '新增值轴')
+    addButton.addEventListener('click', () => {
+      let suffix = axes.length + 1
+      while (axes.some(item => item.id === `axis-${suffix}`)) suffix += 1
+      const nextAxis = resolveOptions({ yAxes: [{ id: `axis-${suffix}` }] }).yAxes[0]
+      commitOptions({ ...currentOptions, yAxes: [...axes, nextAxis] })
+      selectedValueAxisIndex = axes.length
+      renderActivePanel()
+    })
+
+    const deleteButton = document.createElement('button')
+    deleteButton.type = 'button'
+    deleteButton.className = 'axis-command axis-command--danger'
+    deleteButton.textContent = '删除'
+    deleteButton.disabled = axes.length === 1
+    deleteButton.title = axes.length === 1 ? '至少保留一条值轴' : '删除当前值轴'
+    deleteButton.addEventListener('click', () => {
+      if (axes.length === 1) return
+      const nextAxes = axes.filter((_, axisIndex) => axisIndex !== index)
+      selectedValueAxisIndex = Math.min(index, nextAxes.length - 1)
+      const fallbackId = nextAxes[0].id
+      rebindAxis(axis.id, fallbackId)
+      commitOptions({ ...currentOptions, yAxes: nextAxes })
+      renderActivePanel()
+    })
+    toolbar.append(selector, addButton, deleteButton)
+
+    const fields = document.createElement('div')
+    fields.className = 'config-grid value-axis-fields'
+    const idPath = `yAxes.${index}.id`
+    const idField = fieldShell('轴 ID')
+    const idInput = document.createElement('input')
+    idInput.type = 'text'
+    idInput.value = axis.id
+    const commitId = () => {
+      const nextId = idInput.value.trim()
+      const valid = Boolean(nextId) && !axes.some((item, itemIndex) => itemIndex !== index && item.id === nextId)
+      idInput.setAttribute('aria-invalid', String(!valid))
+      if (!valid || nextId === axis.id) return
+      rebindAxis(axis.id, nextId)
+      commitOptions(setAtPath(currentOptions, idPath, nextId))
+      renderActivePanel()
+    }
+    idInput.addEventListener('change', commitId)
+    idInput.addEventListener('keydown', event => {
+      if (event.key !== 'Enter') return
+      event.preventDefault()
+      commitId()
+    })
+    idField.control.append(idInput)
+    fields.append(idField.shell)
+    for (const field of axisFields(`yAxes.${index}`, false)) {
+      fields.append(createField(
+        field,
+        () => getAtPath(currentOptions, field.path),
+        value => commitOptions(setAtPath(currentOptions, field.path, value)),
+      ))
+    }
+    parent.append(toolbar, fields)
+  }
+
+  const renderActivePanel = () => {
+    const tab = tabs.find(entry => entry.id === activeTabId)!
+    const panel = tabPanels.get(tab.id)!
+    panel.replaceChildren()
+    if (tab.series) {
+      renderSeriesPanel(
+        panel,
+        () => currentSeries,
+        () => currentOptions,
+        axisIds,
+        selectedSeriesIndex,
+        index => {
+          selectedSeriesIndex = index
+          renderActivePanel()
+        },
+        activeSeriesCategory,
+        category => {
+          activeSeriesCategory = category
+          renderActivePanel()
+        },
+        updateSeries,
+      )
+      return
+    }
+    const subsections = tab.subsections ?? []
+    const activeSubsectionId = activeSubsections.get(tab.id) ?? subsections[0]?.id
+    if (subsections.length > 1) {
+      const segmented = document.createElement('div')
+      segmented.className = 'segment-control'
+      segmented.setAttribute('aria-label', `${tab.label}配置`)
+      for (const subsection of subsections) {
+        const button = document.createElement('button')
+        button.type = 'button'
+        button.className = 'segment-button'
+        button.textContent = subsection.label
+        button.setAttribute('aria-pressed', String(subsection.id === activeSubsectionId))
+        button.addEventListener('click', () => {
+          activeSubsections.set(tab.id, subsection.id)
+          renderActivePanel()
+        })
+        segmented.append(button)
+      }
+      panel.append(segmented)
+    }
+    const subsection = subsections.find(entry => entry.id === activeSubsectionId) ?? subsections[0]
+    if (subsection?.id === 'value-y') renderValueAxes(panel)
+    else if (subsection) panel.append(renderFields(subsection.fields, subsection.id))
+  }
+
+  const activateTab = (tabId: string, focus = false) => {
+    activeTabId = tabId
+    for (const tab of tabs) {
+      const active = tab.id === tabId
+      const button = tabButtons.get(tab.id)!
+      button.setAttribute('aria-selected', String(active))
+      button.tabIndex = active ? 0 : -1
+      tabPanels.get(tab.id)!.hidden = !active
+    }
+    renderActivePanel()
+    if (focus) tabButtons.get(tabId)?.focus()
+  }
+
+  tabs.forEach((tab, index) => {
+    const tabId = `config-tab-${instanceId}-${tab.id}`
+    const panelId = `config-panel-${instanceId}-${tab.id}`
+    const button = document.createElement('button')
+    button.type = 'button'
+    button.id = tabId
+    button.className = 'config-tab'
+    button.textContent = tab.label
+    button.setAttribute('role', 'tab')
+    button.setAttribute('aria-controls', panelId)
+    button.addEventListener('click', () => activateTab(tab.id))
+    button.addEventListener('keydown', event => {
+      let nextIndex = index
+      if (event.key === 'ArrowRight') nextIndex = (index + 1) % tabs.length
+      else if (event.key === 'ArrowLeft') nextIndex = (index - 1 + tabs.length) % tabs.length
+      else if (event.key === 'Home') nextIndex = 0
+      else if (event.key === 'End') nextIndex = tabs.length - 1
+      else return
+      event.preventDefault()
+      activateTab(tabs[nextIndex].id, true)
+    })
+    const panel = document.createElement('div')
+    panel.id = panelId
+    panel.className = 'config-tabpanel'
+    panel.setAttribute('role', 'tabpanel')
+    panel.setAttribute('aria-labelledby', tabId)
+    panel.hidden = tab.id !== activeTabId
+    tabButtons.set(tab.id, button)
+    tabPanels.set(tab.id, panel)
+    tabList.append(button)
+    panelHost.append(panel)
+  })
+
+  container.append(heading, tabList, panelHost)
+  activateTab(activeTabId)
 }
 
 export function setSeriesStyleOverride(

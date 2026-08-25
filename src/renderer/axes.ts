@@ -2,6 +2,7 @@ import * as d3 from 'd3'
 import type { AxisOptions } from '../types/options'
 import type { RenderContext } from './context'
 import { formatScientificAxisTick } from './formatters'
+import { yAxisTickValues } from './helpers'
 
 function formatTick(axis: AxisOptions, value: d3.NumberValue): string {
   const number = Number(value)
@@ -19,33 +20,59 @@ function estimateLabelWidth(label: string, fontSize: number): number {
   return label.length * fontSize * 0.6
 }
 
-function renderYAxis(ctx: RenderContext, axisOptions: AxisOptions, scale: d3.ScaleLinear<number, number>, position: 'left' | 'right') {
+export function formatYAxisTick(axis: AxisOptions, value: number, domain: [number, number]): string {
+  return axis.tickFormat
+    ? formatTick(axis, value)
+    : formatScientificAxisTick(value, domain, domain[1], axis.unit)
+}
+
+export function estimateYAxisFootprint(axis: AxisOptions, domain: [number, number]): number {
+  const labels = yAxisTickValues(domain, axis.tickCount ?? 6)
+    .map(value => formatYAxisTick(axis, value, domain))
+  const labelWidth = Math.max(0, ...labels.map(label => estimateLabelWidth(label, axis.fontSize ?? 11)))
+  const tickFootprint = (axis.tickSize ?? 6) + (axis.tickPadding ?? 6) + labelWidth
+  const titleFootprint = axis.title?.visible && (axis.title.text || axis.label)
+    ? (axis.title.offset ?? 52) + (axis.title.fontSize ?? 12) / 2
+    : 0
+  return Math.max(tickFootprint, titleFootprint)
+}
+
+function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][number]) {
   const { plot, svg, innerWidth, innerHeight, options } = ctx
-  const tickValues = scale.ticks(axisOptions.tickCount ?? 6)
-  const domain = scale.domain() as [number, number]
-  const topTickValue = tickValues[tickValues.length - 1] ?? domain[1]
+  const { options: axisOptions, scale, domain, offset } = valueAxis
+  const position = axisOptions.position
+  const tickValues = yAxisTickValues(domain, axisOptions.tickCount ?? 6)
+  const endTickValue = domain[1]
   const axis = position === 'right' ? d3.axisRight(scale) : d3.axisLeft(scale)
   axis.tickValues(tickValues)
     .tickSize(-(axisOptions.tickSize ?? 6))
     .tickPadding(axisOptions.tickPadding ?? 6)
-    .tickFormat(v => axisOptions.tickFormat
-      ? formatTick(axisOptions, v)
-      : formatScientificAxisTick(Number(v), domain, topTickValue, axisOptions.unit))
+    .tickFormat(v => formatYAxisTick(axisOptions, Number(v), domain))
 
-  plot.append('g')
+  const axisX = position === 'right' ? innerWidth + offset : -offset
+
+  const axisGroup = plot.append('g')
     .attr('class', `waveform-axis waveform-axis-y waveform-axis-y--${position}`)
-    .attr('transform', position === 'right' ? `translate(${innerWidth},0)` : null)
+    .attr('data-axis-id', axisOptions.id)
+    .attr('transform', axisX === 0 ? null : `translate(${axisX},0)`)
     .call(axis)
     .call(g => g.select('.domain').remove())
     .call(g => g.selectAll('path,line').attr('stroke', axisOptions.color ?? '#000000').attr('stroke-width', axisOptions.width ?? 1.3))
     .call(g => g.selectAll('text').attr('fill', axisOptions.fontColor ?? '#475569').attr('font-size', axisOptions.fontSize ?? 11))
 
+  axisGroup.selectAll<SVGGElement, number>('.tick')
+    .filter(value => value === endTickValue)
+    .select('text')
+    .classed('waveform-axis-y-end-value', true)
+
   const titleText = axisOptions.title?.text || axisOptions.label
   if (axisOptions.title?.visible && titleText) {
     const xPos = position === 'right'
-      ? options.padding.left + innerWidth + (axisOptions.title.offset || 52)
-      : options.padding.left - (axisOptions.title.offset || 52)
+      ? options.padding.left + innerWidth + offset + (axisOptions.title.offset ?? 52)
+      : options.padding.left - offset - (axisOptions.title.offset ?? 52)
     svg.append('text')
+      .attr('class', 'waveform-axis-y-title')
+      .attr('data-axis-id', axisOptions.id)
       .attr('transform', `translate(${xPos},${options.padding.top + innerHeight / 2}) rotate(-90)`)
       .attr('text-anchor', 'middle')
       .attr('fill', axisOptions.title.color ?? '#334155')
@@ -56,7 +83,7 @@ function renderYAxis(ctx: RenderContext, axisOptions: AxisOptions, scale: d3.Sca
 }
 
 export function renderAxes(ctx: RenderContext) {
-  const { plot, svg, x, y, yRight, innerHeight, innerWidth, options } = ctx
+  const { plot, svg, x, yAxes, innerHeight, innerWidth, options } = ctx
   const p = options.padding
 
   if (options.xAxis.visible) {
@@ -116,8 +143,7 @@ export function renderAxes(ctx: RenderContext) {
     }
   }
 
-  if (options.yAxis.visible) renderYAxis(ctx, options.yAxis, y, options.yAxis.position)
-  if (options.secondaryYAxis.visible && yRight) renderYAxis(ctx, options.secondaryYAxis, yRight, 'right')
+  yAxes.filter(axis => axis.options.visible).forEach(axis => renderYAxis(ctx, axis))
 
   const xTitleText = options.xAxis.title.text || options.xAxis.label
   if (options.xAxis.title.visible && xTitleText) {

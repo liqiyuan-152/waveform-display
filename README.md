@@ -14,7 +14,7 @@ A pure-display, configuration-driven waveform component built with Vite, TypeScr
 - X/Y domain, tick count, tick size, padding and D3 number format
 - Optional automatic readable X-domain boundaries
 - Shared scientific notation for very large or very small Y-axis values
-- Primary and secondary Y axes
+- Arbitrary named Y value axes with independent scales
 - Axis titles and units
 - Horizontal or vertical legends with line-style previews
 - X/Y grid styling
@@ -74,17 +74,20 @@ const chart = new Waveform('#chart', [
     tickFormat: '.2f',
     title: { visible: true, text: 'Amplitude', unit: 'V', fontSize: 12 },
   },
+  grid: { style: 'dashed', color: '#e2e8f0' },
 })
 ```
 
-## Multiple series and dual Y axes
+`grid.style` accepts `solid` or `dashed`, and `grid.color` applies to both X and Y grid lines. Existing `grid.x.color`, `grid.x.dash`, `grid.y.color`, and `grid.y.dash` options remain supported and override the shared values for their respective axes.
+
+## Multiple series and value axes
 
 ```ts
 new Waveform('#chart', [
   {
     name: 'Voltage',
     unit: 'V',
-    yAxis: 'left',
+    yAxis: 'voltage',
     data: voltageData,
     style: {
       color: '#2563eb',
@@ -92,15 +95,16 @@ new Waveform('#chart', [
     },
   },
   {
-    name: 'Current',
-    unit: 'mA',
-    yAxis: 'right',
-    data: currentData,
+    name: 'Current', unit: 'mA', yAxis: 'current', data: currentData,
     style: {
       color: '#dc2626',
       lineStyle: 'dashed',
       point: { visible: true, type: 'diamond', size: 3 },
     },
+  },
+  {
+    name: 'Temperature', unit: 'C', yAxis: 'temperature', data: temperatureData,
+    style: { color: '#16a34a' },
   },
 ], {
   legend: {
@@ -108,16 +112,19 @@ new Waveform('#chart', [
     position: 'top-left',
     orientation: 'horizontal',
   },
-  yAxis: {
-    title: { visible: true, text: 'Voltage', unit: 'V' },
-  },
-  secondaryYAxis: {
-    visible: true,
-    tickFormat: '.0f',
-    title: { visible: true, text: 'Current', unit: 'mA' },
-  },
+  yAxes: [
+    { id: 'voltage', position: 'left', title: { visible: true, text: 'Voltage', unit: 'V' } },
+    { id: 'temperature', position: 'left', title: { visible: true, text: 'Temperature', unit: 'C' } },
+    { id: 'current', position: 'right', tickFormat: '.0f', title: { visible: true, text: 'Current', unit: 'mA' } },
+  ],
+  grid: { y: { axisId: 'voltage' } },
+  zeroLine: { axisId: 'voltage' },
 })
 ```
+
+Each value axis uses only its assigned series when calculating its automatic domain. Axes on the same side are placed outward in array order, and `layout.autoPadding` reserves room for their labels and titles.
+
+Existing `yAxis`, `secondaryYAxis`, and series bindings to `left` or `right` remain supported. When `yAxes` is provided it is authoritative and the legacy options are ignored. Passing `yAxes` to `updateOptions()` replaces the complete array. Empty IDs are ignored, duplicate IDs keep their first occurrence, and unknown series or reference-axis IDs fall back to the first valid axis.
 
 ## SVG export
 
@@ -139,7 +146,7 @@ new Waveform('#chart', [], {
 
 `tickFormat` accepts either a D3 number-format string such as `.2f` or a custom `(value: number) => string` formatter.
 
-Font sizes are numeric pixel values. Axis tick labels use `xAxis.fontSize`, `yAxis.fontSize`, and `secondaryYAxis.fontSize`; axis titles keep their independent `title.fontSize` setting. The chart title, legend, and shot number use `title.fontSize`, `legend.fontSize`, and `shot.fontSize` respectively.
+Font sizes are numeric pixel values. Axis tick labels use `xAxis.fontSize` and each value axis's `fontSize`; axis titles keep their independent `title.fontSize` setting. The chart title, legend, and shot number use `title.fontSize`, `legend.fontSize`, and `shot.fontSize` respectively.
 
 ## Axis domain and number formatting
 
@@ -147,6 +154,6 @@ By default, the X domain uses the exact data extent. Set `xDomainStrategy.type` 
 
 The final X-domain start and end values are pinned to the left and right frame edges by default. They use the same `tickFormat` and `unit` as the other X-axis labels. Set `xAxis.showEndValues` to `false` to render only regular ticks.
 
-By default, every visible Y axis uses the exact global minimum and maximum across all valid points in every series, without expanding the domain to rounded boundaries. `yAxis.min`/`max` and `secondaryYAxis.min`/`max` override their respective bounds. When every Y value is equal, the domain expands by one unit on each side to keep the scale usable.
+Every Y value axis uses the exact minimum and maximum of the valid points assigned to it, without expanding the domain to rounded boundaries. Each axis's `min` and `max` independently override those bounds. An unassigned axis uses `[0, 1]`, with a single explicit bound completed by one unit. When every assigned Y value is equal, the domain expands by one unit on each side to keep the scale usable.
 
-Y-axis labels automatically share a scientific exponent when the largest absolute domain value is below `0.001` or at least `1000`. The exponent is prefixed to the top tick, for example `E+03 3`. An explicit `tickFormat` continues to take precedence.
+Y-axis ticks include both exact domain endpoints. Labels automatically share a scientific exponent when the largest absolute domain value is below `0.001` or at least `1000`; the exponent is prefixed to the Y-domain end value, for example `E+03 3`. An explicit `tickFormat` continues to take precedence.

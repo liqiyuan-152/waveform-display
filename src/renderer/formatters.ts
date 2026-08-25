@@ -21,7 +21,7 @@ function formatExponent(exponent: number): string {
   return `E${sign}${Math.abs(exponent).toString().padStart(2, '0')}`
 }
 
-/** Formats ticks with one exponent, shown only on the top visible tick. */
+/** Formats ticks with one shared exponent, shown only on the Y-domain end tick. */
 export function formatScientificAxisTick(
   value: number,
   domain: [number, number],

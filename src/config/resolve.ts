@@ -1,7 +1,43 @@
 import { defaultOptions } from './defaults'
-import type { WaveformOptions } from '../types/options'
+import type { AxisLabelOptions, ValueAxisOptions, WaveformOptions } from '../types/options'
+
+export interface ResolvedValueAxisOptions extends ValueAxisOptions {
+  visible: boolean
+  position: 'left' | 'right'
+  title: Required<AxisLabelOptions>
+}
+
+function resolveValueAxes(options: WaveformOptions): ResolvedValueAxisOptions[] {
+  const configured = options.yAxes === undefined
+    ? [
+        { id: 'left', ...options.yAxis },
+        { id: 'right', ...options.secondaryYAxis, position: 'right' as const },
+      ]
+    : options.yAxes
+  const seen = new Set<string>()
+  const axes: ResolvedValueAxisOptions[] = []
+
+  for (const axis of configured) {
+    const id = axis.id?.trim()
+    if (!id || seen.has(id)) continue
+    seen.add(id)
+    const legacyDefaults = options.yAxes === undefined && id === 'right'
+      ? defaultOptions.secondaryYAxis
+      : defaultOptions.yAxis
+    axes.push({
+      ...legacyDefaults,
+      ...axis,
+      id,
+      title: { ...legacyDefaults.title, ...axis.title },
+    })
+  }
+
+  if (axes.length) return axes
+  return [{ ...defaultOptions.yAxis, id: 'left', title: { ...defaultOptions.yAxis.title } }]
+}
 
 export function resolveOptions(options: WaveformOptions = {}) {
+  const yAxes = resolveValueAxes(options)
   return {
     ...defaultOptions,
     ...options,
@@ -18,6 +54,7 @@ export function resolveOptions(options: WaveformOptions = {}) {
     xAxis: { ...defaultOptions.xAxis, ...options.xAxis, title: { ...defaultOptions.xAxis.title, ...options.xAxis?.title } },
     yAxis: { ...defaultOptions.yAxis, ...options.yAxis, title: { ...defaultOptions.yAxis.title, ...options.yAxis?.title } },
     secondaryYAxis: { ...defaultOptions.secondaryYAxis, ...options.secondaryYAxis, title: { ...defaultOptions.secondaryYAxis.title, ...options.secondaryYAxis?.title } },
+    yAxes,
     grid: {
       ...defaultOptions.grid,
       ...options.grid,

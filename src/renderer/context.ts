@@ -1,6 +1,15 @@
 import type * as d3 from 'd3'
 import type { WaveformSeries } from '../types/data'
 import type { ReturnTypeOfResolveOptions } from '../types/internal'
+import type { ResolvedValueAxisOptions } from '../config/resolve'
+
+export interface ResolvedValueAxis {
+  options: ResolvedValueAxisOptions
+  domain: [number, number]
+  scale: d3.ScaleLinear<number, number>
+  offset: number
+  footprint: number
+}
 
 export interface RenderContext {
   svg: d3.Selection<SVGSVGElement, unknown, null, undefined>
@@ -12,10 +21,9 @@ export interface RenderContext {
   innerWidth: number
   innerHeight: number
   x: d3.ScaleLinear<number, number>
-  y: d3.ScaleLinear<number, number>
-  yRight?: d3.ScaleLinear<number, number>
+  yAxes: ResolvedValueAxis[]
+  yAxisById: Map<string, ResolvedValueAxis>
+  primaryYAxis: ResolvedValueAxis
   xDomain: [number, number]
-  yDomain: [number, number]
-  yRightDomain?: [number, number]
   clipId: string
 }
