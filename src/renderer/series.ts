@@ -11,13 +11,12 @@ function symbolType(type: WaveformPointType) {
 }
 
 export function renderSeries(ctx: RenderContext) {
-  const { plot, series, x, y, yRight, yDomain, yRightDomain, options, clipId } = ctx
+  const { plot, series, x, y, yRight, yRightDomain, options, clipId } = ctx
   const layer = plot.append('g').attr('clip-path', `url(#${clipId})`)
 
   series.forEach(s => {
     const useRight = s.yAxis === 'right' && yRight && yRightDomain
     const yScale = useRight ? yRight : y
-    const domain = useRight ? yRightDomain : yDomain
     const lineStyle = {
       color: options.line.color,
       lineWidth: options.line.width,
@@ -25,23 +24,6 @@ export function renderSeries(ctx: RenderContext) {
       lineStyle: options.line.style,
       opacity: options.line.opacity,
       ...s.style,
-    }
-    const areaStyle = { ...options.area, ...s.style?.area }
-
-    if (areaStyle.visible) {
-      const baseline = Math.min(domain[1], Math.max(domain[0], areaStyle.baseline))
-      const area = d3.area<WaveformPoint>()
-        .defined(d => Number.isFinite(d.x) && Number.isFinite(d.y))
-        .x(d => x(d.x))
-        .y0(yScale(baseline))
-        .y1(d => yScale(d.y))
-        .curve(curveFor(lineStyle.lineType))
-
-      layer.append('path')
-        .datum(s.data)
-        .attr('d', area)
-        .attr('fill', areaStyle.color || lineStyle.color)
-        .attr('fill-opacity', areaStyle.opacity)
     }
 
     if (options.line.visible) {

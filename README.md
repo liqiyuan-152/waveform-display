@@ -10,7 +10,6 @@ A pure-display, configuration-driven waveform component built with Vite, TypeScr
 - Automatic padding for axes, titles and legends
 - Independent top/right/bottom/left frame borders
 - Waveform color, width, line type, dash style and opacity
-- Optional area fill with configurable baseline
 - Global and per-series point styles: circle, square, triangle and diamond
 - X/Y domain, tick count, tick size, padding and D3 number format
 - Primary and secondary Y axes
@@ -52,13 +51,12 @@ const chart = new Waveform('#chart', [
   responsive: { enabled: true, aspectRatio: 2.5 },
   layout: { autoPadding: true },
   frame: {
-    top: { color: '#334155', width: 2 },
-    right: { visible: false },
-    bottom: { color: '#334155', width: 2 },
-    left: { color: '#334155', width: 2 },
+    borderColor: '#334155',
+    borderWidth: 2,
+    borderStyle: 'solid',
+    backgroundColor: 'transparent',
   },
   line: { color: '#2563eb', width: 2 },
-  area: { visible: true, opacity: 0.1, baseline: 0 },
   xAxis: {
     tickFormat: '.1f',
     title: { visible: true, text: 'Time', unit: 's' },
@@ -82,7 +80,6 @@ new Waveform('#chart', [
     style: {
       color: '#2563eb',
       lineWidth: 2,
-      area: { visible: true, opacity: 0.08 },
     },
   },
   {

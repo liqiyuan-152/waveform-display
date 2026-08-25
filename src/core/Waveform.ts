@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { resolveOptions } from '../config/resolve'
 import { normalizeData } from './normalize'
-import { renderFrame } from '../renderer/frame'
+import { renderFrameBackground, renderFrameBorder } from '../renderer/frame'
 import { renderGrid } from '../renderer/grid'
 import { renderSeries } from '../renderer/series'
 import { renderAxes } from '../renderer/axes'
@@ -69,16 +69,9 @@ export class Waveform {
       responsive: { ...base.responsive, ...next.responsive },
       layout: { ...base.layout, ...next.layout },
       padding: { ...base.padding, ...next.padding },
-      frame: {
-        ...base.frame, ...next.frame,
-        top: { ...base.frame?.top, ...next.frame?.top },
-        right: { ...base.frame?.right, ...next.frame?.right },
-        bottom: { ...base.frame?.bottom, ...next.frame?.bottom },
-        left: { ...base.frame?.left, ...next.frame?.left },
-      },
+      frame: { ...base.frame, ...next.frame },
       line: { ...base.line, ...next.line },
       point: { ...base.point, ...next.point },
-      area: { ...base.area, ...next.area },
       xAxis: { ...base.xAxis, ...next.xAxis, title: { ...base.xAxis?.title, ...next.xAxis?.title } },
       yAxis: { ...base.yAxis, ...next.yAxis, title: { ...base.yAxis?.title, ...next.yAxis?.title } },
       secondaryYAxis: { ...base.secondaryYAxis, ...next.secondaryYAxis, title: { ...base.secondaryYAxis?.title, ...next.secondaryYAxis?.title } },
@@ -181,7 +174,7 @@ export class Waveform {
     const resolvedOptions = { ...options, padding: p }
     const ctx: RenderContext = { svg, plot, series, options: resolvedOptions, width, height, innerWidth, innerHeight, x, y, yRight, xDomain, yDomain, yRightDomain, clipId }
 
-    renderFrame(ctx)
+    renderFrameBackground(ctx)
     renderGrid(ctx)
 
     if (options.zeroLine.visible && yDomain[0] <= 0 && yDomain[1] >= 0) {
@@ -193,8 +186,9 @@ export class Waveform {
         .attr('stroke-dasharray', options.zeroLine.dash)
     }
 
-    renderSeries(ctx)
     renderAxes(ctx)
+    renderFrameBorder(ctx)
+    renderSeries(ctx)
     renderLegend(ctx)
 
     if (options.title.visible && options.title.text) {

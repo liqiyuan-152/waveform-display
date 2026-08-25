@@ -16,13 +16,6 @@ export interface WaveformSeriesPointStyle {
   borderWidth?: number
 }
 
-export interface WaveformSeriesAreaStyle {
-  visible?: boolean
-  color?: string
-  opacity?: number
-  baseline?: number
-}
-
 export interface WaveformSeriesStyle {
   color?: string
   lineWidth?: number
@@ -30,7 +23,6 @@ export interface WaveformSeriesStyle {
   lineStyle?: WaveformLineStyle
   opacity?: number
   point?: WaveformSeriesPointStyle
-  area?: WaveformSeriesAreaStyle
 }
 
 export interface WaveformSeries {

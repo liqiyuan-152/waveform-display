@@ -2,7 +2,6 @@ import type { WaveformLineStyle, WaveformLineType, WaveformPointType } from './d
 
 export type BorderStyle = 'solid' | 'dashed' | 'dotted'
 export interface PaddingOptions { top?: number; right?: number; bottom?: number; left?: number }
-export interface BorderSideOptions { visible?: boolean; color?: string; width?: number; style?: BorderStyle }
 export interface FrameOptions {
   visible?: boolean
   borderColor?: string
@@ -10,14 +9,9 @@ export interface FrameOptions {
   borderStyle?: BorderStyle
   backgroundColor?: string
   radius?: number
-  top?: BorderSideOptions
-  right?: BorderSideOptions
-  bottom?: BorderSideOptions
-  left?: BorderSideOptions
 }
 export interface LineOptions { visible?: boolean; color?: string; width?: number; type?: WaveformLineType; style?: WaveformLineStyle; opacity?: number }
 export interface PointOptions { visible?: boolean; type?: WaveformPointType; size?: number; color?: string; borderColor?: string; borderWidth?: number }
-export interface AreaOptions { visible?: boolean; color?: string; opacity?: number; baseline?: number }
 export interface AxisLabelOptions { visible?: boolean; text?: string; unit?: string; color?: string; fontSize?: number; fontWeight?: number | string; offset?: number }
 export interface AxisOptions {
   visible?: boolean
@@ -25,6 +19,7 @@ export interface AxisOptions {
   min?: number
   max?: number
   tickCount?: number
+  hideEndTicks?: boolean
   tickSize?: number
   tickPadding?: number
   tickFormat?: string | ((value: number) => string)
@@ -69,7 +64,6 @@ export interface WaveformOptions {
   frame?: FrameOptions
   line?: LineOptions
   point?: PointOptions
-  area?: AreaOptions
   xAxis?: AxisOptions
   yAxis?: AxisOptions
   secondaryYAxis?: AxisOptions

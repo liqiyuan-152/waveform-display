@@ -7,7 +7,7 @@ const series: WaveformSeries[] = [
     order: 1,
     yAxis: 'left',
     data: Array.from({ length: 240 }, (_, i) => ({ x: i / 20, y: Math.sin(i / 10) * 0.8 + Math.sin(i / 3) * 0.08 })),
-    style: { color: '#2563eb', lineWidth: 2, area: { visible: true, opacity: 0.08 } },
+    style: { color: '#2563eb', lineWidth: 2 },
   },
   {
     name: 'Current',
@@ -31,11 +31,10 @@ const chart = new Waveform('#waveform', series, {
   title: { visible: true, text: 'Configurable Waveform Display' },
   legend: { visible: true, position: 'top-left', orientation: 'horizontal' },
   frame: {
+    visible: true,
     backgroundColor: '#ffffff',
-    top: { color: '#475569', width: 2 },
-    right: { color: '#94a3b8', width: 1 },
-    bottom: { color: '#475569', width: 2 },
-    left: { color: '#475569', width: 2 },
+    borderColor: '#000000',
+    borderWidth: 1.3,
   },
   xAxis: { tickFormat: '.1f', title: { visible: true, text: 'Time', unit: 's' } },
   yAxis: { position: 'left', tickFormat: '.2f', title: { visible: true, text: 'Voltage', unit: 'V' } },

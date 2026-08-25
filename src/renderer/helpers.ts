@@ -17,7 +17,7 @@ export function dashFor(style: WaveformLineStyle): string | null {
 }
 
 export function borderDash(style: 'solid' | 'dashed' | 'dotted'): string | null {
-  if (style === 'dashed') return '8 5'
-  if (style === 'dotted') return '2 3'
+  if (style === 'dashed') return '6 4'
+  if (style === 'dotted') return '1 3'
   return null
 }
