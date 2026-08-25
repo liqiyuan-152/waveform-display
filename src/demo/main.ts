@@ -8,11 +8,11 @@ const colors = ['#2563eb', '#dc2626', '#16a34a', '#9333ea']
 const valueAxisIds = waveformData.map((_, index) => `signal-${index + 1}`)
 const rightAxisStart = Math.ceil(waveformData.length / 2)
 const framePadding = { top: 32, right: 72, bottom: 62, left: 72 }
-const shot = waveformData[0]?.shot
 
 let series: WaveformSeries[] = waveformData.map((waveform, index) => ({
   id: String(waveform.chnl_id),
   name: waveform.chnl,
+  shot: waveform.shot,
   unit: waveform.dat_unit,
   order: index + 1,
   yAxis: valueAxisIds[index],
@@ -25,29 +25,52 @@ const initialOptions: WaveformOptions = resolveOptions({
   responsive: { enabled: true, aspectRatio: 2.6 },
   layout: { autoPadding: true },
   padding: framePadding,
-  shot: { visible: shot !== undefined && shot !== null, text: shot == null ? '' : String(shot), fontSize: 11 },
-  legend: { visible: true, position: 'top-left', orientation: 'horizontal' },
+  shot: {
+    visible: true,
+    text: '#10001',
+    color: '#78E8FF',
+    fontSize: 14,
+  },
+  legend: {
+    visible: true,
+    position: 'top-left',
+    orientation: 'horizontal',
+    color: '#78E8FF',
+    fontSize: 14,
+  },
   frame: {
     visible: true,
-    backgroundColor: '#ffffff',
-    borderColor: '#000000',
-    borderWidth: 1.3,
+    backgroundColor: '#000000',
+    borderColor: '#78E8FF',
+    borderWidth: 2,
   },
   point: { visible: false },
   xDomainStrategy: { type: 'nice', bounds: 'both', tickCount: 10 },
-  xAxis: { showEndValues: true, tickFormat: '.0f', title: { visible: true, text: 'Time', unit: 'ms' } },
+  xAxis: {
+    color: '#e2e8f0',
+    fontColor: '#78E8FF',
+    fontSize: 14,
+    showEndValues: true,
+    tickFormat: '.0f',
+    title: { visible: true, text: 'Time', unit: 'ms', color: '#78E8FF', fontSize: 14 },
+  },
   yAxes: waveformData.map((waveform, index) => {
     const color = colors[index % colors.length]
+    const isInnerAxis = index === 0 || index === rightAxisStart
     return {
       id: valueAxisIds[index],
       position: index < rightAxisStart ? 'left' : 'right',
       color,
       fontColor: color,
-      title: { visible: false, text: waveform.chnl, unit: waveform.dat_unit, color },
+      fontSize: 14,
+      tickSize: 3,
+      tickPadding: isInnerAxis ? 5 : 2,
+      unit: waveform.dat_unit,
+      title: { visible: true, text: waveform.chnl, unit: waveform.dat_unit, color, fontSize: 14 },
     }
   }),
-  grid: { style: 'dashed', color: '#e2e8f0', y: { axisId: valueAxisIds[0] } },
-  zeroLine: { axisId: valueAxisIds[0] },
+  grid: { style: 'dashed', color: '#475569', y: { axisId: valueAxisIds[0] } },
+  zeroLine: { axisId: valueAxisIds[0], color: '#94a3b8' },
 })
 
 const app = document.querySelector<HTMLDivElement>('#app')!

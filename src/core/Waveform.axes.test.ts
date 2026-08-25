@@ -40,6 +40,10 @@ function endpointLabels(svg: SVGSVGElement): [string, string] {
   ]
 }
 
+function translateX(element: Element): number {
+  return Number(element.getAttribute('transform')?.match(/translate\((-?[\d.]+)/)?.[1])
+}
+
 describe('Waveform axes', () => {
   it('pins the exact final X-domain values to both frame endpoints by default', () => {
     const svg = render([{ x: 0.125, y: 0 }, { x: 1.875, y: 1 }])
@@ -185,6 +189,47 @@ describe('Waveform axes', () => {
     expect(rightPoints[1][1]).toBe(0)
   })
 
+  it('keeps Y-axis labels two pixels from the frame by default', () => {
+    const svg = render(
+      [
+        { name: 'left', data: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
+        { name: 'right', yAxis: 'right', data: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
+      ],
+      { secondaryYAxis: { visible: true } },
+    )
+
+    expect(svg.querySelector('.waveform-axis-y--left .tick text')?.getAttribute('x')).toBe('-2')
+    expect(svg.querySelector('.waveform-axis-y--right .tick text')?.getAttribute('x')).toBe('2')
+  })
+
+  it('keeps value-axis titles 64 pixels from the axes and honors explicit offsets', () => {
+    const data: WaveformData = [
+      { name: 'left', data: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
+      { name: 'right', yAxis: 'right', data: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
+    ]
+    const defaults = render(data, {
+      yAxis: { title: { visible: true, text: 'Left' } },
+      secondaryYAxis: { visible: true, title: { visible: true, text: 'Right' } },
+    })
+    const plotX = translateX(defaults.querySelector('svg > g')!)
+    const innerWidth = Number(defaults.querySelector('.waveform-frame-border')?.getAttribute('width'))
+    const leftTitleX = translateX(defaults.querySelector('.waveform-axis-y-title[data-axis-id="left"]')!)
+    const rightTitleX = translateX(defaults.querySelector('.waveform-axis-y-title[data-axis-id="right"]')!)
+
+    expect(plotX - leftTitleX).toBe(64)
+    expect(rightTitleX - (plotX + innerWidth)).toBe(64)
+
+    const explicit = render(data, {
+      yAxis: { title: { visible: true, text: 'Left', offset: 80 } },
+      secondaryYAxis: { visible: true, title: { visible: true, text: 'Right', offset: 72 } },
+    })
+    const explicitPlotX = translateX(explicit.querySelector('svg > g')!)
+    const explicitInnerWidth = Number(explicit.querySelector('.waveform-frame-border')?.getAttribute('width'))
+
+    expect(explicitPlotX - translateX(explicit.querySelector('.waveform-axis-y-title[data-axis-id="left"]')!)).toBe(80)
+    expect(translateX(explicit.querySelector('.waveform-axis-y-title[data-axis-id="right"]')!) - (explicitPlotX + explicitInnerWidth)).toBe(72)
+  })
+
   it('applies explicit Y bounds on top of each axis data extent', () => {
     const svg = render(
       [
@@ -203,32 +248,42 @@ describe('Waveform axes', () => {
     expect(rightPoints[1][1]).toBeCloseTo(height * 0.5)
   })
 
-  it('renders arbitrary named axes with independent scales and stacked side offsets', () => {
+  it('renders at most one axis per side and merges same-side series domains', () => {
+    const valueAxes: NonNullable<WaveformOptions['yAxes']> = [
+      { id: 'temperature', position: 'left', title: { visible: true, text: 'Temperature' } },
+      { id: 'pressure', position: 'left', title: { visible: true, text: 'Pressure' } },
+      { id: 'flow', position: 'right', title: { visible: true, text: 'Flow' } },
+      { id: 'voltage', position: 'right', title: { visible: true, text: 'Voltage' } },
+    ]
     const svg = render(
       [
         { name: 'temperature', yAxis: 'temperature', data: [{ x: 0, y: 10 }, { x: 1, y: 20 }] },
         { name: 'pressure', yAxis: 'pressure', data: [{ x: 0, y: 1000 }, { x: 1, y: 2000 }] },
         { name: 'flow', yAxis: 'flow', data: [{ x: 0, y: -5 }, { x: 1, y: 5 }] },
+        { name: 'voltage', yAxis: 'voltage', data: [{ x: 0, y: 100 }, { x: 1, y: 200 }] },
       ],
       {
-        yAxes: [
-          { id: 'temperature', position: 'left', title: { visible: true, text: 'Temperature' } },
-          { id: 'pressure', position: 'left', title: { visible: true, text: 'Pressure' } },
-          { id: 'flow', position: 'right', title: { visible: true, text: 'Flow' } },
-        ],
+        yAxes: valueAxes,
+        grid: { y: { axisId: 'pressure' } },
       },
     )
     const height = frameHeight(svg)
     const axes = Array.from(svg.querySelectorAll<SVGGElement>('.waveform-axis-y'))
 
-    expect(axes.map(axis => axis.getAttribute('data-axis-id'))).toEqual(['temperature', 'pressure', 'flow'])
+    expect(axes.map(axis => axis.getAttribute('data-axis-id'))).toEqual(['temperature', 'flow'])
+    expect(Array.from(svg.querySelectorAll('.waveform-axis-y-title'), title => title.getAttribute('data-axis-id')))
+      .toEqual(['temperature', 'flow'])
     expect(axes[0].getAttribute('transform')).toBeNull()
-    expect(Number(axes[1].getAttribute('transform')?.match(/translate\((-?[\d.]+)/)?.[1])).toBeLessThan(0)
-    expect(axes[2].getAttribute('transform')).toMatch(/^translate\([\d.]+,0\)$/)
-    expect(seriesPathPoints(svg, 0).map(point => point[1])).toEqual([height, 0])
-    expect(seriesPathPoints(svg, 1).map(point => point[1])).toEqual([height, 0])
-    expect(seriesPathPoints(svg, 2).map(point => point[1])).toEqual([height, 0])
-    expect(Number(svg.querySelector('svg > g')?.getAttribute('transform')?.match(/translate\(([\d.]+)/)?.[1])).toBeGreaterThan(72)
+    expect(axes[1].getAttribute('transform')).toMatch(/^translate\([\d.]+,0\)$/)
+    expect(seriesPathPoints(svg, 0).map(point => point[1])).toEqual([height, expect.any(Number)])
+    expect(seriesPathPoints(svg, 0)[1][1]).toBeGreaterThan(height * 0.9)
+    expect(seriesPathPoints(svg, 1)[0][1]).toBeCloseTo(height * 1000 / 1990)
+    expect(seriesPathPoints(svg, 1)[1][1]).toBe(0)
+    expect(seriesPathPoints(svg, 2)[0][1]).toBe(height)
+    expect(seriesPathPoints(svg, 2)[1][1]).toBeGreaterThan(height * 0.9)
+    expect(seriesPathPoints(svg, 3)[0][1]).toBeCloseTo(height * 100 / 205)
+    expect(seriesPathPoints(svg, 3)[1][1]).toBe(0)
+    expect(svg.querySelector('.waveform-grid-y')?.getAttribute('data-axis-id')).toBe('temperature')
   })
 
   it('falls back invalid bindings and axis references to the first unique axis', () => {
@@ -251,7 +306,7 @@ describe('Waveform axes', () => {
     expect(seriesPathPoints(svg)[0][1]).toBeCloseTo(frameHeight(svg) * 0.75)
   })
 
-  it('falls back an empty axis array and supports an unbound axis domain', () => {
+  it('falls back an empty axis array and omits an unbound axis', () => {
     const fallback = render([{ x: 0, y: 2 }, { x: 1, y: 4 }], { yAxes: [] })
     const unbound = render(
       [{ x: 0, y: 2 }, { x: 1, y: 4 }],
@@ -259,7 +314,7 @@ describe('Waveform axes', () => {
     )
 
     expect(fallback.querySelector('.waveform-axis-y')?.getAttribute('data-axis-id')).toBe('left')
-    expect(labels(unbound, '[data-axis-id="empty"]')).toEqual(['10', '10.2', '10.4', '10.6', '10.8', '11'])
+    expect(unbound.querySelector('[data-axis-id="empty"]')).toBeNull()
   })
 
   it('uses configured value axes for the Y grid and zero line', () => {
@@ -291,7 +346,7 @@ describe('Waveform axes', () => {
       yAxes: [{ id: 'visible' }, { id: 'hidden', visible: false }],
     })
 
-    expect(container.querySelectorAll('.waveform-axis-y')).toHaveLength(1)
+    expect(container.querySelectorAll('.waveform-axis-y')).toHaveLength(0)
     expect(seriesPathPoints(container.querySelector('svg')!).map(point => point[1]))
       .toEqual([frameHeight(container.querySelector('svg')!), 0])
 
@@ -336,9 +391,9 @@ describe('Waveform axes', () => {
     const gridTickPositions = Array.from(svg.querySelectorAll('.waveform-grid-y .tick'), tick => tick.getAttribute('transform'))
 
     expect(yLabels).toHaveLength(6)
-    expect(yLabels[0]).toBe('1.1')
-    expect(yLabels[yLabels.length - 1]).toBe('9.9')
-    expect(endLabel.textContent).toBe('9.9')
+    expect(yLabels[0]).toBe('1.10')
+    expect(yLabels[yLabels.length - 1]).toBe('9.90')
+    expect(endLabel.textContent).toBe('9.90')
     expect(endLabel.parentElement?.getAttribute('transform')).toBe('translate(0,0.5)')
     expect(gridTickPositions).toEqual(axisTickPositions)
   })
@@ -348,9 +403,10 @@ describe('Waveform axes', () => {
     const yLabels = labels(svg, '.waveform-axis-y--left')
     const endLabel = svg.querySelector('.waveform-axis-y--left .waveform-axis-y-end-value')!
 
-    expect(yLabels[0]).toBe('3.2748')
-    expect(yLabels[yLabels.length - 1]).toBe('E+04 3.3483')
-    expect(endLabel.textContent).toBe('E+04 3.3483')
+    expect(yLabels[0]).toBe('3.27')
+    expect(yLabels[yLabels.length - 1]).toBe('E+043.35')
+    expect(endLabel.textContent).toBe('E+043.35')
+    expect(Array.from(endLabel.querySelectorAll('tspan'), item => item.textContent)).toEqual(['E+04', '3.35'])
     expect(yLabels.filter(label => label.startsWith('E'))).toHaveLength(1)
   })
 
@@ -365,8 +421,8 @@ describe('Waveform axes', () => {
 
     const leftLabels = labels(svg, '.waveform-axis-y--left')
     const rightLabels = labels(svg, '.waveform-axis-y--right')
-    expect(leftLabels[leftLabels.length - 1]).toBe('E+03 3 A')
-    expect(rightLabels[rightLabels.length - 1]).toBe('3 E-04 V')
+    expect(leftLabels[leftLabels.length - 1]).toBe('E+03 (A)3.00')
+    expect(rightLabels[rightLabels.length - 1]).toBe('E-04 (V)3.00')
     expect(leftLabels.filter(label => label.includes('E'))).toHaveLength(1)
     expect(rightLabels.filter(label => label.includes('E'))).toHaveLength(1)
   })

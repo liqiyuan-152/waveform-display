@@ -28,6 +28,7 @@ export interface WaveformSeriesStyle {
 export interface WaveformSeries {
   id?: string
   name?: string
+  shot?: string | number
   unit?: string
   order?: number
   yAxis?: string

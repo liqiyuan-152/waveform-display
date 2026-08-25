@@ -39,8 +39,14 @@ button, input, select { font: inherit; }
   min-height: 360px;
   flex-direction: column;
   order: -1;
+  background: #000000;
+  border-color: #475569;
   overflow: hidden;
 }
+
+.preview-pane__header { border-bottom-color: #475569; }
+
+.preview-pane h1 { color: #ffffff; }
 
 .preview-pane__header,
 .config-panel__heading {
@@ -69,6 +75,7 @@ button, input, select { font: inherit; }
   flex: 1;
   align-items: center;
   padding: 12px;
+  background: #000000;
   overflow: hidden;
 }
 
@@ -428,6 +435,63 @@ button, input, select { font: inherit; }
   text-align: center;
   font-size: 13px;
 }
+
+/* Dark page theme */
+:root,
+body {
+  color: #e2e8f0;
+  background: #0f172a;
+}
+
+.control-pane {
+  background: #111827;
+  border-color: #334155;
+}
+
+.preview-pane__header,
+.config-panel__heading,
+.config-tabs { border-color: #334155; }
+
+.preview-pane h1,
+.config-panel__heading h2 { color: #ffffff; }
+
+.config-tab { color: #94a3b8; }
+.config-tab[aria-selected="true"] { color: #2dd4bf; }
+.config-tab[aria-selected="true"]::after { background: #2dd4bf; }
+
+.segment-control { background: #1f2937; }
+.segment-button { color: #94a3b8; }
+.segment-button[aria-pressed="true"] {
+  color: #ffffff;
+  background: #334155;
+  box-shadow: 0 1px 2px rgb(0 0 0 / 30%);
+}
+
+.config-field__label,
+.series-selector,
+.series-override__heading { color: #cbd5e1; }
+
+.config-field input[type="text"],
+.config-field input[type="number"],
+.config-field select,
+.series-selector select {
+  color: #f8fafc;
+  background: #0f172a;
+  border-color: #475569;
+}
+
+.color-picker {
+  background: #0f172a;
+  border-color: #475569;
+}
+
+.axis-command {
+  color: #e2e8f0;
+  background: #1f2937;
+  border-color: #475569;
+}
+
+.config-empty { color: #94a3b8; }
 
 @media (min-width: 1100px) and (min-height: 700px) {
   body { overflow: hidden; }

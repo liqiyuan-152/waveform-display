@@ -7,17 +7,24 @@ import { renderGrid } from '../renderer/grid'
 import { renderSeries } from '../renderer/series'
 import { estimateYAxisFootprint, renderAxes } from '../renderer/axes'
 import { renderLegend } from '../renderer/legend'
-import { renderShot } from '../renderer/shot'
+import { renderXMetadata, xMetadataWidth } from '../renderer/xMetadata'
 import type { RenderContext, ResolvedValueAxis } from '../renderer/context'
 import type { WaveformData, WaveformSeries } from '../types/data'
 import type { PaddingOptions, WaveformOptions } from '../types/options'
 
 let instanceCounter = 0
+const VALUE_AXIS_GAP = 0
+
+interface KeyedSeries {
+  key: string
+  series: WaveformSeries
+}
 
 export class Waveform {
   private container: HTMLElement
   private data: WaveformData
   private rawOptions: WaveformOptions
+  private readonly hiddenSeriesKeys = new Set<string>()
   private resizeObserver?: ResizeObserver
   private readonly instanceId = ++instanceCounter
 
@@ -112,7 +119,7 @@ export class Waveform {
       options.legend.visible && options.legend.orientation === 'horizontal' &&
       options.legend.position.startsWith('top')
     ) p.top = Math.max(p.top, 64)
-    if (options.xAxis.visible) p.bottom = Math.max(p.bottom, options.xAxis.title.visible ? 62 : 42)
+    if (options.xAxis.visible) p.bottom = Math.max(p.bottom, 42)
     const leftExtent = Math.max(0, ...valueAxes
       .filter(axis => axis.options.visible && axis.options.position === 'left')
       .map(axis => axis.offset + axis.footprint))
@@ -121,6 +128,17 @@ export class Waveform {
       .map(axis => axis.offset + axis.footprint))
     if (leftExtent) p.left = Math.max(p.left, Math.ceil(leftExtent + 8))
     if (rightExtent) p.right = Math.max(p.right, Math.ceil(rightExtent + 8))
+    const rightLegendExtent = options.legend.visible && options.legend.orientation === 'vertical' && options.legend.position.includes('right')
+      ? 96
+      : 0
+    const metadataWidth = xMetadataWidth(options)
+    if (metadataWidth) {
+      const rightContentExtent = Math.max(rightExtent, rightLegendExtent)
+      p.right = Math.max(
+        p.right,
+        Math.ceil(rightContentExtent + options.xAxis.title.offset + metadataWidth + 2),
+      )
+    }
     if (options.legend.visible && options.legend.orientation === 'vertical') {
       if (options.legend.position.includes('right')) p.right = Math.max(p.right, 96)
       else p.left = Math.max(p.left, 96)
@@ -160,9 +178,28 @@ export class Waveform {
       const domain = this.resolveDomain(valuesByAxis.get(axis.id) ?? [], axis.min, axis.max)
       const footprint = estimateYAxisFootprint(axis, domain)
       const offset = axis.visible ? offsets[axis.position] : 0
-      if (axis.visible) offsets[axis.position] += footprint + 12
+      if (axis.visible) offsets[axis.position] += footprint + VALUE_AXIS_GAP
       return { options: axis, domain, offset, footprint }
     })
+  }
+
+  private keySeries(series: WaveformSeries[]): KeyedSeries[] {
+    const idOccurrences = new Map<string, number>()
+
+    return series.map((item, index) => {
+      const id = item.id?.trim()
+      if (!id) return { key: `index:${index}`, series: item }
+
+      const occurrence = idOccurrences.get(id) ?? 0
+      idOccurrences.set(id, occurrence + 1)
+      return { key: `id:${id}:${occurrence}`, series: item }
+    })
+  }
+
+  private toggleSeries(key: string) {
+    if (this.hiddenSeriesKeys.has(key)) this.hiddenSeriesKeys.delete(key)
+    else this.hiddenSeriesKeys.add(key)
+    this.render()
   }
 
   render() {
@@ -176,6 +213,11 @@ export class Waveform {
 
     this.container.replaceChildren()
     const series = normalizeData(this.data)
+    const keyedSeries = this.keySeries(series)
+    const currentSeriesKeys = new Set(keyedSeries.map(item => item.key))
+    for (const key of this.hiddenSeriesKeys) {
+      if (!currentSeriesKeys.has(key)) this.hiddenSeriesKeys.delete(key)
+    }
     const svg = d3.select(this.container)
       .append('svg')
       .attr('width', '100%')
@@ -198,11 +240,43 @@ export class Waveform {
       return
     }
 
-    const valueAxisLayouts = this.resolveValueAxes(series, options)
-    const p = this.resolvePadding(options, valueAxisLayouts)
+    const visibleSeries = keyedSeries
+      .filter(item => !this.hiddenSeriesKeys.has(item.key))
+      .map(item => item.series)
+
+    const primaryAxisId = options.yAxes[0].id
+    const axisById = new Map(options.yAxes.map(axis => [axis.id, axis]))
+    const seriesAxisId = (item: WaveformSeries) => item.yAxis && axisById.has(item.yAxis) ? item.yAxis : primaryAxisId
+    const visibleAxisIds = new Set(visibleSeries.map(seriesAxisId))
+    const displayedAxisByPosition = new Map<'left' | 'right', string>()
+    for (const axis of options.yAxes) {
+      if (!axis.visible || !visibleAxisIds.has(axis.id) || displayedAxisByPosition.has(axis.position)) continue
+      displayedAxisByPosition.set(axis.position, axis.id)
+    }
+    const axisAliases = new Map<string, string>()
+    for (const axis of options.yAxes) {
+      if (!axis.visible || !visibleAxisIds.has(axis.id)) continue
+      const displayedAxisId = displayedAxisByPosition.get(axis.position)
+      if (displayedAxisId) axisAliases.set(axis.id, displayedAxisId)
+    }
+    const plottedSeries = visibleSeries.map((item) => {
+      const displayedAxisId = axisAliases.get(seriesAxisId(item))
+      return displayedAxisId && displayedAxisId !== item.yAxis ? { ...item, yAxis: displayedAxisId } : item
+    })
+    const displayedAxisIds = new Set(displayedAxisByPosition.values())
+    const effectiveOptions = {
+      ...options,
+      yAxes: options.yAxes.map(axis => ({
+        ...axis,
+        visible: displayedAxisIds.has(axis.id),
+      })),
+      legend: { ...options.legend, visible: options.legend.visible && series.length > 1 },
+    }
+    const valueAxisLayouts = this.resolveValueAxes(plottedSeries, effectiveOptions)
+    const p = this.resolvePadding(effectiveOptions, valueAxisLayouts)
     const innerWidth = Math.max(1, width - p.left - p.right)
     const innerHeight = Math.max(1, height - p.top - p.bottom)
-    const points = series.flatMap(s => s.data)
+    const points = visibleSeries.flatMap(s => s.data)
     const rawXDomain = this.resolveDomain(points.map(d => d.x), options.xAxis.min, options.xAxis.max)
     const hasExplicitXDomain = Number.isFinite(options.xAxis.min) || Number.isFinite(options.xAxis.max)
     const xDomain = applyXDomainStrategy(rawXDomain, options.xDomainStrategy, hasExplicitXDomain)
@@ -213,14 +287,18 @@ export class Waveform {
       scale: d3.scaleLinear().domain(axis.domain).range([innerHeight, 0]),
     }))
     const yAxisById = new Map(yAxes.map(axis => [axis.options.id, axis]))
-    const primaryYAxis = yAxes[0]
+    for (const [axisId, displayedAxisId] of axisAliases) {
+      const displayedAxis = yAxisById.get(displayedAxisId)
+      if (displayedAxis) yAxisById.set(axisId, displayedAxis)
+    }
+    const primaryYAxis = yAxes.find(axis => axis.options.visible) ?? yAxes[0]
     const clipId = `waveform-clip-${this.instanceId}`
     svg.append('defs').append('clipPath').attr('id', clipId).append('rect').attr('width', innerWidth).attr('height', innerHeight)
     const plot = svg.append('g').attr('transform', `translate(${p.left},${p.top})`)
 
-    const resolvedOptions = { ...options, padding: p }
+    const resolvedOptions = { ...effectiveOptions, padding: p }
     const ctx: RenderContext = {
-      svg, plot, series, options: resolvedOptions, width, height, innerWidth, innerHeight,
+      svg, plot, series: plottedSeries, options: resolvedOptions, width, height, innerWidth, innerHeight,
       x, yAxes, yAxisById, primaryYAxis, xDomain, clipId,
     }
 
@@ -242,8 +320,15 @@ export class Waveform {
     renderAxes(ctx)
     renderFrameBorder(ctx)
     renderSeries(ctx)
-    renderLegend(ctx)
-    renderShot(ctx)
+    renderLegend(
+      ctx,
+      keyedSeries.map(item => ({
+        ...item,
+        visible: !this.hiddenSeriesKeys.has(item.key),
+      })),
+      key => this.toggleSeries(key),
+    )
+    renderXMetadata(ctx)
 
     if (options.title.visible && options.title.text) {
       const tx = options.title.align === 'left' ? p.left : options.title.align === 'right' ? width - p.right : width / 2

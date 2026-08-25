@@ -55,19 +55,27 @@ describe('Waveform typography', () => {
     expect(svg.querySelector('.waveform-shot')).toBeNull()
   })
 
-  it('renders the configured shot in the SVG at the top-right edge', () => {
+  it('renders the shot and x-axis title in one right-side vertical lane', () => {
     const { svg } = createChart({
       layout: { autoPadding: false },
       padding: { top: 40, right: 70 },
+      xAxis: { title: { visible: true, text: 'Time', unit: 'ms' } },
       shot: { visible: true, text: '10001', color: '#123456', fontSize: 21, fontWeight: 700 },
     })
     const shot = svg.querySelector('.waveform-shot')!
+    const xAxisTitle = svg.querySelector('.waveform-axis-x-title')!
 
     expect(shot.textContent).toBe('10001')
-    expect(shot.getAttribute('x')).toBe('734')
-    expect(shot.getAttribute('y')).toBe('40')
-    expect(shot.getAttribute('transform')).toBe('rotate(-90 734 40)')
+    expect(xAxisTitle.textContent).toBe('Time (ms)')
+    expect(shot.tagName.toLowerCase()).toBe('text')
+    expect(shot.getAttribute('x')).toBe(xAxisTitle.getAttribute('x'))
+    expect(shot.getAttribute('transform')).toMatch(/^rotate\(-90 /)
+    expect(xAxisTitle.getAttribute('transform')).toMatch(/^rotate\(-90 /)
     expect(shot.getAttribute('text-anchor')).toBe('end')
+    expect(xAxisTitle.getAttribute('text-anchor')).toBe('start')
+    expect(shot.getAttribute('dominant-baseline')).toBe('middle')
+    expect(xAxisTitle.getAttribute('dominant-baseline')).toBe('middle')
+    expect(Number(shot.getAttribute('y'))).toBeLessThan(Number(xAxisTitle.getAttribute('y')))
     expect(shot.getAttribute('fill')).toBe('#123456')
     expect(shot.getAttribute('font-size')).toBe('21')
     expect(shot.getAttribute('font-weight')).toBe('700')
@@ -85,5 +93,44 @@ describe('Waveform typography', () => {
     expect(updatedShot.textContent).toBe('10001')
     expect(updatedShot.getAttribute('fill')).toBe('#123456')
     expect(updatedShot.getAttribute('font-size')).toBe('24')
+    expect(updatedShot.getAttribute('transform')).toMatch(/^rotate\(-90 /)
+    expect(updatedShot.getAttribute('text-anchor')).toBe('end')
+  })
+
+  it('reserves right-side space without increasing bottom padding', () => {
+    const sharedOptions: WaveformOptions = {
+      padding: { right: 0, bottom: 0 },
+      legend: { visible: false },
+      secondaryYAxis: { visible: true },
+    }
+    const withoutMetadata = createChart(sharedOptions).svg
+    const withMetadata = createChart({
+      ...sharedOptions,
+      xAxis: { title: { visible: true, text: 'Time', fontSize: 20, offset: 8 } },
+      shot: { visible: true, text: '10001', fontSize: 21 },
+    }).svg
+    const plainFrame = withoutMetadata.querySelector('.waveform-frame-border')!
+    const metadataFrame = withMetadata.querySelector('.waveform-frame-border')!
+
+    expect(Number(plainFrame.getAttribute('width')) - Number(metadataFrame.getAttribute('width'))).toBe(23)
+    expect(metadataFrame.getAttribute('height')).toBe(plainFrame.getAttribute('height'))
+  })
+
+  it('shrinks long metadata labels to keep the upper and lower lanes separate', () => {
+    const { svg } = createChart({
+      height: 120,
+      layout: { autoPadding: false },
+      padding: { top: 10, right: 80, bottom: 10, left: 20 },
+      xAxis: { title: { visible: true, text: 'Very long time axis', unit: 'milliseconds', fontSize: 24 } },
+      shot: { visible: true, text: 'SHOT-123456789', fontSize: 24 },
+    })
+    const title = svg.querySelector('.waveform-axis-x-title')!
+    const shot = svg.querySelector('.waveform-shot')!
+    const availableLength = 42
+
+    expect(Number(title.getAttribute('font-size'))).toBeLessThan(24)
+    expect(Number(shot.getAttribute('font-size'))).toBeLessThan(24)
+    expect(title.textContent!.length * Number(title.getAttribute('font-size')) * 0.6).toBeLessThanOrEqual(availableLength)
+    expect(shot.textContent!.length * Number(shot.getAttribute('font-size')) * 0.6).toBeLessThanOrEqual(availableLength)
   })
 })

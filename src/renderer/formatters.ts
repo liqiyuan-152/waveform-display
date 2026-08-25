@@ -2,9 +2,8 @@ const SCIENTIFIC_MIN_ABSOLUTE_VALUE = 0.001
 const SCIENTIFIC_MAX_PLAIN_ABSOLUTE_VALUE = 1000
 
 function formatAxisNumber(value: number): string {
-  if (Object.is(value, -0)) return '0'
-  const rounded = value === 0 ? 0 : Number(value.toPrecision(5))
-  return String(rounded)
+  const normalized = Object.is(value, -0) ? 0 : value
+  return normalized.toFixed(2)
 }
 
 export function resolveScientificExponent(axisMin: number, axisMax: number): number | null {
@@ -27,15 +26,13 @@ export function formatScientificAxisTick(
   domain: [number, number],
   topTickValue: number,
   unit = '',
-  exponentPosition: 'before' | 'after' = 'before',
 ): string {
   const exponent = resolveScientificExponent(domain[0], domain[1])
   const scaledValue = exponent === null ? value : value / 10 ** exponent
   const valueLabel = formatAxisNumber(scaledValue)
-  const unitLabel = unit ? ` ${unit}` : ''
   const exponentLabel = exponent !== null && value === topTickValue ? formatExponent(exponent) : ''
-  if (!exponentLabel) return `${valueLabel}${unitLabel}`
-  return exponentPosition === 'after'
-    ? `${valueLabel} ${exponentLabel}${unitLabel}`
-    : `${exponentLabel} ${valueLabel}${unitLabel}`
+  if (!exponentLabel) return valueLabel
+  const scientificUnitLabel = unit ? ` (${unit})` : ''
+  const scientificLabel = `${exponentLabel}${scientificUnitLabel}`
+  return `${scientificLabel}\n${valueLabel}`
 }

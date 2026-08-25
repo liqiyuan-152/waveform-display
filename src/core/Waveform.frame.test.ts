@@ -44,7 +44,7 @@ describe('Waveform frame', () => {
   it('uses the reference frame defaults and supports dashed, dotted, and rounded frames', () => {
     const defaultFrame = render().querySelector('.waveform-frame-border')!
     expect(defaultFrame.getAttribute('stroke')).toBe('#000000')
-    expect(defaultFrame.getAttribute('stroke-width')).toBe('1.3')
+    expect(defaultFrame.getAttribute('stroke-width')).toBe('2')
     expect(defaultFrame.getAttribute('stroke-dasharray')).toBeNull()
 
     const dashedFrame = render({ frame: { borderStyle: 'dashed', borderWidth: 2 } })
@@ -95,15 +95,35 @@ describe('Waveform frame', () => {
   })
 
   it('places a top horizontal legend below the chart title', () => {
-    const svg = render({
-      title: { visible: true, text: 'Waveform title' },
-      legend: { visible: true, position: 'top-left', orientation: 'horizontal' },
-    })
+    const svg = render(
+      {
+        title: { visible: true, text: 'Waveform title' },
+        legend: { visible: true, position: 'top-left', orientation: 'horizontal' },
+      },
+      [
+        { name: 'First', data },
+        { name: 'Second', data },
+      ],
+    )
     const title = Array.from(svg.querySelectorAll(':scope > text')).find(node => node.textContent === 'Waveform title')!
     const legendItem = svg.querySelector('.waveform-legend > g')!
     const legendY = Number(legendItem.getAttribute('transform')?.match(/,([^\)]+)/)?.[1])
 
     expect(Number(title.getAttribute('y'))).toBeLessThan(legendY)
     expect(svg.querySelector('svg > g')?.getAttribute('transform')).toBe('translate(72,64)')
+  })
+
+  it('renders legend labels without series units', () => {
+    const svg = render(
+      { legend: { visible: true } },
+      [
+        { name: 'First', unit: 'ms', data },
+        { name: 'Second', unit: 'V', data },
+      ],
+    )
+
+    expect(Array.from(svg.querySelectorAll('.waveform-legend text'), item => item.textContent))
+      .toEqual(['First', 'Second'])
+    expect(svg.querySelector('.waveform-legend-item')?.getAttribute('style')).toContain('outline: none')
   })
 })

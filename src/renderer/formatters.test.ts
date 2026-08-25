@@ -17,19 +17,20 @@ describe('Y-axis scientific formatting', () => {
 
   it('shows one shared exponent on the domain end tick and scales every tick', () => {
     const domain: [number, number] = [1000, 3000]
-    expect(formatScientificAxisTick(1000, domain, 3000)).toBe('1')
-    expect(formatScientificAxisTick(2000, domain, 3000)).toBe('2')
-    expect(formatScientificAxisTick(3000, domain, 3000, 'V')).toBe('E+03 3 V')
+    expect(formatScientificAxisTick(1000, domain, 3000)).toBe('1.00')
+    expect(formatScientificAxisTick(2000, domain, 3000)).toBe('2.00')
+    expect(formatScientificAxisTick(3000, domain, 3000, 'V')).toBe('E+03 (V)\n3.00')
   })
 
-  it('can place the shared exponent after the end value and before its unit', () => {
+  it('places the parenthesized unit immediately after the shared exponent', () => {
     const domain: [number, number] = [0.0001, 0.0003]
-    expect(formatScientificAxisTick(0.0001, domain, 0.0003, 'V', 'after')).toBe('1 V')
-    expect(formatScientificAxisTick(0.0003, domain, 0.0003, 'V', 'after')).toBe('3 E-04 V')
+    expect(formatScientificAxisTick(0.0001, domain, 0.0003, 'V')).toBe('1.00')
+    expect(formatScientificAxisTick(0.0003, domain, 0.0003, 'V')).toBe('E-04 (V)\n3.00')
   })
 
-  it('keeps ordinary values plain and normalizes negative zero', () => {
-    expect(formatScientificAxisTick(123.456, [0, 999], 999)).toBe('123.46')
-    expect(formatScientificAxisTick(-0, [-1, 1], 1)).toBe('0')
+  it('keeps two decimal places for ordinary values and normalizes negative zero', () => {
+    expect(formatScientificAxisTick(123.456, [0, 999], 999, 'V')).toBe('123.46')
+    expect(formatScientificAxisTick(1, [0, 2], 2)).toBe('1.00')
+    expect(formatScientificAxisTick(-0, [-1, 1], 1)).toBe('0.00')
   })
 })

@@ -17,7 +17,28 @@ function isDomainEndpoint(value: number, domain: [number, number]): boolean {
 }
 
 function estimateLabelWidth(label: string, fontSize: number): number {
-  return label.length * fontSize * 0.6
+  return Math.max(...label.split('\n').map(line => line.length * fontSize * 0.6))
+}
+
+function estimateYAxisLabelWidth(label: string, fontSize: number): number {
+  return Math.max(...label.split('\n').map(line => line.length * fontSize * 0.5))
+}
+
+function renderMultilineTickLabels(axisGroup: d3.Selection<SVGGElement, unknown, null, undefined>) {
+  axisGroup.selectAll<SVGTextElement, unknown>('.tick text').each(function () {
+    const lines = (this.textContent ?? '').split('\n')
+    if (lines.length < 2) return
+
+    const text = d3.select(this)
+    const x = text.attr('x') ?? '0'
+    text.text(null)
+    lines.forEach((line, index) => {
+      text.append('tspan')
+        .attr('x', x)
+        .attr('dy', index === 0 ? '0em' : '1em')
+        .text(line)
+    })
+  })
 }
 
 export function formatYAxisTick(axis: AxisOptions, value: number, domain: [number, number]): string {
@@ -28,14 +49,13 @@ export function formatYAxisTick(axis: AxisOptions, value: number, domain: [numbe
         domain,
         domain[1],
         axis.unit,
-        axis.position === 'right' ? 'after' : 'before',
       )
 }
 
 export function estimateYAxisFootprint(axis: AxisOptions, domain: [number, number]): number {
   const labels = yAxisTickValues(domain, axis.tickCount ?? 6)
     .map(value => formatYAxisTick(axis, value, domain))
-  const labelWidth = Math.max(0, ...labels.map(label => estimateLabelWidth(label, axis.fontSize ?? 11)))
+  const labelWidth = Math.max(0, ...labels.map(label => estimateYAxisLabelWidth(label, axis.fontSize ?? 11)))
   const tickFootprint = (axis.tickSize ?? 6) + (axis.tickPadding ?? 6) + labelWidth
   const titleFootprint = axis.title?.visible && (axis.title.text || axis.label)
     ? (axis.title.offset ?? 52) + (axis.title.fontSize ?? 12) / 2
@@ -66,6 +86,8 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
     .call(g => g.selectAll('path,line').attr('stroke', axisOptions.color ?? '#000000').attr('stroke-width', axisOptions.width ?? 1.3))
     .call(g => g.selectAll('text').attr('fill', axisOptions.fontColor ?? '#475569').attr('font-size', axisOptions.fontSize ?? 11))
 
+  renderMultilineTickLabels(axisGroup)
+
   axisGroup.selectAll<SVGGElement, number>('.tick')
     .filter(value => value === endTickValue)
     .select('text')
@@ -89,8 +111,7 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
 }
 
 export function renderAxes(ctx: RenderContext) {
-  const { plot, svg, x, yAxes, innerHeight, innerWidth, options } = ctx
-  const p = options.padding
+  const { plot, x, yAxes, innerHeight, innerWidth, options } = ctx
 
   if (options.xAxis.visible) {
     const domain = x.domain() as [number, number]
@@ -150,16 +171,4 @@ export function renderAxes(ctx: RenderContext) {
   }
 
   yAxes.filter(axis => axis.options.visible).forEach(axis => renderYAxis(ctx, axis))
-
-  const xTitleText = options.xAxis.title.text || options.xAxis.label
-  if (options.xAxis.title.visible && xTitleText) {
-    svg.append('text')
-      .attr('x', p.left + innerWidth / 2)
-      .attr('y', p.top + innerHeight + options.xAxis.title.offset)
-      .attr('text-anchor', 'middle')
-      .attr('fill', options.xAxis.title.color ?? '#334155')
-      .attr('font-size', options.xAxis.title.fontSize ?? 12)
-      .attr('font-weight', options.xAxis.title.fontWeight ?? 500)
-      .text(`${xTitleText}${options.xAxis.title.unit ? ` (${options.xAxis.title.unit})` : ''}`)
-  }
 }

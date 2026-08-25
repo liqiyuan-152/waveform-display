@@ -8,7 +8,7 @@ export const defaultOptions = {
   padding: { top: 42, right: 72, bottom: 58, left: 72 },
   frame: {
     visible: true,
-    borderColor: '#000000', borderWidth: 1.3, borderStyle: 'solid', backgroundColor: 'transparent', radius: 0,
+    borderColor: '#000000', borderWidth: 2, borderStyle: 'solid', backgroundColor: 'transparent', radius: 0,
   },
   line: { visible: true, color: '#2563eb', width: 1.5, type: 'linear', style: 'solid', opacity: 1 },
   point: { visible: false, type: 'circle', size: 3, color: '#2563eb', borderColor: '#ffffff', borderWidth: 1 },
@@ -16,17 +16,17 @@ export const defaultOptions = {
   xAxis: {
     visible: true, position: 'left', min: undefined, max: undefined, tickCount: 8, hideEndTicks: true, showEndValues: true, tickSize: 6, tickPadding: 6, tickFormat: '',
     color: '#000000', width: 1.3, fontSize: 11, fontColor: '#475569', label: '', unit: '',
-    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 38 },
+    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 8 },
   },
   yAxis: {
-    visible: true, position: 'left', min: undefined, max: undefined, tickCount: 6, tickSize: 6, tickPadding: 6, tickFormat: '',
+    visible: true, position: 'left', min: undefined, max: undefined, tickCount: 6, tickSize: 6, tickPadding: 2, tickFormat: '',
     color: '#000000', width: 1.3, fontSize: 11, fontColor: '#475569', label: '', unit: '',
-    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 52 },
+    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 64 },
   },
   secondaryYAxis: {
-    visible: false, position: 'right', min: undefined, max: undefined, tickCount: 6, tickSize: 6, tickPadding: 6, tickFormat: '',
+    visible: false, position: 'right', min: undefined, max: undefined, tickCount: 6, tickSize: 6, tickPadding: 2, tickFormat: '',
     color: '#000000', width: 1.3, fontSize: 11, fontColor: '#475569', label: '', unit: '',
-    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 52 },
+    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 64 },
   },
   yAxes: undefined,
   grid: { visible: true, color: '#e2e8f0', style: 'dashed', x: { visible: true, width: 1 }, y: { visible: true, width: 1 } },

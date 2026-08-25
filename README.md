@@ -122,7 +122,11 @@ new Waveform('#chart', [
 })
 ```
 
-Each value axis uses only its assigned series when calculating its automatic domain. Axes on the same side are placed outward in array order, and `layout.autoPadding` reserves room for their labels and titles.
+For multiple effective series, click a legend item or focus it and press Enter/Space to hide or restore that series. Automatic X and Y domains are recalculated from the visible series. Legend selection survives redraws and `updateData()` calls while the series can still be matched; provide unique series `id` values when selection must remain stable across reordering.
+
+Set `shot` on each series when a chart can contain data from different shots. When all effective series share one shot, legend labels remain unchanged. When two or more distinct shots are present, each available shot is appended to its legend label, for example `Voltage (10001)`; series without a shot keep their original label.
+
+At most one value axis is displayed on each side. When visible series are assigned to multiple configured axes on the same side, the first effective axis is displayed and those series share its combined automatic domain and scale. Grid and zero-line references to the additional axis IDs resolve to the displayed axis on that side, and `layout.autoPadding` reserves room for the displayed labels and titles.
 
 Existing `yAxis`, `secondaryYAxis`, and series bindings to `left` or `right` remain supported. When `yAxes` is provided it is authoritative and the legacy options are ignored. Passing `yAxes` to `updateOptions()` replaces the complete array. Empty IDs are ignored, duplicate IDs keep their first occurrence, and unknown series or reference-axis IDs fall back to the first valid axis.
 
