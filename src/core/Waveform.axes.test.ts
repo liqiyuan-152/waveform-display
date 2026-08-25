@@ -360,11 +360,15 @@ describe('Waveform axes', () => {
         { name: 'left', data: [{ x: 0, y: 1000 }, { x: 1, y: 3000 }] },
         { name: 'right', yAxis: 'right', data: [{ x: 0, y: 0.0001 }, { x: 1, y: 0.0003 }] },
       ],
-      { secondaryYAxis: { visible: true } },
+      { yAxis: { unit: 'A' }, secondaryYAxis: { visible: true, unit: 'V' } },
     )
 
-    expect(labels(svg, '.waveform-axis-y--left').filter(label => label.startsWith('E'))).toHaveLength(1)
-    expect(labels(svg, '.waveform-axis-y--right').filter(label => label.startsWith('E'))).toHaveLength(1)
+    const leftLabels = labels(svg, '.waveform-axis-y--left')
+    const rightLabels = labels(svg, '.waveform-axis-y--right')
+    expect(leftLabels[leftLabels.length - 1]).toBe('E+03 3 A')
+    expect(rightLabels[rightLabels.length - 1]).toBe('3 E-04 V')
+    expect(leftLabels.filter(label => label.includes('E'))).toHaveLength(1)
+    expect(rightLabels.filter(label => label.includes('E'))).toHaveLength(1)
   })
 
   it('keeps an explicit Y-axis tick formatter authoritative', () => {

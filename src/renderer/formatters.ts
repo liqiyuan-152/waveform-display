@@ -27,11 +27,15 @@ export function formatScientificAxisTick(
   domain: [number, number],
   topTickValue: number,
   unit = '',
+  exponentPosition: 'before' | 'after' = 'before',
 ): string {
   const exponent = resolveScientificExponent(domain[0], domain[1])
   const scaledValue = exponent === null ? value : value / 10 ** exponent
   const valueLabel = formatAxisNumber(scaledValue)
   const unitLabel = unit ? ` ${unit}` : ''
-  const exponentLabel = exponent !== null && value === topTickValue ? `${formatExponent(exponent)} ` : ''
-  return `${exponentLabel}${valueLabel}${unitLabel}`
+  const exponentLabel = exponent !== null && value === topTickValue ? formatExponent(exponent) : ''
+  if (!exponentLabel) return `${valueLabel}${unitLabel}`
+  return exponentPosition === 'after'
+    ? `${valueLabel} ${exponentLabel}${unitLabel}`
+    : `${exponentLabel} ${valueLabel}${unitLabel}`
 }

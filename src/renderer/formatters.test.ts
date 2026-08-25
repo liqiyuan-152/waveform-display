@@ -22,6 +22,12 @@ describe('Y-axis scientific formatting', () => {
     expect(formatScientificAxisTick(3000, domain, 3000, 'V')).toBe('E+03 3 V')
   })
 
+  it('can place the shared exponent after the end value and before its unit', () => {
+    const domain: [number, number] = [0.0001, 0.0003]
+    expect(formatScientificAxisTick(0.0001, domain, 0.0003, 'V', 'after')).toBe('1 V')
+    expect(formatScientificAxisTick(0.0003, domain, 0.0003, 'V', 'after')).toBe('3 E-04 V')
+  })
+
   it('keeps ordinary values plain and normalizes negative zero', () => {
     expect(formatScientificAxisTick(123.456, [0, 999], 999)).toBe('123.46')
     expect(formatScientificAxisTick(-0, [-1, 1], 1)).toBe('0')

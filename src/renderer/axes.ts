@@ -23,7 +23,13 @@ function estimateLabelWidth(label: string, fontSize: number): number {
 export function formatYAxisTick(axis: AxisOptions, value: number, domain: [number, number]): string {
   return axis.tickFormat
     ? formatTick(axis, value)
-    : formatScientificAxisTick(value, domain, domain[1], axis.unit)
+    : formatScientificAxisTick(
+        value,
+        domain,
+        domain[1],
+        axis.unit,
+        axis.position === 'right' ? 'after' : 'before',
+      )
 }
 
 export function estimateYAxisFootprint(axis: AxisOptions, domain: [number, number]): number {

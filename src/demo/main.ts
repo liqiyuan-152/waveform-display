@@ -5,7 +5,8 @@ import waveformData from './waveform-data.json'
 import './styles.css'
 
 const colors = ['#2563eb', '#dc2626', '#16a34a', '#9333ea']
-const valueAxisIds = ['signal-a', 'signal-b', 'signal-c']
+const valueAxisIds = waveformData.map((_, index) => `signal-${index + 1}`)
+const rightAxisStart = Math.ceil(waveformData.length / 2)
 const framePadding = { top: 32, right: 72, bottom: 62, left: 72 }
 const shot = waveformData[0]?.shot
 
@@ -14,9 +15,9 @@ let series: WaveformSeries[] = waveformData.map((waveform, index) => ({
   name: waveform.chnl,
   unit: waveform.dat_unit,
   order: index + 1,
-  yAxis: valueAxisIds[index % valueAxisIds.length],
+  yAxis: valueAxisIds[index],
   data: waveform.data.map((y, pointIndex) => ({ x: waveform.time[pointIndex], y })),
-  style: { color: colors[index], lineWidth: 3 },
+  style: { color: colors[index % colors.length], lineWidth: 3 },
 }))
 
 const initialOptions: WaveformOptions = resolveOptions({
@@ -35,13 +36,18 @@ const initialOptions: WaveformOptions = resolveOptions({
   point: { visible: false },
   xDomainStrategy: { type: 'nice', bounds: 'both', tickCount: 10 },
   xAxis: { showEndValues: true, tickFormat: '.0f', title: { visible: true, text: 'Time', unit: 'ms' } },
-  yAxes: [
-    { id: 'signal-a', position: 'left', title: { visible: true, text: 'Signal A', unit: 'ms' } },
-    { id: 'signal-b', position: 'left', color: '#dc2626', fontColor: '#b42318', title: { visible: true, text: 'Signal B', unit: 'ms', color: '#b42318' } },
-    { id: 'signal-c', position: 'right', color: '#16a34a', fontColor: '#15803d', title: { visible: true, text: 'Signal C', unit: 'ms', color: '#15803d' } },
-  ],
-  grid: { style: 'dashed', color: '#e2e8f0', y: { axisId: 'signal-a' } },
-  zeroLine: { axisId: 'signal-a' },
+  yAxes: waveformData.map((waveform, index) => {
+    const color = colors[index % colors.length]
+    return {
+      id: valueAxisIds[index],
+      position: index < rightAxisStart ? 'left' : 'right',
+      color,
+      fontColor: color,
+      title: { visible: false, text: waveform.chnl, unit: waveform.dat_unit, color },
+    }
+  }),
+  grid: { style: 'dashed', color: '#e2e8f0', y: { axisId: valueAxisIds[0] } },
+  zeroLine: { axisId: valueAxisIds[0] },
 })
 
 const app = document.querySelector<HTMLDivElement>('#app')!
