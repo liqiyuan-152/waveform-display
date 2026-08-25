@@ -25,6 +25,12 @@ A pure-display, configuration-driven waveform component built with Vite, TypeScr
 - Per-series style overrides
 - Runtime `updateData()`, `updateOptions()` and `destroy()`
 
+## Installation
+
+```bash
+npm install waveform-display
+```
+
 ## Development
 
 ```bash

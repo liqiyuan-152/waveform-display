@@ -1,6 +1,24 @@
 {
   "name": "waveform-display",
   "version": "0.2.0",
+  "description": "A configuration-driven SVG waveform display component for TypeScript applications.",
+  "license": "MIT",
+  "keywords": [
+    "waveform",
+    "svg",
+    "chart",
+    "visualization",
+    "typescript",
+    "d3"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liqiyuan-152/waveform-display.git"
+  },
+  "bugs": {
+    "url": "https://github.com/liqiyuan-152/waveform-display/issues"
+  },
+  "homepage": "https://github.com/liqiyuan-152/waveform-display#readme",
   "type": "module",
   "main": "./dist/waveform-display.umd.cjs",
   "module": "./dist/waveform-display.js",
@@ -19,9 +37,15 @@
     "dev": "vite",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "build": "tsc -p tsconfig.build.json && vite build",
+    "build": "vite build && tsc -p tsconfig.build.json",
     "check": "pnpm typecheck && pnpm test && pnpm build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepack": "pnpm build",
+    "prepublishOnly": "pnpm typecheck && pnpm test"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   },
   "dependencies": {
     "d3": "^7.9.0"

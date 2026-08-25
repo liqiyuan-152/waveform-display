@@ -9,5 +9,6 @@
     "emitDeclarationOnly": true,
     "declarationDir": "dist"
   },
-  "include": ["src/index.ts", "src/core/**/*.ts", "src/config/**/*.ts", "src/types/**/*.ts", "src/renderer/**/*.ts"]
+  "include": ["src/index.ts", "src/core/**/*.ts", "src/config/**/*.ts", "src/types/**/*.ts", "src/renderer/**/*.ts"],
+  "exclude": ["src/**/*.test.ts"]
 }
