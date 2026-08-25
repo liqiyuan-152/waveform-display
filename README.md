@@ -117,6 +117,7 @@ new Waveform('#chart', [
     visible: true,
     position: 'top-left',
     orientation: 'horizontal',
+    maxItemWidth: 200,
   },
   yAxes: [
     { id: 'voltage', position: 'left', title: { visible: true, text: 'Voltage', unit: 'V' } },
@@ -129,6 +130,35 @@ new Waveform('#chart', [
 ```
 
 For multiple effective series, click a legend item or focus it and press Enter/Space to hide or restore that series. Automatic X and Y domains are recalculated from the visible series. Legend selection survives redraws and `updateData()` calls while the series can still be matched; provide unique series `id` values when selection must remain stable across reordering.
+
+Channel labeling changes automatically with the number of effective series. A single effective series does not render legend items or a Y-axis title; its `name` is shown above the horizontal center of the plot instead, independently of `legend.visible`. Multiple effective series do not render that centered name: they use the legend and Y-axis titles. An explicitly configured axis `title.text` takes precedence; otherwise the displayed axis uses the first visible series name. Derived axis titles are visible by default, while an explicit `title.visible: false` remains respected. Empty series do not affect the mode, and hiding series through the legend does not switch a multi-series chart into single-series mode.
+
+### Legend item width
+
+`legend.maxItemWidth` limits the layout width of each legend item in pixels. The width includes the line preview, the gap before the label, and the rendered label. It defaults to `200`.
+
+```ts
+const chart = new Waveform('#chart', series, {
+  legend: {
+    visible: true,
+    position: 'top-left',
+    orientation: 'horizontal',
+    maxItemWidth: 160,
+  },
+})
+```
+
+Labels that exceed the configured width are rendered with an ellipsis. Their complete text remains available through the SVG `<title>` element and the legend item's `aria-label`. Horizontal legends use the limited item width when deciding where to wrap rows.
+
+The value can also be changed after initialization:
+
+```ts
+chart.updateOptions({
+  legend: { maxItemWidth: 240 },
+})
+```
+
+Use a larger value when labels should remain visible in full, or a smaller value for compact and narrow layouts. Because the line preview is part of the limit, increasing `legend.lineLength` leaves less room for label text at the same `maxItemWidth`.
 
 Set `shot` on each series when a chart can contain data from different shots. When all effective series share one shot, legend labels remain unchanged. When two or more distinct shots are present, each available shot is appended to its legend label, for example `Voltage (10001)`; series without a shot keep their original label.
 

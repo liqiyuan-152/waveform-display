@@ -187,7 +187,7 @@ const tabs: TabDefinition[] = [
         ]),
         select('图例方向', 'legend.orientation', [{ label: '横向', value: 'horizontal' }, { label: '纵向', value: 'vertical' }]),
         color('图例文字颜色', 'legend.color'), number('图例字号', 'legend.fontSize', 1), number('图例间距', 'legend.itemGap', 0),
-        number('图例线长', 'legend.lineLength', 1),
+        number('图例线长', 'legend.lineLength', 1), number('单项最大宽度', 'legend.maxItemWidth', 1),
       ] },
       { id: 'empty', label: '空状态', fields: [
         boolean('显示空数据文字', 'emptyState.visible'), text('提示文字', 'emptyState.text'),

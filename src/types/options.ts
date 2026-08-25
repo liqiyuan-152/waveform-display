@@ -49,6 +49,7 @@ export interface LegendOptions {
   fontSize?: number
   itemGap?: number
   lineLength?: number
+  maxItemWidth?: number
 }
 export interface EmptyStateOptions {
   visible?: boolean

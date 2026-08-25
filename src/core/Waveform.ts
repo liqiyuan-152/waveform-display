@@ -109,11 +109,15 @@ export class Waveform {
   private resolvePadding(
     options: ReturnType<typeof resolveOptions>,
     valueAxes: Array<{ options: ResolvedValueAxisOptions; offset: number; footprint: number }>,
+    showSingleChannelName: boolean,
   ): Required<PaddingOptions> {
     const p = { ...options.padding }
     if (!options.layout.autoPadding) return p
 
     if (options.title.visible && options.title.text) p.top = Math.max(p.top, 42)
+    if (showSingleChannelName) {
+      p.top = Math.max(p.top, options.title.visible && options.title.text ? 64 : 42)
+    }
     if (
       options.title.visible && options.title.text &&
       options.legend.visible && options.legend.orientation === 'horizontal' &&
@@ -144,6 +148,17 @@ export class Waveform {
       else p.left = Math.max(p.left, 96)
     }
     return p
+  }
+
+  private hasExplicitYAxisTitleVisibility(axisId: string): boolean {
+    if (this.rawOptions.yAxes !== undefined) {
+      return this.rawOptions.yAxes
+        .find(axis => axis.id?.trim() === axisId)
+        ?.title?.visible !== undefined
+    }
+
+    const axis = axisId === 'right' ? this.rawOptions.secondaryYAxis : this.rawOptions.yAxis
+    return axis?.title?.visible !== undefined
   }
 
   private resolveDomain(values: number[], min?: number, max?: number): [number, number] {
@@ -264,16 +279,32 @@ export class Waveform {
       return displayedAxisId && displayedAxisId !== item.yAxis ? { ...item, yAxis: displayedAxisId } : item
     })
     const displayedAxisIds = new Set(displayedAxisByPosition.values())
+    const singleChannel = series.length === 1
     const effectiveOptions = {
       ...options,
       yAxes: options.yAxes.map(axis => ({
         ...axis,
         visible: displayedAxisIds.has(axis.id),
+        title: singleChannel
+          ? { ...axis.title, visible: false }
+          : (() => {
+              const plottedIndex = plottedSeries.findIndex(item => seriesAxisId(item) === axis.id)
+              const matchingSeries = plottedSeries[plottedIndex]
+              const seriesIndex = plottedIndex >= 0 ? series.indexOf(visibleSeries[plottedIndex]) : -1
+              const derivedText = matchingSeries
+                ? matchingSeries.name?.trim() || `Series ${seriesIndex + 1}`
+                : ''
+              const text = axis.title.text?.trim() || derivedText
+              const visible = this.hasExplicitYAxisTitleVisibility(axis.id)
+                ? axis.title.visible
+                : Boolean(text)
+              return { ...axis.title, text, visible }
+            })(),
       })),
       legend: { ...options.legend, visible: options.legend.visible && series.length > 1 },
     }
     const valueAxisLayouts = this.resolveValueAxes(plottedSeries, effectiveOptions)
-    const p = this.resolvePadding(effectiveOptions, valueAxisLayouts)
+    const p = this.resolvePadding(effectiveOptions, valueAxisLayouts, singleChannel)
     const innerWidth = Math.max(1, width - p.left - p.right)
     const innerHeight = Math.max(1, height - p.top - p.bottom)
     const points = visibleSeries.flatMap(s => s.data)
@@ -328,6 +359,16 @@ export class Waveform {
       })),
       key => this.toggleSeries(key),
     )
+    if (singleChannel) {
+      svg.append('text')
+        .attr('class', 'waveform-channel-name')
+        .attr('x', p.left + innerWidth / 2)
+        .attr('y', options.title.visible && options.title.text ? 46 : 22)
+        .attr('text-anchor', 'middle')
+        .attr('fill', options.legend.color)
+        .attr('font-size', options.legend.fontSize)
+        .text(series[0].name?.trim() || 'Series 1')
+    }
     renderXMetadata(ctx)
 
     if (options.title.visible && options.title.text) {

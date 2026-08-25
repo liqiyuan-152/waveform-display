@@ -38,6 +38,42 @@ function legendLabels(container: HTMLElement) {
   return legendItems(container).map(item => item.querySelector('text')?.textContent)
 }
 
+function channelName(container: HTMLElement) {
+  return container.querySelector<SVGTextElement>('.waveform-channel-name')
+}
+
+function yAxisTitle(container: HTMLElement, axisId = 'left') {
+  return container.querySelector<SVGTextElement>(`.waveform-axis-y-title[data-axis-id="${axisId}"]`)
+}
+
+function legendPosition(item: SVGGElement): [number, number] {
+  const match = item.getAttribute('transform')?.match(/translate\(([-\d.]+),([-\d.]+)\)/)
+  return [Number(match?.[1]), Number(match?.[2])]
+}
+
+function legendItemWidth(item: SVGGElement): number {
+  return Number(item.querySelector('rect')?.getAttribute('width')) - 8
+}
+
+function frameHorizontalBounds(container: HTMLElement): [number, number] {
+  const plotX = Number(plotTransform(container)?.match(/translate\(([-\d.]+)/)?.[1])
+  const frameWidth = Number(container.querySelector('.waveform-frame-border')?.getAttribute('width'))
+  return [plotX, plotX + frameWidth]
+}
+
+function namedSeries(names: string[]): WaveformData {
+  return names.map((name, index) => ({ id: `series-${index}`, name, data: points }))
+}
+
+function legendRows(items: SVGGElement[]): Map<number, SVGGElement[]> {
+  const rows = new Map<number, SVGGElement[]>()
+  items.forEach((item) => {
+    const y = legendPosition(item)[1]
+    rows.set(y, [...(rows.get(y) ?? []), item])
+  })
+  return rows
+}
+
 function lineColors(container: HTMLElement) {
   return Array.from(container.querySelectorAll('g[clip-path] > path'))
     .map(path => path.getAttribute('stroke'))
@@ -60,24 +96,185 @@ function yEndValue(container: HTMLElement, axisId = 'left') {
 }
 
 describe('Waveform legend', () => {
-  it('hides the legend and reclaims its padding for one effective series', () => {
+  it('shows one effective channel name above the centered plot without a legend or Y-axis title', () => {
     const { container } = createChart([
       { name: 'Visible', data: points },
       { name: 'Empty', data: [] },
-    ])
+    ], {
+      yAxis: { title: { visible: true, text: 'Configured axis title' } },
+    })
 
     expect(container.querySelector('.waveform-legend')).toBeNull()
+    expect(channelName(container)?.textContent).toBe('Visible')
+    expect(channelName(container)?.getAttribute('x')).toBe('400')
+    expect(channelName(container)?.getAttribute('y')).toBe('46')
+    expect(channelName(container)?.getAttribute('text-anchor')).toBe('middle')
+    expect(yAxisTitle(container)).toBeNull()
+    expect(plotTransform(container)).toBe('translate(72,64)')
+  })
+
+  it('keeps a single channel name visible when the legend is explicitly disabled', () => {
+    const { container } = createChart(
+      [{ data: points }],
+      { title: { visible: false }, legend: { visible: false } },
+    )
+
+    expect(container.querySelector('.waveform-legend')).toBeNull()
+    expect(channelName(container)?.textContent).toBe('Series 1')
+    expect(channelName(container)?.getAttribute('y')).toBe('22')
     expect(plotTransform(container)).toBe('translate(72,42)')
   })
 
-  it('shows the legend and reserves its padding for multiple series', () => {
+  it('shows the legend and a derived Y-axis channel name for multiple series', () => {
     const { container } = createChart([
       { name: 'First', data: points },
       { name: 'Second', data: points },
     ])
 
     expect(container.querySelectorAll('.waveform-legend > g')).toHaveLength(2)
-    expect(plotTransform(container)).toBe('translate(72,64)')
+    expect(channelName(container)).toBeNull()
+    expect(yAxisTitle(container)?.textContent).toBe('First')
+    expect(plotTransform(container)).toBe('translate(78,64)')
+  })
+
+  it('prioritizes explicit Y-axis title text and visibility for multiple series', () => {
+    const configured = createChart(
+      namedSeries(['First', 'Second']),
+      { yAxis: { title: { text: 'Configured' } } },
+    )
+    const hidden = createChart(
+      namedSeries(['First', 'Second']),
+      { yAxis: { title: { visible: false } } },
+    )
+
+    expect(yAxisTitle(configured.container)?.textContent).toBe('Configured')
+    expect(yAxisTitle(hidden.container)).toBeNull()
+  })
+
+  it('derives the displayed same-side axis title from the first visible channel', () => {
+    const { container } = createChart(
+      [
+        { id: 'first', name: 'First', yAxis: 'first-axis', data: points },
+        { id: 'second', name: 'Second', yAxis: 'second-axis', data: points },
+      ],
+      {
+        yAxes: [
+          { id: 'first-axis', position: 'left' },
+          { id: 'second-axis', position: 'left' },
+        ],
+      },
+    )
+
+    expect(yAxisTitle(container, 'first-axis')?.textContent).toBe('First')
+    expect(yAxisTitle(container, 'second-axis')).toBeNull()
+
+    legendItems(container)[0].dispatchEvent(new MouseEvent('click', { bubbles: true }))
+
+    expect(yAxisTitle(container, 'first-axis')).toBeNull()
+    expect(yAxisTitle(container, 'second-axis')?.textContent).toBe('Second')
+    expect(channelName(container)).toBeNull()
+  })
+
+  it('wraps a top-left horizontal legend within the frame width', () => {
+    const { container } = createChart(
+      namedSeries(['First', 'Second', 'Third', 'Fourth', 'Fifth']),
+      { width: 360 },
+    )
+    const items = legendItems(container)
+    const [frameLeft, frameRight] = frameHorizontalBounds(container)
+    const rows = legendRows(items)
+
+    expect(rows.size).toBeGreaterThan(1)
+    expect(Array.from(rows.values(), row => legendPosition(row[0])[0]))
+      .toEqual(Array.from(rows, () => frameLeft))
+    items.forEach((item) => {
+      const [x] = legendPosition(item)
+      expect(x).toBeGreaterThanOrEqual(frameLeft)
+      expect(x + legendItemWidth(item)).toBeLessThanOrEqual(frameRight)
+    })
+
+    items[0].dispatchEvent(new MouseEvent('click', { bubbles: true }))
+    expect(legendItems(container)[0].getAttribute('aria-pressed')).toBe('false')
+    expect(lineColors(container)).toHaveLength(4)
+  })
+
+  it('limits individual legend item width and preserves the complete label', () => {
+    const completeLabel = 'A very long waveform channel name that cannot fit in one legend item'
+    const { container } = createChart(
+      namedSeries([completeLabel, 'Second']),
+      { legend: { maxItemWidth: 120 } },
+    )
+    const firstItem = legendItems(container)[0]
+
+    expect(legendItemWidth(firstItem)).toBeLessThanOrEqual(120)
+    expect(firstItem.querySelector('text')?.textContent).toMatch(/…$/)
+    expect(firstItem.querySelector('title')?.textContent).toBe(completeLabel)
+    expect(firstItem.getAttribute('aria-label')).toBe(completeLabel)
+  })
+
+  it('keeps legend labels intact when they fit the configured item width', () => {
+    const { container } = createChart(
+      namedSeries(['Short', 'Second']),
+      { legend: { maxItemWidth: 120 } },
+    )
+    const firstItem = legendItems(container)[0]
+
+    expect(firstItem.querySelector('text')?.textContent).toBe('Short')
+    expect(firstItem.querySelector('title')).toBeNull()
+  })
+
+  it('right-aligns every row of a wrapped top-right horizontal legend', () => {
+    const { container } = createChart(
+      namedSeries(['First', 'Second', 'Third', 'Fourth', 'Fifth']),
+      { width: 360, legend: { position: 'top-right', orientation: 'horizontal' } },
+    )
+    const [, frameRight] = frameHorizontalBounds(container)
+    const rows = legendRows(legendItems(container))
+
+    expect(rows.size).toBeGreaterThan(1)
+    Array.from(rows.values()).forEach((row) => {
+      const lastItem = row[row.length - 1]
+      expect(legendPosition(lastItem)[0] + legendItemWidth(lastItem)).toBeCloseTo(frameRight)
+    })
+  })
+
+  it.each(['bottom-left', 'bottom-right'] as const)(
+    'expands a wrapped %s horizontal legend upward in reading order',
+    (position) => {
+      const { container } = createChart(
+        namedSeries(['First', 'Second', 'Third', 'Fourth', 'Fifth']),
+        { width: 360, legend: { position, orientation: 'horizontal' } },
+      )
+      const items = legendItems(container)
+      const rows = legendRows(items)
+      const rowYValues = Array.from(rows.keys())
+
+      expect(rows.size).toBeGreaterThan(1)
+      expect(legendPosition(items[0])[1]).toBe(Math.min(...rowYValues))
+      expect(Math.max(...rowYValues)).toBe(302)
+
+      const [frameLeft, frameRight] = frameHorizontalBounds(container)
+      Array.from(rows.values()).forEach((row) => {
+        const firstItem = row[0]
+        const lastItem = row[row.length - 1]
+        if (position === 'bottom-left') expect(legendPosition(firstItem)[0]).toBe(frameLeft)
+        else expect(legendPosition(lastItem)[0] + legendItemWidth(lastItem)).toBeCloseTo(frameRight)
+      })
+    },
+  )
+
+  it('keeps a fitting horizontal legend on one row and leaves vertical layout unchanged', () => {
+    const horizontal = createChart(namedSeries(['First', 'Second', 'Third']))
+    const horizontalY = new Set(legendItems(horizontal.container).map(item => legendPosition(item)[1]))
+    expect(horizontalY.size).toBe(1)
+
+    const vertical = createChart(
+      namedSeries(['First', 'Second', 'Third']),
+      { width: 280, legend: { position: 'top-right', orientation: 'vertical' } },
+    )
+    const verticalPositions = legendItems(vertical.container).map(legendPosition)
+    expect(new Set(verticalPositions.map(([x]) => x)).size).toBe(1)
+    expect(verticalPositions.map(([, y]) => y)).toEqual([22, 52, 82])
   })
 
   it('appends normalized shot numbers only when multiple shots are present', () => {
@@ -128,25 +325,31 @@ describe('Waveform legend', () => {
     )
 
     expect(container.querySelector('.waveform-legend')).toBeNull()
-    expect(plotTransform(container)).toBe('translate(72,42)')
+    expect(yAxisTitle(container)?.textContent).toBe('First')
+    expect(plotTransform(container)).toBe('translate(78,42)')
   })
 
   it('updates legend visibility and padding when the series count changes', () => {
     const { chart, container } = createChart([{ name: 'First', data: points }])
 
     expect(container.querySelector('.waveform-legend')).toBeNull()
-    expect(plotTransform(container)).toBe('translate(72,42)')
+    expect(channelName(container)?.textContent).toBe('First')
+    expect(plotTransform(container)).toBe('translate(72,64)')
 
     chart.updateData([
       { name: 'First', data: points },
       { name: 'Second', data: points },
     ])
     expect(container.querySelectorAll('.waveform-legend > g')).toHaveLength(2)
-    expect(plotTransform(container)).toBe('translate(72,64)')
+    expect(channelName(container)).toBeNull()
+    expect(yAxisTitle(container)?.textContent).toBe('First')
+    expect(plotTransform(container)).toBe('translate(78,64)')
 
     chart.updateData([{ name: 'First', data: points }])
     expect(container.querySelector('.waveform-legend')).toBeNull()
-    expect(plotTransform(container)).toBe('translate(72,42)')
+    expect(channelName(container)?.textContent).toBe('First')
+    expect(yAxisTitle(container)).toBeNull()
+    expect(plotTransform(container)).toBe('translate(72,64)')
   })
 
   it('toggles the related line and points while keeping the legend item available', () => {
@@ -162,6 +365,8 @@ describe('Waveform legend', () => {
 
     expect(lineColors(container)).toEqual(['#2563eb'])
     expect(pointColors(container)).toEqual(['#2563eb', '#2563eb'])
+    expect(channelName(container)).toBeNull()
+    expect(yAxisTitle(container)?.textContent).toBe('Second')
     expect(legendItems(container)).toHaveLength(2)
     expect(legendItems(container)[0].getAttribute('aria-pressed')).toBe('false')
     expect(legendItems(container)[0].querySelector('line')?.getAttribute('opacity')).toBe('0.35')

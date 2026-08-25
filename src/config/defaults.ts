@@ -33,6 +33,6 @@ export const defaultOptions = {
   zeroLine: { visible: true, color: '#94a3b8', width: 1, dash: '4 4' },
   title: { visible: false, text: '', align: 'center', color: '#0f172a', fontSize: 16, fontWeight: 600 },
   shot: { visible: false, text: '', color: '#475569', fontSize: 11, fontWeight: 500 },
-  legend: { visible: true, position: 'top-right', orientation: 'vertical', color: '#334155', fontSize: 12, itemGap: 8, lineLength: 24 },
+  legend: { visible: true, position: 'top-right', orientation: 'vertical', color: '#334155', fontSize: 12, itemGap: 8, lineLength: 24, maxItemWidth: 200 },
   emptyState: { visible: true, text: 'No waveform data', color: '#94a3b8', fontSize: 13 },
 } satisfies WaveformOptions
