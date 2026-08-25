@@ -5,7 +5,6 @@ import waveformData from './waveform-data.json'
 import './styles.css'
 
 const colors = ['#2563eb', '#dc2626', '#16a34a', '#9333ea']
-const valueAxisIds = waveformData.map((_, index) => `signal-${index + 1}`)
 const rightAxisStart = Math.ceil(waveformData.length / 2)
 const framePadding = { top: 32, right: 72, bottom: 62, left: 72 }
 
@@ -15,7 +14,7 @@ let series: WaveformSeries[] = waveformData.map((waveform, index) => ({
   shot: waveform.shot,
   unit: waveform.dat_unit,
   order: index + 1,
-  yAxis: valueAxisIds[index],
+  yAxis: index < rightAxisStart ? 'left' : 'right',
   data: waveform.data.map((y, pointIndex) => ({ x: waveform.time[pointIndex], y })),
   style: { color: colors[index % colors.length], lineWidth: 3 },
 }))
@@ -25,6 +24,7 @@ const initialOptions: WaveformOptions = resolveOptions({
   responsive: { enabled: true, aspectRatio: 2.6 },
   layout: { autoPadding: true },
   padding: framePadding,
+  frameNumber: 1,
   shot: {
     visible: true,
     text: '#10001',
@@ -54,23 +54,23 @@ const initialOptions: WaveformOptions = resolveOptions({
     tickFormat: '.0f',
     title: { visible: true, text: 'Time', unit: 'ms', color: '#78E8FF', fontSize: 14 },
   },
-  yAxes: waveformData.map((waveform, index) => {
-    const color = colors[index % colors.length]
-    const isInnerAxis = index === 0 || index === rightAxisStart
-    return {
-      id: valueAxisIds[index],
-      position: index < rightAxisStart ? 'left' : 'right',
-      color,
-      fontColor: color,
-      fontSize: 14,
-      tickSize: 3,
-      tickPadding: isInnerAxis ? 5 : 2,
-      unit: waveform.dat_unit,
-      title: { visible: true, text: waveform.chnl, unit: waveform.dat_unit, color, fontSize: 14 },
-    }
-  }),
-  grid: { style: 'dashed', color: '#475569', y: { axisId: valueAxisIds[0] } },
-  zeroLine: { axisId: valueAxisIds[0], color: '#94a3b8' },
+  yAxes: [
+    {
+      id: 'left', position: 'left', color: colors[0], fontColor: colors[0], fontSize: 14,
+      tickSize: 3, tickPadding: 5, unit: waveformData[0].dat_unit,
+      title: { visible: true, text: waveformData[0].chnl, unit: waveformData[0].dat_unit, color: colors[0], fontSize: 14 },
+    },
+    {
+      id: 'right', position: 'right', color: colors[rightAxisStart], fontColor: colors[rightAxisStart], fontSize: 14,
+      tickSize: 3, tickPadding: 5, unit: waveformData[rightAxisStart].dat_unit,
+      title: {
+        visible: true, text: waveformData[rightAxisStart].chnl, unit: waveformData[rightAxisStart].dat_unit,
+        color: colors[rightAxisStart], fontSize: 14,
+      },
+    },
+  ],
+  grid: { style: 'dashed', color: '#475569', y: { axisId: 'left' } },
+  zeroLine: { axisId: 'left', color: '#94a3b8' },
 })
 
 const app = document.querySelector<HTMLDivElement>('#app')!

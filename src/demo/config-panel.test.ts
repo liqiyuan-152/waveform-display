@@ -148,6 +148,19 @@ describe('createConfigPanel', () => {
     expect(onOptionsChange).toHaveBeenCalledTimes(callsBeforeInvalidFormat)
   })
 
+  it('omits ineffective and legacy axis controls', () => {
+    const { container } = setup()
+    clickButton(container, '坐标轴', '[role="tab"]')
+
+    expect(container.textContent).not.toContain('兼容标签')
+    expect(container.textContent).not.toContain('位置')
+
+    clickButton(container, '值轴', '.segment-button')
+    expect(container.textContent).not.toContain('轴 ID')
+    expect(container.querySelector('[aria-label="新增值轴"]')).toBeNull()
+    expect(container.querySelector('.axis-command--danger')).toBeNull()
+  })
+
   it('toggles empty-data preview independently of chart options', () => {
     const { container, onEmptyPreviewChange } = setup()
     clickButton(container, '文字', '[role="tab"]')
@@ -156,6 +169,26 @@ describe('createConfigPanel', () => {
     input.checked = true
     input.dispatchEvent(new Event('change', { bubbles: true }))
     expect(onEmptyPreviewChange).toHaveBeenLastCalledWith(true)
+  })
+
+  it('edits and clears the frame number without dropping its styles', () => {
+    const { container, onOptionsChange } = setup()
+    clickButton(container, '文字', '[role="tab"]')
+    clickButton(container, '图框编号', '.segment-button')
+
+    fireInput(findField(container, '图框编号').querySelector<HTMLInputElement>('input')!, 'FRAME-12')
+    fireInput(findField(container, '编号字号').querySelector<HTMLInputElement>('input')!, '48')
+    let updated = onOptionsChange.mock.lastCall?.[0] as WaveformOptions
+    expect(updated.frameNumber).toBe('FRAME-12')
+    expect(updated.frameNumberStyle).toMatchObject({ color: '#1677ff', opacity: 0.1, fontSize: 48 })
+
+    fireInput(findField(container, '图框编号').querySelector<HTMLInputElement>('input')!, '  ')
+    updated = onOptionsChange.mock.lastCall?.[0] as WaveformOptions
+    expect(updated.frameNumber).toBeUndefined()
+    expect(updated.frameNumberStyle?.fontSize).toBe(48)
+
+    fireInput(findField(container, '编号字号').querySelector<HTMLInputElement>('input')!, '')
+    expect((onOptionsChange.mock.lastCall?.[0] as WaveformOptions).frameNumberStyle?.fontSize).toBeUndefined()
   })
 
   it('turns inherited series values into overrides and clears them again', () => {
@@ -199,7 +232,7 @@ describe('createConfigPanel', () => {
     expect(inherit?.checked).toBe(false)
   })
 
-  it('adds, renames, deletes, and rebinds value axes', () => {
+  it('switches value-axis modes and restores multi-axis configuration', () => {
     const container = document.createElement('div')
     document.body.append(container)
     const onOptionsChange = vi.fn()
@@ -221,24 +254,76 @@ describe('createConfigPanel', () => {
 
     clickButton(container, '坐标轴', '[role="tab"]')
     clickButton(container, '值轴', '.segment-button')
+    const modeButtons = container.querySelectorAll<HTMLButtonElement>('[aria-label="值轴模式"] .segment-button')
+    expect(Array.from(modeButtons, button => button.textContent)).toEqual(['单值轴', '多值轴'])
+    expect(modeButtons[1].getAttribute('aria-pressed')).toBe('true')
+
     const selector = container.querySelector<HTMLSelectElement>('[aria-label="选择值轴"]')!
+    expect(Array.from(selector.options, option => option.textContent)).toEqual(['左轴', '右轴'])
     selector.value = '1'
     selector.dispatchEvent(new Event('change', { bubbles: true }))
 
-    const idInput = findField(container, '轴 ID').querySelector<HTMLInputElement>('input')!
-    idInput.value = 'pressure'
-    idInput.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }))
-    expect((onOptionsChange.mock.lastCall?.[0] as WaveformOptions).yAxes?.[1].id).toBe('pressure')
-    expect((onSeriesChange.mock.lastCall?.[0] as WaveformSeries[])[1].yAxis).toBe('pressure')
-    expect((onOptionsChange.mock.lastCall?.[0] as WaveformOptions).grid?.y?.axisId).toBe('pressure')
-    expect((onOptionsChange.mock.lastCall?.[0] as WaveformOptions).zeroLine?.axisId).toBe('pressure')
+    fireInput(findField(container, '轴线颜色').querySelector<HTMLInputElement>('input[type="text"]')!, '#123456')
+    clickButton(container, '单值轴', '[aria-label="值轴模式"] .segment-button')
 
-    clickButton(container, '删除', '.axis-command')
-    expect((onOptionsChange.mock.lastCall?.[0] as WaveformOptions).yAxes).toHaveLength(1)
-    expect((onSeriesChange.mock.lastCall?.[0] as WaveformSeries[])[1].yAxis).toBe('left')
-    expect(container.querySelector<HTMLButtonElement>('.axis-command--danger')?.disabled).toBe(true)
+    const singleOptions = onOptionsChange.mock.lastCall?.[0] as WaveformOptions
+    const singleSeries = onSeriesChange.mock.lastCall?.[0] as WaveformSeries[]
+    expect(singleOptions.yAxes).toHaveLength(1)
+    expect(singleOptions.yAxes?.[0]).toMatchObject({ id: 'left', position: 'left' })
+    expect(singleOptions.grid?.y?.axisId).toBe('left')
+    expect(singleOptions.zeroLine?.axisId).toBe('left')
+    expect(singleSeries.every(item => item.yAxis === 'left')).toBe(true)
+    expect(container.querySelector('[aria-label="选择值轴"]')).toBeNull()
 
-    container.querySelector<HTMLButtonElement>('[aria-label="新增值轴"]')?.click()
-    expect((onOptionsChange.mock.lastCall?.[0] as WaveformOptions).yAxes).toHaveLength(2)
+    clickButton(container, '网格', '[role="tab"]')
+    expect(container.textContent).not.toContain('Y 网格参考轴')
+    clickButton(container, '零线', '.segment-button')
+    expect(container.textContent).not.toContain('零线参考轴')
+    clickButton(container, '曲线', '[role="tab"]')
+    expect(container.querySelector('.series-axis')).toBeNull()
+
+    clickButton(container, '坐标轴', '[role="tab"]')
+    fireInput(findField(container, '轴线颜色').querySelector<HTMLInputElement>('input[type="text"]')!, '#abcdef')
+    clickButton(container, '多值轴', '[aria-label="值轴模式"] .segment-button')
+
+    const restoredOptions = onOptionsChange.mock.lastCall?.[0] as WaveformOptions
+    const restoredSeries = onSeriesChange.mock.lastCall?.[0] as WaveformSeries[]
+    expect(restoredOptions.yAxes).toHaveLength(2)
+    expect(restoredOptions.yAxes?.[0]).toMatchObject({ id: 'left', position: 'left', color: '#abcdef' })
+    expect(restoredOptions.yAxes?.[1]).toMatchObject({ id: 'right', position: 'right', color: '#123456' })
+    expect(restoredOptions.grid?.y?.axisId).toBe('right')
+    expect(restoredOptions.zeroLine?.axisId).toBe('right')
+    expect(restoredSeries.map(item => item.yAxis)).toEqual(['left', 'right'])
+  })
+
+  it('recognizes an initial single axis and creates default left/right bindings', () => {
+    const container = document.createElement('div')
+    document.body.append(container)
+    const onOptionsChange = vi.fn()
+    const onSeriesChange = vi.fn()
+    createConfigPanel(container, {
+      options: resolveOptions({ yAxes: [{ id: 'left' }] }),
+      series: [
+        { name: 'CH1', data: [{ x: 0, y: 1 }] },
+        { name: 'CH2', data: [{ x: 0, y: 2 }] },
+        { name: 'CH3', data: [{ x: 0, y: 3 }] },
+      ],
+      onOptionsChange,
+      onSeriesChange,
+      onEmptyPreviewChange: vi.fn(),
+    })
+
+    clickButton(container, '坐标轴', '[role="tab"]')
+    clickButton(container, '值轴', '.segment-button')
+    expect(container.querySelector<HTMLButtonElement>('[aria-label="值轴模式"] .segment-button[aria-pressed="true"]')?.textContent)
+      .toBe('单值轴')
+
+    clickButton(container, '多值轴', '[aria-label="值轴模式"] .segment-button')
+    expect((onOptionsChange.mock.lastCall?.[0] as WaveformOptions).yAxes).toMatchObject([
+      { id: 'left', position: 'left' },
+      { id: 'right', position: 'right' },
+    ])
+    expect((onSeriesChange.mock.lastCall?.[0] as WaveformSeries[]).map(item => item.yAxis))
+      .toEqual(['left', 'left', 'right'])
   })
 })

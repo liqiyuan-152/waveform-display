@@ -48,6 +48,7 @@ export function resolveOptions(options: WaveformOptions = {}) {
       ...defaultOptions.frame,
       ...options.frame,
     },
+    frameNumberStyle: { ...defaultOptions.frameNumberStyle, ...options.frameNumberStyle },
     line: { ...defaultOptions.line, ...options.line },
     point: { ...defaultOptions.point, ...options.point },
     xDomainStrategy: { ...defaultOptions.xDomainStrategy, ...options.xDomainStrategy },

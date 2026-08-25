@@ -61,6 +61,14 @@ function frameHorizontalBounds(container: HTMLElement): [number, number] {
   return [plotX, plotX + frameWidth]
 }
 
+function plotTop(container: HTMLElement): number {
+  return Number(plotTransform(container)?.match(/,([-\d.]+)\)/)?.[1])
+}
+
+function frameHeight(container: HTMLElement): number {
+  return Number(container.querySelector('.waveform-frame-border')?.getAttribute('height'))
+}
+
 function namedSeries(names: string[]): WaveformData {
   return names.map((name, index) => ({ id: `series-${index}`, name, data: points }))
 }
@@ -72,6 +80,12 @@ function legendRows(items: SVGGElement[]): Map<number, SVGGElement[]> {
     rows.set(y, [...(rows.get(y) ?? []), item])
   })
   return rows
+}
+
+function expectedMixedTextWidth(text: string, fontSize: number): number {
+  return Array.from(text).reduce((width, character) => (
+    width + fontSize * (/^[\u3400-\u9fff]$/u.test(character) ? 1 : 0.6)
+  ), 0)
 }
 
 function lineColors(container: HTMLElement) {
@@ -123,6 +137,107 @@ describe('Waveform legend', () => {
     expect(channelName(container)?.textContent).toBe('Series 1')
     expect(channelName(container)?.getAttribute('y')).toBe('22')
     expect(plotTransform(container)).toBe('translate(72,42)')
+  })
+
+  it('keeps the no-title plot height stable when switching from a channel name to a legend', () => {
+    const { chart, container } = createChart(
+      [{ name: '我是302测试', data: points }],
+      { title: { visible: false }, padding: { top: 32 } },
+    )
+    const singleFrameHeight = frameHeight(container)
+
+    expect(plotTop(container)).toBe(42)
+    expect(channelName(container)?.getAttribute('y')).toBe('22')
+
+    chart.updateData(namedSeries(['我是302测试', '我是247']))
+
+    expect(plotTop(container)).toBe(42)
+    expect(frameHeight(container)).toBe(singleFrameHeight)
+    expect(legendPosition(legendItems(container)[0])[1]).toBe(22)
+  })
+
+  it('keeps the titled plot height stable when switching from a channel name to a legend', () => {
+    const { chart, container } = createChart(
+      [{ name: 'First', data: points }],
+      { padding: { top: 32 } },
+    )
+    const singleFrameHeight = frameHeight(container)
+
+    expect(plotTop(container)).toBe(64)
+    expect(channelName(container)?.getAttribute('y')).toBe('46')
+
+    chart.updateData(namedSeries(['First', 'Second']))
+
+    expect(plotTop(container)).toBe(64)
+    expect(frameHeight(container)).toBe(singleFrameHeight)
+    expect(legendPosition(legendItems(container)[0])[1]).toBe(46)
+  })
+
+  it('reserves one row step for every additional top legend row', () => {
+    const { container } = createChart(
+      namedSeries(['我是302测试', '我是247', '我是246', '我是245', '我是244']),
+      {
+        width: 360,
+        title: { visible: false },
+        padding: { top: 32 },
+        legend: {
+          position: 'top-left',
+          orientation: 'horizontal',
+          fontSize: 14,
+          itemGap: 7,
+          maxItemWidth: 90,
+        },
+      },
+    )
+    const items = legendItems(container)
+    const rows = legendRows(items)
+    const rowStep = 14 + 10 + 7
+    const expectedTop = 42 + (rows.size - 1) * rowStep
+    const lastRowY = Math.max(...rows.keys())
+    const lastItem = rows.get(lastRowY)![0]
+    const hitTarget = lastItem.querySelector('rect')!
+    const hitTargetBottom = lastRowY
+      + Number(hitTarget.getAttribute('y'))
+      + Number(hitTarget.getAttribute('height'))
+
+    expect(rows.size).toBeGreaterThan(1)
+    expect(plotTop(container)).toBe(expectedTop)
+    expect(lastRowY).toBe(22 + (rows.size - 1) * rowStep)
+    expect(hitTargetBottom).toBeLessThanOrEqual(plotTop(container))
+  })
+
+  it('preserves the configured top padding when automatic padding is disabled', () => {
+    const { chart, container } = createChart(
+      [{ name: 'First', data: points }],
+      {
+        title: { visible: false },
+        layout: { autoPadding: false },
+        padding: { top: 32 },
+      },
+    )
+    const singleFrameHeight = frameHeight(container)
+
+    expect(plotTop(container)).toBe(32)
+
+    chart.updateData(namedSeries(['First', 'Second']))
+
+    expect(plotTop(container)).toBe(32)
+    expect(frameHeight(container)).toBe(singleFrameHeight)
+  })
+
+  it('preserves a configured top padding larger than the automatic minimum', () => {
+    const { chart, container } = createChart(
+      [{ name: 'First', data: points }],
+      { title: { visible: false }, padding: { top: 80 } },
+    )
+    const singleFrameHeight = frameHeight(container)
+
+    expect(plotTop(container)).toBe(80)
+
+    chart.updateData(namedSeries(['First', 'Second']))
+
+    expect(plotTop(container)).toBe(80)
+    expect(frameHeight(container)).toBe(singleFrameHeight)
   })
 
   it('shows the legend and a derived Y-axis channel name for multiple series', () => {
@@ -196,6 +311,61 @@ describe('Waveform legend', () => {
     items[0].dispatchEvent(new MouseEvent('click', { bubbles: true }))
     expect(legendItems(container)[0].getAttribute('aria-pressed')).toBe('false')
     expect(lineColors(container)).toHaveLength(4)
+  })
+
+  it('keeps adjacent Chinese legend labels from covering each other', () => {
+    const names = ['我是302测试', '我是247', '我是246']
+    const itemGap = 8
+    const { container } = createChart(
+      namedSeries(names),
+      {
+        width: 800,
+        legend: { position: 'top-left', orientation: 'horizontal', itemGap, maxItemWidth: 200 },
+      },
+    )
+    const items = legendItems(container)
+
+    expect(legendLabels(container)).toEqual(names)
+    expect(legendRows(items).size).toBe(1)
+    items.slice(0, -1).forEach((item, index) => {
+      const text = item.querySelector('text')!
+      const renderedWidth = Number(text.getAttribute('x'))
+        + expectedMixedTextWidth(names[index], Number(text.getAttribute('font-size')))
+        + 8
+      const previousX = legendPosition(item)[0]
+      const nextX = legendPosition(items[index + 1])[0]
+      expect(nextX).toBeGreaterThanOrEqual(previousX + renderedWidth + itemGap)
+    })
+  })
+
+  it('wraps and truncates Chinese legend labels in a narrow container', () => {
+    const names = ['我是302测试', '我是247', '我是246']
+    const { container } = createChart(
+      namedSeries(names),
+      {
+        width: 300,
+        legend: { position: 'top-left', orientation: 'horizontal', maxItemWidth: 90 },
+      },
+    )
+    const items = legendItems(container)
+    const [frameLeft, frameRight] = frameHorizontalBounds(container)
+    const yPositions = items.map(item => legendPosition(item)[1])
+
+    expect(legendRows(items).size).toBeGreaterThan(1)
+    yPositions.slice(1).forEach((y, index) => {
+      expect(y).toBeGreaterThan(yPositions[index])
+    })
+    items.forEach((item, index) => {
+      const [x] = legendPosition(item)
+      expect(x).toBeGreaterThanOrEqual(frameLeft)
+      expect(x + legendItemWidth(item)).toBeLessThanOrEqual(frameRight)
+      expect(legendItemWidth(item)).toBeLessThanOrEqual(90)
+      expect(item.getAttribute('aria-label')).toBe(names[index])
+    })
+    expect(items[0].querySelector('text')?.textContent).toMatch(/…$/)
+    expect(items[0].querySelector('title')?.textContent).toBe(names[0])
+    expect(items[1].querySelector('text')?.textContent).toBe(names[1])
+    expect(items[1].querySelector('title')).toBeNull()
   })
 
   it('limits individual legend item width and preserves the complete label', () => {

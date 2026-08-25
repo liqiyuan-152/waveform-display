@@ -10,6 +10,11 @@ export const defaultOptions = {
     visible: true,
     borderColor: '#000000', borderWidth: 2, borderStyle: 'solid', backgroundColor: 'transparent', radius: 0,
   },
+  frameNumber: undefined,
+  frameNumberStyle: {
+    color: '#1677ff', opacity: 0.1, fontSize: undefined as number | undefined,
+    fontFamily: "Consolas, Monaco, 'Courier New', monospace", fontWeight: 400,
+  },
   line: { visible: true, color: '#2563eb', width: 1.5, type: 'linear', style: 'solid', opacity: 1 },
   point: { visible: false, type: 'circle', size: 3, color: '#2563eb', borderColor: '#ffffff', borderWidth: 1 },
   xDomainStrategy: { type: 'data', bounds: 'both', tickCount: 10, includeExplicit: false },

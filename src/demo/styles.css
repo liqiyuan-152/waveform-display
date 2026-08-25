@@ -331,28 +331,19 @@ button, input, select { font: inherit; }
   margin-bottom: 8px;
 }
 
-.value-axis-toolbar {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 30px auto;
-  gap: 6px;
-  align-items: center;
+.series-toolbar--single { grid-template-columns: minmax(0, 1fr); }
+
+.value-axis-mode {
+  margin-top: 20px;
   margin-bottom: 8px;
 }
 
-.axis-command {
-  min-height: 30px;
-  padding: 0 9px;
-  border: 1px solid #cbd3d9;
-  border-radius: 4px;
-  background: #ffffff;
-  color: #263640;
-  cursor: pointer;
+.value-axis-toolbar {
+  display: block;
+  margin-bottom: 8px;
 }
 
-.axis-command:hover:not(:disabled) { border-color: #087f6b; color: #087f6b; }
-.axis-command:focus-visible { outline: 2px solid #087f6b; outline-offset: 2px; }
-.axis-command--danger:hover:not(:disabled) { border-color: #c2413a; color: #c2413a; }
-.axis-command:disabled { cursor: not-allowed; opacity: 0.45; }
+.value-axis-toolbar select { width: 100%; }
 
 .value-axis-fields {
   margin-top: 20px;
@@ -482,12 +473,6 @@ body {
 
 .color-picker {
   background: #0f172a;
-  border-color: #475569;
-}
-
-.axis-command {
-  color: #e2e8f0;
-  background: #1f2937;
   border-color: #475569;
 }
 

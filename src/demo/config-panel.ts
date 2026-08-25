@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { resolveOptions } from '../config/resolve'
 import type { WaveformSeries, WaveformSeriesStyle } from '../types/data'
-import type { WaveformOptions } from '../types/options'
+import type { ValueAxisOptions, WaveformOptions } from '../types/options'
 
 type FieldKind = 'boolean' | 'color' | 'number' | 'range' | 'select' | 'text'
 
@@ -44,6 +44,15 @@ export interface ConfigPanelOptions {
   onEmptyPreviewChange: (enabled: boolean) => void
 }
 
+type ValueAxisMode = 'single' | 'multiple'
+
+interface MultiAxisSnapshot {
+  axes: [ValueAxisOptions, ValueAxisOptions]
+  bindings: string[]
+  gridAxisId: string
+  zeroLineAxisId: string
+}
+
 const boolean = (label: string, path: string): FieldDefinition => ({ kind: 'boolean', label, path })
 const color = (label: string, path: string): FieldDefinition => ({ kind: 'color', label, path })
 const text = (label: string, path: string, validate?: (raw: string) => boolean): FieldDefinition => ({ kind: 'text', label, path, validate })
@@ -82,7 +91,6 @@ const pointTypes = [
 function axisFields(prefix: string, isX = prefix === 'xAxis'): FieldDefinition[] {
   return [
     boolean('显示坐标轴', `${prefix}.visible`),
-    select('位置', `${prefix}.position`, [{ label: '左侧', value: 'left' }, { label: '右侧', value: 'right' }]),
     number('最小值', `${prefix}.min`, undefined, 0.1, true),
     number('最大值', `${prefix}.max`, undefined, 0.1, true),
     number('刻度数量', `${prefix}.tickCount`, 1, 1),
@@ -94,7 +102,6 @@ function axisFields(prefix: string, isX = prefix === 'xAxis'): FieldDefinition[]
     number('轴线宽度', `${prefix}.width`, 0, 0.1),
     number('刻度字号', `${prefix}.fontSize`, 1, 1),
     color('刻度文字颜色', `${prefix}.fontColor`),
-    text('兼容标签', `${prefix}.label`),
     text('刻度单位', `${prefix}.unit`),
     boolean('显示轴标题', `${prefix}.title.visible`),
     text('轴标题', `${prefix}.title.text`),
@@ -178,6 +185,17 @@ const tabs: TabDefinition[] = [
       { id: 'shot', label: '炮号', fields: [
         boolean('显示炮号', 'shot.visible'), text('炮号文字', 'shot.text'), color('炮号颜色', 'shot.color'),
         number('炮号字号', 'shot.fontSize', 1), text('炮号字重', 'shot.fontWeight'),
+      ] },
+      { id: 'frame-number', label: '图框编号', fields: [
+        {
+          kind: 'text', label: '图框编号', path: 'frameNumber',
+          parse: raw => ({ valid: true, value: raw.trim() || undefined }),
+        },
+        color('编号颜色', 'frameNumberStyle.color'),
+        range('编号透明度', 'frameNumberStyle.opacity', 0, 1, 0.05),
+        number('编号字号', 'frameNumberStyle.fontSize', 1, 1, true),
+        text('编号字体', 'frameNumberStyle.fontFamily'),
+        text('编号字重', 'frameNumberStyle.fontWeight'),
       ] },
       { id: 'legend', label: '图例', fields: [
         boolean('显示图例', 'legend.visible'),
@@ -391,6 +409,10 @@ function cloneSeries(series: WaveformSeries[]): WaveformSeries[] {
   }))
 }
 
+function cloneAxis(axis: ValueAxisOptions): ValueAxisOptions {
+  return { ...axis, title: axis.title ? { ...axis.title } : undefined }
+}
+
 function seriesField(
   label: string,
   kind: FieldKind,
@@ -455,6 +477,7 @@ function renderSeriesPanel(
   activeCategory: 'line' | 'point',
   onCategoryChange: (category: 'line' | 'point') => void,
   updateSeries: (index: number, path: string, value: unknown) => void,
+  showAxisBinding: boolean,
 ) {
   const series = getSeries()
   if (!series.length) {
@@ -486,12 +509,6 @@ function renderSeriesPanel(
   selectorField.append(selectorLabel, selector)
 
   const axisIds = getAxisIds()
-  const selectedAxisId = item.yAxis && axisIds.includes(item.yAxis) ? item.yAxis : axisIds[0]
-  const axis = seriesField(
-    '坐标轴', 'select', selectedAxisId, value => updateSeries(index, 'yAxis', value),
-    axisIds.map(id => ({ label: id, value: id })),
-  )
-  axis.classList.add('series-axis')
   const segments = document.createElement('div')
   segments.className = 'segment-control series-segment-control'
   segments.setAttribute('aria-label', '曲线样式类型')
@@ -535,15 +552,62 @@ function renderSeriesPanel(
       value => updateSeries(index, definition.path, value),
     ))
   }
-  toolbar.append(selectorField, axis)
+  toolbar.classList.toggle('series-toolbar--single', !showAxisBinding)
+  toolbar.append(selectorField)
+  if (showAxisBinding) {
+    const selectedAxisId = item.yAxis && axisIds.includes(item.yAxis) ? item.yAxis : axisIds[0]
+    const axis = seriesField(
+      '坐标轴', 'select', selectedAxisId, value => updateSeries(index, 'yAxis', value),
+      axisIds.map(id => ({ label: id === 'right' ? '右轴' : '左轴', value: id })),
+    )
+    axis.classList.add('series-axis')
+    toolbar.append(axis)
+  }
   parent.append(toolbar, segments, overrides)
 }
 
 let configPanelCounter = 0
 
 export function createConfigPanel(container: HTMLElement, config: ConfigPanelOptions) {
-  let currentOptions: WaveformOptions = { ...config.options, yAxes: resolveOptions(config.options).yAxes }
-  let currentSeries = cloneSeries(config.series)
+  const resolvedAxes = resolveOptions(config.options).yAxes
+  const configuredAxes = config.options.yAxes ?? resolvedAxes
+  const sourceLeft = configuredAxes.find(axis => axis.position !== 'right') ?? resolvedAxes[0]
+  const sourceRight = configuredAxes.find(axis => axis.position === 'right') ?? resolveOptions({
+    yAxes: [{ id: 'right', position: 'right', visible: true }],
+  }).yAxes[0]
+  const leftAxis = { ...cloneAxis(sourceLeft), id: 'left', position: 'left' as const }
+  const rightAxis = { ...cloneAxis(sourceRight), id: 'right', position: 'right' as const }
+  const sourcePositions = new Map(configuredAxes.map(axis => [axis.id, axis.position]))
+  const canonicalAxisId = (axisId?: string) => sourcePositions.get(axisId ?? '') === 'right' ? 'right' : 'left'
+  let valueAxisMode: ValueAxisMode = configuredAxes.some(axis => axis.position === 'right') ? 'multiple' : 'single'
+  let currentSeries: WaveformSeries[] = cloneSeries(config.series).map(series => ({
+    ...series,
+    yAxis: valueAxisMode === 'multiple' ? canonicalAxisId(series.yAxis) : 'left',
+  }))
+  let currentOptions: WaveformOptions = {
+    ...config.options,
+    yAxes: valueAxisMode === 'multiple' ? [leftAxis, rightAxis] : [leftAxis],
+    grid: {
+      ...config.options.grid,
+      y: {
+        ...config.options.grid?.y,
+        axisId: valueAxisMode === 'multiple' ? canonicalAxisId(config.options.grid?.y?.axisId) : 'left',
+      },
+    },
+    zeroLine: {
+      ...config.options.zeroLine,
+      axisId: valueAxisMode === 'multiple' ? canonicalAxisId(config.options.zeroLine?.axisId) : 'left',
+    },
+  }
+  const defaultBindings = config.series.map((_, index) => (
+    index < Math.ceil(config.series.length / 2) ? 'left' : 'right'
+  ))
+  let multiAxisSnapshot: MultiAxisSnapshot = {
+    axes: [cloneAxis(leftAxis), cloneAxis(rightAxis)],
+    bindings: valueAxisMode === 'multiple' ? currentSeries.map(series => series.yAxis ?? 'left') : defaultBindings,
+    gridAxisId: valueAxisMode === 'multiple' ? currentOptions.grid?.y?.axisId ?? 'left' : 'left',
+    zeroLineAxisId: valueAxisMode === 'multiple' ? currentOptions.zeroLine?.axisId ?? 'left' : 'left',
+  }
   let activeTabId = tabs[0].id
   let selectedSeriesIndex = 0
   let activeSeriesCategory: 'line' | 'point' = 'line'
@@ -572,49 +636,80 @@ export function createConfigPanel(container: HTMLElement, config: ConfigPanelOpt
     const next = cloneSeries(currentSeries)
     next[index] = setAtPath(next[index], path, value)
     currentSeries = next
+    if (valueAxisMode === 'multiple' && path === 'yAxis') {
+      multiAxisSnapshot.bindings[index] = String(value)
+    }
     config.onSeriesChange(cloneSeries(currentSeries))
   }
 
-  const valueAxes = () => currentOptions.yAxes ?? resolveOptions(currentOptions).yAxes
-  const axisIds = () => valueAxes().map(axis => axis.id)
+  const valueAxes = () => currentOptions.yAxes ?? [leftAxis]
+  const axisIds = () => valueAxisMode === 'multiple' ? ['left', 'right'] : ['left']
 
   const commitOptions = (next: WaveformOptions) => {
     currentOptions = next
+    const nextAxes = next.yAxes ?? []
+    if (valueAxisMode === 'multiple' && nextAxes.length >= 2) {
+      multiAxisSnapshot = {
+        ...multiAxisSnapshot,
+        axes: [cloneAxis(nextAxes[0]), cloneAxis(nextAxes[1])],
+        gridAxisId: next.grid?.y?.axisId ?? 'left',
+        zeroLineAxisId: next.zeroLine?.axisId ?? 'left',
+      }
+    } else if (valueAxisMode === 'single' && nextAxes[0]) {
+      multiAxisSnapshot.axes[0] = cloneAxis(nextAxes[0])
+    }
     config.onOptionsChange(currentOptions)
   }
 
-  const rebindAxis = (oldId: string, newId: string) => {
-    currentSeries = currentSeries.map(series => series.yAxis === oldId ? { ...series, yAxis: newId } : series)
-    currentOptions = {
-      ...currentOptions,
-      grid: {
-        ...currentOptions.grid,
-        y: {
-          ...currentOptions.grid?.y,
-          axisId: currentOptions.grid?.y?.axisId === oldId ? newId : currentOptions.grid?.y?.axisId,
-        },
-      },
-      zeroLine: {
-        ...currentOptions.zeroLine,
-        axisId: currentOptions.zeroLine?.axisId === oldId ? newId : currentOptions.zeroLine?.axisId,
-      },
+  const switchValueAxisMode = (mode: ValueAxisMode) => {
+    if (mode === valueAxisMode) return
+    if (mode === 'single') {
+      multiAxisSnapshot = {
+        axes: [cloneAxis(valueAxes()[0]), cloneAxis(valueAxes()[1] ?? multiAxisSnapshot.axes[1])],
+        bindings: currentSeries.map(series => series.yAxis ?? 'left'),
+        gridAxisId: currentOptions.grid?.y?.axisId ?? 'left',
+        zeroLineAxisId: currentOptions.zeroLine?.axisId ?? 'left',
+      }
+      currentOptions = {
+        ...currentOptions,
+        yAxes: [cloneAxis(multiAxisSnapshot.axes[0])],
+        grid: { ...currentOptions.grid, y: { ...currentOptions.grid?.y, axisId: 'left' } },
+        zeroLine: { ...currentOptions.zeroLine, axisId: 'left' },
+      }
+      currentSeries = currentSeries.map(series => ({ ...series, yAxis: 'left' }))
+    } else {
+      currentOptions = {
+        ...currentOptions,
+        yAxes: multiAxisSnapshot.axes.map(cloneAxis),
+        grid: { ...currentOptions.grid, y: { ...currentOptions.grid?.y, axisId: multiAxisSnapshot.gridAxisId } },
+        zeroLine: { ...currentOptions.zeroLine, axisId: multiAxisSnapshot.zeroLineAxisId },
+      }
+      currentSeries = currentSeries.map((series, index) => ({
+        ...series,
+        yAxis: multiAxisSnapshot.bindings[index] ?? 'left',
+      }))
     }
+    valueAxisMode = mode
+    selectedValueAxisIndex = 0
+    config.onOptionsChange(currentOptions)
     config.onSeriesChange(cloneSeries(currentSeries))
+    renderActivePanel()
   }
 
   const renderFields = (fieldsDefinition: FieldDefinition[], subsectionId: string) => {
     const fields = document.createElement('div')
     fields.className = 'config-grid'
     for (const field of fieldsDefinition) {
+      const axisReference = field.path === 'grid.y.axisId' || field.path === 'zeroLine.axisId'
+      if (axisReference && valueAxisMode === 'single') continue
       const dynamicField = field.path === 'grid.y.axisId' || field.path === 'zeroLine.axisId'
-        ? { ...field, options: [{ label: '第一条值轴', value: '' }, ...axisIds().map(id => ({ label: id, value: id }))] }
+        ? { ...field, options: axisIds().map(id => ({ label: id === 'right' ? '右轴' : '左轴', value: id })) }
         : field
       fields.append(createField(
         dynamicField,
         () => getAtPath(currentOptions, dynamicField.path),
         value => {
-          const nextValue = dynamicField === field ? value : value || undefined
-          commitOptions(setAtPath(currentOptions, dynamicField.path, nextValue))
+          commitOptions(setAtPath(currentOptions, dynamicField.path, value))
         },
       ))
     }
@@ -634,79 +729,42 @@ export function createConfigPanel(container: HTMLElement, config: ConfigPanelOpt
   const renderValueAxes = (parent: HTMLElement) => {
     const axes = valueAxes()
     const index = Math.min(selectedValueAxisIndex, axes.length - 1)
-    const axis = axes[index]
-    const toolbar = document.createElement('div')
-    toolbar.className = 'value-axis-toolbar'
-    const selector = document.createElement('select')
-    selector.setAttribute('aria-label', '选择值轴')
-    axes.forEach((item, axisIndex) => {
-      const option = document.createElement('option')
-      option.value = String(axisIndex)
-      option.textContent = item.id
-      selector.append(option)
-    })
-    selector.value = String(index)
-    selector.addEventListener('change', () => {
-      selectedValueAxisIndex = Number(selector.value)
-      renderActivePanel()
-    })
+    const modeControl = document.createElement('div')
+    modeControl.className = 'segment-control value-axis-mode'
+    modeControl.setAttribute('aria-label', '值轴模式')
+    for (const mode of [{ id: 'single', label: '单值轴' }, { id: 'multiple', label: '多值轴' }] as const) {
+      const button = document.createElement('button')
+      button.type = 'button'
+      button.className = 'segment-button'
+      button.textContent = mode.label
+      button.setAttribute('aria-pressed', String(mode.id === valueAxisMode))
+      button.addEventListener('click', () => switchValueAxisMode(mode.id))
+      modeControl.append(button)
+    }
+    parent.append(modeControl)
 
-    const addButton = document.createElement('button')
-    addButton.type = 'button'
-    addButton.className = 'axis-command'
-    addButton.textContent = '+'
-    addButton.title = '新增值轴'
-    addButton.setAttribute('aria-label', '新增值轴')
-    addButton.addEventListener('click', () => {
-      let suffix = axes.length + 1
-      while (axes.some(item => item.id === `axis-${suffix}`)) suffix += 1
-      const nextAxis = resolveOptions({ yAxes: [{ id: `axis-${suffix}` }] }).yAxes[0]
-      commitOptions({ ...currentOptions, yAxes: [...axes, nextAxis] })
-      selectedValueAxisIndex = axes.length
-      renderActivePanel()
-    })
-
-    const deleteButton = document.createElement('button')
-    deleteButton.type = 'button'
-    deleteButton.className = 'axis-command axis-command--danger'
-    deleteButton.textContent = '删除'
-    deleteButton.disabled = axes.length === 1
-    deleteButton.title = axes.length === 1 ? '至少保留一条值轴' : '删除当前值轴'
-    deleteButton.addEventListener('click', () => {
-      if (axes.length === 1) return
-      const nextAxes = axes.filter((_, axisIndex) => axisIndex !== index)
-      selectedValueAxisIndex = Math.min(index, nextAxes.length - 1)
-      const fallbackId = nextAxes[0].id
-      rebindAxis(axis.id, fallbackId)
-      commitOptions({ ...currentOptions, yAxes: nextAxes })
-      renderActivePanel()
-    })
-    toolbar.append(selector, addButton, deleteButton)
+    if (valueAxisMode === 'multiple') {
+      const toolbar = document.createElement('div')
+      toolbar.className = 'value-axis-toolbar'
+      const selector = document.createElement('select')
+      selector.setAttribute('aria-label', '选择值轴')
+      axes.forEach((item, axisIndex) => {
+        const option = document.createElement('option')
+        option.value = String(axisIndex)
+        option.textContent = item.position === 'right' ? '右轴' : '左轴'
+        selector.append(option)
+      })
+      selector.value = String(index)
+      selector.addEventListener('change', () => {
+        selectedValueAxisIndex = Number(selector.value)
+        renderActivePanel()
+      })
+      toolbar.append(selector)
+      parent.append(toolbar)
+    }
 
     const fields = document.createElement('div')
     fields.className = 'config-grid value-axis-fields'
-    const idPath = `yAxes.${index}.id`
-    const idField = fieldShell('轴 ID')
-    const idInput = document.createElement('input')
-    idInput.type = 'text'
-    idInput.value = axis.id
-    const commitId = () => {
-      const nextId = idInput.value.trim()
-      const valid = Boolean(nextId) && !axes.some((item, itemIndex) => itemIndex !== index && item.id === nextId)
-      idInput.setAttribute('aria-invalid', String(!valid))
-      if (!valid || nextId === axis.id) return
-      rebindAxis(axis.id, nextId)
-      commitOptions(setAtPath(currentOptions, idPath, nextId))
-      renderActivePanel()
-    }
-    idInput.addEventListener('change', commitId)
-    idInput.addEventListener('keydown', event => {
-      if (event.key !== 'Enter') return
-      event.preventDefault()
-      commitId()
-    })
-    idField.control.append(idInput)
-    fields.append(idField.shell)
     for (const field of axisFields(`yAxes.${index}`, false)) {
       fields.append(createField(
         field,
@@ -714,7 +772,7 @@ export function createConfigPanel(container: HTMLElement, config: ConfigPanelOpt
         value => commitOptions(setAtPath(currentOptions, field.path, value)),
       ))
     }
-    parent.append(toolbar, fields)
+    parent.append(fields)
   }
 
   const renderActivePanel = () => {
@@ -738,6 +796,7 @@ export function createConfigPanel(container: HTMLElement, config: ConfigPanelOpt
           renderActivePanel()
         },
         updateSeries,
+        valueAxisMode === 'multiple',
       )
       return
     }

@@ -9,6 +9,7 @@ A pure-display, configuration-driven waveform component built with Vite, TypeScr
 - Responsive SVG rendering with `ResizeObserver`
 - Automatic padding for axes, titles and legends
 - Independent top/right/bottom/left frame borders
+- Optional centered frame-number watermark with configurable typography
 - Waveform color, width, line type, dash style and opacity
 - Global and per-series point styles: circle, square, triangle and diamond
 - X/Y domain, tick count, tick size, padding and D3 number format
@@ -38,6 +39,15 @@ pnpm install
 pnpm dev
 ```
 
+## Demo value-axis modes
+
+The demo opens in multiple-value-axis mode with one fixed axis on the left and one on the right. Open **坐标轴 → 值轴** and use the **单值轴 / 多值轴** control to switch modes:
+
+- **单值轴** binds every series, the Y grid, and the zero line to the left axis.
+- **多值轴** restores the previous left/right axis settings, per-series bindings, and grid/zero-line references.
+
+In single-axis mode, axis-reference controls are hidden because only the left axis is available. The demo intentionally exposes a fixed left/right workflow; the library API remains unchanged and continues to support `yAxes` together with each series's `yAxis` binding.
+
 ## Build and checks
 
 ```bash
@@ -65,6 +75,8 @@ const chart = new Waveform('#chart', [
     backgroundColor: 'transparent',
   },
   line: { color: '#2563eb', width: 2 },
+  frameNumber: 12,
+  frameNumberStyle: { color: '#1677ff', opacity: 0.1 },
   shot: { visible: true, text: '10001', fontSize: 11 },
   title: { visible: true, text: 'Waveform', fontSize: 16 },
   legend: { fontSize: 12 },
@@ -85,6 +97,27 @@ const chart = new Waveform('#chart', [
 ```
 
 `grid.style` accepts `solid` or `dashed`, and `grid.color` applies to both X and Y grid lines. Existing `grid.x.color`, `grid.x.dash`, `grid.y.color`, and `grid.y.dash` options remain supported and override the shared values for their respective axes.
+
+## Frame number watermark
+
+Set `frameNumber` to a string or number to render a centered watermark inside the plot frame. The value `0` is valid; omit the option or set it to `undefined` to hide the watermark.
+
+```ts
+const chart = new Waveform('#chart', data, {
+  frameNumber: 'FRAME-12',
+  frameNumberStyle: {
+    color: '#1677ff',
+    opacity: 0.1,
+    fontSize: 72,
+    fontFamily: "Consolas, Monaco, 'Courier New', monospace",
+    fontWeight: 400,
+  },
+})
+```
+
+Without a custom `fontSize`, the watermark uses `min(120, 65% of the plot height)`. Long values and narrow frames are scaled down further to stay inside the plot. A configured font size is also treated as a maximum so responsive layouts cannot make the text overflow. The watermark is decorative, non-selectable, and does not reserve padding or intercept pointer input.
+
+`frameNumber` is separate from `shot`: the frame number is a large centered watermark, while `shot` renders compact vertical metadata beside the right edge of the frame.
 
 ## Multiple series and value axes
 

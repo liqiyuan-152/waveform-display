@@ -11,6 +11,13 @@ export interface FrameOptions {
   backgroundColor?: string
   radius?: number
 }
+export interface FrameNumberStyleOptions {
+  color?: string
+  opacity?: number
+  fontSize?: number
+  fontFamily?: string
+  fontWeight?: number | string
+}
 export interface LineOptions { visible?: boolean; color?: string; width?: number; type?: WaveformLineType; style?: WaveformLineStyle; opacity?: number }
 export interface PointOptions { visible?: boolean; type?: WaveformPointType; size?: number; color?: string; borderColor?: string; borderWidth?: number }
 export interface AxisLabelOptions { visible?: boolean; text?: string; unit?: string; color?: string; fontSize?: number; fontWeight?: number | string; offset?: number }
@@ -78,6 +85,8 @@ export interface WaveformOptions {
   layout?: LayoutOptions
   padding?: PaddingOptions
   frame?: FrameOptions
+  frameNumber?: string | number
+  frameNumberStyle?: FrameNumberStyleOptions
   line?: LineOptions
   point?: PointOptions
   xDomainStrategy?: XDomainStrategy

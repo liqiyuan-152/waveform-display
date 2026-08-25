@@ -24,7 +24,15 @@ interface FittedLegendLabel {
   truncated: boolean
 }
 
-const TEXT_WIDTH_FACTOR = 0.6
+interface ResolvedLegendLayout {
+  labels: string[]
+  fittedLabels: FittedLegendLabel[]
+  itemWidths: number[]
+  rows: LegendRow[]
+}
+
+const NARROW_TEXT_WIDTH_FACTOR = 0.6
+const SPACE_TEXT_WIDTH_FACTOR = 0.33
 
 function normalizeShot(shot: WaveformSeries['shot']): string | undefined {
   if (typeof shot === 'number') return Number.isFinite(shot) ? String(shot) : undefined
@@ -49,16 +57,76 @@ function wrapLegendItems(items: LegendLayoutItem[], availableWidth: number, item
   return rows
 }
 
-function estimateTextWidth(text: string, fontSize: number): number {
-  return Array.from(text).length * fontSize * TEXT_WIDTH_FACTOR
+function isZeroWidthCodePoint(codePoint: number): boolean {
+  return codePoint === 0x200d
+    || (codePoint >= 0x0300 && codePoint <= 0x036f)
+    || (codePoint >= 0x1ab0 && codePoint <= 0x1aff)
+    || (codePoint >= 0x1dc0 && codePoint <= 0x1dff)
+    || (codePoint >= 0x20d0 && codePoint <= 0x20ff)
+    || (codePoint >= 0xfe00 && codePoint <= 0xfe0f)
+    || (codePoint >= 0xfe20 && codePoint <= 0xfe2f)
+    || (codePoint >= 0xe0100 && codePoint <= 0xe01ef)
 }
 
-function fitLegendLabel(label: string, fontSize: number, maxWidth: number): FittedLegendLabel {
-  const fullWidth = estimateTextWidth(label, fontSize)
+function isFullWidthCodePoint(codePoint: number): boolean {
+  return codePoint >= 0x1100 && (
+    codePoint <= 0x115f
+    || codePoint === 0x2329
+    || codePoint === 0x232a
+    || (codePoint >= 0x2e80 && codePoint <= 0xa4cf && codePoint !== 0x303f)
+    || (codePoint >= 0xac00 && codePoint <= 0xd7a3)
+    || (codePoint >= 0xf900 && codePoint <= 0xfaff)
+    || (codePoint >= 0xfe10 && codePoint <= 0xfe19)
+    || (codePoint >= 0xfe30 && codePoint <= 0xfe6f)
+    || (codePoint >= 0xff00 && codePoint <= 0xff60)
+    || (codePoint >= 0xffe0 && codePoint <= 0xffe6)
+    || (codePoint >= 0x1f300 && codePoint <= 0x1faff)
+    || (codePoint >= 0x20000 && codePoint <= 0x3fffd)
+  )
+}
+
+function fallbackTextWidth(text: string, fontSize: number): number {
+  return Array.from(text).reduce((width, character) => {
+    const codePoint = character.codePointAt(0) ?? 0
+    if (isZeroWidthCodePoint(codePoint)) return width
+    if (/\s/u.test(character)) return width + fontSize * SPACE_TEXT_WIDTH_FACTOR
+    return width + fontSize * (isFullWidthCodePoint(codePoint) ? 1 : NARROW_TEXT_WIDTH_FACTOR)
+  }, 0)
+}
+
+function createTextMeasurer(svg: RenderContext['svg'], fontSize: number) {
+  const measurementNode = svg.append('text')
+    .attr('visibility', 'hidden')
+    .attr('aria-hidden', 'true')
+    .attr('font-size', fontSize)
+    .node()
+
+  return {
+    measure(text: string): number {
+      if (!text) return 0
+      if (measurementNode && typeof measurementNode.getComputedTextLength === 'function') {
+        try {
+          measurementNode.textContent = text
+          const measuredWidth = measurementNode.getComputedTextLength()
+          if (Number.isFinite(measuredWidth) && measuredWidth > 0) return measuredWidth
+        } catch {
+          // jsdom and partial SVG implementations can expose an unusable measurement API.
+        }
+      }
+      return fallbackTextWidth(text, fontSize)
+    },
+    destroy() {
+      measurementNode?.remove()
+    },
+  }
+}
+
+function fitLegendLabel(label: string, maxWidth: number, measure: (text: string) => number): FittedLegendLabel {
+  const fullWidth = measure(label)
   if (fullWidth <= maxWidth) return { text: label, width: fullWidth, truncated: false }
 
   const ellipsis = '…'
-  const ellipsisWidth = estimateTextWidth(ellipsis, fontSize)
+  const ellipsisWidth = measure(ellipsis)
   if (maxWidth <= ellipsisWidth) return { text: ellipsis, width: ellipsisWidth, truncated: true }
 
   const characters = Array.from(label)
@@ -66,12 +134,55 @@ function fitLegendLabel(label: string, fontSize: number, maxWidth: number): Fitt
   let high = characters.length
   while (low < high) {
     const middle = Math.ceil((low + high) / 2)
-    if (estimateTextWidth(characters.slice(0, middle).join(''), fontSize) + ellipsisWidth <= maxWidth) low = middle
+    if (measure(characters.slice(0, middle).join('')) + ellipsisWidth <= maxWidth) low = middle
     else high = middle - 1
   }
 
   const text = `${characters.slice(0, low).join('')}${ellipsis}`
-  return { text, width: estimateTextWidth(text, fontSize), truncated: true }
+  return { text, width: measure(text), truncated: true }
+}
+
+function resolveLegendLayout(
+  svg: RenderContext['svg'],
+  series: WaveformSeries[],
+  options: RenderContext['options'],
+  availableWidth: number,
+): ResolvedLegendLayout {
+  const shots = series.map(item => normalizeShot(item.shot))
+  const multipleShots = new Set(shots.filter((shot): shot is string => shot !== undefined)).size > 1
+  const labels = series.map((item, index) => {
+    const name = item.name || `Series ${index + 1}`
+    return multipleShots && shots[index] ? `${name} (${shots[index]})` : name
+  })
+  const decorationWidth = options.legend.lineLength + 16
+  const maxItemWidth = Math.max(decorationWidth, options.legend.maxItemWidth)
+  const textMeasurer = createTextMeasurer(svg, options.legend.fontSize)
+  let fittedLabels: FittedLegendLabel[]
+  try {
+    fittedLabels = labels.map(label => fitLegendLabel(
+      label,
+      Math.max(0, maxItemWidth - decorationWidth),
+      textMeasurer.measure,
+    ))
+  } finally {
+    textMeasurer.destroy()
+  }
+  const itemWidths = fittedLabels.map(label => Math.min(maxItemWidth, label.width + decorationWidth))
+  const rows = wrapLegendItems(
+    itemWidths.map((itemWidth, index) => ({ index, width: itemWidth })),
+    availableWidth,
+    options.legend.itemGap,
+  )
+  return { labels, fittedLabels, itemWidths, rows }
+}
+
+export function horizontalLegendRowCount(
+  svg: RenderContext['svg'],
+  series: WaveformSeries[],
+  options: RenderContext['options'],
+  availableWidth: number,
+): number {
+  return resolveLegendLayout(svg, series, options, availableWidth).rows.length
 }
 
 export function renderLegend(ctx: RenderContext, legendSeries: LegendSeries[], onToggle: (key: string) => void) {
@@ -86,30 +197,16 @@ export function renderLegend(ctx: RenderContext, legendSeries: LegendSeries[], o
   const isBottom = options.legend.position.includes('bottom')
   const horizontal = options.legend.orientation === 'horizontal'
   const group = svg.append('g').attr('class', 'waveform-legend')
-  const shots = legendSeries.map(item => normalizeShot(item.series.shot))
-  const multipleShots = new Set(shots.filter((shot): shot is string => shot !== undefined)).size > 1
-  const labels = legendSeries.map((item, index) => {
-    const name = item.series.name || `Series ${index + 1}`
-    return multipleShots && shots[index] ? `${name} (${shots[index]})` : name
-  })
-
-  const decorationWidth = lineLength + 16
-  const maxItemWidth = Math.max(decorationWidth, options.legend.maxItemWidth)
-  const fittedLabels = labels.map(label => fitLegendLabel(
-    label,
-    options.legend.fontSize,
-    Math.max(0, maxItemWidth - decorationWidth),
-  ))
-  const itemWidths = fittedLabels.map(label => Math.min(maxItemWidth, label.width + decorationWidth))
+  const availableWidth = Math.max(0, width - p.left - p.right)
+  const { labels, fittedLabels, itemWidths, rows } = resolveLegendLayout(
+    svg,
+    legendSeries.map(item => item.series),
+    options,
+    availableWidth,
+  )
   const positions: Array<{ x: number; y: number }> = []
 
   if (horizontal) {
-    const availableWidth = Math.max(0, width - p.left - p.right)
-    const rows = wrapLegendItems(
-      itemWidths.map((itemWidth, index) => ({ index, width: itemWidth })),
-      availableWidth,
-      itemGap,
-    )
     const rowStep = rowHeight + itemGap
     const topY = options.title.visible && options.title.text ? 46 : 22
     const firstRowY = isBottom ? height - 18 - (rows.length - 1) * rowStep : topY
