@@ -1,6 +1,6 @@
 {
   "name": "waveform-display",
-  "version": "0.2.0",
+  "version": "0.1.1",
   "description": "A configuration-driven SVG waveform display component for TypeScript applications.",
   "license": "MIT",
   "keywords": [
