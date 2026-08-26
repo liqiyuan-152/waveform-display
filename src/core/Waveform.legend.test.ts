@@ -146,12 +146,12 @@ describe('Waveform legend', () => {
     )
     const singleFrameHeight = frameHeight(container)
 
-    expect(plotTop(container)).toBe(42)
+    expect(plotTop(container)).toBe(32)
     expect(channelName(container)?.getAttribute('y')).toBe('22')
 
     chart.updateData(namedSeries(['我是302测试', '我是247']))
 
-    expect(plotTop(container)).toBe(42)
+    expect(plotTop(container)).toBe(32)
     expect(frameHeight(container)).toBe(singleFrameHeight)
     expect(legendPosition(legendItems(container)[0])[1]).toBe(22)
   })
@@ -173,7 +173,7 @@ describe('Waveform legend', () => {
     expect(legendPosition(legendItems(container)[0])[1]).toBe(46)
   })
 
-  it('reserves one row step for every additional top legend row', () => {
+  it('renders additional top legend rows inside the plot without changing its top padding', () => {
     const { container } = createChart(
       namedSeries(['我是302测试', '我是247', '我是246', '我是245', '我是244']),
       {
@@ -192,7 +192,6 @@ describe('Waveform legend', () => {
     const items = legendItems(container)
     const rows = legendRows(items)
     const rowStep = 14 + 10 + 7
-    const expectedTop = 42 + (rows.size - 1) * rowStep
     const lastRowY = Math.max(...rows.keys())
     const lastItem = rows.get(lastRowY)![0]
     const hitTarget = lastItem.querySelector('rect')!
@@ -201,9 +200,9 @@ describe('Waveform legend', () => {
       + Number(hitTarget.getAttribute('height'))
 
     expect(rows.size).toBeGreaterThan(1)
-    expect(plotTop(container)).toBe(expectedTop)
+    expect(plotTop(container)).toBe(32)
     expect(lastRowY).toBe(22 + (rows.size - 1) * rowStep)
-    expect(hitTargetBottom).toBeLessThanOrEqual(plotTop(container))
+    expect(hitTargetBottom).toBeGreaterThan(plotTop(container))
   })
 
   it('preserves the configured top padding when automatic padding is disabled', () => {

@@ -3,6 +3,7 @@ import type { AxisOptions } from '../types/options'
 import type { RenderContext } from './context'
 import { formatScientificAxisTick } from './formatters'
 import { yAxisTickValues } from './helpers'
+import { estimateXAxisLabelWidth, formatXAxisTick } from './xTicks'
 
 function formatTick(axis: AxisOptions, value: d3.NumberValue): string {
   const number = Number(value)
@@ -14,10 +15,6 @@ function formatTick(axis: AxisOptions, value: d3.NumberValue): string {
 function isDomainEndpoint(value: number, domain: [number, number]): boolean {
   const tolerance = Math.max(1, Math.abs(domain[1] - domain[0])) * Number.EPSILON * 8
   return Math.abs(value - domain[0]) <= tolerance || Math.abs(value - domain[1]) <= tolerance
-}
-
-function estimateLabelWidth(label: string, fontSize: number): number {
-  return Math.max(...label.split('\n').map(line => line.length * fontSize * 0.6))
 }
 
 function estimateYAxisLabelWidth(label: string, fontSize: number): number {
@@ -111,19 +108,18 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
 }
 
 export function renderAxes(ctx: RenderContext) {
-  const { plot, x, yAxes, innerHeight, innerWidth, options } = ctx
+  const { plot, x, xTicks, yAxes, innerHeight, innerWidth, options } = ctx
 
   if (options.xAxis.visible) {
     const domain = x.domain() as [number, number]
-    const xTicks = x.ticks(options.xAxis.tickCount ?? 8)
     const endpointLabels = {
-      start: formatTick(options.xAxis, domain[0]),
-      end: formatTick(options.xAxis, domain[1]),
+      start: formatXAxisTick(options.xAxis, domain[0]),
+      end: formatXAxisTick(options.xAxis, domain[1]),
     }
     const fontSize = options.xAxis.fontSize ?? 11
     const labelGap = options.xAxis.tickPadding ?? 6
-    const leftClearance = estimateLabelWidth(endpointLabels.start, fontSize) + labelGap
-    const rightClearance = estimateLabelWidth(endpointLabels.end, fontSize) + labelGap
+    const leftClearance = estimateXAxisLabelWidth(endpointLabels.start, fontSize) + labelGap
+    const rightClearance = estimateXAxisLabelWidth(endpointLabels.end, fontSize) + labelGap
     const visibleXTicks = xTicks.filter((tick) => {
       if (options.xAxis.hideEndTicks && isDomainEndpoint(tick, domain)) return false
       if (!options.xAxis.showEndValues) return true
@@ -134,7 +130,7 @@ export function renderAxes(ctx: RenderContext) {
       .tickValues(visibleXTicks)
       .tickSize(-(options.xAxis.tickSize ?? 6))
       .tickPadding(options.xAxis.tickPadding ?? 6)
-      .tickFormat(v => formatTick(options.xAxis, v))
+      .tickFormat(v => formatXAxisTick(options.xAxis, v))
 
     plot.append('g')
       .attr('class', 'waveform-axis waveform-axis-x')

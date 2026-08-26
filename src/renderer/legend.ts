@@ -176,15 +176,6 @@ function resolveLegendLayout(
   return { labels, fittedLabels, itemWidths, rows }
 }
 
-export function horizontalLegendRowCount(
-  svg: RenderContext['svg'],
-  series: WaveformSeries[],
-  options: RenderContext['options'],
-  availableWidth: number,
-): number {
-  return resolveLegendLayout(svg, series, options, availableWidth).rows.length
-}
-
 export function renderLegend(ctx: RenderContext, legendSeries: LegendSeries[], onToggle: (key: string) => void) {
   const { svg, options, width, height } = ctx
   if (!options.legend.visible || !legendSeries.length) return

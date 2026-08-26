@@ -44,6 +44,13 @@ function translateX(element: Element): number {
   return Number(element.getAttribute('transform')?.match(/translate\((-?[\d.]+)/)?.[1])
 }
 
+function tickData(svg: SVGSVGElement, selector: string): number[] {
+  return Array.from(
+    svg.querySelectorAll<SVGGElement>(`${selector} .tick`),
+    tick => Number((tick as SVGGElement & { __data__: unknown }).__data__),
+  )
+}
+
 describe('Waveform axes', () => {
   it('pins the exact final X-domain values to both frame endpoints by default', () => {
     const svg = render([{ x: 0.125, y: 0 }, { x: 1.875, y: 1 }])
@@ -85,6 +92,29 @@ describe('Waveform axes', () => {
 
     expect(endpointLabels(partial)).toEqual(['-5', '4'])
     expect(endpointLabels(complete)).toEqual(['-10', '20'])
+  })
+
+  it('uses a zero-aligned X tick step for both the axis and grid', () => {
+    const svg = render(
+      [{ x: 3, y: 0 }, { x: 23, y: 1 }],
+      { xAxis: { tickStep: 5, tickCount: 2, showEndValues: false } },
+    )
+    const expected = [5, 10, 15, 20]
+
+    expect(tickData(svg, '.waveform-axis-x')).toEqual(expected)
+    expect(tickData(svg, '.waveform-grid-x')).toEqual(expected)
+    expect(labels(svg, '.waveform-axis-x')).toEqual(expected.map(String))
+  })
+
+  it('keeps exact endpoints while omitting regular ticks for an oversized step', () => {
+    const svg = render(
+      [{ x: 3, y: 0 }, { x: 23, y: 1 }],
+      { xAxis: { tickStep: 100 } },
+    )
+
+    expect(endpointLabels(svg)).toEqual(['3', '23'])
+    expect(tickData(svg, '.waveform-axis-x')).toEqual([])
+    expect(tickData(svg, '.waveform-grid-x')).toEqual([])
   })
 
   it('expands a single-point domain before displaying its endpoints', () => {
@@ -161,6 +191,24 @@ describe('Waveform axes', () => {
     expect(endpointLabels(container.querySelector('svg')!)).toEqual(['10', '20'])
     chart.updateOptions({ xAxis: { showEndValues: false } })
     expect(container.querySelector('.waveform-axis-x-endpoints')).toBeNull()
+  })
+
+  it('updates and clears the custom X tick step through updateOptions', () => {
+    const container = document.createElement('div')
+    Object.defineProperty(container, 'clientWidth', { value: 800, configurable: true })
+    document.body.append(container)
+    const chart = new Waveform(container, [{ x: 0, y: 0 }, { x: 24, y: 1 }], {
+      responsive: { enabled: false },
+      xAxis: { tickStep: 6, tickCount: 2, hideEndTicks: false, showEndValues: false },
+    })
+
+    expect(labels(container.querySelector('svg')!, '.waveform-axis-x')).toEqual(['0', '6', '12', '18', '24'])
+
+    chart.updateOptions({ xAxis: { tickStep: 12 } })
+    expect(labels(container.querySelector('svg')!, '.waveform-axis-x')).toEqual(['0', '12', '24'])
+
+    chart.updateOptions({ xAxis: { tickStep: undefined } })
+    expect(labels(container.querySelector('svg')!, '.waveform-axis-x')).toEqual(['0', '10', '20'])
   })
 
   it('uses the exact data extent for the automatic Y domain', () => {

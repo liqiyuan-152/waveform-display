@@ -111,7 +111,7 @@ describe('createConfigPanel', () => {
     expect(findField(container, '线条宽度').querySelector<HTMLInputElement>('input')?.value).toBe('4.5')
   })
 
-  it('commits shared grid style and color without dropping axis settings', () => {
+  it('commits shared grid style, color, and width without dropping axis settings', () => {
     const { container, onOptionsChange } = setup()
     clickButton(container, '网格', '[role="tab"]')
 
@@ -122,12 +122,16 @@ describe('createConfigPanel', () => {
     const color = findField(container, '辅助线颜色').querySelector<HTMLInputElement>('input[type="text"]')!
     fireInput(color, '#123456')
 
+    const width = findField(container, '辅助线宽度').querySelector<HTMLInputElement>('input[type="number"]')!
+    fireInput(width, '1.5')
+
     const updated = onOptionsChange.mock.lastCall?.[0] as WaveformOptions
     expect(updated.grid).toMatchObject({
       style: 'solid',
       color: '#123456',
-      x: { visible: true, width: 1 },
-      y: { visible: true, width: 1 },
+      width: 1.5,
+      x: { visible: true },
+      y: { visible: true },
     })
     expect(container.textContent).not.toContain('X 网格颜色')
     expect(container.textContent).not.toContain('Y 网格虚线')
@@ -146,6 +150,24 @@ describe('createConfigPanel', () => {
     fireInput(formatInput, 'invalid format')
     expect(formatInput.getAttribute('aria-invalid')).toBe('true')
     expect(onOptionsChange).toHaveBeenCalledTimes(callsBeforeInvalidFormat)
+  })
+
+  it('edits and clears the optional X-axis tick step', () => {
+    const { container, onOptionsChange } = setup()
+    clickButton(container, '坐标轴', '[role="tab"]')
+    const input = findField(container, '刻度步长').querySelector<HTMLInputElement>('input')!
+
+    expect(input.value).toBe('')
+    fireInput(input, '2.5')
+    expect((onOptionsChange.mock.lastCall?.[0] as WaveformOptions).xAxis?.tickStep).toBe(2.5)
+
+    fireInput(input, '')
+    expect((onOptionsChange.mock.lastCall?.[0] as WaveformOptions).xAxis?.tickStep).toBeUndefined()
+
+    const callsBeforeInvalidStep = onOptionsChange.mock.calls.length
+    fireInput(input, '0')
+    expect(input.getAttribute('aria-invalid')).toBe('true')
+    expect(onOptionsChange).toHaveBeenCalledTimes(callsBeforeInvalidStep)
   })
 
   it('omits ineffective and legacy axis controls', () => {

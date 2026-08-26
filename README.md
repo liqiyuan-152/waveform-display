@@ -84,6 +84,7 @@ const chart = new Waveform('#chart', [
   xAxis: {
     fontSize: 11,
     showEndValues: true,
+    tickStep: 0.5,
     tickFormat: '.1f',
     title: { visible: true, text: 'Time', unit: 's', fontSize: 12 },
   },
@@ -92,11 +93,11 @@ const chart = new Waveform('#chart', [
     tickFormat: '.2f',
     title: { visible: true, text: 'Amplitude', unit: 'V', fontSize: 12 },
   },
-  grid: { style: 'dashed', color: '#e2e8f0' },
+  grid: { style: 'dashed', color: '#e2e8f0', width: 1 },
 })
 ```
 
-`grid.style` accepts `solid` or `dashed`, and `grid.color` applies to both X and Y grid lines. Existing `grid.x.color`, `grid.x.dash`, `grid.y.color`, and `grid.y.dash` options remain supported and override the shared values for their respective axes.
+`grid.style` accepts `solid` or `dashed`; `grid.color` and `grid.width` apply to both X and Y grid lines. Existing `grid.x.color`, `grid.x.width`, `grid.x.dash`, `grid.y.color`, `grid.y.width`, and `grid.y.dash` options remain supported and override the shared values for their respective axes.
 
 ## Frame number watermark
 
@@ -226,6 +227,13 @@ Font sizes are numeric pixel values. Axis tick labels use `xAxis.fontSize` and e
 By default, the X domain uses the exact data extent. Set `xDomainStrategy.type` to `nice` to expand it to stable, readable boundaries. `bounds: 'end'` preserves the data minimum and expands only the maximum. Explicit `xAxis.min`/`max` values are preserved unless `includeExplicit` is enabled.
 
 The final X-domain start and end values are pinned to the left and right frame edges by default. They use the same `tickFormat` and `unit` as the other X-axis labels. Set `xAxis.showEndValues` to `false` to render only regular ticks.
+
+Set `xAxis.tickStep` to a finite positive number to request zero-aligned regular ticks at that interval. A valid step takes precedence over `xAxis.tickCount`; omit it, clear it with `undefined`, or pass an invalid value to use `tickCount` again. The component automatically increases an overly dense step by a readable `1/2/5/10 × 10ⁿ` multiple based on the plot width and formatted label width, with at most 100 regular ticks. A step larger than the final X-domain span produces no regular ticks, while endpoint values remain available through `showEndValues`.
+
+```ts
+chart.updateOptions({ xAxis: { tickStep: 5 } })
+chart.updateOptions({ xAxis: { tickStep: undefined } }) // Restore tickCount mode.
+```
 
 Every Y value axis uses the exact minimum and maximum of the valid points assigned to it, without expanding the domain to rounded boundaries. Each axis's `min` and `max` independently override those bounds. An unassigned axis uses `[0, 1]`, with a single explicit bound completed by one unit. When every assigned Y value is equal, the domain expands by one unit on each side to keep the scale usable.
 

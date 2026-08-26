@@ -21,6 +21,7 @@ export interface RenderContext {
   innerWidth: number
   innerHeight: number
   x: d3.ScaleLinear<number, number>
+  xTicks: number[]
   yAxes: ResolvedValueAxis[]
   yAxisById: Map<string, ResolvedValueAxis>
   primaryYAxis: ResolvedValueAxis

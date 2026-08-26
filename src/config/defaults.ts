@@ -19,7 +19,7 @@ export const defaultOptions = {
   point: { visible: false, type: 'circle', size: 3, color: '#2563eb', borderColor: '#ffffff', borderWidth: 1 },
   xDomainStrategy: { type: 'data', bounds: 'both', tickCount: 10, includeExplicit: false },
   xAxis: {
-    visible: true, position: 'left', min: undefined, max: undefined, tickCount: 8, hideEndTicks: true, showEndValues: true, tickSize: 6, tickPadding: 6, tickFormat: '',
+    visible: true, position: 'left', min: undefined, max: undefined, tickCount: 8, tickStep: undefined, hideEndTicks: true, showEndValues: true, tickSize: 6, tickPadding: 6, tickFormat: '',
     color: '#000000', width: 1.3, fontSize: 11, fontColor: '#475569', label: '', unit: '',
     title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 8 },
   },
@@ -34,7 +34,7 @@ export const defaultOptions = {
     title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 64 },
   },
   yAxes: undefined,
-  grid: { visible: true, color: '#e2e8f0', style: 'dashed', x: { visible: true, width: 1 }, y: { visible: true, width: 1 } },
+  grid: { visible: true, color: '#e2e8f0', width: 1, style: 'dashed', x: { visible: true }, y: { visible: true } },
   zeroLine: { visible: true, color: '#94a3b8', width: 1, dash: '4 4' },
   title: { visible: false, text: '', align: 'center', color: '#0f172a', fontSize: 16, fontWeight: 600 },
   shot: { visible: false, text: '', color: '#475569', fontSize: 11, fontWeight: 500 },

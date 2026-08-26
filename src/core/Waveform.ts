@@ -7,8 +7,9 @@ import { renderFrameNumber } from '../renderer/frameNumber'
 import { renderGrid } from '../renderer/grid'
 import { renderSeries } from '../renderer/series'
 import { estimateYAxisFootprint, renderAxes } from '../renderer/axes'
-import { horizontalLegendRowCount, renderLegend } from '../renderer/legend'
+import { renderLegend } from '../renderer/legend'
 import { renderXMetadata, xMetadataWidth } from '../renderer/xMetadata'
+import { resolveXAxisTickValues } from '../renderer/xTicks'
 import type { RenderContext, ResolvedValueAxis } from '../renderer/context'
 import type { WaveformData, WaveformSeries } from '../types/data'
 import type { PaddingOptions, WaveformOptions } from '../types/options'
@@ -112,9 +113,6 @@ export class Waveform {
     options: ReturnType<typeof resolveOptions>,
     valueAxes: Array<{ options: ResolvedValueAxisOptions; offset: number; footprint: number }>,
     showSingleChannelName: boolean,
-    svg: RenderContext['svg'],
-    legendSeries: WaveformSeries[],
-    width: number,
   ): Required<PaddingOptions> {
     const p = { ...options.padding }
     if (!options.layout.autoPadding) return p
@@ -149,14 +147,7 @@ export class Waveform {
     const hasTopLegend = options.legend.visible
       && options.legend.orientation === 'horizontal'
       && options.legend.position.startsWith('top')
-    if (showSingleChannelName || hasTopLegend) {
-      const baseTop = hasTitle ? 64 : 42
-      const rowCount = hasTopLegend
-        ? horizontalLegendRowCount(svg, legendSeries, options, Math.max(0, width - p.left - p.right))
-        : 1
-      const rowStep = options.legend.fontSize + 10 + options.legend.itemGap
-      p.top = Math.max(p.top, baseTop + Math.max(0, rowCount - 1) * rowStep)
-    }
+    if (hasTitle && (showSingleChannelName || hasTopLegend)) p.top = Math.max(p.top, 64)
     return p
   }
 
@@ -314,7 +305,7 @@ export class Waveform {
       legend: { ...options.legend, visible: options.legend.visible && series.length > 1 },
     }
     const valueAxisLayouts = this.resolveValueAxes(plottedSeries, effectiveOptions)
-    const p = this.resolvePadding(effectiveOptions, valueAxisLayouts, singleChannel, svg, series, width)
+    const p = this.resolvePadding(effectiveOptions, valueAxisLayouts, singleChannel)
     const innerWidth = Math.max(1, width - p.left - p.right)
     const innerHeight = Math.max(1, height - p.top - p.bottom)
     const points = visibleSeries.flatMap(s => s.data)
@@ -323,6 +314,7 @@ export class Waveform {
     const xDomain = applyXDomainStrategy(rawXDomain, options.xDomainStrategy, hasExplicitXDomain)
 
     const x = d3.scaleLinear().domain(xDomain).range([0, innerWidth])
+    const xTicks = resolveXAxisTickValues(x, effectiveOptions.xAxis, innerWidth)
     const yAxes: ResolvedValueAxis[] = valueAxisLayouts.map(axis => ({
       ...axis,
       scale: d3.scaleLinear().domain(axis.domain).range([innerHeight, 0]),
@@ -340,6 +332,7 @@ export class Waveform {
     const resolvedOptions = { ...effectiveOptions, padding: p }
     const ctx: RenderContext = {
       svg, plot, series: plottedSeries, options: resolvedOptions, width, height, innerWidth, innerHeight,
+      xTicks,
       x, yAxes, yAxisById, primaryYAxis, xDomain, clipId,
     }
 

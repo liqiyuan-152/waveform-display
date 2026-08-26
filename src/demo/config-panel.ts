@@ -94,6 +94,7 @@ function axisFields(prefix: string, isX = prefix === 'xAxis'): FieldDefinition[]
     number('最小值', `${prefix}.min`, undefined, 0.1, true),
     number('最大值', `${prefix}.max`, undefined, 0.1, true),
     number('刻度数量', `${prefix}.tickCount`, 1, 1),
+    ...(isX ? [number('刻度步长', `${prefix}.tickStep`, Number.MIN_VALUE, 0.1, true)] : []),
     ...(isX ? [boolean('隐藏端点刻度', `${prefix}.hideEndTicks`), boolean('显示端点值', `${prefix}.showEndValues`)] : []),
     number('刻度长度', `${prefix}.tickSize`, 0, 1),
     number('刻度间距', `${prefix}.tickPadding`, 0, 1),
@@ -163,7 +164,7 @@ const tabs: TabDefinition[] = [
   {
     id: 'grid', label: '网格', subsections: [
       { id: 'grid-lines', label: '网格线', fields: [
-        boolean('显示网格', 'grid.visible'), select('辅助线样式', 'grid.style', gridLineStyles), color('辅助线颜色', 'grid.color'),
+        boolean('显示网格', 'grid.visible'), select('辅助线样式', 'grid.style', gridLineStyles), color('辅助线颜色', 'grid.color'), number('辅助线宽度', 'grid.width', 0, 0.1),
         boolean('显示 X 网格', 'grid.x.visible'), number('X 网格宽度', 'grid.x.width', 0, 0.1),
         boolean('显示 Y 网格', 'grid.y.visible'), number('Y 网格宽度', 'grid.y.width', 0, 0.1),
         select('Y 网格参考轴', 'grid.y.axisId', []),
