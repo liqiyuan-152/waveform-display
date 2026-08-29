@@ -1,8 +1,9 @@
 name: Deploy demo
 
 on:
-  release:
-    types: [published]
+  push:
+    tags:
+      - 'v*'
 
 permissions:
   contents: read
@@ -10,15 +11,13 @@ permissions:
 jobs:
   tag-gate:
     runs-on: ubuntu-latest
-    env:
-      RELEASE_TAG: ${{ github.event.release.tag_name }}
     outputs:
       deploy: ${{ steps.gate.outputs.deploy }}
     steps:
       - id: gate
         shell: bash
         run: |
-          if [[ "${RELEASE_TAG}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+          if [[ "${GITHUB_REF_NAME}" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
             echo "deploy=true" >> "${GITHUB_OUTPUT}"
           else
             echo "deploy=false" >> "${GITHUB_OUTPUT}"
@@ -28,8 +27,6 @@ jobs:
     needs: tag-gate
     if: needs.tag-gate.outputs.deploy == 'true'
     runs-on: ubuntu-latest
-    env:
-      RELEASE_TAG: ${{ github.event.release.tag_name }}
     steps:
       - uses: actions/checkout@v4
       - uses: pnpm/action-setup@v4
@@ -52,8 +49,6 @@ jobs:
     if: needs.tag-gate.outputs.deploy == 'true'
     runs-on: ubuntu-latest
     environment: production
-    env:
-      RELEASE_TAG: ${{ github.event.release.tag_name }}
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -67,7 +62,7 @@ jobs:
           test -n "$DEPLOY_API_TOKEN"
           tar -C site -czf site.tar.gz .
           curl --fail-with-body --silent --show-error --retry 3 --connect-timeout 10 --max-time 120 \
-            -X POST "https://lqycustomsite.online/deployment-hook/projects/waveform-display/releases/${RELEASE_TAG}" \
+            -X POST "https://lqycustomsite.online/deployment-hook/projects/waveform-display/releases/${GITHUB_REF_NAME}" \
             -H "Authorization: Bearer ${DEPLOY_API_TOKEN}" \
             -H "X-Deployment-Commit: ${GITHUB_SHA}" \
             -H "Content-Type: application/gzip" \
