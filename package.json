@@ -38,6 +38,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "build": "vite build && tsc -p tsconfig.build.json",
+    "build:demo": "vite build --mode demo",
     "check": "pnpm typecheck && pnpm test && pnpm build",
     "preview": "vite preview",
     "prepack": "pnpm build",
