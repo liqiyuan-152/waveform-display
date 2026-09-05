@@ -20,3 +20,5 @@ jobs:
           cache: pnpm
       - run: pnpm install --no-frozen-lockfile
       - run: pnpm check
+      - name: Verify Showcase static image
+        run: docker build --build-arg DEMO_BASE_PATH=/ -t waveform-display-demo:ci .
