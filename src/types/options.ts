@@ -65,8 +65,17 @@ export interface EmptyStateOptions {
   color?: string
   fontSize?: number
 }
+export interface HorizontalPadding {
+  left?: number
+  right?: number
+}
 export interface LayoutOptions {
   autoPadding?: boolean
+  /** Minimum horizontal padding applied after automatic axis and legend measurement. */
+  horizontalPadding?: HorizontalPadding
+}
+export interface WaveformLayoutChange {
+  naturalPadding: { left: number; right: number }
 }
 
 export interface XDomainStrategy {
@@ -84,6 +93,8 @@ export interface WaveformOptions {
   height?: number | string
   responsive?: ResponsiveOptions
   layout?: LayoutOptions
+  /** Receives automatic horizontal padding after each completed layout change. */
+  onLayoutChange?: (layout: WaveformLayoutChange) => void
   padding?: PaddingOptions
   frame?: FrameOptions
   frameNumber?: string | number

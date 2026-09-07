@@ -200,6 +200,24 @@ At most one value axis is displayed on each side. When visible series are assign
 
 Existing `yAxis`, `secondaryYAxis`, and series bindings to `left` or `right` remain supported. When `yAxes` is provided it is authoritative and the legacy options are ignored. Passing `yAxes` to `updateOptions()` replaces the complete array. Empty IDs are ignored, duplicate IDs keep their first occurrence, and unknown series or reference-axis IDs fall back to the first valid axis.
 
+### Coordinating horizontal padding
+
+Every waveform instance measures its own axes, axis titles, legends, and right-side metadata. Use `layout.horizontalPadding` to apply a minimum left and/or right padding after that natural measurement, so sibling charts can align their plot frames without disabling automatic padding. Invalid values are ignored; removing or reducing a minimum immediately allows the frame to shrink again.
+
+```ts
+const chart = new Waveform('#chart', data, {
+  layout: { autoPadding: true },
+  onLayoutChange: ({ naturalPadding }) => {
+    // Share these values with sibling charts, then set their common lower bound.
+    chart.updateOptions({
+      layout: { horizontalPadding: naturalPadding },
+    })
+  },
+})
+```
+
+`onLayoutChange` runs after rendering, initially and whenever the natural horizontal padding changes. The callback receives the padding before `horizontalPadding` is applied, including when the data becomes empty. Replacing the callback with `updateOptions()` also reports the current natural value to the new callback.
+
 ## SVG export
 
 ```ts

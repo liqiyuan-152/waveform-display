@@ -12,7 +12,12 @@ import { renderXMetadata, xMetadataWidth } from '../renderer/xMetadata'
 import { resolveXAxisTickValues } from '../renderer/xTicks'
 import type { RenderContext, ResolvedValueAxis } from '../renderer/context'
 import type { WaveformData, WaveformSeries } from '../types/data'
-import type { PaddingOptions, WaveformOptions } from '../types/options'
+import type {
+  HorizontalPadding,
+  PaddingOptions,
+  WaveformLayoutChange,
+  WaveformOptions,
+} from '../types/options'
 
 let instanceCounter = 0
 const VALUE_AXIS_GAP = 0
@@ -29,6 +34,11 @@ export class Waveform {
   private readonly hiddenSeriesKeys = new Set<string>()
   private resizeObserver?: ResizeObserver
   private readonly instanceId = ++instanceCounter
+  private lastNaturalPadding?: WaveformLayoutChange['naturalPadding']
+  private latestNaturalPadding?: WaveformLayoutChange['naturalPadding']
+  private layoutChangeScheduled = false
+  private forceLayoutChange = false
+  private destroyed = false
 
   constructor(target: string | HTMLElement, data: WaveformData, options: WaveformOptions = {}) {
     const el = typeof target === 'string' ? document.querySelector<HTMLElement>(target) : target
@@ -46,6 +56,9 @@ export class Waveform {
   }
 
   updateOptions(options: WaveformOptions) {
+    if (typeof options.onLayoutChange === 'function' && options.onLayoutChange !== this.rawOptions.onLayoutChange) {
+      this.forceLayoutChange = true
+    }
     this.rawOptions = this.mergeRawOptions(this.rawOptions, options)
     this.setupResponsive()
     this.render()
@@ -70,15 +83,30 @@ export class Waveform {
   }
 
   destroy() {
+    this.destroyed = true
+    this.latestNaturalPadding = undefined
+    this.layoutChangeScheduled = false
+    this.forceLayoutChange = false
     this.resizeObserver?.disconnect()
     this.container.replaceChildren()
   }
 
   private mergeRawOptions(base: WaveformOptions, next: WaveformOptions): WaveformOptions {
+    const hasHorizontalPaddingUpdate = Object.prototype.hasOwnProperty.call(
+      next.layout ?? {},
+      'horizontalPadding',
+    )
+    const nextHorizontalPadding = next.layout?.horizontalPadding
+    const horizontalPadding = hasHorizontalPaddingUpdate
+      ? nextHorizontalPadding && typeof nextHorizontalPadding === 'object'
+        ? { ...base.layout?.horizontalPadding, ...nextHorizontalPadding }
+        : undefined
+      : base.layout?.horizontalPadding
+
     return {
       ...base, ...next,
       responsive: { ...base.responsive, ...next.responsive },
-      layout: { ...base.layout, ...next.layout },
+      layout: { ...base.layout, ...next.layout, horizontalPadding },
       padding: { ...base.padding, ...next.padding },
       frame: { ...base.frame, ...next.frame },
       frameNumberStyle: { ...base.frameNumberStyle, ...next.frameNumberStyle },
@@ -107,6 +135,48 @@ export class Waveform {
     if (!resolveOptions(this.rawOptions).responsive.enabled || typeof ResizeObserver === 'undefined') return
     this.resizeObserver = new ResizeObserver(() => this.render())
     this.resizeObserver.observe(this.container)
+  }
+
+  private resolveHorizontalPadding(value: number | undefined): number | undefined {
+    return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? value : undefined
+  }
+
+  private applyHorizontalPadding(
+    padding: Required<PaddingOptions>,
+    horizontalPadding?: HorizontalPadding,
+  ): Required<PaddingOptions> {
+    const left = this.resolveHorizontalPadding(horizontalPadding?.left)
+    const right = this.resolveHorizontalPadding(horizontalPadding?.right)
+    return {
+      ...padding,
+      left: left === undefined ? padding.left : Math.max(padding.left, left),
+      right: right === undefined ? padding.right : Math.max(padding.right, right),
+    }
+  }
+
+  private notifyLayoutChange(naturalPadding: WaveformLayoutChange['naturalPadding']) {
+    if (this.destroyed) return
+    this.latestNaturalPadding = { ...naturalPadding }
+    const unchanged = this.lastNaturalPadding?.left === naturalPadding.left
+      && this.lastNaturalPadding.right === naturalPadding.right
+    if (!this.forceLayoutChange && unchanged && !this.layoutChangeScheduled) return
+    if (this.layoutChangeScheduled) return
+
+    this.layoutChangeScheduled = true
+    queueMicrotask(() => {
+      this.layoutChangeScheduled = false
+      if (this.destroyed) return
+      const naturalPadding = this.latestNaturalPadding
+      if (!naturalPadding) return
+      const unchanged = this.lastNaturalPadding?.left === naturalPadding.left
+        && this.lastNaturalPadding.right === naturalPadding.right
+      const force = this.forceLayoutChange
+      this.forceLayoutChange = false
+      if (!force && unchanged) return
+
+      this.lastNaturalPadding = { ...naturalPadding }
+      this.rawOptions.onLayoutChange?.({ naturalPadding: { ...naturalPadding } })
+    })
   }
 
   private resolvePadding(
@@ -253,6 +323,7 @@ export class Waveform {
           .attr('font-size', options.emptyState.fontSize)
           .text(options.emptyState.text)
       }
+      this.notifyLayoutChange({ left: options.padding.left, right: options.padding.right })
       return
     }
 
@@ -305,7 +376,8 @@ export class Waveform {
       legend: { ...options.legend, visible: options.legend.visible && series.length > 1 },
     }
     const valueAxisLayouts = this.resolveValueAxes(plottedSeries, effectiveOptions)
-    const p = this.resolvePadding(effectiveOptions, valueAxisLayouts, singleChannel)
+    const naturalPadding = this.resolvePadding(effectiveOptions, valueAxisLayouts, singleChannel)
+    const p = this.applyHorizontalPadding(naturalPadding, effectiveOptions.layout.horizontalPadding)
     const innerWidth = Math.max(1, width - p.left - p.right)
     const innerHeight = Math.max(1, height - p.top - p.bottom)
     const points = visibleSeries.flatMap(s => s.data)
@@ -385,5 +457,6 @@ export class Waveform {
         .attr('font-weight', options.title.fontWeight)
         .text(options.title.text)
     }
+    this.notifyLayoutChange({ left: naturalPadding.left, right: naturalPadding.right })
   }
 }
