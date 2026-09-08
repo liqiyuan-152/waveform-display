@@ -609,14 +609,14 @@ describe('Waveform legend', () => {
     })
 
     expect(xEndpoints(container)).toEqual(['0', '100'])
-    expect(yEndValue(container, 'left')).toBe('100.00')
-    expect(yEndValue(container, 'right')).toBe('200.00')
+    expect(yEndValue(container, 'left')).toBe('100')
+    expect(yEndValue(container, 'right')).toBe('200')
 
     legendItems(container)[0].dispatchEvent(new MouseEvent('click', { bubbles: true }))
 
     expect(xEndpoints(container)).toEqual(['10', '20'])
-    expect(yEndValue(container, 'left')).toBe('20.00')
-    expect(yEndValue(container, 'right')).toBe('200.00')
+    expect(yEndValue(container, 'left')).toBe('20')
+    expect(yEndValue(container, 'right')).toBe('200')
   })
 
   it('keeps the legend usable and falls back to empty domains when all series are hidden', () => {

@@ -439,9 +439,9 @@ describe('Waveform axes', () => {
     const gridTickPositions = Array.from(svg.querySelectorAll('.waveform-grid-y .tick'), tick => tick.getAttribute('transform'))
 
     expect(yLabels).toHaveLength(6)
-    expect(yLabels[0]).toBe('1.10')
-    expect(yLabels[yLabels.length - 1]).toBe('9.90')
-    expect(endLabel.textContent).toBe('9.90')
+    expect(yLabels[0]).toBe('1.1')
+    expect(yLabels[yLabels.length - 1]).toBe('9.9')
+    expect(endLabel.textContent).toBe('9.9')
     expect(endLabel.parentElement?.getAttribute('transform')).toBe('translate(0,0.5)')
     expect(gridTickPositions).toEqual(axisTickPositions)
   })
@@ -451,10 +451,10 @@ describe('Waveform axes', () => {
     const yLabels = labels(svg, '.waveform-axis-y--left')
     const endLabel = svg.querySelector('.waveform-axis-y--left .waveform-axis-y-end-value')!
 
-    expect(yLabels[0]).toBe('3.27')
-    expect(yLabels[yLabels.length - 1]).toBe('E+043.35')
-    expect(endLabel.textContent).toBe('E+043.35')
-    expect(Array.from(endLabel.querySelectorAll('tspan'), item => item.textContent)).toEqual(['E+04', '3.35'])
+    expect(yLabels[0]).toBe('3.2748')
+    expect(yLabels[yLabels.length - 1]).toBe('E+04 3.3483')
+    expect(endLabel.textContent).toBe('E+04 3.3483')
+    expect(Array.from(endLabel.querySelectorAll('tspan'), item => item.textContent)).toEqual([])
     expect(yLabels.filter(label => label.startsWith('E'))).toHaveLength(1)
   })
 
@@ -469,8 +469,8 @@ describe('Waveform axes', () => {
 
     const leftLabels = labels(svg, '.waveform-axis-y--left')
     const rightLabels = labels(svg, '.waveform-axis-y--right')
-    expect(leftLabels[leftLabels.length - 1]).toBe('E+03 (A)3.00')
-    expect(rightLabels[rightLabels.length - 1]).toBe('E-04 (V)3.00')
+    expect(leftLabels[leftLabels.length - 1]).toBe('E+03 (A) 3')
+    expect(rightLabels[rightLabels.length - 1]).toBe('E-04 (V) 3')
     expect(leftLabels.filter(label => label.includes('E'))).toHaveLength(1)
     expect(rightLabels.filter(label => label.includes('E'))).toHaveLength(1)
   })
@@ -485,5 +485,48 @@ describe('Waveform axes', () => {
     expect(yLabels.every(label => label.startsWith('value:'))).toBe(true)
     expect(yLabels.some(label => label.startsWith('E'))).toBe(false)
     expect(svg.querySelector('.waveform-axis-y-end-value')?.textContent).toBe('value:3123')
+  })
+
+  it('preserves fixed decimals and multiline custom Y-axis labels', () => {
+    const data = [{ x: 0, y: 1000 }, { x: 1, y: 3000 }]
+    const fixed = render(data, { yAxis: { tickFormat: '.2f', unit: 'V' } })
+    expect(fixed.querySelector('.waveform-axis-y-end-value')?.textContent).toBe('3000.00')
+    const multiline = render(data, { yAxis: { tickFormat: value => `raw\n${value}` } })
+    expect(Array.from(multiline.querySelectorAll('.waveform-axis-y-end-value tspan'), node => node.textContent))
+      .toEqual(['raw', '3000'])
+  })
+
+  it('updates notation, units, and automatic padding after data and options change', () => {
+    const container = document.createElement('div')
+    document.body.append(container)
+    const chart = new Waveform(container, [{ x: 0, y: 0 }, { x: 1, y: 3 }], {
+      width: 360,
+      padding: { left: 0 },
+      responsive: { enabled: false },
+      yAxis: { unit: 'V' },
+    })
+    const endLabel = () => container.querySelector('.waveform-axis-y-end-value')!
+    const plotWidth = () => Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))
+    expect(endLabel().textContent).toBe('(V) 3')
+    const ordinaryWidth = plotWidth()
+
+    chart.updateData([{ x: 0, y: 1000 }, { x: 1, y: 3000 }])
+    expect(endLabel().textContent).toBe('E+03 (V) 3')
+    const scientificWidth = plotWidth()
+    expect(scientificWidth).toBeLessThan(ordinaryWidth)
+
+    chart.updateOptions({ yAxis: { unit: ' millivolts / second ' } })
+    expect(endLabel().textContent).toBe('E+03 (millivolts / second) 3')
+    expect(plotWidth()).toBeLessThan(scientificWidth)
+    expect(plotWidth()).toBeGreaterThan(0)
+    expect(endLabel().querySelector('tspan')).toBeNull()
+
+    chart.updateData([{ x: 0, y: 0.0001 }, { x: 1, y: 0.0003 }])
+    expect(endLabel().textContent).toBe('E-04 (millivolts / second) 3')
+    chart.updateOptions({ yAxis: { unit: 'V' } })
+    chart.updateData([{ x: 0, y: 0 }, { x: 1, y: 3 }])
+    expect(endLabel().textContent).toBe('(V) 3')
+    expect(plotWidth()).toBe(ordinaryWidth)
+    chart.destroy()
   })
 })

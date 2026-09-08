@@ -255,4 +255,8 @@ chart.updateOptions({ xAxis: { tickStep: undefined } }) // Restore tickCount mod
 
 Every Y value axis uses the exact minimum and maximum of the valid points assigned to it, without expanding the domain to rounded boundaries. Each axis's `min` and `max` independently override those bounds. An unassigned axis uses `[0, 1]`, with a single explicit bound completed by one unit. When every assigned Y value is equal, the domain expands by one unit on each side to keep the scale usable.
 
-Y-axis ticks include both exact domain endpoints. Labels automatically share a scientific exponent when the largest absolute domain value is below `0.001` or at least `1000`; the exponent is prefixed to the Y-domain end value, for example `E+03 3`. An explicit `tickFormat` continues to take precedence.
+Y-axis ticks include both exact domain endpoints. Labels automatically share a scientific exponent when the largest absolute domain value is greater than `0` and below `0.001`, or at least `1000`; the exponent is prefixed to the Y-domain end value on one line, for example `E+03 (V) 3`. Ordinary axes also show the trimmed unit on the end tick, for example `(V) 3`; other ticks show only numbers.
+
+Both ordinary and scaled values are rounded to five significant digits, then formatted with `Intl.NumberFormat('zh-CN', { maximumFractionDigits: 4 })`, removing trailing zeroes and normalizing negative zero to `0`. For example, `3.00` becomes `3`, and `1234.56` in a `[0, 9999]` domain becomes `1.2346`. Formatting does not change source data or axis domains.
+
+An explicit `tickFormat` continues to take precedence and receives raw tick values; use `.2f` to retain fixed two-decimal labels.
