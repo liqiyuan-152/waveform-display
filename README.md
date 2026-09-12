@@ -260,3 +260,16 @@ Y-axis ticks include both exact domain endpoints. Labels automatically share a s
 Both ordinary and scaled values are rounded to five significant digits, then formatted with `Intl.NumberFormat('zh-CN', { maximumFractionDigits: 4 })`, removing trailing zeroes and normalizing negative zero to `0`. For example, `3.00` becomes `3`, and `1234.56` in a `[0, 9999]` domain becomes `1.2346`. Formatting does not change source data or axis domains.
 
 An explicit `tickFormat` continues to take precedence and receives raw tick values; use `.2f` to retain fixed two-decimal labels.
+
+## Dokploy demo deployment
+
+Pushes to `main` run verification in GitHub Actions, notify Dokploy through
+the `DOKPLOY_DEPLOY_URL` Actions secret, and verify the published commit at
+`/waveform-display/version.txt`. The demo is served under `/waveform-display/`.
+
+Dokploy reads the public Git repository and uses `docker-compose.dokploy.yml`
+and `Dockerfile.dokploy`. These target the existing server runtime image
+`local/sub2api-cpa-converter:1bd8fb805d5d` and Node 22 builder. Keep that base
+image on this server. Application builds and npm publishing are unchanged.
+Build failures preserve the running version; revert a commit on `main` to
+roll back. Runtime failures require manual review; automatic rollback is not configured.
