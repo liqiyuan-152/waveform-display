@@ -425,6 +425,7 @@ export class Waveform {
         .attr('x1', 0).attr('x2', innerWidth)
         .attr('y1', zeroAxis.scale(0)).attr('y2', zeroAxis.scale(0))
         .attr('stroke', options.zeroLine.color)
+        .attr('stroke-opacity', options.zeroLine.opacity)
         .attr('stroke-width', options.zeroLine.width)
         .attr('stroke-dasharray', options.zeroLine.dash)
     }

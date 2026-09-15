@@ -45,7 +45,7 @@ export interface ValueAxisOptions extends AxisOptions { id: string }
 export interface GridAxisOptions { visible?: boolean; color?: string; width?: number; dash?: string }
 export interface ValueGridAxisOptions extends GridAxisOptions { axisId?: string }
 export interface GridOptions { visible?: boolean; color?: string; width?: number; style?: GridLineStyle; x?: GridAxisOptions; y?: ValueGridAxisOptions }
-export interface ZeroLineOptions { visible?: boolean; color?: string; width?: number; dash?: string; axisId?: string }
+export interface ZeroLineOptions { visible?: boolean; color?: string; opacity?: number; width?: number; dash?: string; axisId?: string }
 export interface TitleOptions { visible?: boolean; text?: string; align?: 'left' | 'center' | 'right'; color?: string; fontSize?: number; fontWeight?: number | string }
 export interface ShotOptions { visible?: boolean; text?: string; color?: string; fontSize?: number; fontWeight?: number | string }
 export interface ResponsiveOptions { enabled?: boolean; aspectRatio?: number; minHeight?: number; maxHeight?: number }

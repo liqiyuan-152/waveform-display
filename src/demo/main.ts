@@ -70,7 +70,7 @@ const initialOptions: WaveformOptions = resolveOptions({
     },
   ],
   grid: { style: 'dashed', color: '#475569', y: { axisId: 'left' } },
-  zeroLine: { axisId: 'left', color: '#94a3b8' },
+  zeroLine: { axisId: 'left' },
 })
 
 const app = document.querySelector<HTMLDivElement>('#app')!

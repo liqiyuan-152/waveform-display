@@ -35,7 +35,7 @@ export const defaultOptions = {
   },
   yAxes: undefined,
   grid: { visible: true, color: '#e2e8f0', width: 1, style: 'dashed', x: { visible: true }, y: { visible: true } },
-  zeroLine: { visible: true, color: '#94a3b8', width: 1, dash: '4 4' },
+  zeroLine: { visible: true, color: '#ff0000', opacity: 0.5, width: 1, dash: '4 4' },
   title: { visible: false, text: '', align: 'center', color: '#0f172a', fontSize: 16, fontWeight: 600 },
   shot: { visible: false, text: '', color: '#475569', fontSize: 11, fontWeight: 500 },
   legend: { visible: true, position: 'top-right', orientation: 'vertical', color: '#334155', fontSize: 12, itemGap: 8, lineLength: 24, maxItemWidth: 200 },

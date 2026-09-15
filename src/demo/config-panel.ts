@@ -171,6 +171,7 @@ const tabs: TabDefinition[] = [
       ] },
       { id: 'zero-line', label: '零线', fields: [
         boolean('显示零线', 'zeroLine.visible'), color('零线颜色', 'zeroLine.color'),
+        number('零线透明度', 'zeroLine.opacity', 0, 0.05, false, 1),
         number('零线宽度', 'zeroLine.width', 0, 0.1), text('零线虚线', 'zeroLine.dash'),
         select('零线参考轴', 'zeroLine.axisId', []),
       ] },

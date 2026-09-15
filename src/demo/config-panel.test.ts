@@ -83,6 +83,19 @@ describe('createConfigPanel', () => {
     return { container, onOptionsChange, onSeriesChange, onEmptyPreviewChange }
   }
 
+  it('edits zero-line opacity within its supported range', () => {
+    const { container, onOptionsChange } = setup()
+    clickButton(container, '网格')
+    clickButton(container, '零线')
+    const input = findField(container, '零线透明度').querySelector<HTMLInputElement>('input')!
+    expect(input.value).toBe('0.5')
+    expect(input.min).toBe('0')
+    expect(input.max).toBe('1')
+    fireInput(input, '0.25')
+    expect(onOptionsChange.mock.lastCall?.[0].zeroLine.opacity).toBe(0.25)
+    expect(onOptionsChange.mock.lastCall?.[0].zeroLine.color).toBe('#ff0000')
+  })
+
   it('renders accessible tabs and supports keyboard activation', () => {
     const { container } = setup()
     const tabs = Array.from(container.querySelectorAll<HTMLButtonElement>('[role="tab"]'))
