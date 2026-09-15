@@ -5,7 +5,7 @@ export const defaultOptions = {
   height: 320,
   responsive: { enabled: true, aspectRatio: 2.5, minHeight: 220, maxHeight: 600 },
   layout: { autoPadding: true },
-  padding: { top: 42, right: 72, bottom: 58, left: 72 },
+  padding: { top: 42, right: 72, bottom: 58, left: 40 },
   frame: {
     visible: true,
     borderColor: '#000000', borderWidth: 2, borderStyle: 'solid', backgroundColor: 'transparent', radius: 0,
@@ -26,12 +26,12 @@ export const defaultOptions = {
   yAxis: {
     visible: true, position: 'left', min: undefined, max: undefined, tickCount: 6, tickSize: 6, tickPadding: 2, tickFormat: '',
     color: '#000000', width: 1.3, fontSize: 11, fontColor: '#475569', label: '', unit: '',
-    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 64 },
+    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: undefined as number | undefined },
   },
   secondaryYAxis: {
     visible: false, position: 'right', min: undefined, max: undefined, tickCount: 6, tickSize: 6, tickPadding: 2, tickFormat: '',
     color: '#000000', width: 1.3, fontSize: 11, fontColor: '#475569', label: '', unit: '',
-    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: 64 },
+    title: { visible: false, text: '', unit: '', color: '#334155', fontSize: 12, fontWeight: 500, offset: undefined as number | undefined },
   },
   yAxes: undefined,
   grid: { visible: true, color: '#e2e8f0', width: 1, style: 'dashed', x: { visible: true }, y: { visible: true } },

@@ -9,6 +9,8 @@ export interface ResolvedValueAxis {
   scale: d3.ScaleLinear<number, number>
   offset: number
   footprint: number
+  titleOffset?: number
+  headerWidth?: number
 }
 
 export interface RenderContext {

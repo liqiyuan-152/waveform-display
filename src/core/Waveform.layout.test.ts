@@ -41,7 +41,7 @@ describe('Waveform horizontal padding coordination', () => {
 
     await flushLayoutChange()
 
-    expect(onLayoutChange).toHaveBeenCalledWith({ naturalPadding: { left: 78, right: 72 } })
+    expect(onLayoutChange).toHaveBeenCalledWith({ naturalPadding: { left: 54, right: 72 } })
     expect(plotLeft(container)).toBe(100)
     expect(Number(container.querySelector('.waveform-frame-border')?.getAttribute('width'))).toBe(580)
   })
@@ -61,7 +61,7 @@ describe('Waveform horizontal padding coordination', () => {
     expect(plotLeft(container)).toBe(90)
 
     chart.updateOptions({ layout: { horizontalPadding: undefined } })
-    expect(plotLeft(container)).toBe(78)
+    expect(plotLeft(container)).toBe(54)
   })
 
   it('reports initial, data, legend, and replacement-callback layout changes without reporting imposed minimums', async () => {
@@ -80,22 +80,22 @@ describe('Waveform horizontal padding coordination', () => {
     )
 
     await flushLayoutChange()
-    expect(firstCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 78, right: 96 } })
+    expect(firstCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 54, right: 96 } })
     expect(plotLeft(container)).toBe(140)
 
     container.querySelector<SVGGElement>('.waveform-legend-item')!.dispatchEvent(
       new MouseEvent('click', { bubbles: true }),
     )
     await flushLayoutChange()
-    expect(firstCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 72, right: 96 } })
+    expect(firstCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 40, right: 96 } })
 
     chart.updateOptions({ onLayoutChange: secondCallback })
     await flushLayoutChange()
-    expect(secondCallback).toHaveBeenCalledWith({ naturalPadding: { left: 72, right: 96 } })
+    expect(secondCallback).toHaveBeenCalledWith({ naturalPadding: { left: 40, right: 96 } })
 
     chart.updateData([])
     await flushLayoutChange()
-    expect(secondCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 72, right: 72 } })
+    expect(secondCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 40, right: 72 } })
   })
 
   it('rechecks layout through ResizeObserver without repeating an unchanged natural padding', async () => {
@@ -122,7 +122,7 @@ describe('Waveform horizontal padding coordination', () => {
 
     expect(onLayoutChange).toHaveBeenCalledTimes(1)
     vi.unstubAllGlobals()
-    expect(plotLeft(container)).toBe(72)
+    expect(plotLeft(container)).toBe(40)
   })
 
   it('coalesces rapid natural padding changes to the latest rendered value', async () => {
@@ -138,7 +138,7 @@ describe('Waveform horizontal padding coordination', () => {
     await flushLayoutChange()
 
     expect(onLayoutChange).toHaveBeenCalledTimes(1)
-    expect(onLayoutChange).toHaveBeenLastCalledWith({ naturalPadding: { left: 72, right: 72 } })
+    expect(onLayoutChange).toHaveBeenLastCalledWith({ naturalPadding: { left: 40, right: 72 } })
   })
 
   it('does not notify after destruction when an initial callback is pending', async () => {

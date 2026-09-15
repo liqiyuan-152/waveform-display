@@ -6,7 +6,7 @@ import { renderFrameBackground, renderFrameBorder } from '../renderer/frame'
 import { renderFrameNumber } from '../renderer/frameNumber'
 import { renderGrid } from '../renderer/grid'
 import { renderSeries } from '../renderer/series'
-import { estimateYAxisFootprint, renderAxes } from '../renderer/axes'
+import { formatYAxisHeader, measureYAxis, renderAxes } from '../renderer/axes'
 import { renderLegend } from '../renderer/legend'
 import { renderXMetadata, xMetadataWidth } from '../renderer/xMetadata'
 import { resolveXAxisTickValues } from '../renderer/xTicks'
@@ -249,7 +249,7 @@ export class Waveform {
     return [start, end]
   }
 
-  private resolveValueAxes(series: WaveformSeries[], options: ReturnType<typeof resolveOptions>) {
+  private resolveValueAxes(series: WaveformSeries[], options: ReturnType<typeof resolveOptions>, svg: RenderContext['svg']) {
     const primaryId = options.yAxes[0].id
     const axisIds = new Set(options.yAxes.map(axis => axis.id))
     const valuesByAxis = new Map(options.yAxes.map(axis => [axis.id, [] as number[]]))
@@ -262,10 +262,11 @@ export class Waveform {
     const offsets = { left: 0, right: 0 }
     return options.yAxes.map((axis) => {
       const domain = this.resolveDomain(valuesByAxis.get(axis.id) ?? [], axis.min, axis.max)
-      const footprint = estimateYAxisFootprint(axis, domain)
+      const measurement = measureYAxis(axis, domain, svg)
+      const { footprint } = measurement
       const offset = axis.visible ? offsets[axis.position] : 0
       if (axis.visible) offsets[axis.position] += footprint + VALUE_AXIS_GAP
-      return { options: axis, domain, offset, footprint }
+      return { options: axis, domain, offset, ...measurement }
     })
   }
 
@@ -375,9 +376,14 @@ export class Waveform {
       })),
       legend: { ...options.legend, visible: options.legend.visible && series.length > 1 },
     }
-    const valueAxisLayouts = this.resolveValueAxes(plottedSeries, effectiveOptions)
+    const valueAxisLayouts = this.resolveValueAxes(plottedSeries, effectiveOptions, svg)
     const naturalPadding = this.resolvePadding(effectiveOptions, valueAxisLayouts, singleChannel)
     const p = this.applyHorizontalPadding(naturalPadding, effectiveOptions.layout.horizontalPadding)
+    const headers = valueAxisLayouts.filter(axis => axis.options.visible && formatYAxisHeader(axis.options, axis.domain))
+    if (options.layout.autoPadding && headers.length) {
+      const headerHeight = Math.max(...headers.map(axis => axis.headerHeight))
+      p.top = Math.max(p.top, Math.ceil(headerHeight + 8))
+    }
     const innerWidth = Math.max(1, width - p.left - p.right)
     const innerHeight = Math.max(1, height - p.top - p.bottom)
     const points = visibleSeries.flatMap(s => s.data)

@@ -25,21 +25,16 @@ function formatExponent(exponent: number): string {
   return `E${sign}${Math.abs(exponent).toString().padStart(2, '0')}`
 }
 
-/** Formats ticks with one shared exponent, shown only on the Y-domain end tick. */
-export function formatScientificAxisTick(
-  value: number,
-  domain: [number, number],
-  topTickValue: number,
-  unit = '',
-): string {
+/** Formats numeric ticks using the shared exponent displayed in the axis header. */
+export function formatScientificAxisTick(value: number, domain: [number, number]): string {
   if (!Number.isFinite(value)) return String(value)
-
   const exponent = resolveScientificExponent(domain[0], domain[1])
-  const scaledValue = exponent === null ? value : value / 10 ** exponent
-  const valueLabel = formatAxisNumber(scaledValue)
-  if (value !== topTickValue) return valueLabel
+  return formatAxisNumber(exponent === null ? value : value / 10 ** exponent)
+}
+
+export function formatScientificAxisHeader(domain: [number, number], unit = ''): string {
+  const exponent = resolveScientificExponent(domain[0], domain[1])
   const trimmedUnit = unit.trim()
-  const unitLabel = trimmedUnit ? `(${trimmedUnit}) ` : ''
-  const exponentLabel = exponent === null ? '' : `${formatExponent(exponent)} `
-  return `${exponentLabel}${unitLabel}${valueLabel}`
+  return [exponent === null ? '' : formatExponent(exponent), trimmedUnit ? `(${trimmedUnit})` : '']
+    .filter(Boolean).join(' ')
 }

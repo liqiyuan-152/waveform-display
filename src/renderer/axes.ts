@@ -1,7 +1,8 @@
 import * as d3 from 'd3'
 import type { AxisOptions } from '../types/options'
 import type { RenderContext } from './context'
-import { formatScientificAxisTick } from './formatters'
+import { formatScientificAxisHeader, formatScientificAxisTick } from './formatters'
+import { createTextMeasurer } from './legend'
 import { yAxisTickValues } from './helpers'
 import { estimateXAxisLabelWidth, formatXAxisTick } from './xTicks'
 
@@ -39,30 +40,43 @@ function renderMultilineTickLabels(axisGroup: d3.Selection<SVGGElement, unknown,
 }
 
 export function formatYAxisTick(axis: AxisOptions, value: number, domain: [number, number]): string {
-  return axis.tickFormat
-    ? formatTick(axis, value)
-    : formatScientificAxisTick(
-        value,
-        domain,
-        domain[1],
-        axis.unit,
-      )
+  return axis.tickFormat ? formatTick(axis, value) : formatScientificAxisTick(value, domain)
+}
+
+export function formatYAxisHeader(axis: AxisOptions, domain: [number, number]): string {
+  return axis.tickFormat ? '' : formatScientificAxisHeader(domain, axis.unit)
+}
+
+export function measureYAxis(axis: AxisOptions, domain: [number, number], svg?: RenderContext['svg']) {
+  const fontSize = axis.fontSize ?? 11
+  const measurer = svg ? createTextMeasurer(svg, fontSize, 'sans-serif') : undefined
+  const measure = (label: string) => Math.max(...label.split('\n').map(line =>
+    measurer?.measure(line) ?? estimateYAxisLabelWidth(line, fontSize)))
+  try {
+    const labelWidth = Math.max(0, ...yAxisTickValues(domain, axis.tickCount ?? 6)
+      .map(value => measure(formatYAxisTick(axis, value, domain))))
+    // Ticks point into the plot, so only tick padding consumes exterior space.
+    const tickFootprint = (axis.tickPadding ?? 6) + labelWidth
+    const titleOffset = axis.title?.offset ?? tickFootprint + 12 + (axis.title?.fontSize ?? 12) / 2
+    const titleFootprint = axis.title?.visible && (axis.title.text || axis.label)
+      ? titleOffset + (axis.title.fontSize ?? 12) / 2 : 0
+    const header = formatYAxisHeader(axis, domain)
+    const headerWidth = measure(header)
+    const headerHeight = measurer?.height(header) ?? (header ? fontSize : 0)
+    return { footprint: Math.max(tickFootprint, titleFootprint, headerWidth ? headerWidth + (axis.tickPadding ?? 6) : 0), titleOffset, headerWidth, headerHeight }
+  } finally {
+    measurer?.destroy()
+  }
 }
 
 export function estimateYAxisFootprint(axis: AxisOptions, domain: [number, number]): number {
-  const labels = yAxisTickValues(domain, axis.tickCount ?? 6)
-    .map(value => formatYAxisTick(axis, value, domain))
-  const labelWidth = Math.max(0, ...labels.map(label => estimateYAxisLabelWidth(label, axis.fontSize ?? 11)))
-  const tickFootprint = (axis.tickSize ?? 6) + (axis.tickPadding ?? 6) + labelWidth
-  const titleFootprint = axis.title?.visible && (axis.title.text || axis.label)
-    ? (axis.title.offset ?? 52) + (axis.title.fontSize ?? 12) / 2
-    : 0
-  return Math.max(tickFootprint, titleFootprint)
+  return measureYAxis(axis, domain).footprint
 }
 
 function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][number]) {
   const { plot, svg, innerWidth, innerHeight, options } = ctx
   const { options: axisOptions, scale, domain, offset } = valueAxis
+  const titleOffset = valueAxis.titleOffset ?? measureYAxis(axisOptions, domain).titleOffset
   const position = axisOptions.position
   const tickValues = yAxisTickValues(domain, axisOptions.tickCount ?? 6)
   const endTickValue = domain[1]
@@ -90,11 +104,35 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
     .select('text')
     .classed('waveform-axis-y-end-value', true)
 
+  const header = formatYAxisHeader(axisOptions, domain)
+  if (header) {
+    const text = axisGroup.append('text')
+      .attr('class', 'waveform-axis-y-header')
+      .attr('data-axis-id', axisOptions.id)
+      .attr('x', (position === 'right' ? 1 : -1) * (axisOptions.tickPadding ?? 6))
+      .attr('y', -8)
+      .attr('text-anchor', position === 'right' ? 'start' : 'end')
+      .attr('fill', axisOptions.fontColor ?? '#475569')
+      .attr('font-size', axisOptions.fontSize ?? 11)
+      .text(header)
+    // Align the actual glyph bottom, including descenders, eight pixels above the plot.
+    const node = text.node()
+    if (node && typeof node.getBBox === 'function') {
+      try {
+        const bounds = node.getBBox()
+        const bottom = bounds.y + bounds.height
+        if (Number.isFinite(bottom)) text.attr('y', -16 - bottom)
+      } catch {
+        // Hidden SVGs and partial DOM implementations may not provide a bounding box.
+      }
+    }
+  }
+
   const titleText = axisOptions.title?.text || axisOptions.label
   if (axisOptions.title?.visible && titleText) {
     const xPos = position === 'right'
-      ? options.padding.left + innerWidth + offset + (axisOptions.title.offset ?? 52)
-      : options.padding.left - offset - (axisOptions.title.offset ?? 52)
+      ? options.padding.left + innerWidth + offset + titleOffset
+      : options.padding.left - offset - titleOffset
     svg.append('text')
       .attr('class', 'waveform-axis-y-title')
       .attr('data-axis-id', axisOptions.id)

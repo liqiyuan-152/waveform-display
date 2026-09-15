@@ -4,7 +4,7 @@ import type { AxisLabelOptions, ValueAxisOptions, WaveformOptions } from '../typ
 export interface ResolvedValueAxisOptions extends ValueAxisOptions {
   visible: boolean
   position: 'left' | 'right'
-  title: Required<AxisLabelOptions>
+  title: Omit<Required<AxisLabelOptions>, 'offset'> & Pick<AxisLabelOptions, 'offset'>
 }
 
 function resolveValueAxes(options: WaveformOptions): ResolvedValueAxisOptions[] {

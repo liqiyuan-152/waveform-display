@@ -94,14 +94,28 @@ function fallbackTextWidth(text: string, fontSize: number): number {
   }, 0)
 }
 
-function createTextMeasurer(svg: RenderContext['svg'], fontSize: number) {
+export function createTextMeasurer(svg: RenderContext['svg'], fontSize: number, fontFamily?: string) {
   const measurementNode = svg.append('text')
     .attr('visibility', 'hidden')
     .attr('aria-hidden', 'true')
     .attr('font-size', fontSize)
+    .attr('font-family', fontFamily ?? null)
     .node()
 
   return {
+    height(text: string): number {
+      if (!text) return 0
+      if (measurementNode && typeof measurementNode.getBBox === 'function') {
+        try {
+          measurementNode.textContent = text
+          const height = measurementNode.getBBox().height
+          if (Number.isFinite(height) && height > 0) return height
+        } catch {
+          // Fall back when the SVG is hidden or its measurement API is unavailable.
+        }
+      }
+      return fontSize
+    },
     measure(text: string): number {
       if (!text) return 0
       if (measurementNode && typeof measurementNode.getComputedTextLength === 'function') {

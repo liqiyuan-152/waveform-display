@@ -228,7 +228,7 @@ describe('Waveform frame', () => {
     const legendY = Number(legendItem.getAttribute('transform')?.match(/,([^\)]+)/)?.[1])
 
     expect(Number(title.getAttribute('y'))).toBeLessThan(legendY)
-    expect(svg.querySelector('svg > g')?.getAttribute('transform')).toBe('translate(78,64)')
+    expect(svg.querySelector('svg > g')?.getAttribute('transform')).toBe('translate(54,64)')
   })
 
   it('renders legend labels without series units', () => {

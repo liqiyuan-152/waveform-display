@@ -110,7 +110,7 @@ function axisFields(prefix: string, isX = prefix === 'xAxis'): FieldDefinition[]
     color('标题颜色', `${prefix}.title.color`),
     number('标题字号', `${prefix}.title.fontSize`, 1, 1),
     text('标题字重', `${prefix}.title.fontWeight`),
-    number('标题偏移', `${prefix}.title.offset`, 0, 1),
+    number('标题偏移', `${prefix}.title.offset`, 0, 1, !isX),
   ]
 }
 
