@@ -3,11 +3,11 @@ import { formatScientificAxisHeader, formatScientificAxisTick, resolveScientific
 
 describe('Y-axis scientific formatting', () => {
   it('formats independent headers with trimmed units and shared exponents', () => {
-    expect(formatScientificAxisHeader([0, 3], ' V ')).toBe('(V)')
+    expect(formatScientificAxisHeader([0, 3], ' V ')).toBe('V')
     expect(formatScientificAxisHeader([0, 3], '  ')).toBe('')
-    expect(formatScientificAxisHeader([0, 3000], 'V')).toBe('E+03 (V)')
+    expect(formatScientificAxisHeader([0, 3000], 'V')).toBe('V E+03')
     expect(formatScientificAxisHeader([0, 3000])).toBe('E+03')
-    expect(formatScientificAxisHeader([0, 0.0003], 'V')).toBe('E-04 (V)')
+    expect(formatScientificAxisHeader([0, 0.0003], 'V')).toBe('V E-04')
     expect(formatScientificAxisHeader([-100000, -3000])).toBe('E+05')
     expect(formatScientificAxisHeader([-1000, 0])).toBe('E+03')
   })

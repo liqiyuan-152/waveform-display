@@ -250,7 +250,7 @@ describe('Waveform axes', () => {
     expect(svg.querySelector('.waveform-axis-y--right .tick text')?.getAttribute('x')).toBe('2')
   })
 
-  it('places default titles 12 pixels outside tick labels and honors explicit offsets', () => {
+  it('shifts the default left title ten pixels right and honors explicit offsets', () => {
     const data: WaveformData = [
       { name: 'left', data: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
       { name: 'right', yAxis: 'right', data: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
@@ -264,7 +264,7 @@ describe('Waveform axes', () => {
     const leftTitleX = translateX(defaults.querySelector('.waveform-axis-y-title[data-axis-id="left"]')!)
     const rightTitleX = translateX(defaults.querySelector('.waveform-axis-y-title[data-axis-id="right"]')!)
 
-    expect(plotX - leftTitleX - 6 - (2 + 3 * 11 * 0.6)).toBeCloseTo(12)
+    expect(plotX - leftTitleX - 6 - (2 + 3 * 11 * 0.6)).toBeCloseTo(2)
     expect(rightTitleX - (plotX + innerWidth) - 6 - (2 + 3 * 11 * 0.6)).toBeCloseTo(12)
 
     const explicit = render(data, {
@@ -472,8 +472,8 @@ describe('Waveform axes', () => {
     const rightLabels = labels(svg, '.waveform-axis-y--right')
     expect(leftLabels[leftLabels.length - 1]).toBe('3')
     expect(rightLabels[rightLabels.length - 1]).toBe('3')
-    expect(svg.querySelector('.waveform-axis-y--left .waveform-axis-y-header')?.textContent).toBe('E+03 (A)')
-    expect(svg.querySelector('.waveform-axis-y--right .waveform-axis-y-header')?.textContent).toBe('E-04 (V)')
+    expect(svg.querySelector('.waveform-axis-y--left .waveform-axis-y-header')?.textContent).toBe('A E+03')
+    expect(svg.querySelector('.waveform-axis-y--right .waveform-axis-y-header')?.textContent).toBe('E-04 V')
   })
 
   it('keeps an explicit Y-axis tick formatter authoritative', () => {
@@ -509,25 +509,25 @@ describe('Waveform axes', () => {
     })
     const endLabel = () => container.querySelector('.waveform-axis-y-header')!
     const plotWidth = () => Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))
-    expect(endLabel().textContent).toBe('(V)')
+    expect(endLabel().textContent).toBe('V')
     const ordinaryWidth = plotWidth()
 
     chart.updateData([{ x: 0, y: 1000 }, { x: 1, y: 3000 }])
-    expect(endLabel().textContent).toBe('E+03 (V)')
+    expect(endLabel().textContent).toBe('V E+03')
     const scientificWidth = plotWidth()
-    expect(scientificWidth).toBeLessThan(ordinaryWidth)
+    expect(scientificWidth).toBe(ordinaryWidth)
 
     chart.updateOptions({ yAxis: { unit: ' millivolts / second ' } })
-    expect(endLabel().textContent).toBe('E+03 (millivolts / second)')
-    expect(plotWidth()).toBeLessThan(scientificWidth)
+    expect(endLabel().textContent).toBe('millivolts / second E+03')
+    expect(plotWidth()).toBe(scientificWidth)
     expect(plotWidth()).toBeGreaterThan(0)
     expect(endLabel().querySelector('tspan')).toBeNull()
 
     chart.updateData([{ x: 0, y: 0.0001 }, { x: 1, y: 0.0003 }])
-    expect(endLabel().textContent).toBe('E-04 (millivolts / second)')
+    expect(endLabel().textContent).toBe('millivolts / second E-04')
     chart.updateOptions({ yAxis: { unit: 'V' } })
     chart.updateData([{ x: 0, y: 0 }, { x: 1, y: 3 }])
-    expect(endLabel().textContent).toBe('(V)')
+    expect(endLabel().textContent).toBe('V')
     expect(plotWidth()).toBe(ordinaryWidth)
     chart.destroy()
   })

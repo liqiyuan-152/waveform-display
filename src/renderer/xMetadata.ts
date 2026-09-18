@@ -50,8 +50,14 @@ export function renderXMetadata(ctx: RenderContext) {
   if (!title && !shot) return
 
   const laneWidth = xMetadataWidth(options)
-  const x = options.padding.left + ctx.innerWidth + rightContentExtent(ctx) +
-    options.xAxis.title.offset + laneWidth / 2
+  const preferredX = options.padding.left + ctx.innerWidth + rightContentExtent(ctx) +
+    options.xAxis.title.offset + laneWidth / 2 - 10
+  const rightTickExtent = Math.max(0, ...ctx.yAxes
+    .filter(axis => axis.options.visible && axis.options.position === 'right')
+    .map(axis => axis.offset + (axis.tickFootprint ?? axis.footprint)))
+  const x = rightTickExtent
+    ? Math.max(preferredX, options.padding.left + ctx.innerWidth + rightTickExtent + laneWidth / 2 + 4)
+    : preferredX
   const availableLength = Math.max(
     1,
     (innerHeight - EDGE_INSET * 2 - (title && shot ? MIDDLE_GAP : 0)) / (title && shot ? 2 : 1),

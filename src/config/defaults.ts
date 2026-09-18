@@ -5,7 +5,7 @@ export const defaultOptions = {
   height: 320,
   responsive: { enabled: true, aspectRatio: 2.5, minHeight: 220, maxHeight: 600 },
   layout: { autoPadding: true },
-  padding: { top: 42, right: 72, bottom: 58, left: 40 },
+  padding: { top: 42, right: 0, bottom: 58, left: 0 },
   frame: {
     visible: true,
     borderColor: '#000000', borderWidth: 2, borderStyle: 'solid', backgroundColor: 'transparent', radius: 0,

@@ -10,7 +10,10 @@ export interface ResolvedValueAxis {
   offset: number
   footprint: number
   titleOffset?: number
+  tickFootprint?: number
   headerWidth?: number
+  headerLeft?: number
+  headerRight?: number
 }
 
 export interface RenderContext {

@@ -202,7 +202,18 @@ export function renderLegend(ctx: RenderContext, legendSeries: LegendSeries[], o
   const isBottom = options.legend.position.includes('bottom')
   const horizontal = options.legend.orientation === 'horizontal'
   const group = svg.append('g').attr('class', 'waveform-legend')
-  const availableWidth = Math.max(0, width - p.left - p.right)
+  // Left headers extend rightward from the outer tick-label edge.
+  const headerInset = !isBottom && horizontal
+    ? Math.max(0, ...ctx.yAxes
+      .filter(axis => axis.options.visible && axis.options.position === 'left' && axis.headerWidth)
+      .map(axis => (axis.headerRight ?? (axis.headerWidth ?? 0) - (axis.tickFootprint ?? axis.footprint)) - axis.offset + 8))
+    : 0
+  const rightHeaderInset = !isBottom && horizontal
+    ? Math.max(0, ...ctx.yAxes
+      .filter(axis => axis.options.visible && axis.options.position === 'right' && axis.headerWidth)
+      .map(axis => -(axis.headerLeft ?? (axis.tickFootprint ?? axis.footprint) - (axis.headerWidth ?? 0)) - axis.offset + 8))
+    : 0
+  const availableWidth = Math.max(0, width - p.left - p.right - headerInset - rightHeaderInset)
   const { labels, fittedLabels, itemWidths, rows } = resolveLegendLayout(
     svg,
     legendSeries.map(item => item.series),
@@ -217,7 +228,7 @@ export function renderLegend(ctx: RenderContext, legendSeries: LegendSeries[], o
     const firstRowY = isBottom ? height - 18 - (rows.length - 1) * rowStep : topY
 
     rows.forEach((row, rowIndex) => {
-      let cursorX = isRight ? width - p.right - row.width : p.left
+      let cursorX = isRight ? width - p.right - rightHeaderInset - row.width : p.left + headerInset
       const cursorY = firstRowY + rowIndex * rowStep
       row.items.forEach((item) => {
         positions[item.index] = { x: cursorX, y: cursorY }

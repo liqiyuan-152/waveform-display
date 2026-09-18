@@ -27,6 +27,24 @@ function createChart(options: WaveformOptions = {}) {
 }
 
 describe('Waveform typography', () => {
+  it('keeps the metadata lane clear of right ticks when the right title is hidden at runtime', () => {
+    const { chart, container } = createChart({
+      legend: { visible: false },
+      secondaryYAxis: { visible: true, title: { visible: true, text: 'Right' } },
+      shot: { visible: true, text: '#10001', fontSize: 14 },
+      xAxis: { title: { visible: true, text: 'Time', fontSize: 14 } },
+    })
+    chart.updateOptions({ secondaryYAxis: { title: { visible: false } } })
+    const plotLeft = Number(container.querySelector('svg > g')!.getAttribute('transform')!.match(/translate\(([\d.]+)/)![1])
+    const plotRight = plotLeft + Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))
+    const tickRight = plotRight + 2 + 3 * 11 * 0.6
+    for (const selector of ['.waveform-shot', '.waveform-axis-x-title']) {
+      const text = container.querySelector(selector)!
+      expect(Number(text.getAttribute('x')) - 7).toBeGreaterThanOrEqual(tickRight + 4)
+    }
+    chart.destroy()
+  })
+
   it('applies independent font sizes to axes, axis titles, legend, and chart title', () => {
     const { svg } = createChart({
       xAxis: { fontSize: 13, showEndValues: true, title: { visible: true, text: 'Time', fontSize: 17 } },
@@ -112,7 +130,7 @@ describe('Waveform typography', () => {
     const plainFrame = withoutMetadata.querySelector('.waveform-frame-border')!
     const metadataFrame = withMetadata.querySelector('.waveform-frame-border')!
 
-    expect(Number(plainFrame.getAttribute('width')) - Number(metadataFrame.getAttribute('width'))).toBe(23)
+    expect(Number(plainFrame.getAttribute('width')) - Number(metadataFrame.getAttribute('width'))).toBe(29)
     expect(metadataFrame.getAttribute('height')).toBe(plainFrame.getAttribute('height'))
   })
 

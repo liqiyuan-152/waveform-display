@@ -44,7 +44,7 @@ export function formatYAxisTick(axis: AxisOptions, value: number, domain: [numbe
 }
 
 export function formatYAxisHeader(axis: AxisOptions, domain: [number, number]): string {
-  return axis.tickFormat ? '' : formatScientificAxisHeader(domain, axis.unit)
+  return axis.tickFormat ? '' : formatScientificAxisHeader(domain, axis.unit, axis.position !== 'right')
 }
 
 export function measureYAxis(axis: AxisOptions, domain: [number, number], svg?: RenderContext['svg']) {
@@ -63,7 +63,7 @@ export function measureYAxis(axis: AxisOptions, domain: [number, number], svg?: 
     const header = formatYAxisHeader(axis, domain)
     const headerWidth = measure(header)
     const headerHeight = measurer?.height(header) ?? (header ? fontSize : 0)
-    return { footprint: Math.max(tickFootprint, titleFootprint, headerWidth ? headerWidth + (axis.tickPadding ?? 6) : 0), titleOffset, headerWidth, headerHeight }
+    return { footprint: Math.max(tickFootprint, titleFootprint), titleOffset, headerWidth, headerHeight, tickFootprint }
   } finally {
     measurer?.destroy()
   }
@@ -109,17 +109,35 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
     const text = axisGroup.append('text')
       .attr('class', 'waveform-axis-y-header')
       .attr('data-axis-id', axisOptions.id)
-      .attr('x', (position === 'right' ? 1 : -1) * (axisOptions.tickPadding ?? 6))
+      .attr('x', (position === 'right' ? 1 : -1) * (valueAxis.tickFootprint ?? measureYAxis(axisOptions, domain, svg).tickFootprint))
       .attr('y', -8)
-      .attr('text-anchor', position === 'right' ? 'start' : 'end')
+      .attr('text-anchor', position === 'right' ? 'end' : 'start')
       .attr('fill', axisOptions.fontColor ?? '#475569')
       .attr('font-size', axisOptions.fontSize ?? 11)
       .text(header)
     // Align the actual glyph bottom, including descenders, eight pixels above the plot.
     const node = text.node()
+    valueAxis.headerRight = Number(text.attr('x')) + (position === 'left' ? valueAxis.headerWidth ?? 0 : 0)
+    valueAxis.headerLeft = valueAxis.headerRight - (valueAxis.headerWidth ?? 0)
     if (node && typeof node.getBBox === 'function') {
       try {
         const bounds = node.getBBox()
+        if (Number.isFinite(bounds.x) && Number.isFinite(bounds.width) && bounds.width > 0) {
+          const ticks = axisGroup.selectAll<SVGTextElement, unknown>('.tick text').nodes()
+          const leftEdges = ticks.map(tick => {
+            const box = tick.getBBox()
+            const group = tick.parentNode as SVGGElement
+            const translateX = group.transform?.baseVal.consolidate()?.matrix.e ?? 0
+            return box.width > 0 && Number.isFinite(box.x) && Number.isFinite(box.width)
+              ? box.x + translateX + (position === 'right' ? box.width : 0) : Number.NaN
+          })
+          if (leftEdges.length && leftEdges.every(Number.isFinite)) {
+            const left = position === 'left' ? Math.min(...leftEdges) : Math.max(...leftEdges) - bounds.width
+            text.attr('x', Number(text.attr('x')) + left - bounds.x)
+            valueAxis.headerRight = left + bounds.width
+            valueAxis.headerLeft = left
+          }
+        }
         const bottom = bounds.y + bounds.height
         if (Number.isFinite(bottom)) text.attr('y', -16 - bottom)
       } catch {
@@ -132,7 +150,7 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
   if (axisOptions.title?.visible && titleText) {
     const xPos = position === 'right'
       ? options.padding.left + innerWidth + offset + titleOffset
-      : options.padding.left - offset - titleOffset
+      : options.padding.left - offset - titleOffset + (axisOptions.title.offset === undefined ? 10 : 0)
     svg.append('text')
       .attr('class', 'waveform-axis-y-title')
       .attr('data-axis-id', axisOptions.id)

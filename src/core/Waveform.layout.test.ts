@@ -25,6 +25,66 @@ afterEach(() => {
 })
 
 describe('Waveform horizontal padding coordination', () => {
+  it('limits right-side reclamation to visible content and respects imposed minimums', async () => {
+    const onLayoutChange = vi.fn<(layout: WaveformLayoutChange) => void>()
+    const { chart, container } = createChart(points, {
+      yAxis: { position: 'right', unit: 'a long unit', title: { visible: false } },
+      onLayoutChange,
+    })
+    await flushLayoutChange()
+    // 2px tick padding plus 19.8px labels, rounded up; no header-width reservation.
+    expect(onLayoutChange).toHaveBeenLastCalledWith({ naturalPadding: { left: 0, right: 22 } })
+    expect(Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))).toBe(778)
+    chart.updateOptions({ padding: { right: 60 }, layout: { horizontalPadding: { right: 80 } } })
+    await flushLayoutChange()
+    expect(onLayoutChange).toHaveBeenLastCalledWith({ naturalPadding: { left: 0, right: 60 } })
+    expect(Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))).toBe(720)
+    chart.destroy()
+  })
+
+  it.each(['left', 'right'] as const)('reclaims %s title space on initial render and runtime updates', async (position) => {
+    const onLayoutChange = vi.fn<(layout: WaveformLayoutChange) => void>()
+    const data = [{ name: 'First', data: points }, { name: 'Second', data: points }]
+    const options: WaveformOptions = {
+      legend: { visible: false },
+      yAxes: [{ id: 'value', position, title: { visible: true, text: 'Value' } }],
+      onLayoutChange,
+    }
+    const { chart, container } = createChart(data, options)
+    const frameWidth = () => Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))
+    const shownWidth = frameWidth()
+    await flushLayoutChange()
+    const shownPadding = onLayoutChange.mock.lastCall![0].naturalPadding[position]
+    const hiddenAxes = [{ id: 'value', position, title: { visible: false, text: 'Value' } }]
+    chart.updateOptions({ yAxes: hiddenAxes })
+    await flushLayoutChange()
+    expect(container.querySelector('.waveform-axis-y-title')).toBeNull()
+    expect(frameWidth()).toBeGreaterThan(shownWidth)
+    expect(onLayoutChange.mock.lastCall![0].naturalPadding[position]).toBeLessThan(shownPadding)
+    const initiallyHidden = createChart(data, { ...options, yAxes: hiddenAxes })
+    expect(plotLeft(container)).toBe(plotLeft(initiallyHidden.container))
+    expect(frameWidth()).toBe(Number(initiallyHidden.container.querySelector('.waveform-frame-border')!.getAttribute('width')))
+    chart.updateOptions({ yAxes: options.yAxes })
+    expect(frameWidth()).toBe(shownWidth)
+    expect(container.querySelector('.waveform-axis-y-title')).not.toBeNull()
+    chart.destroy()
+    initiallyHidden.chart.destroy()
+  })
+
+  it('preserves explicit padding minimums when titles are hidden and honors manual layout', () => {
+    const { chart, container } = createChart(
+      [{ name: 'First', data: points }, { name: 'Second', data: points }],
+      { legend: { visible: false }, padding: { left: 100, right: 110 } },
+    )
+    chart.updateOptions({ yAxis: { title: { visible: false } } })
+    expect(plotLeft(container)).toBe(100)
+    expect(Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))).toBe(590)
+    chart.updateOptions({ layout: { autoPadding: false }, padding: { left: 5, right: 7 } })
+    expect(plotLeft(container)).toBe(5)
+    expect(Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))).toBe(788)
+    chart.destroy()
+  })
+
   it('applies horizontal padding after natural measurement without changing the reported values', async () => {
     const onLayoutChange = vi.fn<(layout: WaveformLayoutChange) => void>()
     const { container } = createChart(
@@ -41,7 +101,7 @@ describe('Waveform horizontal padding coordination', () => {
 
     await flushLayoutChange()
 
-    expect(onLayoutChange).toHaveBeenCalledWith({ naturalPadding: { left: 54, right: 72 } })
+    expect(onLayoutChange).toHaveBeenCalledWith({ naturalPadding: { left: 48, right: 0 } })
     expect(plotLeft(container)).toBe(100)
     expect(Number(container.querySelector('.waveform-frame-border')?.getAttribute('width'))).toBe(580)
   })
@@ -61,7 +121,7 @@ describe('Waveform horizontal padding coordination', () => {
     expect(plotLeft(container)).toBe(90)
 
     chart.updateOptions({ layout: { horizontalPadding: undefined } })
-    expect(plotLeft(container)).toBe(54)
+    expect(plotLeft(container)).toBe(48)
   })
 
   it('reports initial, data, legend, and replacement-callback layout changes without reporting imposed minimums', async () => {
@@ -80,22 +140,22 @@ describe('Waveform horizontal padding coordination', () => {
     )
 
     await flushLayoutChange()
-    expect(firstCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 54, right: 96 } })
+    expect(firstCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 48, right: 96 } })
     expect(plotLeft(container)).toBe(140)
 
     container.querySelector<SVGGElement>('.waveform-legend-item')!.dispatchEvent(
       new MouseEvent('click', { bubbles: true }),
     )
     await flushLayoutChange()
-    expect(firstCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 40, right: 96 } })
+    expect(firstCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 0, right: 96 } })
 
     chart.updateOptions({ onLayoutChange: secondCallback })
     await flushLayoutChange()
-    expect(secondCallback).toHaveBeenCalledWith({ naturalPadding: { left: 40, right: 96 } })
+    expect(secondCallback).toHaveBeenCalledWith({ naturalPadding: { left: 0, right: 96 } })
 
     chart.updateData([])
     await flushLayoutChange()
-    expect(secondCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 40, right: 72 } })
+    expect(secondCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 0, right: 0 } })
   })
 
   it('rechecks layout through ResizeObserver without repeating an unchanged natural padding', async () => {
@@ -122,7 +182,7 @@ describe('Waveform horizontal padding coordination', () => {
 
     expect(onLayoutChange).toHaveBeenCalledTimes(1)
     vi.unstubAllGlobals()
-    expect(plotLeft(container)).toBe(40)
+    expect(plotLeft(container)).toBe(24)
   })
 
   it('coalesces rapid natural padding changes to the latest rendered value', async () => {
@@ -138,7 +198,7 @@ describe('Waveform horizontal padding coordination', () => {
     await flushLayoutChange()
 
     expect(onLayoutChange).toHaveBeenCalledTimes(1)
-    expect(onLayoutChange).toHaveBeenLastCalledWith({ naturalPadding: { left: 40, right: 72 } })
+    expect(onLayoutChange).toHaveBeenLastCalledWith({ naturalPadding: { left: 24, right: 0 } })
   })
 
   it('does not notify after destruction when an initial callback is pending', async () => {

@@ -194,8 +194,8 @@ export class Waveform {
     const rightExtent = Math.max(0, ...valueAxes
       .filter(axis => axis.options.visible && axis.options.position === 'right')
       .map(axis => axis.offset + axis.footprint))
-    if (leftExtent) p.left = Math.max(p.left, Math.ceil(leftExtent + 8))
-    if (rightExtent) p.right = Math.max(p.right, Math.ceil(rightExtent + 8))
+    if (leftExtent) p.left = Math.max(p.left, Math.ceil(leftExtent + 2))
+    if (rightExtent) p.right = Math.max(p.right, Math.ceil(rightExtent + 2))
     const rightLegendExtent = options.legend.visible && options.legend.orientation === 'vertical' && options.legend.position.includes('right')
       ? 96
       : 0
@@ -211,6 +211,11 @@ export class Waveform {
       if (options.legend.position.includes('right')) p.right = Math.max(p.right, 96)
       else p.left = Math.max(p.left, 96)
     }
+
+    // Reclaim up to ten pixels, but never move visible exterior content out of the SVG.
+    const requiredRight = Math.max(rightExtent, rightLegendExtent)
+      + (metadataWidth ? options.xAxis.title.offset + metadataWidth : 0)
+    p.right = Math.max(options.padding.right, Math.ceil(requiredRight), p.right - 10)
 
     const hasTitle = options.title.visible && Boolean(options.title.text)
     if (hasTitle) p.top = Math.max(p.top, 42)

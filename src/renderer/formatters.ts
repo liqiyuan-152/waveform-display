@@ -32,9 +32,9 @@ export function formatScientificAxisTick(value: number, domain: [number, number]
   return formatAxisNumber(exponent === null ? value : value / 10 ** exponent)
 }
 
-export function formatScientificAxisHeader(domain: [number, number], unit = ''): string {
+export function formatScientificAxisHeader(domain: [number, number], unit = '', unitFirst = true): string {
   const exponent = resolveScientificExponent(domain[0], domain[1])
   const trimmedUnit = unit.trim()
-  return [exponent === null ? '' : formatExponent(exponent), trimmedUnit ? `(${trimmedUnit})` : '']
-    .filter(Boolean).join(' ')
+  const parts = [trimmedUnit, exponent === null ? '' : formatExponent(exponent)]
+  return (unitFirst ? parts : parts.reverse()).filter(Boolean).join(' ')
 }

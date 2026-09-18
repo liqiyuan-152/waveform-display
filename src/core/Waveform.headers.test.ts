@@ -1,10 +1,14 @@
 // @vitest-environment jsdom
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { Waveform } from './Waveform'
 import type { WaveformData } from '../types/data'
 import type { WaveformOptions } from '../types/options'
 
-afterEach(() => document.body.replaceChildren())
+afterEach(() => {
+  document.body.replaceChildren()
+  vi.restoreAllMocks()
+  Reflect.deleteProperty(SVGElement.prototype, 'getBBox')
+})
 
 function setup(data: WaveformData, options: WaveformOptions = {}) {
   const container = document.createElement('div')
@@ -18,7 +22,49 @@ function translation(node: Element): number[] {
 }
 
 describe('axis headers and zero-line defaults', () => {
-  it('aligns headers with the tick labels of visible axes and omits empty or custom-formatted headers', () => {
+  it.each(['left', 'right'] as const)('aligns actual %s glyph bounds and avoids the legend through updates', (position) => {
+    Object.defineProperty(SVGElement.prototype, 'getBBox', {
+      configurable: true,
+      value() { return { x: 0, y: 0, width: 0, height: 0 } },
+    })
+    const bbox = vi.spyOn(SVGElement.prototype as SVGElement & { getBBox: () => DOMRect }, 'getBBox')
+      .mockImplementation(function (this: SVGElement) {
+        const size = Number(this.getAttribute('font-size') || 11)
+        const width = (this.textContent?.length ?? 0) * size * 0.6
+        const x = Number(this.getAttribute('x') || 0)
+        return { x: this.closest('.tick') ? x - width : x + 2, y: -size, width, height: size } as DOMRect
+      })
+    const { chart, container } = setup([
+      { name: 'First', data: [{ x: 0, y: -3000 }, { x: 1, y: 1 }] },
+      { name: 'Second', data: [{ x: 0, y: -100 }, { x: 1, y: 3 }] },
+    ], { yAxis: { unit: 'ms', position }, legend: { orientation: 'horizontal', position: position === 'left' ? 'top-left' : 'top-right' } })
+    const verify = () => {
+      const header = container.querySelector<SVGGraphicsElement>('.waveform-axis-y-header')!
+      const boxes = Array.from(container.querySelectorAll<SVGGraphicsElement>('.waveform-axis-y .tick text'), tick => tick.getBBox())
+      const edge = position === 'left' ? Math.min(...boxes.map(box => box.x)) : Math.max(...boxes.map(box => box.x + box.width))
+      expect(header.getBBox().x + (position === 'right' ? header.getBBox().width : 0)).toBeCloseTo(edge)
+      const plotX = translation(container.querySelector('svg > g')!)[0]
+      if (position === 'left') {
+        expect(translation(container.querySelector('.waveform-legend-item')!)[0])
+          .toBeGreaterThanOrEqual(plotX + header.getBBox().x + header.getBBox().width + 8)
+      } else {
+        expect(header.getAttribute('text-anchor')).toBe('end')
+      }
+    }
+    verify()
+    chart.updateOptions({ yAxis: { unit: 'volts', fontSize: 20 } })
+    chart.updateData([{ name: 'First', data: [{ x: 0, y: -0.0001 }, { x: 1, y: 0.0003 }] }, { name: 'Second', data: [{ x: 0, y: 0 }] }])
+    verify()
+    expect(container.querySelector('.waveform-axis-y-header')?.textContent).toBe(position === 'left' ? 'volts E-04' : 'E-04 volts')
+    bbox.mockImplementation(() => { throw new Error('Measurement unavailable') })
+    expect(() => chart.updateOptions({ yAxis: { fontSize: 12 } })).not.toThrow()
+    expect(container.querySelector('.waveform-axis-y-header')?.getAttribute('x')).not.toBe('NaN')
+    chart.destroy()
+    bbox.mockRestore()
+    Reflect.deleteProperty(SVGElement.prototype, 'getBBox')
+  })
+
+  it('aligns left headers to the outer tick-label edge and right headers to the axis and omits empty or custom-formatted headers', () => {
     const data = [
       { yAxis: 'a', data: [{ x: 0, y: -3000 }, { x: 1, y: 0 }] },
       { yAxis: 'b', data: [{ x: 0, y: 0.0001 }, { x: 1, y: 0.0003 }] },
@@ -31,18 +77,18 @@ describe('axis headers and zero-line defaults', () => {
       ],
     })
     const headers = Array.from(svg.querySelectorAll('.waveform-axis-y-header'))
-    expect(headers.map(node => node.textContent)).toEqual(['E+03 (A)', 'E-04 (V)'])
+    expect(headers.map(node => node.textContent)).toEqual(['A E+03', 'E-04 V'])
     for (const header of headers) {
-      expect(header.getAttribute('x')).toBe(header.parentElement?.querySelector('.tick text')?.getAttribute('x'))
+      expect(Number(header.getAttribute('x'))).toBeCloseTo(header.getAttribute('data-axis-id') === 'a' ? -31.4 : 28.8)
       expect(header.getAttribute('y')).toBe('-8')
-      expect(header.getAttribute('text-anchor')).toBe(header.parentElement?.getAttribute('text-anchor'))
+      expect(header.getAttribute('text-anchor')).toBe(header.getAttribute('data-axis-id') === 'a' ? 'start' : 'end')
       expect(header.parentElement?.getAttribute('data-axis-id')).toBe(header.getAttribute('data-axis-id'))
     }
     expect(setup([{ x: 0, y: 0 }, { x: 1, y: 3 }]).svg.querySelector('.waveform-axis-y-header')).toBeNull()
     expect(setup(data, { yAxis: { unit: 'V', tickFormat: '.2f' } }).svg.querySelector('.waveform-axis-y-header')).toBeNull()
   })
 
-  it('reserves full outer header widths without expanding narrow charts or adding a legend row', () => {
+  it('keeps left labels near the edge while reserving right headers and avoiding the legend', () => {
     const unit = 'millivolts / second'
     const { svg } = setup([
       { name: 'First long channel', yAxis: 'left', data: [{ x: 0, y: 0 }, { x: 1, y: 3000 }] },
@@ -58,18 +104,21 @@ describe('axis headers and zero-line defaults', () => {
     const [plotX, plotY] = translation(svg.querySelector('svg > g')!)
     const innerWidth = Number(svg.querySelector('.waveform-frame-border')!.getAttribute('width'))
     const width = Number(svg.getAttribute('viewBox')!.split(' ')[2])
-    const headerWidth = 'E+03 (millivolts / second)'.split('').reduce((sum, char) => sum + 11 * (char === ' ' ? 0.33 : 0.6), 0)
+    const headerWidth = 'millivolts / second E+03'.split('').reduce((sum, char) => sum + 11 * (char === ' ' ? 0.33 : 0.6), 0)
     expect(width).toBe(420)
     expect(svg.getAttribute('width')).toBe('100%')
-    expect(plotX).toBeGreaterThanOrEqual(headerWidth + 2 + 8)
-    expect(width - plotX - innerWidth).toBeGreaterThanOrEqual(headerWidth + 2 + 8)
+    expect(plotX).toBeLessThan(headerWidth)
+    expect(width - plotX - innerWidth).toBeLessThan(headerWidth)
     expect(plotY).toBe(64)
     const legendRows = Array.from(svg.querySelectorAll('.waveform-legend-item'), node => translation(node)[1])
-    expect(legendRows).toEqual([46, 76])
+    expect(legendRows[0]).toBe(46)
+    const firstLegendX = translation(svg.querySelector('.waveform-legend-item')!)[0]
+    const leftHeaderX = Number(svg.querySelector('.waveform-axis-y--left .waveform-axis-y-header')!.getAttribute('x'))
+    expect(firstLegendX).toBeGreaterThanOrEqual(plotX + leftHeaderX + headerWidth + 8)
     expect(Number(svg.querySelector('.waveform-frame-border')!.getAttribute('height'))).toBeGreaterThan(0)
   })
 
-  it('adds only missing header height and keeps legend positions stable through updates', () => {
+  it('adds only missing header height and shifts the legend clear of changing headers', () => {
     const { chart, container } = setup([
       { name: 'First', data: [{ x: 0, y: 0 }, { x: 1, y: 3 }] },
       { name: 'Second', data: [{ x: 0, y: 0 }, { x: 1, y: 3 }] },
@@ -79,20 +128,20 @@ describe('axis headers and zero-line defaults', () => {
       legend: { orientation: 'horizontal', position: 'top-left' },
     })
     const plotY = () => translation(container.querySelector('svg > g')!)[1]
-    const legendPositions = () => Array.from(container.querySelectorAll('.waveform-legend-item'), node => node.getAttribute('transform'))
-    const initialPositions = legendPositions()
+    const legendX = () => translation(container.querySelector('.waveform-legend-item')!)[0]
+    const initialX = legendX()
     expect(plotY()).toBe(28)
     chart.updateOptions({ yAxis: { unit: 'millivolts / second' } })
     expect(plotY()).toBe(28)
-    expect(legendPositions()).toEqual(initialPositions)
-    expect(container.querySelector('.waveform-axis-y-header')?.getAttribute('text-anchor')).toBe('end')
+    expect(legendX()).toBeGreaterThan(initialX)
+    expect(container.querySelector('.waveform-axis-y-header')?.getAttribute('text-anchor')).toBe('start')
     chart.updateOptions({ padding: { top: 32 }, yAxis: { fontSize: 11 } })
     expect(plotY()).toBe(32)
-    expect(legendPositions()).toEqual(initialPositions)
+    expect(legendX()).toBeGreaterThan(initialX)
     chart.updateOptions({ yAxis: { tickFormat: '.2f' } })
     expect(container.querySelector('.waveform-axis-y-header')).toBeNull()
     expect(plotY()).toBe(32)
-    expect(legendPositions()).toEqual(initialPositions)
+    expect(legendX()).toBe(300)
     chart.destroy()
   })
 
