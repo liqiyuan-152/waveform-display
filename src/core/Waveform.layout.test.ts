@@ -25,6 +25,47 @@ afterEach(() => {
 })
 
 describe('Waveform horizontal padding coordination', () => {
+  it.each(['left', 'right'] as const)('measures rounded %s labels and preserves coordinated padding across notation updates', async (position) => {
+    const onLayoutChange = vi.fn<(layout: WaveformLayoutChange) => void>()
+    const { chart, container } = createChart([{ x: 0, y: 0 }, { x: 1, y: 7.9999 }], {
+      padding: { left: 0, right: 0 },
+      yAxis: { position, unit: 'V', tickCount: 2 },
+      onLayoutChange,
+    })
+    const labels = () => Array.from(container.querySelectorAll('.waveform-axis-y .tick text'), node => node.textContent)
+    const frameWidth = () => Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))
+    expect(labels()).toEqual(['0', '8'])
+    await flushLayoutChange()
+    const naturalPadding = { ...onLayoutChange.mock.lastCall![0].naturalPadding }
+    const naturalWidth = frameWidth()
+    // The header uses the same measured one-character labels as the rendered ticks.
+    expect(Number(container.querySelector('.waveform-axis-y-header')!.getAttribute('x')))
+      .toBeCloseTo((position === 'left' ? -1 : 1) * (2 + 11 * 0.6))
+
+    chart.updateOptions({ layout: { horizontalPadding: { left: 100, right: 100 } } })
+    await flushLayoutChange()
+    expect(plotLeft(container)).toBe(100)
+    expect(frameWidth()).toBe(600)
+    expect(onLayoutChange.mock.lastCall![0].naturalPadding).toEqual(naturalPadding)
+
+    for (const [max, header] of [[7999.9, 'E+03'], [0.00079999, 'E-04']] as const) {
+      chart.updateData([{ x: 0, y: 0 }, { x: 1, y: max }])
+      await flushLayoutChange()
+      expect(labels()).toEqual(['0', '8'])
+      expect(container.querySelector('.waveform-axis-y-header')?.textContent)
+        .toBe(position === 'left' ? `V ${header}` : `${header} V`)
+      expect(onLayoutChange.mock.lastCall![0].naturalPadding).toEqual(naturalPadding)
+      expect(plotLeft(container)).toBe(100)
+      expect(frameWidth()).toBe(600)
+    }
+    chart.updateOptions({ layout: { horizontalPadding: undefined } })
+    expect(frameWidth()).toBe(naturalWidth)
+    chart.updateOptions({ layout: { autoPadding: false }, padding: { left: 5, right: 7 } })
+    expect(plotLeft(container)).toBe(5)
+    expect(frameWidth()).toBe(788)
+    chart.destroy()
+  })
+
   it('limits right-side reclamation to visible content and respects imposed minimums', async () => {
     const onLayoutChange = vi.fn<(layout: WaveformLayoutChange) => void>()
     const { chart, container } = createChart(points, {

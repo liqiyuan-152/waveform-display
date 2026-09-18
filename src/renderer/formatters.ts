@@ -1,13 +1,12 @@
 const SCIENTIFIC_MIN_ABSOLUTE_VALUE = 0.001
 const SCIENTIFIC_MAX_PLAIN_ABSOLUTE_VALUE = 1000
 const Y_AXIS_NUMBER_FORMATTER = new Intl.NumberFormat('zh-CN', {
-  maximumFractionDigits: 4,
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 2,
 })
 
 function formatAxisNumber(value: number): string {
-  if (Object.is(value, -0)) return '0'
-  const roundedValue = value === 0 ? 0 : Number(value.toPrecision(5))
-  const formatted = Y_AXIS_NUMBER_FORMATTER.format(roundedValue)
+  const formatted = Y_AXIS_NUMBER_FORMATTER.format(value)
   return formatted === '-0' ? '0' : formatted
 }
 

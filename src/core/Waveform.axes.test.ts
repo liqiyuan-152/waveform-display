@@ -451,9 +451,9 @@ describe('Waveform axes', () => {
     const yLabels = labels(svg, '.waveform-axis-y--left')
     const endLabel = svg.querySelector('.waveform-axis-y--left .waveform-axis-y-end-value')!
 
-    expect(yLabels[0]).toBe('3.2748')
-    expect(yLabels[yLabels.length - 1]).toBe('3.3483')
-    expect(endLabel.textContent).toBe('3.3483')
+    expect(yLabels[0]).toBe('3.27')
+    expect(yLabels[yLabels.length - 1]).toBe('3.35')
+    expect(endLabel.textContent).toBe('3.35')
     expect(Array.from(endLabel.querySelectorAll('tspan'), item => item.textContent)).toEqual([])
     expect(yLabels.filter(label => label.startsWith('E'))).toHaveLength(0)
     expect(svg.querySelector('.waveform-axis-y-header')?.textContent).toBe('E+04')

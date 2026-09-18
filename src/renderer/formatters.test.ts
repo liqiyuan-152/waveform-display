@@ -12,12 +12,29 @@ describe('Y-axis scientific formatting', () => {
     expect(formatScientificAxisHeader([-1000, 0])).toBe('E+03')
   })
 
-  it('rounds to five significant digits before limiting decimals to four', () => {
-    expect(formatScientificAxisTick(1234.56, [0, 9999])).toBe('1.2346')
-    expect(formatScientificAxisTick(12.34567, [0, 999])).toBe('12.346')
-    expect(formatScientificAxisTick(0.123456, [0, 1])).toBe('0.1235')
+  it('rounds directly to at most two decimal places', () => {
+    expect(formatScientificAxisTick(1234.56, [0, 9999])).toBe('1.23')
+    expect(formatScientificAxisTick(12.34567, [0, 999])).toBe('12.35')
+    expect(formatScientificAxisTick(0.123456, [0, 1])).toBe('0.12')
     expect(formatScientificAxisTick(3.1, [0, 5])).toBe('3.1')
     expect(formatScientificAxisTick(-0.00001, [-1, 1])).toBe('0')
+  })
+
+  it.each([
+    [7.9999, '8'],
+    [43.999, '44'],
+    [1.2, '1.2'],
+    [1.236, '1.24'],
+    [0, '0'],
+    [-0, '0'],
+    [-0.0049, '0'],
+    [-0.005, '-0.01'],
+    [1.23499, '1.23'],
+    [43.9949, '43.99'],
+    [-7.9999, '-8'],
+  ])('formats %s as %s without significant-digit pre-rounding', (value, expected) => {
+    expect(formatScientificAxisTick(value, [-100, 100])).toBe(expected)
+    expect(formatScientificAxisTick(value * 1000, [-1000, 1000])).toBe(expected)
   })
 
   it('keeps all tick values numeric in either notation', () => {
@@ -66,7 +83,7 @@ describe('Y-axis scientific formatting', () => {
     expect(formatScientificAxisTick(0.0003, domain)).toBe('3')
   })
 
-  it('removes trailing zeroes and normalizes negative zero', () => {
+  it('omits trailing zeroes and normalizes negative zero', () => {
     expect(formatScientificAxisTick(123.456, [0, 999])).toBe('123.46')
     expect(formatScientificAxisTick(1, [0, 2])).toBe('1')
     expect(formatScientificAxisTick(-0, [-1, 1])).toBe('0')
