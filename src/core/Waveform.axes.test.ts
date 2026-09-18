@@ -472,8 +472,8 @@ describe('Waveform axes', () => {
     const rightLabels = labels(svg, '.waveform-axis-y--right')
     expect(leftLabels[leftLabels.length - 1]).toBe('3')
     expect(rightLabels[rightLabels.length - 1]).toBe('3')
-    expect(svg.querySelector('.waveform-axis-y--left .waveform-axis-y-header')?.textContent).toBe('A E+03')
-    expect(svg.querySelector('.waveform-axis-y--right .waveform-axis-y-header')?.textContent).toBe('E-04 V')
+    expect(svg.querySelector('.waveform-axis-y--left .waveform-axis-y-header')?.textContent).toBe('A\u00a0\u00a0E+03')
+    expect(svg.querySelector('.waveform-axis-y--right .waveform-axis-y-header')?.textContent).toBe('E-04\u00a0\u00a0V')
   })
 
   it('keeps an explicit Y-axis tick formatter authoritative', () => {
@@ -513,18 +513,18 @@ describe('Waveform axes', () => {
     const ordinaryWidth = plotWidth()
 
     chart.updateData([{ x: 0, y: 1000 }, { x: 1, y: 3000 }])
-    expect(endLabel().textContent).toBe('V E+03')
+    expect(endLabel().textContent).toBe('V\u00a0\u00a0E+03')
     const scientificWidth = plotWidth()
     expect(scientificWidth).toBe(ordinaryWidth)
 
     chart.updateOptions({ yAxis: { unit: ' millivolts / second ' } })
-    expect(endLabel().textContent).toBe('millivolts / second E+03')
+    expect(endLabel().textContent).toBe('millivolts / second\u00a0\u00a0E+03')
     expect(plotWidth()).toBe(scientificWidth)
     expect(plotWidth()).toBeGreaterThan(0)
     expect(endLabel().querySelector('tspan')).toBeNull()
 
     chart.updateData([{ x: 0, y: 0.0001 }, { x: 1, y: 0.0003 }])
-    expect(endLabel().textContent).toBe('millivolts / second E-04')
+    expect(endLabel().textContent).toBe('millivolts / second\u00a0\u00a0E-04')
     chart.updateOptions({ yAxis: { unit: 'V' } })
     chart.updateData([{ x: 0, y: 0 }, { x: 1, y: 3 }])
     expect(endLabel().textContent).toBe('V')

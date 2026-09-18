@@ -35,5 +35,5 @@ export function formatScientificAxisHeader(domain: [number, number], unit = '', 
   const exponent = resolveScientificExponent(domain[0], domain[1])
   const trimmedUnit = unit.trim()
   const parts = [trimmedUnit, exponent === null ? '' : formatExponent(exponent)]
-  return (unitFirst ? parts : parts.reverse()).filter(Boolean).join(' ')
+  return (unitFirst ? parts : parts.reverse()).filter(Boolean).join('\u00a0\u00a0')
 }

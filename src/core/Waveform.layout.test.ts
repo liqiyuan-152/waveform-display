@@ -53,7 +53,7 @@ describe('Waveform horizontal padding coordination', () => {
       await flushLayoutChange()
       expect(labels()).toEqual(['0', '8'])
       expect(container.querySelector('.waveform-axis-y-header')?.textContent)
-        .toBe(position === 'left' ? `V ${header}` : `${header} V`)
+        .toBe(position === 'left' ? `V\u00a0\u00a0${header}` : `${header}\u00a0\u00a0V`)
       expect(onLayoutChange.mock.lastCall![0].naturalPadding).toEqual(naturalPadding)
       expect(plotLeft(container)).toBe(100)
       expect(frameWidth()).toBe(600)

@@ -55,7 +55,7 @@ describe('axis headers and zero-line defaults', () => {
     chart.updateOptions({ yAxis: { unit: 'volts', fontSize: 20 } })
     chart.updateData([{ name: 'First', data: [{ x: 0, y: -0.0001 }, { x: 1, y: 0.0003 }] }, { name: 'Second', data: [{ x: 0, y: 0 }] }])
     verify()
-    expect(container.querySelector('.waveform-axis-y-header')?.textContent).toBe(position === 'left' ? 'volts E-04' : 'E-04 volts')
+    expect(container.querySelector('.waveform-axis-y-header')?.textContent).toBe(position === 'left' ? 'volts\u00a0\u00a0E-04' : 'E-04\u00a0\u00a0volts')
     bbox.mockImplementation(() => { throw new Error('Measurement unavailable') })
     expect(() => chart.updateOptions({ yAxis: { fontSize: 12 } })).not.toThrow()
     expect(container.querySelector('.waveform-axis-y-header')?.getAttribute('x')).not.toBe('NaN')
@@ -77,7 +77,7 @@ describe('axis headers and zero-line defaults', () => {
       ],
     })
     const headers = Array.from(svg.querySelectorAll('.waveform-axis-y-header'))
-    expect(headers.map(node => node.textContent)).toEqual(['A E+03', 'E-04 V'])
+    expect(headers.map(node => node.textContent)).toEqual(['A\u00a0\u00a0E+03', 'E-04\u00a0\u00a0V'])
     for (const header of headers) {
       expect(Number(header.getAttribute('x'))).toBeCloseTo(header.getAttribute('data-axis-id') === 'a' ? -31.4 : 28.8)
       expect(header.getAttribute('y')).toBe('-8')
@@ -104,7 +104,7 @@ describe('axis headers and zero-line defaults', () => {
     const [plotX, plotY] = translation(svg.querySelector('svg > g')!)
     const innerWidth = Number(svg.querySelector('.waveform-frame-border')!.getAttribute('width'))
     const width = Number(svg.getAttribute('viewBox')!.split(' ')[2])
-    const headerWidth = 'millivolts / second E+03'.split('').reduce((sum, char) => sum + 11 * (char === ' ' ? 0.33 : 0.6), 0)
+    const headerWidth = 'millivolts / second\u00a0\u00a0E+03'.split('').reduce((sum, char) => sum + 11 * (/\s/.test(char) ? 0.33 : 0.6), 0)
     expect(width).toBe(420)
     expect(svg.getAttribute('width')).toBe('100%')
     expect(plotX).toBeLessThan(headerWidth)
