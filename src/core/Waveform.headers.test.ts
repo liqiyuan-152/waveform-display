@@ -109,7 +109,7 @@ describe('axis headers and zero-line defaults', () => {
     expect(svg.getAttribute('width')).toBe('100%')
     expect(plotX).toBeLessThan(headerWidth)
     expect(width - plotX - innerWidth).toBeLessThan(headerWidth)
-    expect(plotY).toBe(64)
+    expect(plotY).toBe(19)
     const legendRows = Array.from(svg.querySelectorAll('.waveform-legend-item'), node => translation(node)[1])
     expect(legendRows[0]).toBe(46)
     const firstLegendX = translation(svg.querySelector('.waveform-legend-item')!)[0]

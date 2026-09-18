@@ -142,7 +142,7 @@ describe('Waveform horizontal padding coordination', () => {
 
     await flushLayoutChange()
 
-    expect(onLayoutChange).toHaveBeenCalledWith({ naturalPadding: { left: 48, right: 0 } })
+    expect(onLayoutChange).toHaveBeenCalledWith({ naturalPadding: { left: 51, right: 0 } })
     expect(plotLeft(container)).toBe(100)
     expect(Number(container.querySelector('.waveform-frame-border')?.getAttribute('width'))).toBe(580)
   })
@@ -162,7 +162,7 @@ describe('Waveform horizontal padding coordination', () => {
     expect(plotLeft(container)).toBe(90)
 
     chart.updateOptions({ layout: { horizontalPadding: undefined } })
-    expect(plotLeft(container)).toBe(48)
+    expect(plotLeft(container)).toBe(51)
   })
 
   it('reports initial, data, legend, and replacement-callback layout changes without reporting imposed minimums', async () => {
@@ -181,7 +181,7 @@ describe('Waveform horizontal padding coordination', () => {
     )
 
     await flushLayoutChange()
-    expect(firstCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 48, right: 96 } })
+    expect(firstCallback).toHaveBeenLastCalledWith({ naturalPadding: { left: 51, right: 96 } })
     expect(plotLeft(container)).toBe(140)
 
     container.querySelector<SVGGElement>('.waveform-legend-item')!.dispatchEvent(
@@ -223,7 +223,7 @@ describe('Waveform horizontal padding coordination', () => {
 
     expect(onLayoutChange).toHaveBeenCalledTimes(1)
     vi.unstubAllGlobals()
-    expect(plotLeft(container)).toBe(24)
+    expect(plotLeft(container)).toBe(27)
   })
 
   it('coalesces rapid natural padding changes to the latest rendered value', async () => {
@@ -239,7 +239,7 @@ describe('Waveform horizontal padding coordination', () => {
     await flushLayoutChange()
 
     expect(onLayoutChange).toHaveBeenCalledTimes(1)
-    expect(onLayoutChange).toHaveBeenLastCalledWith({ naturalPadding: { left: 24, right: 0 } })
+    expect(onLayoutChange).toHaveBeenLastCalledWith({ naturalPadding: { left: 27, right: 0 } })
   })
 
   it('does not notify after destruction when an initial callback is pending', async () => {

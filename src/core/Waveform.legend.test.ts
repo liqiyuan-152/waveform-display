@@ -120,11 +120,11 @@ describe('Waveform legend', () => {
 
     expect(container.querySelector('.waveform-legend')).toBeNull()
     expect(channelName(container)?.textContent).toBe('Visible')
-    expect(channelName(container)?.getAttribute('x')).toBe('412')
+    expect(channelName(container)?.getAttribute('x')).toBe('413.5')
     expect(channelName(container)?.getAttribute('y')).toBe('46')
     expect(channelName(container)?.getAttribute('text-anchor')).toBe('middle')
     expect(yAxisTitle(container)).toBeNull()
-    expect(plotTransform(container)).toBe('translate(24,64)')
+    expect(plotTransform(container)).toBe('translate(27,42)')
   })
 
   it('keeps a single channel name visible when the legend is explicitly disabled', () => {
@@ -136,7 +136,7 @@ describe('Waveform legend', () => {
     expect(container.querySelector('.waveform-legend')).toBeNull()
     expect(channelName(container)?.textContent).toBe('Series 1')
     expect(channelName(container)?.getAttribute('y')).toBe('22')
-    expect(plotTransform(container)).toBe('translate(24,42)')
+    expect(plotTransform(container)).toBe('translate(27,42)')
   })
 
   it('keeps the no-title plot height stable when switching from a channel name to a legend', () => {
@@ -163,12 +163,12 @@ describe('Waveform legend', () => {
     )
     const singleFrameHeight = frameHeight(container)
 
-    expect(plotTop(container)).toBe(64)
+    expect(plotTop(container)).toBe(32)
     expect(channelName(container)?.getAttribute('y')).toBe('46')
 
     chart.updateData(namedSeries(['First', 'Second']))
 
-    expect(plotTop(container)).toBe(64)
+    expect(plotTop(container)).toBe(32)
     expect(frameHeight(container)).toBe(singleFrameHeight)
     expect(legendPosition(legendItems(container)[0])[1]).toBe(46)
   })
@@ -248,7 +248,7 @@ describe('Waveform legend', () => {
     expect(container.querySelectorAll('.waveform-legend > g')).toHaveLength(2)
     expect(channelName(container)).toBeNull()
     expect(yAxisTitle(container)?.textContent).toBe('First')
-    expect(plotTransform(container)).toBe('translate(48,64)')
+    expect(plotTransform(container)).toBe('translate(51,42)')
   })
 
   it('prioritizes explicit Y-axis title text and visibility for multiple series', () => {
@@ -496,7 +496,7 @@ describe('Waveform legend', () => {
 
     expect(container.querySelector('.waveform-legend')).toBeNull()
     expect(yAxisTitle(container)?.textContent).toBe('First')
-    expect(plotTransform(container)).toBe('translate(48,42)')
+    expect(plotTransform(container)).toBe('translate(51,42)')
   })
 
   it('updates legend visibility and padding when the series count changes', () => {
@@ -504,7 +504,7 @@ describe('Waveform legend', () => {
 
     expect(container.querySelector('.waveform-legend')).toBeNull()
     expect(channelName(container)?.textContent).toBe('First')
-    expect(plotTransform(container)).toBe('translate(24,64)')
+    expect(plotTransform(container)).toBe('translate(27,42)')
 
     chart.updateData([
       { name: 'First', data: points },
@@ -513,13 +513,13 @@ describe('Waveform legend', () => {
     expect(container.querySelectorAll('.waveform-legend > g')).toHaveLength(2)
     expect(channelName(container)).toBeNull()
     expect(yAxisTitle(container)?.textContent).toBe('First')
-    expect(plotTransform(container)).toBe('translate(48,64)')
+    expect(plotTransform(container)).toBe('translate(51,42)')
 
     chart.updateData([{ name: 'First', data: points }])
     expect(container.querySelector('.waveform-legend')).toBeNull()
     expect(channelName(container)?.textContent).toBe('First')
     expect(yAxisTitle(container)).toBeNull()
-    expect(plotTransform(container)).toBe('translate(24,64)')
+    expect(plotTransform(container)).toBe('translate(27,42)')
   })
 
   it('toggles the related line and points while keeping the legend item available', () => {

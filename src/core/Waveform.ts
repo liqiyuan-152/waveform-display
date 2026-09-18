@@ -182,19 +182,19 @@ export class Waveform {
   private resolvePadding(
     options: ReturnType<typeof resolveOptions>,
     valueAxes: Array<{ options: ResolvedValueAxisOptions; offset: number; footprint: number }>,
-    showSingleChannelName: boolean,
   ): Required<PaddingOptions> {
     const p = { ...options.padding }
     if (!options.layout.autoPadding) return p
 
-    if (options.xAxis.visible) p.bottom = Math.max(p.bottom, 42)
+    // Keep the automatic bottom minimum at 30px.
+    p.bottom = Math.max(p.bottom, 30)
     const leftExtent = Math.max(0, ...valueAxes
       .filter(axis => axis.options.visible && axis.options.position === 'left')
       .map(axis => axis.offset + axis.footprint))
     const rightExtent = Math.max(0, ...valueAxes
       .filter(axis => axis.options.visible && axis.options.position === 'right')
       .map(axis => axis.offset + axis.footprint))
-    if (leftExtent) p.left = Math.max(p.left, Math.ceil(leftExtent + 2))
+    if (leftExtent) p.left = Math.max(p.left, Math.ceil(leftExtent + 5))
     if (rightExtent) p.right = Math.max(p.right, Math.ceil(rightExtent + 2))
     const rightLegendExtent = options.legend.visible && options.legend.orientation === 'vertical' && options.legend.position.includes('right')
       ? 96
@@ -217,12 +217,6 @@ export class Waveform {
       + (metadataWidth ? options.xAxis.title.offset + metadataWidth : 0)
     p.right = Math.max(options.padding.right, Math.ceil(requiredRight), p.right - 10)
 
-    const hasTitle = options.title.visible && Boolean(options.title.text)
-    if (hasTitle) p.top = Math.max(p.top, 42)
-    const hasTopLegend = options.legend.visible
-      && options.legend.orientation === 'horizontal'
-      && options.legend.position.startsWith('top')
-    if (hasTitle && (showSingleChannelName || hasTopLegend)) p.top = Math.max(p.top, 64)
     return p
   }
 
@@ -382,7 +376,7 @@ export class Waveform {
       legend: { ...options.legend, visible: options.legend.visible && series.length > 1 },
     }
     const valueAxisLayouts = this.resolveValueAxes(plottedSeries, effectiveOptions, svg)
-    const naturalPadding = this.resolvePadding(effectiveOptions, valueAxisLayouts, singleChannel)
+    const naturalPadding = this.resolvePadding(effectiveOptions, valueAxisLayouts)
     const p = this.applyHorizontalPadding(naturalPadding, effectiveOptions.layout.horizontalPadding)
     const headers = valueAxisLayouts.filter(axis => axis.options.visible && formatYAxisHeader(axis.options, axis.domain))
     if (options.layout.autoPadding && headers.length) {
