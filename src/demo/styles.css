@@ -74,7 +74,7 @@ button, input, select { font: inherit; }
   min-height: 0;
   flex: 1;
   align-items: center;
-  padding: 12px;
+  padding: 12px 0;
   background: #000000;
   overflow: hidden;
 }

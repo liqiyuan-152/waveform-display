@@ -6,7 +6,7 @@ import './styles.css'
 
 const colors = ['#2563eb', '#dc2626', '#16a34a', '#9333ea']
 const rightAxisStart = Math.ceil(waveformData.length / 2)
-const framePadding = { top: 32, right: 72, bottom: 62, left: 40 }
+const framePadding = { top: 32, right: 0, bottom: 62, left: 0 }
 
 let series: WaveformSeries[] = waveformData.map((waveform, index) => ({
   id: String(waveform.chnl_id),
