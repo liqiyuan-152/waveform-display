@@ -22,6 +22,24 @@ function firstGridLine(container: HTMLElement, axis: 'x' | 'y'): SVGLineElement 
 }
 
 describe('Waveform grid styling', () => {
+  it.each(['rgba(255, 0, 0, 0.5)', '#ff000080'])('preserves zero-line CSS alpha in %s and runtime updates', (color) => {
+    const { chart, container } = createChart({ zeroLine: { color, opacity: 1, width: 2 } })
+    const zeroLine = () => container.querySelector('.waveform-zero-line')!
+    expect(zeroLine().getAttribute('stroke')).toBe(color)
+    expect(zeroLine().getAttribute('stroke-opacity')).toBe('1')
+
+    chart.updateOptions({ zeroLine: { color: '#00ff0080', opacity: 0.25 } })
+    expect(zeroLine().getAttribute('stroke')).toBe('#00ff0080')
+    expect(zeroLine().getAttribute('stroke-opacity')).toBe('0.25')
+    expect(zeroLine().getAttribute('stroke-width')).toBe('2')
+    chart.updateOptions({ zeroLine: { visible: false } })
+    expect(zeroLine()).toBeNull()
+    chart.updateOptions({ zeroLine: { visible: true } })
+    expect(zeroLine().getAttribute('stroke')).toBe('#00ff0080')
+    expect(zeroLine().getAttribute('stroke-opacity')).toBe('0.25')
+    chart.destroy()
+  })
+
   it('uses the shared dashed style, color, and width for both grid axes', () => {
     const { container } = createChart({ grid: { style: 'dashed', color: '#123456', width: 2.5 } })
 

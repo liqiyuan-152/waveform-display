@@ -96,6 +96,19 @@ describe('createConfigPanel', () => {
     expect(onOptionsChange.mock.lastCall?.[0].zeroLine.color).toBe('#ff0000')
   })
 
+  it.each(['rgba(255, 0, 0, 0.5)', '#ff000080'])('edits zero-line alpha color %s independently of opacity', (color) => {
+    const { container, onOptionsChange } = setup()
+    clickButton(container, '网格')
+    clickButton(container, '零线')
+    const colorField = findField(container, '零线颜色')
+    fireInput(colorField.querySelector<HTMLInputElement>('input[type="text"]')!, color)
+    expect(onOptionsChange.mock.lastCall?.[0].zeroLine.color).toBe(color)
+    fireInput(findField(container, '零线透明度').querySelector<HTMLInputElement>('input')!, '1')
+    expect(onOptionsChange.mock.lastCall?.[0].zeroLine).toMatchObject({ color, opacity: 1 })
+    fireInput(colorField.querySelector<HTMLInputElement>('input[type="color"]')!, '#ff0000')
+    expect(onOptionsChange.mock.lastCall?.[0].zeroLine).toMatchObject({ color: '#ff0000', opacity: 1 })
+  })
+
   it('renders accessible tabs and supports keyboard activation', () => {
     const { container } = setup()
     const tabs = Array.from(container.querySelectorAll<HTMLButtonElement>('[role="tab"]'))
