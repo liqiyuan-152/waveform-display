@@ -27,6 +27,25 @@ function createChart(options: WaveformOptions = {}) {
 }
 
 describe('Waveform typography', () => {
+  it('keeps metadata outside the frame after switching to a single value axis', () => {
+    const { chart, container } = createChart({
+      legend: { visible: false },
+      secondaryYAxis: { visible: true },
+      shot: { visible: true, text: '#10001', fontSize: 14 },
+      xAxis: { title: { visible: true, text: 'Time', fontSize: 14 } },
+    })
+    chart.updateOptions({ yAxes: [{ id: 'left', position: 'left', title: { visible: false } }] })
+    expect(container.querySelector('.waveform-axis-y--right')).toBeNull()
+    const plotLeft = Number(container.querySelector('svg > g')!.getAttribute('transform')!.match(/translate\(([\d.]+)/)![1])
+    const plotRight = plotLeft + Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))
+    for (const selector of ['.waveform-shot', '.waveform-axis-x-title']) {
+      const text = container.querySelector(selector)!
+      expect(Number(text.getAttribute('x')) - 7).toBeGreaterThanOrEqual(plotRight + 4)
+      expect(Number(text.getAttribute('x')) + 7).toBeLessThanOrEqual(800)
+    }
+    chart.destroy()
+  })
+
   it('keeps the metadata lane clear of right ticks when the right title is hidden at runtime', () => {
     const { chart, container } = createChart({
       legend: { visible: false },

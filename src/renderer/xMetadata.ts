@@ -55,9 +55,8 @@ export function renderXMetadata(ctx: RenderContext) {
   const rightTickExtent = Math.max(0, ...ctx.yAxes
     .filter(axis => axis.options.visible && axis.options.position === 'right')
     .map(axis => axis.offset + (axis.tickFootprint ?? axis.footprint)))
-  const x = rightTickExtent
-    ? Math.max(preferredX, options.padding.left + ctx.innerWidth + rightTickExtent + laneWidth / 2 + 4)
-    : preferredX
+  // The frame is also an obstacle when no right value axis is displayed.
+  const x = Math.max(preferredX, options.padding.left + ctx.innerWidth + rightTickExtent + laneWidth / 2 + 4)
   const availableLength = Math.max(
     1,
     (innerHeight - EDGE_INSET * 2 - (title && shot ? MIDDLE_GAP : 0)) / (title && shot ? 2 : 1),
