@@ -22,6 +22,31 @@ function firstGridLine(container: HTMLElement, axis: 'x' | 'y'): SVGLineElement 
 }
 
 describe('Waveform grid styling', () => {
+  it('paints the zero line above all curves and markers after rendering and updates', () => {
+    const { chart, container } = createChart({ point: { visible: true } })
+    const expectZeroLineOnTop = (seriesCount: number) => {
+      const zeroLine = container.querySelector('.waveform-zero-line')!
+      expect(zeroLine).not.toBeNull()
+      const seriesLayer = container.querySelector('g[clip-path]')!
+      expect(seriesLayer.querySelectorAll(':scope > path')).toHaveLength(seriesCount)
+      expect(seriesLayer.querySelectorAll('g path').length).toBeGreaterThan(0)
+      expect(zeroLine.parentElement).toBe(seriesLayer.parentElement)
+      expect(seriesLayer.compareDocumentPosition(zeroLine) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    }
+
+    expectZeroLineOnTop(1)
+    chart.updateData([
+      { id: 'first', data },
+      { id: 'second', data: [{ x: 0, y: 0 }, { x: 1, y: 0 }] },
+    ])
+    expectZeroLineOnTop(2)
+    chart.updateOptions({ zeroLine: { visible: false } })
+    expect(container.querySelector('.waveform-zero-line')).toBeNull()
+    chart.updateOptions({ zeroLine: { visible: true } })
+    expectZeroLineOnTop(2)
+    chart.destroy()
+  })
+
   it.each(['rgba(255, 0, 0, 0.5)', '#ff000080'])('preserves zero-line CSS alpha in %s and runtime updates', (color) => {
     const { chart, container } = createChart({ zeroLine: { color, opacity: 1, width: 2 } })
     const zeroLine = () => container.querySelector('.waveform-zero-line')!

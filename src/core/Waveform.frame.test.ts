@@ -70,7 +70,7 @@ describe('Waveform frame', () => {
     expect(dottedFrame.getAttribute('rx')).toBe('8')
   })
 
-  it('renders an optional centered frame number between the zero line and axes', () => {
+  it('renders an optional centered frame number below the axes, curves, and zero line', () => {
     expect(render().querySelector('.waveform-frame-number')).toBeNull()
 
     for (const value of [12, 'FRAME-A', 0]) {
@@ -89,7 +89,7 @@ describe('Waveform frame', () => {
       expect(watermark.getAttribute('y')).toBe(String(Number(frame.getAttribute('height')) / 2))
       expect(watermark.getAttribute('text-anchor')).toBe('middle')
       expect(watermark.getAttribute('dominant-baseline')).toBe('central')
-      expect(watermarkIndex).toBeGreaterThan(zeroLineIndex)
+      expect(watermarkIndex).toBeLessThan(zeroLineIndex)
       expect(watermarkIndex).toBeLessThan(axisIndex)
       expect(watermarkIndex).toBeLessThan(seriesIndex)
     }

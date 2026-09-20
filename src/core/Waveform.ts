@@ -415,7 +415,12 @@ export class Waveform {
 
     renderFrameBackground(ctx)
     renderGrid(ctx)
+    renderFrameNumber(ctx)
+    renderAxes(ctx)
+    renderFrameBorder(ctx)
+    renderSeries(ctx)
 
+    // SVG paint order keeps the zero line above every series and point marker.
     const zeroAxis = yAxisById.get(options.zeroLine.axisId ?? '') ?? primaryYAxis
     if (options.zeroLine.visible && zeroAxis.domain[0] <= 0 && zeroAxis.domain[1] >= 0) {
       plot.append('line')
@@ -429,10 +434,6 @@ export class Waveform {
         .attr('stroke-dasharray', options.zeroLine.dash)
     }
 
-    renderFrameNumber(ctx)
-    renderAxes(ctx)
-    renderFrameBorder(ctx)
-    renderSeries(ctx)
     renderLegend(
       ctx,
       keyedSeries.map(item => ({
