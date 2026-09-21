@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { yAxisTickValues } from './helpers'
+import { yAxisTickValues } from '../../src/renderer/helpers'
 
 describe('Y-axis tick values', () => {
   it('builds equal intervals including both exact endpoints', () => {

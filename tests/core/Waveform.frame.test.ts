@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it } from 'vitest'
-import { Waveform } from './Waveform'
-import type { WaveformData } from '../types/data'
+import { Waveform } from '../../src/core/Waveform'
+import type { WaveformData } from '../../src/types/data'
 
 const data = [
   { x: 0, y: 0 },

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { applyXDomainStrategy } from './domain'
+import { applyXDomainStrategy } from '../../src/core/domain'
 
 describe('X-domain strategy', () => {
   it('preserves the exact data domain by default', () => {

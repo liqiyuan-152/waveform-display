@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { Waveform } from './Waveform'
-import type { WaveformOptions } from '../types/options'
+import { Waveform } from '../../src/core/Waveform'
+import type { WaveformOptions } from '../../src/types/options'
 
 const points = [{ x: 0, y: 0 }, { x: 1, y: 1 }]
 

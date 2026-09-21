@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { describe, expect, it } from 'vitest'
-import type { XAxisOptions } from '../types/options'
-import { resolveXAxisTickValues } from './xTicks'
+import type { XAxisOptions } from '../../src/types/options'
+import { resolveXAxisTickValues } from '../../src/renderer/xTicks'
 
 function ticks(domain: [number, number], axis: XAxisOptions, innerWidth = 800): number[] {
   const scale = d3.scaleLinear().domain(domain).range([0, innerWidth])

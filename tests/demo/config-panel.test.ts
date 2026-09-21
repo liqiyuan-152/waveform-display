@@ -1,8 +1,8 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { resolveOptions } from '../config/resolve'
-import type { WaveformOptions } from '../types/options'
-import type { WaveformSeries } from '../types/data'
+import { resolveOptions } from '../../src/config/resolve'
+import type { WaveformOptions } from '../../src/types/options'
+import type { WaveformSeries } from '../../src/types/data'
 import {
   colorPickerValue,
   createConfigPanel,
@@ -10,7 +10,7 @@ import {
   parseNumberInput,
   setAtPath,
   setSeriesStyleOverride,
-} from './config-panel'
+} from '../../src/demo/config-panel'
 
 afterEach(() => document.body.replaceChildren())
 

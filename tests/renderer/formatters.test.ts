@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatScientificAxisHeader, formatScientificAxisTick, resolveScientificExponent } from './formatters'
+import { formatScientificAxisHeader, formatScientificAxisTick, resolveScientificExponent } from '../../src/renderer/formatters'
 
 describe('Y-axis scientific formatting', () => {
   it('formats independent headers with trimmed units and shared exponents', () => {
