@@ -1,5 +1,12 @@
 # Showcase Static Image
 
+> Status: optional and not connected to the current production environment.
+> Production currently deploys `main` through `.github/workflows/deploy.yml`
+> and Dokploy. Before enabling this workflow, configure the `production`
+> environment secrets (`GHCR_TOKEN`, `DEPLOY_SSH_KEY`, `DEPLOY_KNOWN_HOSTS`,
+> `DEPLOY_USER`, and `DEPLOY_HOST`) and install the matching restricted deploy
+> and rollback entrypoints on the server.
+
 The Showcase release workflow builds this repository's Demo as an immutable
 `linux/amd64` Nginx image. It only runs for a published stable GitHub Release
 or an explicitly selected stable Release through `workflow_dispatch`; existing
