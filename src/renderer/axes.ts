@@ -104,6 +104,11 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
     .select('text')
     .classed('waveform-axis-y-end-value', true)
 
+  axisGroup.selectAll<SVGGElement, number>('.tick')
+    .filter(value => value === domain[0])
+    .select('text')
+    .attr('dy', '0')
+
   const header = formatYAxisHeader(axisOptions, domain)
   if (header) {
     const text = axisGroup.append('text')
@@ -209,7 +214,7 @@ export function renderAxes(ctx: RenderContext) {
         .attr('x', 0)
         .attr('y', labelGap)
         .attr('dy', '0.71em')
-        .attr('text-anchor', 'start')
+        .attr('text-anchor', 'middle')
         .text(endpointLabels.start)
 
       endpointGroup.append('text')
@@ -217,7 +222,7 @@ export function renderAxes(ctx: RenderContext) {
         .attr('x', innerWidth)
         .attr('y', labelGap)
         .attr('dy', '0.71em')
-        .attr('text-anchor', 'end')
+        .attr('text-anchor', 'middle')
         .text(endpointLabels.end)
     }
   }

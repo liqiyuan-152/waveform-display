@@ -60,9 +60,9 @@ describe('Waveform axes', () => {
 
     expect(endpointLabels(svg)).toEqual(['0.125', '1.875'])
     expect(start.getAttribute('x')).toBe('0')
-    expect(start.getAttribute('text-anchor')).toBe('start')
+    expect(start.getAttribute('text-anchor')).toBe('middle')
     expect(end.getAttribute('x')).toBe(frameWidth)
-    expect(end.getAttribute('text-anchor')).toBe('end')
+    expect(end.getAttribute('text-anchor')).toBe('middle')
     expect(start.getAttribute('y')).toBe(svg.querySelector('.waveform-axis-x .tick text')?.getAttribute('y'))
     expect(start.getAttribute('dy')).toBe(svg.querySelector('.waveform-axis-x .tick text')?.getAttribute('dy'))
   })
@@ -248,6 +248,58 @@ describe('Waveform axes', () => {
 
     expect(svg.querySelector('.waveform-axis-y--left .tick text')?.getAttribute('x')).toBe('-2')
     expect(svg.querySelector('.waveform-axis-y--right .tick text')?.getAttribute('x')).toBe('2')
+  })
+
+  it('aligns both Y-axis minimum baselines with the frame bottom', () => {
+    const svg = render(
+      [
+        { name: 'left', data: [{ x: 0, y: 1 }, { x: 1, y: 9 }] },
+        { name: 'right', yAxis: 'right', data: [{ x: 0, y: 10 }, { x: 1, y: 30 }] },
+      ],
+      { secondaryYAxis: { visible: true } },
+    )
+    for (const [side, minimum] of [['left', '1'], ['right', '10']]) {
+      const ticks = svg.querySelectorAll(`.waveform-axis-y--${side} .tick`)
+      const bottomTick = ticks[0]
+      const baseline = Number(bottomTick.getAttribute('transform')?.match(/translate\(0,([^)]*)\)/)?.[1])
+        + Number(bottomTick.querySelector('text')?.getAttribute('y'))
+
+      expect(bottomTick.querySelector('text')?.textContent).toBe(minimum)
+      expect(Math.abs(baseline - frameHeight(svg))).toBeLessThanOrEqual(0.5)
+      expect(bottomTick.querySelector('text')?.getAttribute('dy')).toBe('0')
+      expect(ticks[1].querySelector('text')?.getAttribute('dy')).toBe('0.32em')
+    }
+  })
+
+  it('keeps corner alignment after data updates', () => {
+    const container = document.createElement('div')
+    Object.defineProperty(container, 'clientWidth', { value: 800, configurable: true })
+    document.body.append(container)
+    const chart = new Waveform(container, [
+      { name: 'left', data: [{ x: 0, y: 1 }, { x: 1, y: 9 }] },
+      { name: 'right', yAxis: 'right', data: [{ x: 0, y: 10 }, { x: 1, y: 30 }] },
+    ], { responsive: { enabled: false }, secondaryYAxis: { visible: true } })
+
+    chart.updateData([
+      { name: 'left', data: [{ x: 100, y: 2 }, { x: 3000, y: 8 }] },
+      { name: 'right', yAxis: 'right', data: [{ x: 100, y: 20 }, { x: 3000, y: 40 }] },
+    ])
+    const svg = container.querySelector('svg')!
+    const start = svg.querySelector('.waveform-axis-x-endpoint--start')!
+    const end = svg.querySelector('.waveform-axis-x-endpoint--end')!
+    const leftMin = svg.querySelector('.waveform-axis-y--left .tick text')!
+    const rightMin = svg.querySelector('.waveform-axis-y--right .tick text')!
+
+    expect(start.textContent).toBe('100')
+    expect(start.getAttribute('x')).toBe('0')
+    expect(start.getAttribute('text-anchor')).toBe('middle')
+    expect(end.textContent).toBe('3000')
+    expect(end.getAttribute('x')).toBe(svg.querySelector('.waveform-frame-border')?.getAttribute('width'))
+    expect(end.getAttribute('text-anchor')).toBe('middle')
+    expect(leftMin.textContent).toBe('2')
+    expect(leftMin.getAttribute('dy')).toBe('0')
+    expect(rightMin.textContent).toBe('20')
+    expect(rightMin.getAttribute('dy')).toBe('0')
   })
 
   it('shifts the default left title ten pixels right and honors explicit offsets', () => {
