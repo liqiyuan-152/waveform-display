@@ -10,7 +10,6 @@
 
 body {
   margin: 0;
-  min-width: 320px;
   background: #eef1f4;
 }
 
@@ -47,6 +46,33 @@ button, input, select { font: inherit; }
 .preview-pane__header { border-bottom-color: #475569; }
 
 .preview-pane h1 { color: #ffffff; }
+
+.preview-datasets {
+  display: flex;
+  gap: 2px;
+  margin-left: auto;
+  padding: 2px;
+  background: #1f2937;
+  border-radius: 4px;
+}
+
+.preview-datasets button {
+  padding: 4px 8px;
+  color: #cbd5e1;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.preview-datasets button[aria-pressed="true"] {
+  color: #ffffff;
+  background: #334155;
+}
+
+.preview-datasets button:focus-visible { outline: 2px solid #2dd4bf; }
 
 .preview-pane__header,
 .config-panel__heading {
@@ -562,14 +588,6 @@ body {
 @media (max-width: 620px) {
   .workspace { padding: 8px; }
   .preview-pane { min-height: 300px; }
-  .preview-stage {
-    justify-content: flex-start;
-    overflow-x: auto;
-  }
-  .waveform-preview {
-    width: 680px;
-    min-width: 680px;
-  }
   .control-pane { min-height: 760px; }
 
   .config-tabs {

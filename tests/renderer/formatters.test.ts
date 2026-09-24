@@ -59,8 +59,9 @@ describe('Y-axis scientific formatting', () => {
 
   it('uses scientific notation at the supported magnitude boundaries', () => {
     expect(resolveScientificExponent(0, 0)).toBeNull()
-    expect(resolveScientificExponent(0, 0.000999)).toBe(-4)
-    expect(resolveScientificExponent(0, 0.001)).toBeNull()
+    expect(resolveScientificExponent(0, 0.00999)).toBe(-3)
+    expect(resolveScientificExponent(0, 0.01)).toBeNull()
+    expect(resolveScientificExponent(-0.00999, -0.001)).toBe(-3)
     expect(resolveScientificExponent(0, 999.999)).toBeNull()
     expect(resolveScientificExponent(0, 1000)).toBe(3)
   })

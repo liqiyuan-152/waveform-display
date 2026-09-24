@@ -1,6 +1,7 @@
 import { Waveform, type WaveformOptions, type WaveformSeries } from '../index'
 import { resolveOptions } from '../config/resolve'
 import { createConfigPanel } from './config-panel'
+import { scientificSeries } from './scientific-data'
 import waveformData from './waveform-data.json'
 import './styles.css'
 
@@ -8,7 +9,7 @@ const colors = ['#2563eb', '#dc2626', '#16a34a', '#9333ea']
 const rightAxisStart = Math.ceil(waveformData.length / 2)
 const framePadding = { top: 32, right: 0, bottom: 62, left: 0 }
 
-let series: WaveformSeries[] = waveformData.map((waveform, index) => ({
+const originalSeries: WaveformSeries[] = waveformData.map((waveform, index) => ({
   id: String(waveform.chnl_id),
   name: waveform.chnl,
   shot: waveform.shot,
@@ -18,6 +19,10 @@ let series: WaveformSeries[] = waveformData.map((waveform, index) => ({
   data: waveform.data.map((y, pointIndex) => ({ x: waveform.time[pointIndex], y })),
   style: { color: colors[index % colors.length], lineWidth: 3 },
 }))
+const datasets = { original: originalSeries, scientific: scientificSeries }
+type DatasetKey = keyof typeof datasets
+let activeDataset: DatasetKey = 'original'
+let series = datasets[activeDataset]
 
 const initialOptions: WaveformOptions = resolveOptions({
   width: '100%',
@@ -82,6 +87,10 @@ app.innerHTML = `
     <section class="preview-pane" aria-labelledby="page-title">
       <header class="preview-pane__header">
         <h1 id="page-title">波形图预览</h1>
+        <div class="preview-datasets" role="group" aria-label="测试数据">
+          <button type="button" data-dataset="original" aria-pressed="true">原始数据</button>
+          <button type="button" data-dataset="scientific" aria-pressed="false">小数值测试</button>
+        </div>
       </header>
       <div class="preview-stage">
         <div id="waveform" class="waveform-preview"></div>
@@ -92,19 +101,42 @@ app.innerHTML = `
 
 const chart = new Waveform('#waveform', series, initialOptions)
 let emptyPreview = false
+let currentOptions = initialOptions
 
-createConfigPanel(document.querySelector<HTMLDivElement>('#config-panel')!, {
-  options: initialOptions,
-  series,
-  onOptionsChange: options => chart.updateOptions(options),
-  onSeriesChange: nextSeries => {
-    series = nextSeries
-    if (!emptyPreview) chart.updateData(series)
-  },
-  onEmptyPreviewChange: enabled => {
-    emptyPreview = enabled
-    chart.updateData(enabled ? [] : series)
-  },
+function renderConfigPanel() {
+  createConfigPanel(document.querySelector<HTMLDivElement>('#config-panel')!, {
+    options: currentOptions,
+    series,
+    onOptionsChange: options => {
+      currentOptions = options
+      chart.updateOptions(options)
+    },
+    onSeriesChange: nextSeries => {
+      series = nextSeries
+      datasets[activeDataset] = nextSeries
+      if (!emptyPreview) chart.updateData(series)
+    },
+    onEmptyPreviewChange: enabled => {
+      emptyPreview = enabled
+      chart.updateData(enabled ? [] : series)
+    },
+  })
+}
+
+renderConfigPanel()
+app.querySelectorAll<HTMLButtonElement>('[data-dataset]').forEach(button => {
+  button.addEventListener('click', () => {
+    const nextDataset = button.dataset.dataset as DatasetKey
+    if (nextDataset === activeDataset) return
+    activeDataset = nextDataset
+    series = datasets[activeDataset]
+    emptyPreview = false
+    app.querySelectorAll<HTMLButtonElement>('[data-dataset]').forEach(option => {
+      option.setAttribute('aria-pressed', String(option.dataset.dataset === activeDataset))
+    })
+    chart.updateData(series)
+    renderConfigPanel()
+  })
 })
 
 console.info('SVG export available via chart.toSVGString() or chart.downloadSVG()')
