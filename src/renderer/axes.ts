@@ -4,7 +4,7 @@ import type { RenderContext } from './context'
 import { formatScientificAxisHeader, formatScientificAxisTick } from './formatters'
 import { createTextMeasurer } from './legend'
 import { yAxisTickValues } from './helpers'
-import { estimateXAxisLabelWidth, formatXAxisTick } from './xTicks'
+import { formatXAxisTick } from './xTicks'
 
 function formatTick(axis: AxisOptions, value: d3.NumberValue): string {
   const number = Number(value)
@@ -182,14 +182,22 @@ export function renderAxes(ctx: RenderContext) {
     }
     const fontSize = options.xAxis.fontSize ?? 11
     const labelGap = options.xAxis.tickPadding ?? 6
-    const leftClearance = estimateXAxisLabelWidth(endpointLabels.start, fontSize) + labelGap
-    const rightClearance = estimateXAxisLabelWidth(endpointLabels.end, fontSize) + labelGap
-    const visibleXTicks = xTicks.filter((tick) => {
-      if (options.xAxis.hideEndTicks && isDomainEndpoint(tick, domain)) return false
-      if (!options.xAxis.showEndValues) return true
-      const position = x(tick)
-      return position > leftClearance && position < innerWidth - rightClearance
-    })
+    const measurer = createTextMeasurer(ctx.svg, fontSize, options.xAxis.fontFamily, options.xAxis.fontWeight)
+    let visibleXTicks: number[]
+    try {
+      const leftHalfWidth = measurer.measure(endpointLabels.start) / 2
+      const rightHalfWidth = measurer.measure(endpointLabels.end) / 2
+      visibleXTicks = xTicks.filter((tick) => {
+        if (options.xAxis.hideEndTicks && isDomainEndpoint(tick, domain)) return false
+        if (!options.xAxis.showEndValues) return true
+        const position = x(tick)
+        const tickHalfWidth = measurer.measure(formatXAxisTick(options.xAxis, tick)) / 2
+        return position >= leftHalfWidth + tickHalfWidth + 2
+          && innerWidth - position >= rightHalfWidth + tickHalfWidth + 2
+      })
+    } finally {
+      measurer.destroy()
+    }
     const axis = d3.axisBottom(x)
       .tickValues(visibleXTicks)
       .tickSize(-(options.xAxis.tickSize ?? 6))

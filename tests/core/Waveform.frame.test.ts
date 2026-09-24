@@ -74,7 +74,7 @@ describe('Waveform frame', () => {
     expect(render().querySelector('.waveform-frame-number')).toBeNull()
 
     for (const value of [12, 'FRAME-A', 0]) {
-      const svg = render({ frameNumber: value })
+      const svg = render({ frameNumber: value }, [{ x: 0, y: -1 }, { x: 1, y: 1 }])
       const plot = svg.querySelector('svg > g')!
       const frame = plot.querySelector('.waveform-frame-border')!
       const watermark = plot.querySelector('.waveform-frame-number')!

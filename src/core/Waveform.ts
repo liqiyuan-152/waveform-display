@@ -1,10 +1,12 @@
 import * as d3 from 'd3'
+import { defaultOptions } from '../config/defaults'
 import { resolveOptions, type ResolvedValueAxisOptions } from '../config/resolve'
 import { normalizeData } from './normalize'
 import { applyXDomainStrategy } from './domain'
 import { renderFrameBackground, renderFrameBorder } from '../renderer/frame'
 import { renderFrameNumber } from '../renderer/frameNumber'
 import { renderGrid } from '../renderer/grid'
+import { yAxisTickValues } from '../renderer/helpers'
 import { renderSeries } from '../renderer/series'
 import { formatYAxisHeader, measureYAxis, renderAxes } from '../renderer/axes'
 import { renderLegend } from '../renderer/legend'
@@ -422,7 +424,14 @@ export class Waveform {
 
     // SVG paint order keeps the zero line above every series and point marker.
     const zeroAxis = yAxisById.get(options.zeroLine.axisId ?? '') ?? primaryYAxis
-    if (options.zeroLine.visible && zeroAxis.domain[0] <= 0 && zeroAxis.domain[1] >= 0) {
+    const [yMin, yMax] = zeroAxis.domain
+    const ticks = yAxisTickValues(zeroAxis.domain, zeroAxis.options.tickCount)
+    const tickInterval = Math.abs(ticks[1] - ticks[0])
+    const configuredThreshold = options.zeroLine.boundaryThreshold
+    const boundaryThreshold = Number.isFinite(configuredThreshold) && configuredThreshold >= 0
+      ? configuredThreshold : defaultOptions.zeroLine.boundaryThreshold
+    const margin = tickInterval * boundaryThreshold
+    if (options.zeroLine.visible && yMin < 0 && yMax > 0 && -yMin >= margin && yMax >= margin) {
       plot.append('line')
         .attr('class', 'waveform-zero-line')
         .attr('data-axis-id', zeroAxis.options.id)

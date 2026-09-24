@@ -162,6 +162,50 @@ describe('Waveform axes', () => {
     expect(gridLineCount).toBeGreaterThan(regularTickCount)
   })
 
+  it('shows a near-end X tick when both centered labels fit', () => {
+    const svg = render(
+      [{ x: -63, y: 0 }, { x: -0.1, y: 1 }],
+      { xAxis: { tickCount: 13, fontSize: 26 } },
+    )
+
+    expect(endpointLabels(svg)).toEqual(['-63', '-0.1'])
+    expect(labels(svg, '.waveform-axis-x')).toContain('-5')
+    expect(tickData(svg, '.waveform-grid-x')).toContain(-5)
+  })
+
+  it('hides near-end X labels only when they overlap an endpoint', () => {
+    const data = [{ x: -63, y: 0 }, { x: -0.1, y: 1 }]
+    const narrow = render(data, { width: 520, xAxis: { tickCount: 13, fontSize: 26 } })
+    const longEndpoint = render(data, {
+      xAxis: { tickCount: 13, fontSize: 26, tickFormat: value => value === -0.1 ? 'end: -0.1 ms' : String(value) },
+    })
+
+    expect(labels(narrow, '.waveform-axis-x')).not.toContain('-5')
+    expect(tickData(narrow, '.waveform-grid-x')).toContain(-5)
+    expect(labels(longEndpoint, '.waveform-axis-x')).not.toContain('-5')
+    expect(tickData(longEndpoint, '.waveform-grid-x')).toContain(-5)
+  })
+
+  it('applies the same centered-label clearance at the left endpoint', () => {
+    const svg = render(
+      [{ x: -0.1, y: 0 }, { x: 63, y: 1 }],
+      { xAxis: { tickCount: 13, fontSize: 26 } },
+    )
+
+    expect(labels(svg, '.waveform-axis-x')).toContain('5')
+    expect(labels(svg, '.waveform-axis-x')).not.toContain('0')
+  })
+
+  it('does not reserve endpoint clearance when endpoint values are hidden', () => {
+    const svg = render(
+      [{ x: -63, y: 0 }, { x: -0.1, y: 1 }],
+      { width: 520, xAxis: { tickCount: 13, fontSize: 26, showEndValues: false } },
+    )
+
+    expect(labels(svg, '.waveform-axis-x')).toContain('-5')
+    expect(svg.querySelector('.waveform-axis-x-endpoints')).toBeNull()
+  })
+
   it('supports hiding endpoint values or the complete X axis', () => {
     const endpointsHidden = render(
       [{ x: 0, y: 0 }, { x: 1, y: 1 }],
@@ -402,7 +446,7 @@ describe('Waveform axes', () => {
 
     expect(svg.querySelectorAll('.waveform-axis-y')).toHaveLength(1)
     expect(svg.querySelector('.waveform-grid-y')?.getAttribute('data-axis-id')).toBe('primary')
-    expect(svg.querySelector('.waveform-zero-line')?.getAttribute('data-axis-id')).toBe('primary')
+    expect(svg.querySelector('.waveform-zero-line')).toBeNull()
     expect(seriesPathPoints(svg)[0][1]).toBeCloseTo(frameHeight(svg) * 0.75)
   })
 
@@ -509,6 +553,19 @@ describe('Waveform axes', () => {
     expect(Array.from(endLabel.querySelectorAll('tspan'), item => item.textContent)).toEqual([])
     expect(yLabels.filter(label => label.startsWith('E'))).toHaveLength(0)
     expect(svg.querySelector('.waveform-axis-y-header')?.textContent).toBe('E+04')
+  })
+
+  it('uses scientific notation below 0.01 but not at the boundary', () => {
+    const small = render([{ x: 0, y: 0.002 }, { x: 1, y: 0.008 }])
+    const smallLabels = labels(small, '.waveform-axis-y--left')
+    expect(smallLabels[0]).toBe('2')
+    expect(smallLabels[smallLabels.length - 1]).toBe('8')
+    expect(small.querySelector('.waveform-axis-y-header')?.textContent).toBe('E-03')
+
+    const boundary = render([{ x: 0, y: 0.002 }, { x: 1, y: 0.01 }])
+    const boundaryLabels = labels(boundary, '.waveform-axis-y--left')
+    expect(boundaryLabels[boundaryLabels.length - 1]).toBe('0.01')
+    expect(boundary.querySelector('.waveform-axis-y-header')).toBeNull()
   })
 
   it('uses one shared scientific exponent on each Y axis', () => {
