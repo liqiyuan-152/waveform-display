@@ -94,12 +94,13 @@ function fallbackTextWidth(text: string, fontSize: number): number {
   }, 0)
 }
 
-export function createTextMeasurer(svg: RenderContext['svg'], fontSize: number, fontFamily?: string) {
+export function createTextMeasurer(svg: RenderContext['svg'], fontSize: number, fontFamily?: string, fontWeight?: number | string) {
   const measurementNode = svg.append('text')
     .attr('visibility', 'hidden')
     .attr('aria-hidden', 'true')
     .attr('font-size', fontSize)
     .attr('font-family', fontFamily ?? null)
+    .attr('font-weight', fontWeight ?? null)
     .node()
 
   return {

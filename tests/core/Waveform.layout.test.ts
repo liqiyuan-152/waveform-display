@@ -66,6 +66,46 @@ describe('Waveform horizontal padding coordination', () => {
     chart.destroy()
   })
 
+  it('measures Y-axis labels with the rendered font family and weight after a font change', async () => {
+    const original = Object.getOwnPropertyDescriptor(SVGElement.prototype, 'getComputedTextLength')
+    const measuredFonts: string[] = []
+    Object.defineProperty(SVGElement.prototype, 'getComputedTextLength', {
+      configurable: true,
+      value(this: SVGElement) {
+        if (this.getAttribute('visibility') === 'hidden') {
+          measuredFonts.push(`${this.getAttribute('font-family')}/${this.getAttribute('font-weight')}`)
+        }
+        const width = this.getAttribute('font-family') === 'Courier New' ? 20 : 10
+        return (this.textContent?.length ?? 0) * width * (this.getAttribute('font-weight') === '700' ? 2 : 1)
+      },
+    })
+    try {
+      const onLayoutChange = vi.fn<(layout: WaveformLayoutChange) => void>()
+      const { chart, container } = createChart(points, {
+        padding: { left: 0 },
+        yAxis: { fontFamily: 'Arial', fontWeight: 400, tickCount: 2, tickPadding: 5 },
+        onLayoutChange,
+      })
+      await flushLayoutChange()
+      const firstPadding = onLayoutChange.mock.lastCall![0].naturalPadding.left
+      expect(container.querySelector('.waveform-axis-y .tick text')?.getAttribute('font-family')).toBe('Arial')
+      expect(container.querySelector('.waveform-axis-y .tick text')?.getAttribute('font-weight')).toBe('400')
+
+      chart.updateOptions({ yAxis: { fontFamily: 'Courier New', fontWeight: 700 } })
+      await flushLayoutChange()
+      expect(onLayoutChange.mock.lastCall![0].naturalPadding.left).toBeGreaterThan(firstPadding)
+      expect(plotLeft(container)).toBe(onLayoutChange.mock.lastCall![0].naturalPadding.left)
+      expect(container.querySelector('.waveform-axis-y .tick text')?.getAttribute('font-family')).toBe('Courier New')
+      expect(container.querySelector('.waveform-axis-y .tick text')?.getAttribute('font-weight')).toBe('700')
+      expect(measuredFonts).toContain('Arial/400')
+      expect(measuredFonts).toContain('Courier New/700')
+      chart.destroy()
+    } finally {
+      if (original) Object.defineProperty(SVGElement.prototype, 'getComputedTextLength', original)
+      else delete (SVGElement.prototype as SVGElement & { getComputedTextLength?: () => number }).getComputedTextLength
+    }
+  })
+
   it('limits right-side reclamation to visible content and respects imposed minimums', async () => {
     const onLayoutChange = vi.fn<(layout: WaveformLayoutChange) => void>()
     const { chart, container } = createChart(points, {

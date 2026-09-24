@@ -49,7 +49,7 @@ export function formatYAxisHeader(axis: AxisOptions, domain: [number, number]): 
 
 export function measureYAxis(axis: AxisOptions, domain: [number, number], svg?: RenderContext['svg']) {
   const fontSize = axis.fontSize ?? 11
-  const measurer = svg ? createTextMeasurer(svg, fontSize, 'sans-serif') : undefined
+  const measurer = svg ? createTextMeasurer(svg, fontSize, axis.fontFamily, axis.fontWeight) : undefined
   const measure = (label: string) => Math.max(...label.split('\n').map(line =>
     measurer?.measure(line) ?? estimateYAxisLabelWidth(line, fontSize)))
   try {
@@ -95,7 +95,8 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
     .call(axis)
     .call(g => g.select('.domain').remove())
     .call(g => g.selectAll('path,line').attr('stroke', axisOptions.color ?? '#000000').attr('stroke-width', axisOptions.width ?? 1.3))
-    .call(g => g.selectAll('text').attr('fill', axisOptions.fontColor ?? '#475569').attr('font-size', axisOptions.fontSize ?? 11))
+    .call(g => g.selectAll('text').attr('fill', axisOptions.fontColor ?? '#475569').attr('font-size', axisOptions.fontSize ?? 11)
+      .attr('font-family', axisOptions.fontFamily ?? null).attr('font-weight', axisOptions.fontWeight ?? null))
 
   renderMultilineTickLabels(axisGroup)
 
@@ -119,6 +120,8 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
       .attr('text-anchor', position === 'right' ? 'end' : 'start')
       .attr('fill', axisOptions.fontColor ?? '#475569')
       .attr('font-size', axisOptions.fontSize ?? 11)
+      .attr('font-family', axisOptions.fontFamily ?? null)
+      .attr('font-weight', axisOptions.fontWeight ?? null)
       .text(header)
     // Align the actual glyph bottom, including descenders, eight pixels above the plot.
     const node = text.node()

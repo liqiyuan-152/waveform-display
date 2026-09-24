@@ -36,6 +36,8 @@ export interface AxisOptions {
   width?: number
   fontSize?: number
   fontColor?: string
+  fontFamily?: string
+  fontWeight?: number | string
   label?: string
   unit?: string
   title?: AxisLabelOptions
