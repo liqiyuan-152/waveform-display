@@ -1,0 +1,22 @@
+{
+  "controls": [
+    "xDomainStrategy.type",
+    "xDomainStrategy.bounds",
+    "xDomainStrategy.tickCount",
+    "xDomainStrategy.includeExplicit",
+    "xAxis.visible",
+    "xAxis.hideEndTicks",
+    "xAxis.showEndValues"
+  ],
+  "observed": {
+    "type": "data",
+    "bounds": "end",
+    "tickCount": 5,
+    "includeExplicit": true,
+    "axisVisible": false,
+    "hideEndTicks": false,
+    "showEndValues": false
+  },
+  "candidateInteraction": "range strategy and bounds selected through expanded popup options",
+  "screenshot": "x-axis-controls-batch5.jpg"
+}

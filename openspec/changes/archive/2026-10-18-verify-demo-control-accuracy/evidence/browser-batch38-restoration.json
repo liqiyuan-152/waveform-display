@@ -1,0 +1,41 @@
+{
+  "capturedAt": "2026-10-18T09:32:37.742Z",
+  "axes": [
+    {
+      "id": "left",
+      "format": "",
+      "unit": "ms",
+      "min": null,
+      "max": null,
+      "count": 6
+    },
+    {
+      "id": "right",
+      "format": "",
+      "unit": "ms",
+      "min": null,
+      "max": null,
+      "count": 6
+    }
+  ],
+  "paths": 4,
+  "expected": [
+    {
+      "id": "left",
+      "format": "",
+      "unit": "ms",
+      "min": null,
+      "max": null,
+      "count": 6
+    },
+    {
+      "id": "right",
+      "format": "",
+      "unit": "ms",
+      "min": null,
+      "max": null,
+      "count": 6
+    }
+  ],
+  "pass": true
+}

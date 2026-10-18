@@ -2,6 +2,7 @@ import { EventEmitter } from './core/EventEmitter.js'
 import { RenderScheduler } from './core/RenderScheduler.js'
 import { ActionDispatcher } from './core/ActionDispatcher.js'
 import { equalValue } from './config/equal.js'
+import { dimensionPixels, parseDimension } from './config/dimension.js'
 import { WaveformAnimationController } from './animation/WaveformAnimationController.js'
 import type { WaveformAnimation } from './types/animation.js'
 import type { WaveformEvents } from './types/events.js'
@@ -110,7 +111,9 @@ export class Waveform {
       this.animationController.configure(options)
       return
     }
-    if (previousOptions.responsive.enabled !== this.optionManager.resolved.responsive.enabled) this.setupResponsive()
+    const nextOptions = this.optionManager.resolved
+    if (previousOptions.responsive.enabled !== nextOptions.responsive.enabled
+      || previousOptions.width !== nextOptions.width || previousOptions.height !== nextOptions.height) this.setupResponsive()
     this.animationController.invalidateNotifications()
     const geometry = (series: typeof previousData) => series.map(item => ({ id: item.id, yAxis: item.yAxis, data: item.data }))
     this.animateNext = (dataChanged && !equalValue(geometry(previousData), geometry(this.model.series))) || onlyDomainPatch(change.options)
@@ -181,7 +184,8 @@ export class Waveform {
   private setupResponsive() {
     this.resizeObserver?.disconnect()
     const Observer = (this.container.ownerDocument.defaultView as Window & typeof globalThis).ResizeObserver
-    if (!this.optionManager.resolved.responsive.enabled || !Observer) return
+    const options = this.optionManager.resolved
+    if ((!options.responsive.enabled && !parseDimension(options.width)?.percent && !parseDimension(options.height)?.percent) || !Observer) return
     let width = this.container.clientWidth, height = this.container.clientHeight
     this.resizeObserver = new Observer(() => {
       const nextWidth = this.container.clientWidth, nextHeight = this.container.clientHeight
@@ -238,15 +242,16 @@ export class Waveform {
     this.replaceAnimation = false
     const options = this.optionManager.resolved
     const measuredWidth = this.container.clientWidth || 800
-    const width = typeof options.width === 'number' ? options.width : measuredWidth
-    let height = typeof options.height === 'number' ? options.height : this.container.clientHeight || 320
-    if (options.responsive.enabled && typeof options.width !== 'number') {
+    const width = dimensionPixels(options.width, measuredWidth)
+    let height = dimensionPixels(options.height, this.container.clientHeight || 320)
+    if (options.responsive.enabled && parseDimension(options.width)?.percent) {
       height = Math.min(options.responsive.maxHeight, Math.max(options.responsive.minHeight, width / options.responsive.aspectRatio))
     }
 
     const series = this.model.series
     const keyedSeries = this.model.keyedSeries
-    const svg = this.renderer.prepare(width, height)
+    const widthDefinition = parseDimension(options.width)!
+    const svg = this.renderer.prepare(width, height, widthDefinition.percent ? `${widthDefinition.value}%` : width)
 
     if (!series.length) {
       this.renderer.clear()

@@ -1,0 +1,35 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/App.controls.test.ts (39 tests) 18103ms
+   ✓ Demo controls to rendered SVG > appends to retained data when leaving empty preview, but disables append for no series 573ms
+   ✓ Demo controls to rendered SVG > applies responsive aspect ratio and height limits with validation and restoration 351ms
+   ✓ Demo controls to rendered SVG > applies exact manual padding on all four sides, rejects negatives and restores auto layout 344ms
+   ✓ Demo controls to rendered SVG > validates all frame fields, enum candidates and restoration without altering curve geometry 450ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 3138ms
+   ✓ Demo controls to rendered SVG > validates global line boundaries on inherited series while isolating explicit overrides 582ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 424ms
+   ✓ Demo controls to rendered SVG > validates X tick geometry and typography boundaries while preserving other axes 569ms
+   ✓ Demo controls to rendered SVG > applies X number formats and units with formatter precedence and valid empty text 343ms
+   ✓ Demo controls to rendered SVG > validates X title text, units, appearance, fitting and offset without losing hidden settings 636ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 504ms
+   ✓ Demo controls to rendered SVG > validates value axis 0 bounds, density, strategy and visibility with isolated mapping 563ms
+   ✓ Demo controls to rendered SVG > validates value axis 1 bounds, density, strategy and visibility with isolated mapping 570ms
+   ✓ Demo controls to rendered SVG > validates value axis 0 tick geometry and colors without changing peer styles 693ms
+   ✓ Demo controls to rendered SVG > validates value axis 1 tick geometry and colors without changing peer styles 715ms
+   ✓ Demo controls to rendered SVG > formats value axis 0 with shared exponents, units and explicit format precedence 439ms
+   ✓ Demo controls to rendered SVG > formats value axis 1 with shared exponents, units and explicit format precedence 438ms
+   ✓ Demo controls to rendered SVG > validates value axis 0 title content, appearance, automatic fitting and offset 815ms
+   ✓ Demo controls to rendered SVG > validates value axis 1 title content, appearance, automatic fitting and offset 810ms
+   ✓ Demo controls to rendered SVG > keeps X tick density, minimum interval and explicit step priorities observable in the grid 445ms
+   ✓ Demo controls to rendered SVG > applies shared and per-direction grid width, axis binding and visibility 316ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 333ms
+   ✓ Demo controls to rendered SVG > validates grid color and shared or directional width boundaries without altering the curves 438ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 463ms
+   ✓ Demo controls to rendered SVG > maps a curve to the selected axis and back using each axis scale 360ms
+
+ Test Files  1 passed (1)
+      Tests  39 passed (39)
+   Start at  17:51:50
+   Duration  21.37s (transform 511ms, setup 0ms, collect 1.92s, tests 18.10s, environment 1.05s, prepare 91ms)
+

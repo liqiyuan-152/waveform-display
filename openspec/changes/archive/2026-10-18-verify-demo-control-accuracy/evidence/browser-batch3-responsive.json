@@ -1,0 +1,24 @@
+{
+  "controls": [
+    "responsive.enabled",
+    "width",
+    "height",
+    "responsive.aspectRatio",
+    "responsive.minHeight",
+    "responsive.maxHeight",
+    "layout.autoPadding",
+    "padding.top",
+    "padding.right",
+    "padding.bottom",
+    "padding.left"
+  ],
+  "observed": {
+    "width": "50%",
+    "height": "25%",
+    "responsive": true,
+    "aspectRatio": 2,
+    "minHeight": 100,
+    "maxHeight": 300
+  },
+  "screenshot": "responsive-controls-batch3.jpg"
+}

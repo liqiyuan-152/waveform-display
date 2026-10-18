@@ -5,7 +5,7 @@ import { Button, Switch, Tabs, TabPane } from 'ant-design-vue'
 import type { WaveformOptions } from '../../../src/index'
 import OptionsForm from './config-panel/OptionsForm.vue'
 import type { FieldDefinition } from '../config/fields'
-defineProps<{ options: WaveformOptions; replayDisabled?: boolean }>()
+defineProps<{ options: WaveformOptions; replayDisabled?: boolean; appendDisabled?: boolean }>()
 const emit = defineEmits<{
   field: [path: string, value: unknown]
   control: [action: 'pause' | 'resume' | 'finish']
@@ -42,7 +42,7 @@ const scenarios = [
         <Button :disabled="replayDisabled || !options.animationEnabled || !options.animation?.enabled" @click="emit('replay')">重播入场</Button>
       </template>
       <OptionsForm v-else-if="active === 'update'" :fields="update" :options="options" @field="(path, value) => emit('field', path, value)" />
-      <div v-else class="scenario-buttons"><Button v-for="item in scenarios" :key="item.value" @click="emit('scenario', item.value)">{{ item.label }}</Button></div>
+      <div v-else class="scenario-buttons"><Button v-for="item in scenarios" :key="item.value" :disabled="item.value === 'append' && appendDisabled" @click="emit('scenario', item.value)">{{ item.label }}</Button></div>
       <div class="animation-actions" role="group" aria-label="动画控制"><Button @click="emit('control', 'pause')">暂停</Button><Button @click="emit('control', 'resume')">恢复</Button><Button @click="emit('control', 'finish')">结束动画</Button></div>
     </div>
   </section>

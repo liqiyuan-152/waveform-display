@@ -1,0 +1,26 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/integration/Waveform.axes.test.ts (39 tests) 525ms
+ ✓ tests/demo/fields.test.ts (106 tests) 1269ms
+ ✓ tests/demo/App.controls.test.ts (28 tests) 11529ms
+   ✓ Demo controls to rendered SVG > applies responsive aspect ratio and height limits with validation and restoration 727ms
+   ✓ Demo controls to rendered SVG > applies exact manual padding on all four sides, rejects negatives and restores auto layout 362ms
+   ✓ Demo controls to rendered SVG > validates all frame fields, enum candidates and restoration without altering curve geometry 424ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 3006ms
+   ✓ Demo controls to rendered SVG > validates global line boundaries on inherited series while isolating explicit overrides 587ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 356ms
+   ✓ Demo controls to rendered SVG > validates X tick geometry and typography boundaries while preserving other axes 582ms
+   ✓ Demo controls to rendered SVG > applies X number formats and units with formatter precedence and valid empty text 341ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 558ms
+   ✓ Demo controls to rendered SVG > keeps X tick density, minimum interval and explicit step priorities observable in the grid 365ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 332ms
+   ✓ Demo controls to rendered SVG > validates grid color and shared or directional width boundaries without altering the curves 435ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 417ms
+   ✓ Demo controls to rendered SVG > maps a curve to the selected axis and back using each axis scale 341ms
+
+ Test Files  3 passed (3)
+      Tests  173 passed (173)
+   Start at  17:14:29
+   Duration  14.01s (transform 884ms, setup 0ms, collect 4.88s, tests 13.32s, environment 983ms, prepare 136ms)
+

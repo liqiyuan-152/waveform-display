@@ -1,0 +1,125 @@
+{
+  "rows": [
+    {
+      "label": "long at initial size",
+      "height": "100%",
+      "shotSize": "1.15625",
+      "titleSize": "1.15625",
+      "shotLength": 241.5,
+      "titleLength": 244.609375,
+      "plot": {
+        "x": 443,
+        "y": 103,
+        "width": 559,
+        "height": 508,
+        "top": 103,
+        "right": 1002,
+        "bottom": 611,
+        "left": 443
+      },
+      "shot": {
+        "x": 1066.546875,
+        "y": 105,
+        "width": 1.12646484375,
+        "height": 241.5,
+        "top": 105,
+        "right": 1067.67333984375,
+        "bottom": 346.5,
+        "left": 1066.546875
+      },
+      "title": {
+        "x": 1066.546875,
+        "y": 364.390625,
+        "width": 1.203125,
+        "height": 244.609375,
+        "top": 364.390625,
+        "right": 1067.75,
+        "bottom": 609,
+        "left": 1066.546875
+      },
+      "gap": 17.890625,
+      "pass": true
+    },
+    {
+      "label": "long after height=300",
+      "height": 300,
+      "shotSize": "0.4375",
+      "titleSize": "0.4375",
+      "shotLength": 90.3125,
+      "titleLength": 91.46875,
+      "plot": {
+        "x": 443,
+        "y": 254,
+        "width": 559,
+        "height": 206,
+        "top": 254,
+        "right": 1002,
+        "bottom": 460,
+        "left": 443
+      },
+      "shot": {
+        "x": 1066.98681640625,
+        "y": 256.0299072265625,
+        "width": 0.404296875,
+        "height": 90.26751708984375,
+        "top": 256.0299072265625,
+        "right": 1067.39111328125,
+        "bottom": 346.29742431640625,
+        "left": 1066.98681640625
+      },
+      "title": {
+        "x": 1066.98681640625,
+        "y": 366.608642578125,
+        "width": 0.432861328125,
+        "height": 91.37628173828125,
+        "top": 366.608642578125,
+        "right": 1067.419677734375,
+        "bottom": 457.98492431640625,
+        "left": 1066.98681640625
+      },
+      "gap": 20.31121826171875,
+      "pass": true
+    },
+    {
+      "label": "short restores requested size",
+      "height": 300,
+      "shotSize": "14",
+      "titleSize": "14",
+      "shotLength": 48.765625,
+      "titleLength": 66.71875,
+      "plot": {
+        "x": 443,
+        "y": 254,
+        "width": 559,
+        "height": 206,
+        "top": 254,
+        "right": 1002,
+        "bottom": 460,
+        "left": 443
+      },
+      "shot": {
+        "x": 1056.9375,
+        "y": 256,
+        "width": 17,
+        "height": 48.765625,
+        "top": 256,
+        "right": 1073.9375,
+        "bottom": 304.765625,
+        "left": 1056.9375
+      },
+      "title": {
+        "x": 1056.9375,
+        "y": 391.28125,
+        "width": 17,
+        "height": 66.71875,
+        "top": 391.28125,
+        "right": 1073.9375,
+        "bottom": 458,
+        "left": 1056.9375
+      },
+      "gap": 86.515625,
+      "pass": true
+    }
+  ],
+  "pass": true
+}

@@ -1,0 +1,4 @@
+
+> waveform-display@0.1.17 typecheck /Users/liqiyuan/WebstormProjects/waveform-display
+> tsc --noEmit && vue-tsc -p demo/tsconfig.json --noEmit
+

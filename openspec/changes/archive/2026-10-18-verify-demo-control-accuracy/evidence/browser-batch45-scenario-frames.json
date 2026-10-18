@@ -1,0 +1,2959 @@
+{
+  "checks": [
+    {
+      "name": "append",
+      "version": 1,
+      "before": {
+        "domains": {
+          "x": [
+            0,
+            13
+          ],
+          "y": [
+            -0.9989549170979283,
+            0.9954079577517649
+          ]
+        },
+        "series": [
+          {
+            "id": "signal",
+            "name": "信号通道",
+            "data": [
+              {
+                "id": "point-0",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "point-1",
+                "x": 1,
+                "y": 0.3271946967961522
+              },
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 0.618369803069737
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 0.8414709848078965
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 0.9719379013633127
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": 0.9954079577517649
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": 0.9092974268256817
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": 0.7230858817383246
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": 0.457272626635812
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": 0.1411200080598672
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -0.19056796287548539
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -0.5012770485883448
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -0.7568024953079282
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -0.9290145012707619
+              }
+            ]
+          },
+          {
+            "id": "reference",
+            "name": "参考通道",
+            "data": [
+              {
+                "id": "point-0",
+                "x": 0,
+                "y": 0.8414709848078965
+              },
+              {
+                "id": "point-1",
+                "x": 1,
+                "y": 0.9719379013633127
+              },
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 0.9954079577517649
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 0.9092974268256817
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 0.7230858817383248
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": 0.4572726266358116
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": 0.1411200080598672
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": -0.19056796287548539
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -0.5012770485883448
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -0.7568024953079282
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -0.9290145012707622
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -0.9989549170979283
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -0.9589242746631385
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -0.81332939156758
+              }
+            ]
+          }
+        ],
+        "width": 620,
+        "height": 306
+      },
+      "targetDomains": {
+        "x": [
+          0,
+          14
+        ],
+        "y": [
+          -0.9989549170979283,
+          0.9954079577517649
+        ]
+      },
+      "expectedX": [
+        0,
+        14
+      ],
+      "expectedY": [
+        -0.9989549170979283,
+        0.9954079577517649
+      ],
+      "dataPass": true,
+      "domainPass": true,
+      "running": true,
+      "frames": [
+        {
+          "progress": 0,
+          "time": 0,
+          "domains": {
+            "x": [
+              0,
+              13
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 30,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.25,
+          "time": 100,
+          "domains": {
+            "x": [
+              0,
+              13.25
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13.25
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 30,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.5,
+          "time": 200,
+          "domains": {
+            "x": [
+              0,
+              13.5
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13.5
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 30,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.75,
+          "time": 300,
+          "domains": {
+            "x": [
+              0,
+              13.75
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13.75
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 30,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 1,
+          "time": 400,
+          "domains": {
+            "x": [
+              0,
+              14
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              14
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 30,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 8,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": false,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "window",
+      "version": 2,
+      "before": {
+        "domains": {
+          "x": [
+            0,
+            14
+          ],
+          "y": [
+            -0.9989549170979283,
+            0.9954079577517649
+          ]
+        },
+        "series": [
+          {
+            "id": "signal",
+            "name": "信号通道",
+            "data": [
+              {
+                "id": "point-0",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "point-1",
+                "x": 1,
+                "y": 0.3271946967961522
+              },
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 0.618369803069737
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 0.8414709848078965
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 0.9719379013633127
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": 0.9954079577517649
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": 0.9092974268256817
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": 0.7230858817383246
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": 0.457272626635812
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": 0.1411200080598672
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -0.19056796287548539
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -0.5012770485883448
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -0.7568024953079282
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -0.9290145012707619
+              },
+              {
+                "id": "append-1",
+                "x": 14,
+                "y": -0.9792077684526455
+              }
+            ]
+          },
+          {
+            "id": "reference",
+            "name": "参考通道",
+            "data": [
+              {
+                "id": "point-0",
+                "x": 0,
+                "y": 0.8414709848078965
+              },
+              {
+                "id": "point-1",
+                "x": 1,
+                "y": 0.9719379013633127
+              },
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 0.9954079577517649
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 0.9092974268256817
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 0.7230858817383248
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": 0.4572726266358116
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": 0.1411200080598672
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": -0.19056796287548539
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -0.5012770485883448
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -0.7568024953079282
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -0.9290145012707622
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -0.9989549170979283
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -0.9589242746631385
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -0.81332939156758
+              },
+              {
+                "id": "append-1",
+                "x": 14,
+                "y": -0.3583674805089503
+              }
+            ]
+          }
+        ],
+        "width": 620,
+        "height": 306
+      },
+      "targetDomains": {
+        "x": [
+          2,
+          15
+        ],
+        "y": [
+          -2.9780854278004583,
+          2.9924849598121632
+        ]
+      },
+      "expectedX": [
+        2,
+        15
+      ],
+      "expectedY": [
+        -2.9780854278004583,
+        2.9924849598121632
+      ],
+      "dataPass": true,
+      "domainPass": true,
+      "running": true,
+      "frames": [
+        {
+          "progress": 0,
+          "time": 400,
+          "domains": {
+            "x": [
+              0,
+              14
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              14
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 8,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.25,
+          "time": 500,
+          "domains": {
+            "x": [
+              0.5,
+              14.25
+            ],
+            "y": [
+              -1.4937375447735608,
+              1.4946772082668645
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0.5,
+              14.25
+            ],
+            "y": [
+              -1.4937375447735608,
+              1.4946772082668645
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.5,
+          "time": 600,
+          "domains": {
+            "x": [
+              1,
+              14.5
+            ],
+            "y": [
+              -1.9885201724491932,
+              1.9939464587819642
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              1,
+              14.5
+            ],
+            "y": [
+              -1.9885201724491932,
+              1.9939464587819642
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.75,
+          "time": 700,
+          "domains": {
+            "x": [
+              1.5,
+              14.75
+            ],
+            "y": [
+              -2.4833028001248256,
+              2.4932157092970635
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              1.5,
+              14.75
+            ],
+            "y": [
+              -2.4833028001248256,
+              2.4932157092970635
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 1,
+          "time": 800,
+          "domains": {
+            "x": [
+              2,
+              15
+            ],
+            "y": [
+              -2.9780854278004583,
+              2.9924849598121632
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              2,
+              15
+            ],
+            "y": [
+              -2.9780854278004583,
+              2.9924849598121632
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": false,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "window",
+      "version": 3,
+      "before": {
+        "domains": {
+          "x": [
+            2,
+            15
+          ],
+          "y": [
+            -2.9780854278004583,
+            2.9924849598121632
+          ]
+        },
+        "series": [
+          {
+            "id": "signal",
+            "name": "信号通道",
+            "data": [
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 2.758334937761265
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 2.9924849598121632
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 2.897203961272499
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": 2.482981056377881
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": 1.7954164323118698
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": 0.9102014021035683
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -0.07521415738550727
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -1.0523496830688595
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -1.9136361285505556
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -2.5642578217165184
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -2.932590352995291
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -2.9780854278004583
+              },
+              {
+                "id": "point-14",
+                "x": 14,
+                "y": -2.695734670442189
+              },
+              {
+                "id": "point-15",
+                "x": 15,
+                "y": -2.1166209767111757
+              }
+            ]
+          },
+          {
+            "id": "reference",
+            "name": "参考通道",
+            "data": [
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 2.4829810563778816
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 1.7954164323118698
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 0.9102014021035696
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": -0.0752141573855086
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": -1.0523496830688595
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": -1.9136361285505556
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -2.5642578217165184
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -2.932590352995291
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -2.9780854278004583
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -2.6957346704421905
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -2.1166209767111757
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -1.3044967188752314
+              },
+              {
+                "id": "point-14",
+                "x": 14,
+                "y": -0.348765495180689
+              },
+              {
+                "id": "point-15",
+                "x": 15,
+                "y": 0.6453599642634466
+              }
+            ]
+          }
+        ],
+        "width": 620,
+        "height": 306
+      },
+      "targetDomains": {
+        "x": [
+          3,
+          16
+        ],
+        "y": [
+          -3.997171155901512,
+          3.9359437874957477
+        ]
+      },
+      "expectedX": [
+        3,
+        16
+      ],
+      "expectedY": [
+        -3.997171155901512,
+        3.9359437874957477
+      ],
+      "dataPass": true,
+      "domainPass": true,
+      "running": true,
+      "frames": [
+        {
+          "progress": 0,
+          "time": 800,
+          "domains": {
+            "x": [
+              2,
+              15
+            ],
+            "y": [
+              -2.9780854278004583,
+              2.9924849598121632
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              2,
+              15
+            ],
+            "y": [
+              -2.9780854278004583,
+              2.9924849598121632
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.25,
+          "time": 900,
+          "domains": {
+            "x": [
+              2.25,
+              15.25
+            ],
+            "y": [
+              -3.2328568598257217,
+              3.2283496667330596
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              2.25,
+              15.25
+            ],
+            "y": [
+              -3.2328568598257217,
+              3.2283496667330596
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.5,
+          "time": 1000,
+          "domains": {
+            "x": [
+              2.5,
+              15.5
+            ],
+            "y": [
+              -3.487628291850985,
+              3.4642143736539555
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              2.5,
+              15.5
+            ],
+            "y": [
+              -3.487628291850985,
+              3.4642143736539555
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.75,
+          "time": 1100,
+          "domains": {
+            "x": [
+              2.75,
+              15.75
+            ],
+            "y": [
+              -3.7423997238762485,
+              3.7000790805748514
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              2.75,
+              15.75
+            ],
+            "y": [
+              -3.7423997238762485,
+              3.7000790805748514
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 1,
+          "time": 1200,
+          "domains": {
+            "x": [
+              3,
+              16
+            ],
+            "y": [
+              -3.997171155901512,
+              3.9359437874957477
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              3,
+              16
+            ],
+            "y": [
+              -3.997171155901512,
+              3.9359437874957477
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": false,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "domain",
+      "version": 4,
+      "before": {
+        "domains": {
+          "x": [
+            3,
+            16
+          ],
+          "y": [
+            -3.997171155901512,
+            3.9359437874957477
+          ]
+        },
+        "series": [
+          {
+            "id": "signal",
+            "name": "信号通道",
+            "data": [
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 3.9359437874957477
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 3.4860127657650626
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": 2.6523201684073427
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": 1.5266439682093267
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": 0.23290547621045343
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -1.0864726730497054
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -2.286245274969375
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -3.234334034073412
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -3.8263675494302984
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -3.997171155901512
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -3.727941749325787
+              },
+              {
+                "id": "point-14",
+                "x": 14,
+                "y": -3.0483177470627205
+              },
+              {
+                "id": "point-15",
+                "x": 15,
+                "y": -2.0331163099970335
+              },
+              {
+                "id": "point-16",
+                "x": 16,
+                "y": -0.7940970125322482
+              }
+            ]
+          },
+          {
+            "id": "reference",
+            "name": "参考通道",
+            "data": [
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 1.5266439682093267
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 0.2329054762104552
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": -1.0864726730497072
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": -2.286245274969375
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": -3.234334034073412
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -3.8263675494302984
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -3.997171155901512
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -3.727941749325786
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -3.0483177470627227
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -2.0331163099970335
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -0.7940970125322482
+              },
+              {
+                "id": "point-14",
+                "x": 14,
+                "y": 0.5323413339167782
+              },
+              {
+                "id": "point-15",
+                "x": 15,
+                "y": 1.8001762951224705
+              },
+              {
+                "id": "point-16",
+                "x": 16,
+                "y": 2.8698368554174376
+              }
+            ]
+          }
+        ],
+        "width": 620,
+        "height": 306
+      },
+      "targetDomains": {
+        "x": [
+          0,
+          13
+        ],
+        "y": [
+          -0.9989549170979283,
+          0.9954079577517649
+        ]
+      },
+      "expectedX": [
+        0,
+        13
+      ],
+      "expectedY": [
+        -0.9989549170979283,
+        0.9954079577517649
+      ],
+      "dataPass": true,
+      "domainPass": true,
+      "running": true,
+      "frames": [
+        {
+          "progress": 0,
+          "time": 1200,
+          "domains": {
+            "x": [
+              3,
+              16
+            ],
+            "y": [
+              -3.997171155901512,
+              3.9359437874957477
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              3,
+              16
+            ],
+            "y": [
+              -3.997171155901512,
+              3.9359437874957477
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.25,
+          "time": 1300,
+          "domains": {
+            "x": [
+              2.25,
+              15.25
+            ],
+            "y": [
+              -3.247617096200616,
+              3.2008098300597516
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              2.25,
+              15.25
+            ],
+            "y": [
+              -3.247617096200616,
+              3.2008098300597516
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.5,
+          "time": 1400,
+          "domains": {
+            "x": [
+              1.5,
+              14.5
+            ],
+            "y": [
+              -2.4980630364997203,
+              2.4656758726237564
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              1.5,
+              14.5
+            ],
+            "y": [
+              -2.4980630364997203,
+              2.4656758726237564
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.75,
+          "time": 1500,
+          "domains": {
+            "x": [
+              0.75,
+              13.75
+            ],
+            "y": [
+              -1.7485089767988242,
+              1.7305419151877606
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0.75,
+              13.75
+            ],
+            "y": [
+              -1.7485089767988242,
+              1.7305419151877606
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 1,
+          "time": 1600,
+          "domains": {
+            "x": [
+              0,
+              13
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": false,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "append",
+      "version": 5,
+      "before": {
+        "domains": {
+          "x": [
+            0,
+            13
+          ],
+          "y": [
+            -0.9989549170979283,
+            0.9954079577517649
+          ]
+        },
+        "series": [
+          {
+            "id": "signal",
+            "name": "信号通道",
+            "data": [
+              {
+                "id": "point-0",
+                "x": 0,
+                "y": 0.8414709848078965
+              },
+              {
+                "id": "point-1",
+                "x": 1,
+                "y": 0.9719379013633127
+              },
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 0.9954079577517649
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 0.9092974268256817
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 0.7230858817383248
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": 0.4572726266358116
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": 0.1411200080598672
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": -0.19056796287548539
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -0.5012770485883448
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -0.7568024953079282
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -0.9290145012707622
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -0.9989549170979283
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -0.9589242746631385
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -0.81332939156758
+              }
+            ]
+          },
+          {
+            "id": "reference",
+            "name": "参考通道",
+            "data": [
+              {
+                "id": "point-0",
+                "x": 0,
+                "y": 0.9092974268256817
+              },
+              {
+                "id": "point-1",
+                "x": 1,
+                "y": 0.7230858817383248
+              },
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 0.457272626635812
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 0.1411200080598672
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": -0.19056796287548494
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": -0.5012770485883451
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": -0.7568024953079282
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": -0.9290145012707622
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -0.9989549170979283
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -0.9589242746631385
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -0.8133293915675796
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -0.5781982417443097
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -0.27941549819892586
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": 0.050127009882172724
+              }
+            ]
+          }
+        ],
+        "width": 620,
+        "height": 306
+      },
+      "targetDomains": {
+        "x": [
+          0,
+          14
+        ],
+        "y": [
+          -0.9989549170979283,
+          0.9954079577517649
+        ]
+      },
+      "expectedX": [
+        0,
+        14
+      ],
+      "expectedY": [
+        -0.9989549170979283,
+        0.9954079577517649
+      ],
+      "dataPass": true,
+      "domainPass": true,
+      "running": true,
+      "frames": [
+        {
+          "progress": 0,
+          "time": 1600,
+          "domains": {
+            "x": [
+              0,
+              13
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 30,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.25,
+          "time": 1700,
+          "domains": {
+            "x": [
+              0,
+              13.25
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13.25
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 30,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.5,
+          "time": 1800,
+          "domains": {
+            "x": [
+              0,
+              13.5
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13.5
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 30,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 0.75,
+          "time": 1900,
+          "domains": {
+            "x": [
+              0,
+              13.75
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13.75
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 30,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": true,
+          "pass": true
+        },
+        {
+          "progress": 1,
+          "time": 2000,
+          "domains": {
+            "x": [
+              0,
+              14
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              14
+            ],
+            "y": [
+              -0.9989549170979283,
+              0.9954079577517649
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 30,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 8,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": false,
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "name": "extreme",
+      "version": 6,
+      "before": {
+        "domains": {
+          "x": [
+            0,
+            14
+          ],
+          "y": [
+            -0.9989549170979283,
+            0.9954079577517649
+          ]
+        },
+        "series": [
+          {
+            "id": "signal",
+            "name": "信号通道",
+            "data": [
+              {
+                "id": "point-0",
+                "x": 0,
+                "y": 0.8414709848078965
+              },
+              {
+                "id": "point-1",
+                "x": 1,
+                "y": 0.9719379013633127
+              },
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 0.9954079577517649
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 0.9092974268256817
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 0.7230858817383248
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": 0.4572726266358116
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": 0.1411200080598672
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": -0.19056796287548539
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -0.5012770485883448
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -0.7568024953079282
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -0.9290145012707622
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -0.9989549170979283
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -0.9589242746631385
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -0.81332939156758
+              },
+              {
+                "id": "append-5",
+                "x": 14,
+                "y": -0.3583674805089503
+              }
+            ]
+          },
+          {
+            "id": "reference",
+            "name": "参考通道",
+            "data": [
+              {
+                "id": "point-0",
+                "x": 0,
+                "y": 0.9092974268256817
+              },
+              {
+                "id": "point-1",
+                "x": 1,
+                "y": 0.7230858817383248
+              },
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 0.457272626635812
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 0.1411200080598672
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": -0.19056796287548494
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": -0.5012770485883451
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": -0.7568024953079282
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": -0.9290145012707622
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -0.9989549170979283
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -0.9589242746631385
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -0.8133293915675796
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -0.5781982417443097
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -0.27941549819892586
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": 0.050127009882172724
+              },
+              {
+                "id": "append-5",
+                "x": 14,
+                "y": 0.5919542163183625
+              }
+            ]
+          }
+        ],
+        "width": 620,
+        "height": 306
+      },
+      "targetDomains": {
+        "x": [
+          0,
+          13
+        ],
+        "y": [
+          -4,
+          4
+        ]
+      },
+      "expectedX": [
+        0,
+        13
+      ],
+      "expectedY": [
+        -4,
+        4
+      ],
+      "dataPass": true,
+      "domainPass": true,
+      "running": false,
+      "frames": [
+        {
+          "progress": 1,
+          "time": 2000,
+          "domains": {
+            "x": [
+              0,
+              13
+            ],
+            "y": [
+              -4,
+              4
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13
+            ],
+            "y": [
+              -4,
+              4
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": false,
+          "pass": true
+        }
+      ],
+      "fallback": {
+        "limit": 2765.6059010639965,
+        "displacement": 3815418194.3794365,
+        "staticFallback": true,
+        "clipWidth": "620",
+        "clipHeight": "306",
+        "entryClips": 0,
+        "pass": true,
+        "noStaleFrame": true
+      },
+      "pass": true
+    },
+    {
+      "name": "auto-padding",
+      "version": 7,
+      "before": {
+        "domains": {
+          "x": [
+            0,
+            13
+          ],
+          "y": [
+            -4,
+            4
+          ]
+        },
+        "series": [
+          {
+            "id": "signal",
+            "name": "信号通道",
+            "data": [
+              {
+                "id": "point-0",
+                "x": 0,
+                "y": 99749498.66040544
+              },
+              {
+                "id": "point-1",
+                "x": 1,
+                "y": 96573465.37574998
+              },
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": 82766035.21259606
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": 59847214.41039565
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": 30340046.736785654
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": -2507138.5795169533
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": -35078322.76896198
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": -63787870.95168519
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -85475260.72388396
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -97753011.7665097
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -99269514.26001526
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -89857822.34807302
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": -70554032.55703919
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": -43483223.96250772
+              }
+            ]
+          },
+          {
+            "id": "reference",
+            "name": "参考通道",
+            "data": [
+              {
+                "id": "point-0",
+                "x": 0,
+                "y": 59847214.41039565
+              },
+              {
+                "id": "point-1",
+                "x": 1,
+                "y": 30340046.736785654
+              },
+              {
+                "id": "point-2",
+                "x": 2,
+                "y": -2507138.5795169086
+              },
+              {
+                "id": "point-3",
+                "x": 3,
+                "y": -35078322.76896198
+              },
+              {
+                "id": "point-4",
+                "x": 4,
+                "y": -63787870.95168515
+              },
+              {
+                "id": "point-5",
+                "x": 5,
+                "y": -85475260.723884
+              },
+              {
+                "id": "point-6",
+                "x": 6,
+                "y": -97753011.7665097
+              },
+              {
+                "id": "point-7",
+                "x": 7,
+                "y": -99269514.26001526
+              },
+              {
+                "id": "point-8",
+                "x": 8,
+                "y": -89857822.34807302
+              },
+              {
+                "id": "point-9",
+                "x": 9,
+                "y": -70554032.55703919
+              },
+              {
+                "id": "point-10",
+                "x": 10,
+                "y": -43483223.962507635
+              },
+              {
+                "id": "point-11",
+                "x": 11,
+                "y": -11625516.506023055
+              },
+              {
+                "id": "point-12",
+                "x": 12,
+                "y": 21511998.808781553
+              },
+              {
+                "id": "point-13",
+                "x": 13,
+                "y": 52281341.91296795
+              }
+            ]
+          }
+        ],
+        "width": 620,
+        "height": 306
+      },
+      "targetDomains": {
+        "x": [
+          0,
+          13
+        ],
+        "y": [
+          -99.9292788975378,
+          98.3985946873937
+        ]
+      },
+      "expectedX": [
+        0,
+        13
+      ],
+      "expectedY": [
+        -99.9292788975378,
+        98.3985946873937
+      ],
+      "dataPass": true,
+      "domainPass": true,
+      "running": false,
+      "frames": [
+        {
+          "progress": 1,
+          "time": 3000,
+          "domains": {
+            "x": [
+              0,
+              13
+            ],
+            "y": [
+              -99.9292788975378,
+              98.3985946873937
+            ]
+          },
+          "expectedDomains": {
+            "x": [
+              0,
+              13
+            ],
+            "y": [
+              -99.9292788975378,
+              98.3985946873937
+            ]
+          },
+          "pathPass": true,
+          "symbolPass": true,
+          "paths": 2,
+          "points": 28,
+          "tickRows": [
+            {
+              "selector": ".waveform-axis-x .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-x .tick",
+              "count": 7,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-axis-y--left .tick",
+              "count": 6,
+              "pass": true
+            },
+            {
+              "selector": ".waveform-grid-y .tick",
+              "count": 6,
+              "pass": true
+            }
+          ],
+          "zeroPass": true,
+          "domainPass": true,
+          "running": false,
+          "pass": true
+        }
+      ],
+      "layout": {
+        "beforeWidth": 620,
+        "afterWidth": 728,
+        "staticFallback": true,
+        "boxes": [
+          {
+            "text": "1",
+            "rect": {
+              "x": 707.303466796875,
+              "y": 291.57501220703125,
+              "width": 64.453125,
+              "height": 134,
+              "top": 291.57501220703125,
+              "right": 771.756591796875,
+              "bottom": 425.57501220703125,
+              "left": 707.303466796875
+            },
+            "inside": true
+          },
+          {
+            "text": "信号通道",
+            "rect": {
+              "x": 442.3900146484375,
+              "y": 200.69000244140625,
+              "width": 50.125,
+              "height": 15,
+              "top": 200.69000244140625,
+              "right": 492.5150146484375,
+              "bottom": 215.69000244140625,
+              "left": 442.3900146484375
+            },
+            "inside": true
+          },
+          {
+            "text": "参考通道",
+            "rect": {
+              "x": 535.4749755859375,
+              "y": 200.69000244140625,
+              "width": 50.125,
+              "height": 15,
+              "top": 200.69000244140625,
+              "right": 585.5999755859375,
+              "bottom": 215.69000244140625,
+              "left": 535.4749755859375
+            },
+            "inside": true
+          },
+          {
+            "text": "#10001",
+            "rect": {
+              "x": 1066.483154296875,
+              "y": 223.42994689941406,
+              "width": 15,
+              "height": 43.65626525878906,
+              "top": 223.42994689941406,
+              "right": 1081.483154296875,
+              "bottom": 267.0862121582031,
+              "left": 1066.483154296875
+            },
+            "inside": true
+          },
+          {
+            "text": "Time (ms)",
+            "rect": {
+              "x": 1066.483154296875,
+              "y": 434.0168762207031,
+              "width": 15,
+              "height": 59.703125,
+              "top": 434.0168762207031,
+              "right": 1081.483154296875,
+              "bottom": 493.7200012207031,
+              "left": 1066.483154296875
+            },
+            "inside": true
+          }
+        ],
+        "pass": true,
+        "noStaleFrame": true,
+        "metadataGap": 166.9306640625
+      },
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "chartRunning": false,
+  "animatorHasHandle": false,
+  "pendingUiCallbacks": [
+    "() => {\n        removeTransitionClass(el, isAppear ? appearFromClass : enterFromClass);\n        addTransitionClass(el, isAppear ? appearToClass : enterToClass);",
+    "() => {\n    requestAnimationFrame(cb);\n  }"
+  ],
+  "method": "Harness prepares fixed layout, two 14-point series, legacy data domains, 400ms linear updates, no entrance. After readiness, performance.now and RAF are controlled. Scenario buttons use DOM click because real DevTools actionability waits require native RAF; prior batches27/40 prove real clicks. Context endpoints are checked against independent raw data extrema; intermediate domains, geometry and symbols are computed numerically from IDs and endpoint interpolation, ticks/grid use datum plus independent scales. Path tolerance0.00051, full precision1e-8. CSS UI RAF callbacks are distinct from the chart animator handle.",
+  "reducedMotion": false,
+  "hidden": false,
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+  "viewport": {
+    "width": 1100,
+    "height": 700
+  }
+}

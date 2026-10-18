@@ -52,7 +52,7 @@ h1, h2 { margin: 0; color: var(--text); font-size: 14px; font-weight: 600; }
 .preview-pane { display: flex; flex-direction: column; height: clamp(360px, 70dvh, 700px); min-height: 360px; order: -1; overflow: hidden; }
 .preview-stage { display: flex; flex: 1; min-height: 0; align-items: stretch; padding: 12px 0; overflow: hidden; }
 .waveform-preview { display: flex; align-items: center; width: 100%; min-height: 0; }
-.waveform-preview svg { display: block; width: 100%; height: auto; max-height: 100%; }
+.waveform-preview svg { display: block; max-width: 100%; height: auto; max-height: 100%; }
 @container (min-width: 520px) { .config-grid, .series-overrides { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1100px) and (min-height: 700px) {
   .workspace { display: grid; height: 100dvh; min-height: 0; grid-template-columns: minmax(340px, 3fr) minmax(0, 9fr); overflow: hidden; }

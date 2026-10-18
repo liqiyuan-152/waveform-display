@@ -1,0 +1,44 @@
+
+> waveform-display@0.1.17 test /Users/liqiyuan/WebstormProjects/waveform-display
+> vitest run "tests/integration/Waveform.dimensions.test.ts" "tests/demo/animationScenarios.test.ts" "tests/demo/fields.test.ts" "tests/demo/App.controls.test.ts" "tests/demo/useWaveform.test.ts"
+
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/animationScenarios.test.ts (2 tests) 21ms
+ ❯ tests/demo/useWaveform.test.ts (5 tests | 1 failed) 142ms
+   × Vue preview ownership > fits the preview container on resize and releases its observer on unmount 32ms
+     → expected "spy" to be called once, but got 2 times
+ ✓ tests/integration/Waveform.dimensions.test.ts (5 tests) 382ms
+ ✓ tests/demo/fields.test.ts (103 tests) 1570ms
+ ✓ tests/demo/App.controls.test.ts (14 tests) 7843ms
+   ✓ Demo controls to rendered SVG > applies responsive aspect ratio and height limits with validation and restoration 995ms
+   ✓ Demo controls to rendered SVG > applies exact manual padding on all four sides, rejects negatives and restores auto layout 458ms
+   ✓ Demo controls to rendered SVG > applies fixed dimensions and frame appearance, then restores visibility 320ms
+   ✓ Demo controls to rendered SVG > preserves series overrides while global opacity, interpolation and visibility affect all paths 310ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 2691ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 433ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 451ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 401ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 419ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/demo/useWaveform.test.ts > Vue preview ownership > fits the preview container on resize and releases its observer on unmount
+AssertionError: expected "spy" to be called once, but got 2 times
+ ❯ tests/demo/useWaveform.test.ts:33:26
+     31|       expect(host.querySelector('svg')?.getAttribute('viewBox')).toBe(…
+     32|       wrapper.unmount()
+     33|       expect(disconnect).toHaveBeenCalledOnce()
+       |                          ^
+     34|       notifyResize()
+     35|       expect(host.querySelector('svg')).toBeNull()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed | 4 passed (5)
+      Tests  1 failed | 128 passed (129)
+   Start at  14:01:11
+   Duration  10.54s (transform 836ms, setup 0ms, collect 4.95s, tests 9.96s, environment 2.54s, prepare 472ms)
+
+ ELIFECYCLE  Test failed. See above for more details.

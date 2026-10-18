@@ -1,9 +1,9 @@
 import type { ReturnTypeOfResolveOptions } from '../types/internal.js'
 import type { RenderContext } from './context.js'
+import { createTextMeasurer } from './legend.js'
 
 const EDGE_INSET = 2
 const MIDDLE_GAP = 12
-const TEXT_WIDTH_FACTOR = 0.6
 const LEGEND_RIGHT_EXTENT = 96
 
 function xTitleText(options: ReturnTypeOfResolveOptions): string {
@@ -16,10 +16,15 @@ function shotText(options: ReturnTypeOfResolveOptions): string {
   return options.shot.visible ? options.shot.text : ''
 }
 
-function fittedFontSize(text: string, fontSize: number, availableLength: number): number {
-  const estimatedLength = Math.max(1, text.length * fontSize * TEXT_WIDTH_FACTOR)
-  if (estimatedLength <= availableLength) return fontSize
-  return Math.max(0.1, Math.floor(fontSize * availableLength / estimatedLength * 100) / 100)
+function fittedFontSize(ctx: RenderContext, text: string, fontSize: number, availableLength: number, fontWeight: number | string): number {
+  const measurer = createTextMeasurer(ctx.svg, fontSize, undefined, fontWeight)
+  try {
+    const length = measurer.measure(text)
+    if (length <= availableLength) return fontSize
+    return Math.floor(fontSize * availableLength / length * 64) / 64
+  } finally {
+    measurer.destroy()
+  }
 }
 
 function rightContentExtent(ctx: RenderContext): number {
@@ -58,7 +63,7 @@ export function renderXMetadata(ctx: RenderContext) {
   // The frame is also an obstacle when no right value axis is displayed.
   const x = Math.max(preferredX, options.padding.left + ctx.innerWidth + rightTickExtent + laneWidth / 2 + 4)
   const availableLength = Math.max(
-    1,
+    0,
     (innerHeight - EDGE_INSET * 2 - (title && shot ? MIDDLE_GAP : 0)) / (title && shot ? 2 : 1),
   )
 
@@ -72,7 +77,7 @@ export function renderXMetadata(ctx: RenderContext) {
       .attr('text-anchor', 'end')
       .attr('dominant-baseline', 'middle')
       .attr('fill', options.shot.color)
-      .attr('font-size', fittedFontSize(shot, options.shot.fontSize, availableLength))
+      .attr('font-size', fittedFontSize(ctx, shot, options.shot.fontSize, availableLength, options.shot.fontWeight))
       .attr('font-weight', options.shot.fontWeight)
       .attr('aria-label', `Shot ${shot}`)
       .text(shot)
@@ -88,7 +93,7 @@ export function renderXMetadata(ctx: RenderContext) {
       .attr('text-anchor', 'start')
       .attr('dominant-baseline', 'middle')
       .attr('fill', options.xAxis.title.color ?? '#334155')
-      .attr('font-size', fittedFontSize(title, options.xAxis.title.fontSize ?? 12, availableLength))
+      .attr('font-size', fittedFontSize(ctx, title, options.xAxis.title.fontSize ?? 12, availableLength, options.xAxis.title.fontWeight ?? 500))
       .attr('font-weight', options.xAxis.title.fontWeight ?? 500)
       .text(title)
   }

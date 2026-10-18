@@ -1,0 +1,39 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ❯ tests/demo/App.controls.test.ts (46 tests | 4 failed | 42 skipped) 1781ms
+   × Demo controls to rendered SVG > edits all eleven overrides on curve 0 and restores inheritance without affecting explicit peers 772ms
+     → expected '8 4 2 4' to be '6 3 1 3' // Object.is equality
+   × Demo controls to rendered SVG > edits all eleven overrides on curve 1 and restores inheritance without affecting explicit peers 360ms
+     → expected '8 4 2 4' to be '6 3 1 3' // Object.is equality
+   × Demo controls to rendered SVG > edits all eleven overrides on curve 2 and restores inheritance without affecting explicit peers 320ms
+     → expected '8 4 2 4' to be '6 3 1 3' // Object.is equality
+   × Demo controls to rendered SVG > edits all eleven overrides on curve 3 and restores inheritance without affecting explicit peers 327ms
+     → expected '8 4 2 4' to be '6 3 1 3' // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/demo/App.controls.test.ts > Demo controls to rendered SVG > edits all eleven overrides on curve 0 and restores inheritance without affecting explicit peers
+ FAIL  tests/demo/App.controls.test.ts > Demo controls to rendered SVG > edits all eleven overrides on curve 1 and restores inheritance without affecting explicit peers
+ FAIL  tests/demo/App.controls.test.ts > Demo controls to rendered SVG > edits all eleven overrides on curve 2 and restores inheritance without affecting explicit peers
+ FAIL  tests/demo/App.controls.test.ts > Demo controls to rendered SVG > edits all eleven overrides on curve 3 and restores inheritance without affecting explicit peers
+AssertionError: expected '8 4 2 4' to be '6 3 1 3' // Object.is equality
+
+Expected: "6 3 1 3"
+Received: "8 4 2 4"
+
+ ❯ tests/demo/App.controls.test.ts:1230:91
+    1228|       if (field.path === 'style.color') expect(line.getAttribute('stro…
+    1229|       if (field.path === 'style.lineWidth') expect(line.getAttribute('…
+    1230|       if (field.path === 'style.lineStyle') expect(line.getAttribute('…
+       |                                                                                           ^
+    1231|       if (field.path === 'style.opacity') expect(line.getAttribute('st…
+    1232|       if (field.path === 'style.point.visible') expect(point).toBeTrut…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 42 skipped (46)
+   Start at  18:07:44
+   Duration  4.18s (transform 484ms, setup 0ms, collect 1.79s, tests 1.78s, environment 412ms, prepare 59ms)
+

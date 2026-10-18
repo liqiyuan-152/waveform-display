@@ -157,6 +157,18 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
 
   const titleText = axisOptions.title?.text || axisOptions.label
   if (axisOptions.title?.visible && titleText) {
+    const text = `${titleText}${axisOptions.title.unit ? ` (${axisOptions.title.unit})` : ''}`
+    const requestedSize = axisOptions.title.fontSize ?? 12
+    const measurer = createTextMeasurer(svg, requestedSize, undefined, axisOptions.title.fontWeight ?? 500)
+    let fontSize = requestedSize
+    try {
+      const length = measurer.measure(text)
+      const available = Math.max(0, innerHeight - 4)
+      // Round down to a browser subpixel so font quantization cannot overshoot the lane.
+      if (length > available) fontSize = Math.floor(requestedSize * available / length * 64) / 64
+    } finally {
+      measurer.destroy()
+    }
     const xPos = position === 'right'
       ? options.padding.left + innerWidth + offset + titleOffset
       : options.padding.left - offset - titleOffset + (axisOptions.title.offset === undefined ? 10 : 0)
@@ -166,9 +178,9 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
       .attr('transform', `translate(${xPos},${options.padding.top + innerHeight / 2}) rotate(-90)`)
       .attr('text-anchor', 'middle')
       .attr('fill', axisOptions.title.color ?? '#334155')
-      .attr('font-size', axisOptions.title.fontSize ?? 12)
+      .attr('font-size', fontSize)
       .attr('font-weight', axisOptions.title.fontWeight ?? 500)
-      .text(`${titleText}${axisOptions.title.unit ? ` (${axisOptions.title.unit})` : ''}`)
+      .text(text)
   }
 }
 

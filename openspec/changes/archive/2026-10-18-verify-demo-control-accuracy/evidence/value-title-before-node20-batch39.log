@@ -1,0 +1,29 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ❯ tests/integration/Waveform.headers.test.ts (9 tests | 2 failed | 7 skipped) 47ms
+   × axis headers and zero-line defaults > fits long left value-axis titles to the plot and restores the requested size 36ms
+     → expected 14 to be less than 14
+   × axis headers and zero-line defaults > fits long right value-axis titles to the plot and restores the requested size 10ms
+     → expected 14 to be less than 14
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/Waveform.headers.test.ts > axis headers and zero-line defaults > fits long left value-axis titles to the plot and restores the requested size
+ FAIL  tests/integration/Waveform.headers.test.ts > axis headers and zero-line defaults > fits long right value-axis titles to the plot and restores the requested size
+AssertionError: expected 14 to be less than 14
+ ❯ tests/integration/Waveform.headers.test.ts:40:57
+     38|       const title = () => svg.querySelector<SVGTextElement>('.waveform…
+     39|       const height = () => Number(svg.querySelector('.waveform-frame-b…
+     40|       expect(Number(title().getAttribute('font-size'))).toBeLessThan(1…
+       |                                                         ^
+     41|       expect(title().getComputedTextLength()).toBeLessThanOrEqual(heig…
+     42|       chart.updateOptions({ height: 180 })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 7 skipped (9)
+   Start at  17:33:10
+   Duration  803ms (transform 157ms, setup 0ms, collect 310ms, tests 47ms, environment 252ms, prepare 37ms)
+

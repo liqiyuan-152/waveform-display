@@ -1,0 +1,13 @@
+
+> waveform-display@0.1.17 check /Users/liqiyuan/WebstormProjects/waveform-display
+> pnpm typecheck && pnpm test && pnpm build && pnpm build:demo
+
+
+> waveform-display@0.1.17 typecheck /Users/liqiyuan/WebstormProjects/waveform-display
+> tsc --noEmit && vue-tsc -p demo/tsconfig.json --noEmit
+
+tests/demo/SeriesForm.selection.test.ts(17,32): error TS2353: Object literal may only specify known properties, and 'series' does not exist in type 'Partial<{ key?: PropertyKey | undefined; style?: unknown; class?: unknown; ref?: VNodeRef | undefined; ref_for?: boolean | undefined; ref_key?: string | undefined; onVnodeBeforeMount?: VNodeMountHook | ... 1 more ... | undefined; ... 4 more ...; onVnodeUnmounted?: VNodeMountHook | ... 1 more ... | undefined; } & Par...'.
+tests/demo/SeriesForm.selection.test.ts(21,32): error TS2353: Object literal may only specify known properties, and 'series' does not exist in type 'Partial<{ key?: PropertyKey | undefined; style?: unknown; class?: unknown; ref?: VNodeRef | undefined; ref_for?: boolean | undefined; ref_key?: string | undefined; onVnodeBeforeMount?: VNodeMountHook | ... 1 more ... | undefined; ... 4 more ...; onVnodeUnmounted?: VNodeMountHook | ... 1 more ... | undefined; } & Par...'.
+tests/demo/SeriesForm.selection.test.ts(23,32): error TS2353: Object literal may only specify known properties, and 'series' does not exist in type 'Partial<{ key?: PropertyKey | undefined; style?: unknown; class?: unknown; ref?: VNodeRef | undefined; ref_for?: boolean | undefined; ref_key?: string | undefined; onVnodeBeforeMount?: VNodeMountHook | ... 1 more ... | undefined; ... 4 more ...; onVnodeUnmounted?: VNodeMountHook | ... 1 more ... | undefined; } & Par...'.
+ ELIFECYCLE  Command failed with exit code 2.
+ ELIFECYCLE  Command failed with exit code 2.

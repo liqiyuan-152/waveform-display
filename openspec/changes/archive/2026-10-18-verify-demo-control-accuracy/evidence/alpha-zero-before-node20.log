@@ -1,0 +1,69 @@
+
+> waveform-display@0.1.17 test /Users/liqiyuan/WebstormProjects/waveform-display
+> vitest run "tests/demo/ColorControl.test.ts"
+
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ❯ tests/demo/ColorControl.test.ts (5 tests | 4 failed) 425ms
+   × color control > retains explicit RGB channels when restoring transparent rgba(37, 99, 235, 0) 271ms
+     → expected [ 'rgb(0, 0, 0)' ] to deeply equal [ 'rgb(37, 99, 235)' ]
+   × color control > retains explicit RGB channels when restoring transparent #2563eb00 42ms
+     → expected [ 'rgb(0, 0, 0)' ] to deeply equal [ 'rgb(37, 99, 235)' ]
+   × color control > retains explicit RGB channels when restoring transparent #f000 36ms
+     → expected [ 'rgb(0, 0, 0)' ] to deeply equal [ 'rgb(255, 0, 0)' ]
+   × color control > retains explicit RGB channels when restoring transparent hsla(0, 100%, 50%, 0) 38ms
+     → expected [ 'rgb(0, 0, 0)' ] to deeply equal [ 'rgb(255, 0, 0)' ]
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/demo/ColorControl.test.ts > color control > retains explicit RGB channels when restoring transparent rgba(37, 99, 235, 0)
+ FAIL  tests/demo/ColorControl.test.ts > color control > retains explicit RGB channels when restoring transparent #2563eb00
+AssertionError: expected [ 'rgb(0, 0, 0)' ] to deeply equal [ 'rgb(37, 99, 235)' ]
+
+- Expected
++ Received
+
+  Array [
+-   "rgb(37, 99, 235)",
++   "rgb(0, 0, 0)",
+  ]
+
+ ❯ tests/demo/ColorControl.test.ts:20:55
+     18|       await nextTick()
+     19|       wrapper.findComponent(Slider).vm.$emit('change', 1)
+     20|       expect(wrapper.emitted('change')?.slice(-1)[0]).toEqual([expecte…
+       |                                                       ^
+     21|     } finally { wrapper.unmount(); document.body.replaceChildren() }
+     22|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  tests/demo/ColorControl.test.ts > color control > retains explicit RGB channels when restoring transparent #f000
+ FAIL  tests/demo/ColorControl.test.ts > color control > retains explicit RGB channels when restoring transparent hsla(0, 100%, 50%, 0)
+AssertionError: expected [ 'rgb(0, 0, 0)' ] to deeply equal [ 'rgb(255, 0, 0)' ]
+
+- Expected
++ Received
+
+  Array [
+-   "rgb(255, 0, 0)",
++   "rgb(0, 0, 0)",
+  ]
+
+ ❯ tests/demo/ColorControl.test.ts:20:55
+     18|       await nextTick()
+     19|       wrapper.findComponent(Slider).vm.$emit('change', 1)
+     20|       expect(wrapper.emitted('change')?.slice(-1)[0]).toEqual([expecte…
+       |                                                       ^
+     21|     } finally { wrapper.unmount(); document.body.replaceChildren() }
+     22|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ Test Files  1 failed (1)
+      Tests  4 failed | 1 passed (5)
+   Start at  14:11:45
+   Duration  1.91s (transform 80ms, setup 0ms, collect 949ms, tests 425ms, environment 310ms, prepare 66ms)
+
+ ELIFECYCLE  Test failed. See above for more details.

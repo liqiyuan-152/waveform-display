@@ -1,0 +1,12 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/App.controls.test.ts (42 tests | 40 skipped) 1411ms
+   ✓ Demo controls to rendered SVG > validates shot text-style boundaries and automatic sizing without losing hidden settings 879ms
+   ✓ Demo controls to rendered SVG > validates number text-style boundaries and automatic sizing without losing hidden settings 531ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed | 40 skipped (42)
+   Start at  17:56:12
+   Duration  3.09s (transform 472ms, setup 0ms, collect 1.21s, tests 1.41s, environment 274ms, prepare 54ms)
+

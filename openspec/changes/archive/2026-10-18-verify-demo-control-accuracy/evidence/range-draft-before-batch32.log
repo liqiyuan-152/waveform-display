@@ -1,0 +1,39 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ❯ tests/demo/fields.test.ts (106 tests | 3 failed | 103 skipped) 223ms
+   × configuration field migration > keeps invalid 'line.opacity' text separate from the committed slider value 179ms
+     → -0.1: expected false to be true // Object.is equality
+   × configuration field migration > keeps invalid 'frameNumberStyle.opacity' text separate from the committed slider value 23ms
+     → -0.1: expected false to be true // Object.is equality
+   × configuration field migration > keeps invalid 'style.opacity' text separate from the committed slider value 20ms
+     → -0.1: expected false to be true // Object.is equality
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/demo/fields.test.ts > configuration field migration > keeps invalid 'line.opacity' text separate from the committed slider value
+ FAIL  tests/demo/fields.test.ts > configuration field migration > keeps invalid 'frameNumberStyle.opacity' text separate from the committed slider value
+ FAIL  tests/demo/fields.test.ts > configuration field migration > keeps invalid 'style.opacity' text separate from the committed slider value
+AssertionError: -0.1: expected false to be true // Object.is equality
+
+- Expected
++ Received
+
+- true
++ false
+
+ ❯ tests/demo/fields.test.ts:41:62
+     39|       for (const value of ['-0.1', '1.1', 'NaN', 'Infinity', '']) {
+     40|         await wrapper.find('input').setValue(value)
+     41|         expect(wrapper.find('[role=alert]').exists(), value).toBe(true)
+       |                                                              ^
+     42|         expect(wrapper.find('[role=slider]').attributes('aria-valuenow…
+     43|         expect(wrapper.emitted('change')).toBeUndefined()
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 103 skipped (106)
+   Start at  17:01:10
+   Duration  2.10s (transform 237ms, setup 0ms, collect 1.42s, tests 223ms, environment 261ms, prepare 37ms)
+

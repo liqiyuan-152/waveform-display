@@ -36,7 +36,7 @@ function input(value: string | number | null) {
       <Select v-else-if="field.kind === 'select'" :value="value as string" :options="field.options ? [...field.options] : []" :disabled="disabled" :aria-label="field.label" @update:value="emit('change', $event)" />
       <ColorControl v-else-if="field.kind === 'color'" :value="raw" :label="field.label" :disabled="disabled" :invalid="invalid" @change="input" />
       <template v-else-if="field.kind === 'number' || field.kind === 'range'">
-        <Slider v-if="field.kind === 'range'" :value="Number(raw)" :min="field.min" :max="field.max" :step="field.step" :disabled="disabled" :aria-label="`${field.label}滑块`" @change="value => !Array.isArray(value) && input(value)" />
+        <Slider v-if="field.kind === 'range'" :value="Number(value)" :min="field.min" :max="field.max" :step="field.step" :disabled="disabled" :aria-label-for-handle="`${field.label}滑块`" @change="value => !Array.isArray(value) && input(value)" />
         <InputNumber string-mode :parser="decimalText" :value="raw === '' ? undefined : decimalText(raw)" :min="field.min === Number.MIN_VALUE ? 0 : field.min" :max="field.max" :step="field.step" :disabled="disabled" :status="invalid ? 'error' : undefined" :aria-label="field.label" :aria-invalid="invalid" @input="input" @step="input" />
       </template>
       <Input v-else :value="raw" :disabled="disabled" :status="invalid ? 'error' : undefined" :aria-label="field.label" :aria-invalid="invalid" @update:value="input" />

@@ -1,0 +1,44 @@
+{
+  "capturedAt": "2026-10-18T09:25:17.411Z",
+  "axes": [
+    {
+      "id": "left",
+      "visible": true,
+      "min": null,
+      "max": null,
+      "count": 6,
+      "strategy": "nice"
+    },
+    {
+      "id": "right",
+      "visible": true,
+      "min": null,
+      "max": null,
+      "count": 6,
+      "strategy": "nice"
+    }
+  ],
+  "paths": 4,
+  "expected": {
+    "paths": 4,
+    "axes": [
+      {
+        "id": "left",
+        "visible": true,
+        "min": null,
+        "max": null,
+        "count": 10,
+        "strategy": "nice"
+      },
+      {
+        "id": "right",
+        "visible": true,
+        "min": null,
+        "max": null,
+        "count": 10,
+        "strategy": "nice"
+      }
+    ]
+  },
+  "pass": false
+}

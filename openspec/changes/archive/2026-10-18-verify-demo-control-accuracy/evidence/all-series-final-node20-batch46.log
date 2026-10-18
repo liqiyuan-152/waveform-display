@@ -1,0 +1,14 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/App.controls.test.ts (46 tests | 42 skipped) 3392ms
+   ✓ Demo controls to rendered SVG > edits all eleven overrides on curve 0 and restores inheritance without affecting explicit peers 1252ms
+   ✓ Demo controls to rendered SVG > edits all eleven overrides on curve 1 and restores inheritance without affecting explicit peers 796ms
+   ✓ Demo controls to rendered SVG > edits all eleven overrides on curve 2 and restores inheritance without affecting explicit peers 689ms
+   ✓ Demo controls to rendered SVG > edits all eleven overrides on curve 3 and restores inheritance without affecting explicit peers 655ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed | 42 skipped (46)
+   Start at  18:08:29
+   Duration  5.66s (transform 563ms, setup 0ms, collect 1.79s, tests 3.39s, environment 276ms, prepare 39ms)
+

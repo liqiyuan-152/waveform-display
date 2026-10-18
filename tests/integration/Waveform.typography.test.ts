@@ -153,6 +153,41 @@ describe('Waveform typography', () => {
     expect(metadataFrame.getAttribute('height')).toBe(plainFrame.getAttribute('height'))
   })
 
+  it.each([false, true])('fits full-width metadata with native measurement=%s and restores short text', (native) => {
+    if (native) Object.defineProperty(SVGElement.prototype, 'getComputedTextLength', {
+      configurable: true,
+      value(this: SVGElement) { return Array.from(this.textContent ?? '').length * Number(this.getAttribute('font-size')) },
+    })
+    try {
+      const { container, chart } = createChart({
+        height: 300, animationEnabled: false,
+        xAxis: { title: { visible: true, text: '横轴中文'.repeat(60), fontSize: 24 } },
+        shot: { visible: true, text: '炮号中文'.repeat(60), fontSize: 24 },
+      })
+      const verify = () => {
+        const svg = container.querySelector('svg')!
+        const height = Number(svg.querySelector('.waveform-frame-border')!.getAttribute('height'))
+        for (const selector of ['.waveform-shot', '.waveform-axis-x-title']) {
+          const label = svg.querySelector(selector)!
+          const length = Array.from(label.textContent!).length * Number(label.getAttribute('font-size'))
+          expect(length).toBeLessThanOrEqual(Math.max(0, (height - 16) / 2))
+        }
+        expect(svg.querySelectorAll('[visibility="hidden"][aria-hidden="true"]')).toHaveLength(0)
+      }
+      verify(); chart.updateOptions({ height: 180 }); verify()
+      chart.updateOptions({ height: 1 })
+      expect(container.querySelector('.waveform-shot')!.getAttribute('font-size')).toBe('0')
+      expect(container.querySelector('.waveform-axis-x-title')!.getAttribute('font-size')).toBe('0')
+      chart.updateOptions({ height: 300 })
+      chart.updateOptions({ shot: { text: '号' }, xAxis: { title: { text: '轴' } } })
+      expect(container.querySelector('.waveform-shot')!.getAttribute('font-size')).toBe('24')
+      expect(container.querySelector('.waveform-axis-x-title')!.getAttribute('font-size')).toBe('24')
+      chart.destroy()
+    } finally {
+      if (native) Reflect.deleteProperty(SVGElement.prototype, 'getComputedTextLength')
+    }
+  })
+
   it('shrinks long metadata labels to keep the upper and lower lanes separate', () => {
     const { svg } = createChart({
       height: 120,
@@ -167,7 +202,9 @@ describe('Waveform typography', () => {
 
     expect(Number(title.getAttribute('font-size'))).toBeLessThan(24)
     expect(Number(shot.getAttribute('font-size'))).toBeLessThan(24)
-    expect(title.textContent!.length * Number(title.getAttribute('font-size')) * 0.6).toBeLessThanOrEqual(availableLength)
-    expect(shot.textContent!.length * Number(shot.getAttribute('font-size')) * 0.6).toBeLessThanOrEqual(availableLength)
+    for (const label of [title, shot]) {
+      const units = Array.from(label.textContent!).reduce((sum, char) => sum + (/\s/.test(char) ? 0.33 : 0.6), 0)
+      expect(units * Number(label.getAttribute('font-size'))).toBeLessThanOrEqual(availableLength)
+    }
   })
 })

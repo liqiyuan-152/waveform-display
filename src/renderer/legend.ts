@@ -247,7 +247,7 @@ export function renderLegend(ctx: RenderContext, legendSeries: LegendSeries[], o
 
   legendSeries.forEach(({ key, series: s, visible }, index) => {
     const color = s.style?.color || options.line.color
-    const lineWidth = s.style?.lineWidth || options.line.width
+    const lineWidth = s.style?.lineWidth ?? options.line.width
     const lineStyle = s.style?.lineStyle || options.line.style
     const label = labels[index]
     const fittedLabel = fittedLabels[index]

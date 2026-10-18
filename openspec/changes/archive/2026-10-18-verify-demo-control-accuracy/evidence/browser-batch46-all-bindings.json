@@ -1,0 +1,102 @@
+{
+  "rows": [
+    {
+      "index": 0,
+      "id": "1157",
+      "axis": "right",
+      "selectionPass": true,
+      "modelBinding": "right",
+      "actualFirstY": 613.125,
+      "pointY": 613.125,
+      "expected": 613.125,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "id": "1157",
+      "axis": "left",
+      "selectionPass": true,
+      "modelBinding": "left",
+      "actualFirstY": 735.75,
+      "pointY": 735.75,
+      "expected": 735.75,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "id": "1156",
+      "axis": "right",
+      "selectionPass": true,
+      "modelBinding": "right",
+      "actualFirstY": 613.125,
+      "pointY": 613.125,
+      "expected": 613.125,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "id": "1156",
+      "axis": "left",
+      "selectionPass": true,
+      "modelBinding": "left",
+      "actualFirstY": 735.75,
+      "pointY": 735.75,
+      "expected": 735.75,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "id": "1159",
+      "axis": "left",
+      "selectionPass": true,
+      "modelBinding": "left",
+      "actualFirstY": 735.75,
+      "pointY": 735.75,
+      "expected": 735.75,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "id": "1159",
+      "axis": "right",
+      "selectionPass": true,
+      "modelBinding": "right",
+      "actualFirstY": 613.125,
+      "pointY": 613.125,
+      "expected": 613.125,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "id": "1155",
+      "axis": "left",
+      "selectionPass": true,
+      "modelBinding": "left",
+      "actualFirstY": 735.75,
+      "pointY": 735.75,
+      "expected": 735.75,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "id": "1155",
+      "axis": "right",
+      "selectionPass": true,
+      "modelBinding": "right",
+      "actualFirstY": 613.125,
+      "pointY": 613.125,
+      "expected": 613.125,
+      "peersPreserved": true,
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "method": "API prepares fixed left[-2,2]/right[-4,4] on four three-point curves. ASelect public update:value events select each curve and bind to peer axis then back, exercising the same Demo handlers as dropdown choices. Real curve dropdown selections are separately recorded in batch46 styles; real axis-dropdown choices in batch19. Independently computes first-point Y from y=-1 and target range; selection cannot change SVG, peers remain identical."
+}

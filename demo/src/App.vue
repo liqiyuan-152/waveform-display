@@ -48,7 +48,8 @@ function replayEntrance() {
   chart.value.updateData(series.value)
 }
 function scenario(name: string) {
-  const data = animationScenario(name, ++scenarioVersion)
+  if (name === 'append' && !series.value.length) return
+  const data = animationScenario(name, ++scenarioVersion, series.value)
   const patch = draft.set('layout.horizontalPadding', name === 'auto-padding' ? undefined : { left: 90, right: 90 })
   if (extremeAxes) {
     Object.assign(patch, draft.set('yAxes', extremeAxes))
@@ -72,7 +73,7 @@ function scenario(name: string) {
         <div class="toolbar-row"><span>界面主题</span><Segmented v-model:value="preference" aria-label="界面主题" :options="[{ label: '浅色', value: 'light' }, { label: '深色', value: 'dark' }, { label: '跟随系统', value: 'system' }]" /></div>
         <div class="toolbar-row"><span>测试数据</span><Segmented :value="active" aria-label="测试数据" :options="[{ label: '原始数据', value: 'original' }, { label: '小数值测试', value: 'scientific' }]" @change="value => switchDataset(value as 'original' | 'scientific')" /></div>
       </div>
-      <AnimationPanel v-if="chart" :options="options" :replay-disabled="empty || !series.length" @field="edit" @control="chart?.animation[$event]()" @scenario="scenario" @replay="replayEntrance" />
+      <AnimationPanel v-if="chart" :options="options" :replay-disabled="empty || !series.length" :append-disabled="!series.length" @field="edit" @control="chart?.animation[$event]()" @scenario="scenario" @replay="replayEntrance" />
       <ConfigPanel v-if="chart" :options="options" :series="series" :empty="empty" @field="edit" @series="updateSeries" @mode="mode" @empty="empty = $event" />
     </aside>
     <section class="preview-pane" aria-labelledby="page-title">

@@ -1,0 +1,50 @@
+{
+  "batch": 27,
+  "purpose": "DevTools DOM/SVG 复验动画数据场景终态",
+  "environment": {
+    "url": "http://127.0.0.1:5174/waveform-display/",
+    "browser": "Chrome DevTools",
+    "dataset": "原始数据",
+    "animationEnabled": true,
+    "pageId": 2
+  },
+  "samples": {
+    "滑动窗口": {
+      "before": {"xEndpoints": ["0", "3000"], "pathCount": 4, "frame": {"width": "559", "height": "508"}},
+      "after": {"xTicks": ["2", "4", "6", "8", "10", "12", "14"], "xEndpoints": ["1", "14"], "pathCount": 2, "pathLengths": [205, 207], "gridXCount": 7, "clipWidth": "536"}
+    },
+    "坐标域变化": {
+      "pathCount": 2,
+      "pathLengths": [205, 206],
+      "xTicks": ["0", "2", "4", "6", "8", "10", "12"],
+      "leftTicks": ["-2", "-1", "0", "1", "2"],
+      "gridXCount": 7,
+      "gridYCount": 5,
+      "frame": {"width": "536", "height": "508"}
+    },
+    "极端位移": {
+      "pathCount": 2,
+      "pathLengths": [311, 308],
+      "leftTicks": ["-4", "-2", "0", "2", "4"],
+      "gridXCount": 7,
+      "gridYCount": 5,
+      "frame": {"width": "536", "height": "508"},
+      "textBoxesMeasured": true
+    },
+    "自动留白变化": {
+      "pathCount": 2,
+      "pathLengths": [202, 206],
+      "leftTicks": ["-1", "-0.5", "0", "0.5", "1"],
+      "gridXCount": 7,
+      "gridYCount": 5,
+      "frame": {"width": "631", "height": "508"},
+      "textBoxesMeasured": true
+    }
+  },
+  "assertions": [
+    "滑动窗口终态移除旧的四曲线集合并保留两条当前场景曲线，X 轴端点移动到 1–14，网格列数同步为 7",
+    "坐标域变化和极端位移保留曲线、轴、网格结构且数值轴标签随场景变化",
+    "自动留白变化改变绘图区宽度，标题、图例和编号文字盒仍可测；轴标签的框外位置属于布局预留空间"
+  ],
+  "limitation": "场景按钮触发后 Demo 会快速收敛，无法仅靠真实入口稳定捕获中间动画帧；中间帧时序仍由可控时钟集成测试覆盖。"
+}

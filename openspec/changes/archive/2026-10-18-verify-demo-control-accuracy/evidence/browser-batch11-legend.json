@@ -1,0 +1,28 @@
+{
+  "controls": [
+    "legend.visible",
+    "legend.position",
+    "legend.orientation",
+    "legend.color",
+    "legend.fontSize",
+    "legend.itemGap",
+    "legend.lineLength",
+    "legend.maxItemWidth"
+  ],
+  "observed": {
+    "visible": true,
+    "positions": [
+      "top-left",
+      "top-right",
+      "bottom-left",
+      "bottom-right"
+    ],
+    "orientation": "vertical",
+    "color": "#123456",
+    "fontSize": 18,
+    "itemGap": 12,
+    "lineLength": 36,
+    "maxItemWidth": 70
+  },
+  "screenshot": "legend-controls-batch11.jpg"
+}

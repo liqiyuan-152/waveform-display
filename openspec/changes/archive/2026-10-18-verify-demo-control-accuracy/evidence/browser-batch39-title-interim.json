@@ -1,0 +1,6676 @@
+{
+  "capturedAt": "2026-10-18T09:35:10.398Z",
+  "env": {
+    "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "viewport": [
+      1100,
+      700
+    ],
+    "dark": true,
+    "reducedMotion": false
+  },
+  "setup": "Reload original4 with C09 fix. Finish/disable animation via API. Fields use native setter/input events; axis selection, title toggles and palettes use real DevTools clicks.",
+  "steps": [
+    {
+      "id": "B39-1",
+      "axis": "left",
+      "label": "轴标题",
+      "input": "Value",
+      "expected": {
+        "text": "Value (ms)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-2",
+      "axis": "left",
+      "label": "轴标题",
+      "input": "值轴 Δ",
+      "expected": {
+        "text": "值轴 Δ (ms)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "值轴 Δ (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 75.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 319.2421875,
+              "bottom": 394.7578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-3",
+      "axis": "left",
+      "label": "轴标题",
+      "input": " ",
+      "expected": {
+        "text": "SX2_7_03_CH1 (ms)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-4",
+      "axis": "left",
+      "label": "轴标题",
+      "input": "很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题",
+      "expected": {
+        "text": "很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题 (ms)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题 (ms)",
+            "fill": "#2563eb",
+            "size": 2.3724001702136603,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 504.09375,
+            "rect": {
+              "left": 389.515625,
+              "right": 391.9341735839844,
+              "top": 104.953125,
+              "bottom": 609.046875
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-5",
+      "axis": "left",
+      "label": "轴标题",
+      "input": "",
+      "expected": {
+        "text": "SX2_7_03_CH1 (ms)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-6",
+      "axis": "left",
+      "label": "轴标题",
+      "input": "Value",
+      "expected": {
+        "text": "Value (ms)",
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-7",
+      "axis": "left",
+      "label": "标题单位",
+      "input": "V",
+      "expected": {
+        "text": "Value (V)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (V)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 60.328125,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 326.8359375,
+              "bottom": 387.1640625
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-8",
+      "axis": "left",
+      "label": "标题单位",
+      "input": "微伏 μV",
+      "expected": {
+        "text": "Value (微伏 μV)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (微伏 μV)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.703125,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 306.6484375,
+              "bottom": 407.3515625
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-9",
+      "axis": "left",
+      "label": "标题单位",
+      "input": " ",
+      "expected": {
+        "text": "Value ( )",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value ( )",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 54.5,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 329.75,
+              "bottom": 384.25
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-10",
+      "axis": "left",
+      "label": "标题单位",
+      "input": "很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位",
+      "expected": {
+        "text": "Value (很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位)",
+            "fill": "#2563eb",
+            "size": 4.0766612802758795,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 504.828125,
+            "rect": {
+              "left": 387.515625,
+              "right": 392.515625,
+              "top": 104.5859375,
+              "bottom": 609.4140625
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-11",
+      "axis": "left",
+      "label": "标题单位",
+      "input": "",
+      "expected": {
+        "text": "Value",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 36.3125,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 338.84375,
+              "bottom": 375.15625
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-12",
+      "axis": "left",
+      "label": "标题单位",
+      "input": "ms",
+      "expected": {
+        "text": "Value (ms)",
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-13",
+      "axis": "left",
+      "label": "标题颜色",
+      "input": "#123456",
+      "expected": {
+        "fill": "#123456",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#123456",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-14",
+      "axis": "left",
+      "label": "标题颜色",
+      "input": "rgba(37, 99, 235, 0.5)",
+      "expected": {
+        "fill": "rgba(37, 99, 235, 0.5)",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "rgba(37, 99, 235, 0.5)",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-15",
+      "axis": "left",
+      "label": "标题颜色",
+      "input": "transparent",
+      "expected": {
+        "fill": "transparent",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-16",
+      "axis": "left",
+      "label": "标题字重",
+      "input": "700",
+      "expected": {
+        "weight": "700",
+        "computedWeight": "700",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "700",
+            "computedWeight": "700",
+            "computedLength": 73.921875,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 320.0390625,
+              "bottom": 393.9609375
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-17",
+      "axis": "left",
+      "label": "标题字重",
+      "input": "bold",
+      "expected": {
+        "weight": "bold",
+        "computedWeight": "700",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "bold",
+            "computedWeight": "700",
+            "computedLength": 73.921875,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 320.0390625,
+              "bottom": 393.9609375
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-18",
+      "axis": "left",
+      "label": "标题字重",
+      "input": "normal",
+      "expected": {
+        "weight": "normal",
+        "computedWeight": "400",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "normal",
+            "computedWeight": "400",
+            "computedLength": 68.828125,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 322.5859375,
+              "bottom": 391.4140625
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-19",
+      "axis": "left",
+      "label": "标题字重",
+      "input": "",
+      "expected": {
+        "weight": "",
+        "computedWeight": "400",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "",
+            "computedWeight": "400",
+            "computedLength": 68.828125,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 322.5859375,
+              "bottom": 391.4140625
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-20",
+      "axis": "left",
+      "label": "标题字重",
+      "input": "无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重",
+      "expected": {
+        "weight": "无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重",
+        "computedWeight": "400",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重",
+            "computedWeight": "400",
+            "computedLength": 68.828125,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 322.5859375,
+              "bottom": 391.4140625
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-21",
+      "axis": "left",
+      "label": "标题字重",
+      "input": "500",
+      "expected": {
+        "weight": "500",
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-22",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "18",
+      "expected": {
+        "maxSize": 18,
+        "exactSize": 18,
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 18,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 87.734375,
+            "rect": {
+              "left": 376.515625,
+              "right": 397.515625,
+              "top": 313.1328125,
+              "bottom": 400.8671875
+            },
+            "x": 24.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 78,
+          "top": 32,
+          "width": 555,
+          "height": 508,
+          "rect": {
+            "left": 447,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-23",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "1",
+      "expected": {
+        "maxSize": 1,
+        "exactSize": 1,
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 1,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 5.546875,
+            "rect": {
+              "left": 384.015625,
+              "right": 385.1922302246094,
+              "top": 354.2265625,
+              "bottom": 359.7734375
+            },
+            "x": 16.015625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 61,
+          "top": 32,
+          "width": 572,
+          "height": 508,
+          "rect": {
+            "left": 430,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-24",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "1.25",
+      "expected": {
+        "maxSize": 1.25,
+        "exactSize": 1.25,
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 1.25,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 6.9375,
+            "rect": {
+              "left": 383.890625,
+              "right": 385.1113586425781,
+              "top": 353.53125,
+              "bottom": 360.46875
+            },
+            "x": 15.890625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 61,
+          "top": 32,
+          "width": 572,
+          "height": 508,
+          "rect": {
+            "left": 430,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-25",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "1000",
+      "expected": {
+        "maxSize": 1000,
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 110.26109071517936,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 504,
+            "rect": {
+              "left": 777.515625,
+              "right": 907.515625,
+              "top": 105,
+              "bottom": 609
+            },
+            "x": 515.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1469.234375,
+              "right": 1486.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 1114.234375
+          }
+        ],
+        "plot": {
+          "left": 1060,
+          "top": 32,
+          "width": 1,
+          "height": 508,
+          "rect": {
+            "left": 1429,
+            "right": 1430,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-26",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "14",
+      "expected": {
+        "exactSize": 14,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-27",
+      "axis": "left",
+      "label": "标题偏移",
+      "input": "0",
+      "expected": {
+        "gap": 0,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 403,
+              "right": 420,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 48
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 48,
+          "top": 32,
+          "width": 585,
+          "height": 508,
+          "rect": {
+            "left": 417,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-28",
+      "axis": "left",
+      "label": "标题偏移",
+      "input": "25.25",
+      "expected": {
+        "gap": 25.25,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.75,
+              "right": 394.75,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.75
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 48,
+          "top": 32,
+          "width": 585,
+          "height": 508,
+          "rect": {
+            "left": 417,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-29",
+      "axis": "left",
+      "label": "标题偏移",
+      "input": "100",
+      "expected": {
+        "gap": 100,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 367,
+              "right": 384,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 12
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 112,
+          "top": 32,
+          "width": 521,
+          "height": 508,
+          "rect": {
+            "left": 481,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-30",
+      "axis": "left",
+      "label": "标题偏移",
+      "input": "",
+      "expected": {
+        "autoGap": true,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-31",
+      "axis": "left",
+      "label": "标题颜色",
+      "input": "not-a-color",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题颜色",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-32",
+      "axis": "left",
+      "label": "标题颜色",
+      "input": "",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题颜色",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-33",
+      "axis": "left",
+      "label": "标题颜色",
+      "input": "#2563eb",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-34",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "0",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-35",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "0.5",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-36",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "-1",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-37",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "NaN",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-38",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "Infinity",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-39",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-40",
+      "axis": "left",
+      "label": "标题字号",
+      "input": "14",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-41",
+      "axis": "left",
+      "label": "标题偏移",
+      "input": "-1",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题偏移",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-42",
+      "axis": "left",
+      "label": "标题偏移",
+      "input": "NaN",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题偏移",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-43",
+      "axis": "left",
+      "label": "标题偏移",
+      "input": "Infinity",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题偏移",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-44",
+      "axis": "left",
+      "label": "标题偏移",
+      "input": "",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-left-off",
+      "axis": "left",
+      "interaction": "real title switch off",
+      "expected": {
+        "hidden": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 48,
+          "top": 32,
+          "width": 585,
+          "height": 508,
+          "rect": {
+            "left": 417,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      }
+    },
+    {
+      "id": "B39-left-on",
+      "axis": "left",
+      "interaction": "real title switch on",
+      "expected": {
+        "text": "Value (ms)",
+        "restored": true
+      },
+      "restored": true,
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      }
+    },
+    {
+      "id": "B39-left-palette",
+      "axis": "left",
+      "interaction": "real preset #dc2626",
+      "expected": {
+        "fill": "#dc2626"
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#dc2626",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      }
+    },
+    {
+      "id": "B39-48",
+      "axis": "left",
+      "label": "标题颜色",
+      "input": "#2563eb",
+      "expected": {
+        "fill": "#2563eb",
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "Value (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-49",
+      "axis": "left",
+      "label": "轴标题",
+      "input": "SX2_7_03_CH1",
+      "expected": {
+        "text": "SX2_7_03_CH1 (ms)",
+        "exactSize": 14,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-50",
+      "axis": "right",
+      "label": "轴标题",
+      "input": "Value",
+      "expected": {
+        "text": "Value (ms)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-51",
+      "axis": "right",
+      "label": "轴标题",
+      "input": "值轴 Δ",
+      "expected": {
+        "text": "值轴 Δ (ms)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "值轴 Δ (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 75.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 319.2421875,
+              "bottom": 394.7578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-52",
+      "axis": "right",
+      "label": "轴标题",
+      "input": " ",
+      "expected": {
+        "text": "SX2_7_05 (ms)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-53",
+      "axis": "right",
+      "label": "轴标题",
+      "input": "很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题",
+      "expected": {
+        "text": "很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题 (ms)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题 (ms)",
+            "fill": "#16a34a",
+            "size": 2.3724001702136603,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 504.09375,
+            "rect": {
+              "left": 1053.234375,
+              "right": 1055.65283203125,
+              "top": 104.953125,
+              "bottom": 609.046875
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-54",
+      "axis": "right",
+      "label": "轴标题",
+      "input": "",
+      "expected": {
+        "text": "SX2_7_05 (ms)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-55",
+      "axis": "right",
+      "label": "轴标题",
+      "input": "Value",
+      "expected": {
+        "text": "Value (ms)",
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-56",
+      "axis": "right",
+      "label": "标题单位",
+      "input": "V",
+      "expected": {
+        "text": "Value (V)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (V)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 60.328125,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 326.8359375,
+              "bottom": 387.1640625
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-57",
+      "axis": "right",
+      "label": "标题单位",
+      "input": "微伏 μV",
+      "expected": {
+        "text": "Value (微伏 μV)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (微伏 μV)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.703125,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.6484375,
+              "bottom": 407.3515625
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-58",
+      "axis": "right",
+      "label": "标题单位",
+      "input": " ",
+      "expected": {
+        "text": "Value ( )",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value ( )",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 54.5,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 329.75,
+              "bottom": 384.25
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-59",
+      "axis": "right",
+      "label": "标题单位",
+      "input": "很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位",
+      "expected": {
+        "text": "Value (很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位)",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位)",
+            "fill": "#16a34a",
+            "size": 4.0766612802758795,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 504.828125,
+            "rect": {
+              "left": 1051.234375,
+              "right": 1056.234375,
+              "top": 104.5859375,
+              "bottom": 609.4140625
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-60",
+      "axis": "right",
+      "label": "标题单位",
+      "input": "",
+      "expected": {
+        "text": "Value",
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 36.3125,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 338.84375,
+              "bottom": 375.15625
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-61",
+      "axis": "right",
+      "label": "标题单位",
+      "input": "ms",
+      "expected": {
+        "text": "Value (ms)",
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-62",
+      "axis": "right",
+      "label": "标题颜色",
+      "input": "#123456",
+      "expected": {
+        "fill": "#123456",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#123456",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-63",
+      "axis": "right",
+      "label": "标题颜色",
+      "input": "rgba(37, 99, 235, 0.5)",
+      "expected": {
+        "fill": "rgba(37, 99, 235, 0.5)",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "rgba(37, 99, 235, 0.5)",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-64",
+      "axis": "right",
+      "label": "标题颜色",
+      "input": "transparent",
+      "expected": {
+        "fill": "transparent",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-65",
+      "axis": "right",
+      "label": "标题字重",
+      "input": "700",
+      "expected": {
+        "weight": "700",
+        "computedWeight": "700",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "700",
+            "computedWeight": "700",
+            "computedLength": 73.921875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 320.0390625,
+              "bottom": 393.9609375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-66",
+      "axis": "right",
+      "label": "标题字重",
+      "input": "bold",
+      "expected": {
+        "weight": "bold",
+        "computedWeight": "700",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "bold",
+            "computedWeight": "700",
+            "computedLength": 73.921875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 320.0390625,
+              "bottom": 393.9609375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-67",
+      "axis": "right",
+      "label": "标题字重",
+      "input": "normal",
+      "expected": {
+        "weight": "normal",
+        "computedWeight": "400",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "normal",
+            "computedWeight": "400",
+            "computedLength": 68.828125,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 322.5859375,
+              "bottom": 391.4140625
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-68",
+      "axis": "right",
+      "label": "标题字重",
+      "input": "",
+      "expected": {
+        "weight": "",
+        "computedWeight": "400",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "",
+            "computedWeight": "400",
+            "computedLength": 68.828125,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 322.5859375,
+              "bottom": 391.4140625
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-69",
+      "axis": "right",
+      "label": "标题字重",
+      "input": "无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重",
+      "expected": {
+        "weight": "无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重",
+        "computedWeight": "400",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重无效字重",
+            "computedWeight": "400",
+            "computedLength": 68.828125,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 322.5859375,
+              "bottom": 391.4140625
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-70",
+      "axis": "right",
+      "label": "标题字重",
+      "input": "500",
+      "expected": {
+        "weight": "500",
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-71",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "18",
+      "expected": {
+        "maxSize": 18,
+        "exactSize": 18,
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 18,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 87.734375,
+            "rect": {
+              "left": 1036.234375,
+              "right": 1057.234375,
+              "top": 313.1328125,
+              "bottom": 400.8671875
+            },
+            "x": 684.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 555,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 998,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-72",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "1",
+      "expected": {
+        "maxSize": 1,
+        "exactSize": 1,
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 1,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 5.546875,
+            "rect": {
+              "left": 1060.734375,
+              "right": 1061.910888671875,
+              "top": 354.2265625,
+              "bottom": 359.7734375
+            },
+            "x": 692.734375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 572,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1015,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-73",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "1.25",
+      "expected": {
+        "maxSize": 1.25,
+        "exactSize": 1.25,
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 1.25,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 6.9375,
+            "rect": {
+              "left": 1060.859375,
+              "right": 1062.080078125,
+              "top": 353.53125,
+              "bottom": 360.46875
+            },
+            "x": 692.859375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 572,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1015,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-74",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "1000",
+      "expected": {
+        "maxSize": 1000,
+        "fit": true,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 110.26109071517936,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 504,
+            "rect": {
+              "left": 883.234375,
+              "right": 1013.234375,
+              "top": 105,
+              "bottom": 609
+            },
+            "x": 621.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 1,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 444,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-75",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "14",
+      "expected": {
+        "exactSize": 14,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-76",
+      "axis": "right",
+      "label": "标题偏移",
+      "input": "0",
+      "expected": {
+        "gap": 0,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1014,
+              "right": 1031,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 659
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 585,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1028,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-77",
+      "axis": "right",
+      "label": "标题偏移",
+      "input": "25.25",
+      "expected": {
+        "gap": 25.25,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1039.25,
+              "right": 1056.25,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 684.25
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 585,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1028,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-78",
+      "axis": "right",
+      "label": "标题偏移",
+      "input": "100",
+      "expected": {
+        "gap": 100,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1042,
+              "right": 1059,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 687
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 513,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 956,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-79",
+      "axis": "right",
+      "label": "标题偏移",
+      "input": "",
+      "expected": {
+        "autoGap": true,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-80",
+      "axis": "right",
+      "label": "标题颜色",
+      "input": "not-a-color",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题颜色",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-81",
+      "axis": "right",
+      "label": "标题颜色",
+      "input": "",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "transparent",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题颜色",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-82",
+      "axis": "right",
+      "label": "标题颜色",
+      "input": "#16a34a",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-83",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "0",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-84",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "0.5",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-85",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "-1",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-86",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "NaN",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-87",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "Infinity",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-88",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-89",
+      "axis": "right",
+      "label": "标题字号",
+      "input": "14",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-90",
+      "axis": "right",
+      "label": "标题偏移",
+      "input": "-1",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题偏移",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-91",
+      "axis": "right",
+      "label": "标题偏移",
+      "input": "NaN",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题偏移",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-92",
+      "axis": "right",
+      "label": "标题偏移",
+      "input": "Infinity",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": "请输入有效的标题偏移",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-93",
+      "axis": "right",
+      "label": "标题偏移",
+      "input": "",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-right-off",
+      "axis": "right",
+      "interaction": "real title switch off",
+      "expected": {
+        "hidden": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 585,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1028,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      }
+    },
+    {
+      "id": "B39-right-on",
+      "axis": "right",
+      "interaction": "real title switch on",
+      "expected": {
+        "text": "Value (ms)",
+        "restored": true
+      },
+      "restored": true,
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      }
+    },
+    {
+      "id": "B39-right-palette",
+      "axis": "right",
+      "interaction": "real preset #0891b2",
+      "expected": {
+        "fill": "#0891b2"
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#0891b2",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      }
+    },
+    {
+      "id": "B39-97",
+      "axis": "right",
+      "label": "标题颜色",
+      "input": "#16a34a",
+      "expected": {
+        "fill": "#16a34a",
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "Value (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 70.515625,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 321.7421875,
+              "bottom": 392.2578125
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-98",
+      "axis": "right",
+      "label": "轴标题",
+      "input": "很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题",
+      "expected": {
+        "text": "很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题 (ms)",
+        "fit": true,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题 (ms)",
+            "fill": "#16a34a",
+            "size": 2.3724001702136603,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 504.09375,
+            "rect": {
+              "left": 1053.234375,
+              "right": 1055.65283203125,
+              "top": 104.953125,
+              "bottom": 609.046875
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B39-99",
+      "axis": "right",
+      "label": "轴标题",
+      "input": "SX2_7_05",
+      "expected": {
+        "text": "SX2_7_05 (ms)",
+        "exactSize": 14,
+        "valid": true
+      },
+      "actual": {
+        "titles": [
+          {
+            "id": "left",
+            "text": "SX2_7_03_CH1 (ms)",
+            "fill": "#2563eb",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 134.515625,
+            "rect": {
+              "left": 377.515625,
+              "right": 394.515625,
+              "top": 289.7421875,
+              "bottom": 424.2578125
+            },
+            "x": 22.515625
+          },
+          {
+            "id": "right",
+            "text": "SX2_7_05 (ms)",
+            "fill": "#16a34a",
+            "size": 14,
+            "weight": "500",
+            "computedWeight": "500",
+            "computedLength": 100.1875,
+            "rect": {
+              "left": 1041.234375,
+              "right": 1058.234375,
+              "top": 306.90625,
+              "bottom": 407.09375
+            },
+            "x": 686.234375
+          }
+        ],
+        "plot": {
+          "left": 74,
+          "top": 32,
+          "width": 559,
+          "height": 508,
+          "rect": {
+            "left": 443,
+            "right": 1002,
+            "top": 103,
+            "bottom": 611
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    }
+  ],
+  "interimIssue": "Initial proportional fit can overshoot by browser fractional font rounding (native text length). Retain interim trace; final drawing rounds fitted size downward before revalidation."
+}

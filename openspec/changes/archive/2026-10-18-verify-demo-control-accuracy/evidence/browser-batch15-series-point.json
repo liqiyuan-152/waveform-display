@@ -1,0 +1,21 @@
+{
+  "selectedSeries": "SX2_7_02",
+  "controls": [
+    "series.point.visible",
+    "series.point.type",
+    "series.point.size",
+    "series.point.color",
+    "series.point.borderColor",
+    "series.point.borderWidth"
+  ],
+  "observed": {
+    "visible": true,
+    "type": "square",
+    "size": 6,
+    "color": "#112233",
+    "borderColor": "#445566",
+    "borderWidth": 2.5,
+    "followGlobal": false
+  },
+  "screenshot": "series-point-controls-batch15.jpg"
+}

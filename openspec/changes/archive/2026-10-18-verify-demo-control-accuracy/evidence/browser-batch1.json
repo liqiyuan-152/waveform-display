@@ -1,0 +1,1241 @@
+[
+  {
+    "id": "B1-DIM-PX",
+    "tasks": [
+      "3.1",
+      "3.2"
+    ],
+    "input": {
+      "width": "640px",
+      "height": "240px",
+      "responsive": false
+    },
+    "expected": {
+      "viewBox": "0 0 640 240",
+      "screenWidth": 640,
+      "screenHeight": 240
+    },
+    "actual": {
+      "alerts": [],
+      "height": "240",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 502,
+        "height": 240,
+        "left": 369,
+        "right": 1009,
+        "top": 262,
+        "width": 640,
+        "x": 369,
+        "y": 262
+      },
+      "viewBox": "0 0 640 240",
+      "width": "640"
+    }
+  },
+  {
+    "id": "B1-DIM-PERCENT",
+    "tasks": [
+      "3.1",
+      "3.2"
+    ],
+    "input": {
+      "width": "50%",
+      "height": "25%"
+    },
+    "expected": {
+      "width": 448,
+      "height": 155.5
+    },
+    "actual": {
+      "alerts": [],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    }
+  },
+  {
+    "id": "B1-DIM-INVALID-宽度-0",
+    "tasks": [
+      "3.1"
+    ],
+    "input": "0",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的宽度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-宽度--1",
+    "tasks": [
+      "3.1"
+    ],
+    "input": "-1",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的宽度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-宽度-0%",
+    "tasks": [
+      "3.1"
+    ],
+    "input": "0%",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的宽度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-宽度-101%",
+    "tasks": [
+      "3.1"
+    ],
+    "input": "101%",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的宽度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-宽度-wrong",
+    "tasks": [
+      "3.1"
+    ],
+    "input": "wrong",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的宽度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-宽度-12em",
+    "tasks": [
+      "3.1"
+    ],
+    "input": "12em",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的宽度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-宽度-Infinity",
+    "tasks": [
+      "3.1"
+    ],
+    "input": "Infinity",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的宽度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-宽度-",
+    "tasks": [
+      "3.1"
+    ],
+    "input": "",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的宽度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-高度-0",
+    "tasks": [
+      "3.2"
+    ],
+    "input": "0",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的高度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-高度--1",
+    "tasks": [
+      "3.2"
+    ],
+    "input": "-1",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的高度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-高度-0%",
+    "tasks": [
+      "3.2"
+    ],
+    "input": "0%",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的高度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-高度-101%",
+    "tasks": [
+      "3.2"
+    ],
+    "input": "101%",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的高度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-高度-wrong",
+    "tasks": [
+      "3.2"
+    ],
+    "input": "wrong",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的高度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-高度-12em",
+    "tasks": [
+      "3.2"
+    ],
+    "input": "12em",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的高度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-高度-Infinity",
+    "tasks": [
+      "3.2"
+    ],
+    "input": "Infinity",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的高度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-INVALID-高度-",
+    "tasks": [
+      "3.2"
+    ],
+    "input": "",
+    "expected": {
+      "viewBox": "0 0 448 155.5",
+      "feedback": true
+    },
+    "actual": {
+      "alerts": [
+        "请输入有效的高度"
+      ],
+      "height": "155.5",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 459.75,
+        "height": 155.5,
+        "left": 369,
+        "right": 817,
+        "top": 304.25,
+        "width": 448,
+        "x": 369,
+        "y": 304.25
+      },
+      "viewBox": "0 0 448 155.5",
+      "width": "50%"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-RESTORE",
+    "tasks": [
+      "3.1",
+      "3.2"
+    ],
+    "expected": {
+      "viewBox": "0 0 896 622",
+      "feedback": false
+    },
+    "actual": {
+      "alerts": [],
+      "height": "622",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "viewBox": "0 0 896 622",
+      "width": "100%"
+    }
+  },
+  {
+    "id": "B1-NAV-MOUSE",
+    "tasks": [
+      "9.26"
+    ],
+    "expected": "All tabs/subsections select correctly without changing SVG",
+    "actual": [
+      {
+        "tab": "布局",
+        "sections": [
+          "尺寸与留白",
+          "边框"
+        ],
+        "unchanged": true
+      },
+      {
+        "tab": "布局",
+        "section": "尺寸与留白",
+        "selected": "尺寸与留白",
+        "unchanged": true
+      },
+      {
+        "tab": "布局",
+        "section": "边框",
+        "selected": "边框",
+        "unchanged": true
+      },
+      {
+        "tab": "线点",
+        "sections": [
+          "线条",
+          "数据点"
+        ],
+        "unchanged": true
+      },
+      {
+        "tab": "线点",
+        "section": "线条",
+        "selected": "线条",
+        "unchanged": true
+      },
+      {
+        "tab": "线点",
+        "section": "数据点",
+        "selected": "数据点",
+        "unchanged": true
+      },
+      {
+        "tab": "坐标轴",
+        "sections": [
+          "X 轴",
+          "值轴"
+        ],
+        "unchanged": true
+      },
+      {
+        "tab": "坐标轴",
+        "section": "X 轴",
+        "selected": "X 轴",
+        "unchanged": true
+      },
+      {
+        "tab": "坐标轴",
+        "section": "值轴",
+        "selected": "值轴",
+        "unchanged": true
+      },
+      {
+        "tab": "网格",
+        "sections": [
+          "网格线",
+          "零线"
+        ],
+        "unchanged": true
+      },
+      {
+        "tab": "网格",
+        "section": "网格线",
+        "selected": "网格线",
+        "unchanged": true
+      },
+      {
+        "tab": "网格",
+        "section": "零线",
+        "selected": "零线",
+        "unchanged": true
+      },
+      {
+        "tab": "文字",
+        "sections": [
+          "标题",
+          "炮号",
+          "图框编号",
+          "图例",
+          "空状态"
+        ],
+        "unchanged": true
+      },
+      {
+        "tab": "文字",
+        "section": "标题",
+        "selected": "标题",
+        "unchanged": true
+      },
+      {
+        "tab": "文字",
+        "section": "炮号",
+        "unchanged": true
+      },
+      {
+        "tab": "文字",
+        "section": "图框编号",
+        "selected": "图框编号",
+        "unchanged": true
+      },
+      {
+        "tab": "文字",
+        "section": "图例",
+        "selected": "图例",
+        "unchanged": true
+      },
+      {
+        "tab": "文字",
+        "section": "空状态",
+        "unchanged": true
+      },
+      {
+        "tab": "曲线",
+        "sections": [
+          "线条",
+          "数据点"
+        ],
+        "unchanged": true
+      },
+      {
+        "tab": "曲线",
+        "section": "线条",
+        "selected": "线条",
+        "unchanged": true
+      },
+      {
+        "tab": "曲线",
+        "section": "数据点",
+        "selected": "数据点",
+        "unchanged": true
+      }
+    ],
+    "pass": false
+  },
+  {
+    "id": "B1-NAV-KEYBOARD",
+    "tasks": [
+      "9.26"
+    ],
+    "actual": [
+      {
+        "from": "线点",
+        "key": "Home",
+        "expected": "布局",
+        "selected": [
+          "        - tab \"入场动画\" [selected]",
+          "      - tab \"布局\" [active] [selected]"
+        ],
+        "unchanged": true
+      },
+      {
+        "from": "布局",
+        "key": "End",
+        "expected": "曲线",
+        "selected": [
+          "        - tab \"入场动画\" [selected]",
+          "      - tab \"曲线\" [active] [selected]"
+        ],
+        "unchanged": true
+      },
+      {
+        "from": "曲线",
+        "key": "ArrowLeft",
+        "expected": "文字",
+        "selected": [
+          "        - tab \"入场动画\" [selected]",
+          "      - tab \"文字\" [active] [selected]"
+        ],
+        "unchanged": true
+      },
+      {
+        "from": "文字",
+        "key": "ArrowRight",
+        "expected": "曲线",
+        "selected": [
+          "        - tab \"入场动画\" [selected]",
+          "      - tab \"曲线\" [active] [selected]"
+        ],
+        "unchanged": true
+      }
+    ]
+  },
+  {
+    "id": "B1-NAV-DATASET",
+    "tasks": [
+      "9.26"
+    ],
+    "before": "- main:\n  - complementary \"图表配置与动画测试\":\n    - generic: 界面主题\n    - generic \"界面主题\":\n      - radio \"浅色\"\n      - generic: 浅色\n      - radio \"深色\"\n      - generic: 深色\n      - radio \"跟随系统\" [checked]\n      - generic: 跟随系统\n    - generic: 测试数据\n    - generic \"测试数据\":\n      - radio \"原始数据\" [checked]\n      - generic: 原始数据\n      - radio \"小数值测试\"\n      - generic: 小数值测试\n    - region \"动画与数据更新\":\n      - heading \"动画与数据更新\" [level=2]\n      - generic: 启用动画\n      - switch \"启用动画（影响后续数据更新）\" [checked]\n      - tablist:\n        - tab \"入场动画\" [selected]\n        - tab \"更新动画\"\n        - tab \"数据场景\"\n      - generic: 入场动画\n      - switch \"入场动画\" [checked]\n      - generic: 入场方向\n      - generic \"入场方向\":\n        - combobox\n        - generic \"从左到右\"\n      - generic: 入场时长（ms）\n      - button \"Increase Value\":\n        - img \"up\":\n      - button \"Decrease Value\":\n        - img \"down\":\n      - spinbutton \"入场时长（ms）\": \"1000\"\n      - generic: 入场延迟（ms）\n      - button \"Increase Value\":\n        - img \"up\":\n      - button \"Decrease Value\" [disabled]:\n        - img \"down\":\n      - spinbutton \"入场延迟（ms）\": \"0\"\n      - generic: 错峰间隔（ms）\n      - button \"Increase Value\":\n        - img \"up\":\n      - button \"Decrease Value\":\n        - img \"down\":\n      - spinbutton \"错峰间隔（ms）\": \"100\"\n      - button \"重播入场\":\n        - generic: 重播入场\n      - group \"动画控制\":\n        - button \"暂 停\":\n          - generic: 暂 停\n        - button \"恢 复\":\n          - generic: 恢 复\n        - button \"结束动画\":\n          - generic: 结束动画\n    - heading \"实时配置\" [level=2]\n    - tablist:\n      - tab \"布局\"\n      - tab \"线点\"\n      - tab \"坐标轴\"\n      - tab \"网格\"\n      - tab \"文字\"\n      - tab \"曲线\" [active] [selected]\n    - generic: 当前曲线\n    - generic \"选择曲线\":\n      - combobox\n      - generic \"SX2_7_01\"\n    - generic: 坐标轴\n    - generic \"坐标轴\":\n      - combobox\n      - generic \"右轴\"\n    - generic \"曲线样式类型\":\n      - radio \"线条\"\n      - generic: 线条\n      - radio \"数据点\" [checked]\n      - generic: 数据点\n    - generic: 显示数据点\n    - checkbox \"显示数据点跟随全局\" [checked]\n    - generic: 跟随全局\n    - switch \"显示数据点\" [disabled]\n    - generic: 数据点形状\n    - checkbox \"数据点形状跟随全局\" [checked]\n    - generic: 跟随全局\n    - generic \"数据点形状\":\n      - combobox [disabled]\n      - generic \"圆形\"\n    - generic: 数据点大小\n    - checkbox \"数据点大小跟随全局\" [checked]\n    - generic: 跟随全局\n    - spinbutton \"数据点大小\" [disabled]: \"3.0\"\n    - generic: 数据点颜色\n    - checkbox \"数据点颜色跟随全局\" [checked]\n    - generic: 跟随全局\n    - button \"数据点颜色色板\" [disabled]\n    - textbox \"数据点颜色\" [disabled]: \"#2563eb\"\n    - generic: 点边框颜色\n    - checkbox \"点边框颜色跟随全局\" [checked]\n    - generic: 跟随全局\n    - button \"点边框颜色色板\" [disabled]\n    - textbox \"点边框颜色\" [disabled]: \"#ffffff\"\n    - generic: 点边框宽度\n    - checkbox \"点边框宽度跟随全局\" [checked]\n    - generic: 跟随全局\n    - spinbutton \"点边框宽度\" [disabled]: \"1.0\"\n  - region \"波形图预览\":\n    - heading \"波形图预览\" [level=1]",
+    "actual": "- main:\n  - complementary \"图表配置与动画测试\":\n    - generic: 界面主题\n    - generic \"界面主题\":\n      - radio \"浅色\"\n      - generic: 浅色\n      - radio \"深色\"\n      - generic: 深色\n      - radio \"跟随系统\" [checked]\n      - generic: 跟随系统\n    - generic: 测试数据\n    - generic \"测试数据\":\n      - radio \"原始数据\"\n      - generic: 原始数据\n      - radio \"小数值测试\" [checked]\n      - generic: 小数值测试\n    - region \"动画与数据更新\":\n      - heading \"动画与数据更新\" [level=2]\n      - generic: 启用动画\n      - switch \"启用动画（影响后续数据更新）\" [checked]\n      - tablist:\n        - tab \"入场动画\" [selected]\n        - tab \"更新动画\"\n        - tab \"数据场景\"\n      - generic: 入场动画\n      - switch \"入场动画\" [checked]\n      - generic: 入场方向\n      - generic \"入场方向\":\n        - combobox\n        - generic \"从左到右\"\n      - generic: 入场时长（ms）\n      - button \"Increase Value\":\n        - img \"up\":\n      - button \"Decrease Value\":\n        - img \"down\":\n      - spinbutton \"入场时长（ms）\": \"1000\"\n      - generic: 入场延迟（ms）\n      - button \"Increase Value\":\n        - img \"up\":\n      - button \"Decrease Value\" [disabled]:\n        - img \"down\":\n      - spinbutton \"入场延迟（ms）\": \"0\"\n      - generic: 错峰间隔（ms）\n      - button \"Increase Value\":\n        - img \"up\":\n      - button \"Decrease Value\":\n        - img \"down\":\n      - spinbutton \"错峰间隔（ms）\": \"100\"\n      - button \"重播入场\":\n        - generic: 重播入场\n      - group \"动画控制\":\n        - button \"暂 停\":\n          - generic: 暂 停\n        - button \"恢 复\":\n          - generic: 恢 复\n        - button \"结束动画\" [active]:\n          - generic: 结束动画\n    - heading \"实时配置\" [level=2]\n    - tablist:\n      - tab \"布局\"\n      - tab \"线点\"\n      - tab \"坐标轴\"\n      - tab \"网格\"\n      - tab \"文字\"\n      - tab \"曲线\" [selected]\n    - generic: 当前曲线\n    - generic \"选择曲线\":\n      - combobox\n      - generic \"SX2_7_01\"\n    - generic: 坐标轴\n    - generic \"坐标轴\":\n      - combobox\n      - generic \"左轴\"\n    - generic \"曲线样式类型\":\n      - radio \"线条\"\n      - generic: 线条\n      - radio \"数据点\" [checked]\n      - generic: 数据点\n    - generic: 显示数据点\n    - checkbox \"显示数据点跟随全局\" [checked]\n    - generic: 跟随全局\n    - switch \"显示数据点\" [disabled]\n    - generic: 数据点形状\n    - checkbox \"数据点形状跟随全局\" [checked]\n    - generic: 跟随全局\n    - generic \"数据点形状\":\n      - combobox [disabled]\n      - generic \"圆形\"\n    - generic: 数据点大小\n    - checkbox \"数据点大小跟随全局\" [checked]\n    - generic: 跟随全局\n    - spinbutton \"数据点大小\" [disabled]: \"3.0\"\n    - generic: 数据点颜色\n    - checkbox \"数据点颜色跟随全局\" [checked]\n    - generic: 跟随全局\n    - button \"数据点颜色色板\" [disabled]\n    - textbox \"数据点颜色\" [disabled]: \"#2563eb\"\n    - generic: 点边框颜色\n    - checkbox \"点边框颜色跟随全局\" [checked]\n    - generic: 跟随全局\n    - button \"点边框颜色色板\" [disabled]\n    - textbox \"点边框颜色\" [disabled]: \"#ffffff\"\n    - generic: 点边框宽度\n    - checkbox \"点边框宽度跟随全局\" [checked]\n    - generic: 跟随全局\n    - spinbutton \"点边框宽度\" [disabled]: \"1.0\"\n  - region \"波形图预览\":\n    - heading \"波形图预览\" [level=1]"
+  },
+  {
+    "id": "B1-SELECTION-FIXED",
+    "tasks": [
+      "9.26"
+    ],
+    "expected": {
+      "remember": "SX2_7_01",
+      "afterDataset": "小数值测试"
+    },
+    "actual": {
+      "remember": "SX2_7_01",
+      "afterDataset": "小数值测试"
+    },
+    "pass": true
+  },
+  {
+    "id": "B1-NAV-SUBSECTION-KEYBOARD",
+    "tasks": [
+      "9.26"
+    ],
+    "input": "click 尺寸与留白, native Right",
+    "expected": "边框 checked and focused",
+    "actual": "- main:\n  - complementary \"图表配置与动画测试\":\n    - generic: 界面主题\n    - generic \"界面主题\":\n      - radio \"浅色\"\n      - generic: 浅色\n      - radio \"深色\"\n      - generic: 深色\n      - radio \"跟随系统\" [checked]\n      - generic: 跟随系统\n    - generic: 测试数据\n    - generic \"测试数据\":\n      - radio \"原始数据\"\n      - generic: 原始数据\n      - radio \"小数值测试\" [checked]\n      - generic: 小数值测试\n    - region \"动画与数据更新\":\n      - heading \"动画与数据更新\" [level=2]\n      - generic: 启用动画\n      - switch \"启用动画（影响后续数据更新）\" [checked]\n      - tablist:\n        - tab \"入场动画\" [selected]\n        - tab \"更新动画\"\n        - tab \"数据场景\"\n      - generic: 入场动画\n      - switch \"入场动画\" [checked]\n      - generic: 入场方向\n      - generic \"入场方向\":\n        - combobox\n        - generic \"从左到右\"\n      - generic: 入场时长（ms）\n      - button \"Increase Value\":\n        - img \"up\":\n      - button \"Decrease Value\":\n        - img \"down\":\n      - spinbutton \"入场时长（ms）\": \"1000\"\n      - generic: 入场延迟（ms）\n      - button \"Increase Value\":\n        - img \"up\":\n      - button \"Decrease Value\" [disabled]:\n        - img \"down\":\n      - spinbutton \"入场延迟（ms）\": \"0\"\n      - generic: 错峰间隔（ms）\n      - button \"Increase Value\":\n        - img \"up\":\n      - button \"Decrease Value\":\n        - img \"down\":\n      - spinbutton \"错峰间隔（ms）\": \"100\"\n      - button \"重播入场\":\n        - generic: 重播入场\n      - group \"动画控制\":\n        - button \"暂 停\":\n          - generic: 暂 停\n        - button \"恢 复\":\n          - generic: 恢 复\n        - button \"结束动画\":\n          - generic: 结束动画\n    - heading \"实时配置\" [level=2]\n    - tablist:\n      - tab \"布局\" [selected]\n      - tab \"线点\"\n      - tab \"坐标轴\"\n      - tab \"网格\"\n      - tab \"文字\"\n      - tab \"曲线\"\n    - radio \"尺寸与留白\"\n    - generic: 尺寸与留白\n    - radio \"边框\" [checked] [active]\n    - generic: 边框\n    - generic: 显示边框\n    - switch \"显示边框\" [checked]\n    - generic: 背景颜色\n    - button \"背景颜色色板\"\n    - textbox \"背景颜色\": \"#000000\"\n    - generic: 边框颜色\n    - button \"边框颜色色板\"\n    - textbox \"边框颜色\": \"#78E8FF\"\n    - generic: 边框宽度\n    - button \"Increase Value\":\n      - img \"up\":\n    - button \"Decrease Value\":\n      - img \"down\":\n    - spinbutton \"边框宽度\": \"2.0\"\n    - generic: 边框样式\n    - generic \"边框样式\":\n      - combobox\n      - generic \"实线\"\n    - generic: 圆角\n    - button \"Increase Value\":\n      - img \"up\":\n    - button \"Decrease Value\" [disabled]:\n      - img \"down\":\n    - spinbutton \"圆角\": \"0\"\n  - region \"波形图预览\":\n    - heading \"波形图预览\" [level=1]",
+    "pass": true
+  },
+  {
+    "id": "B1-DIM-NARROW",
+    "tasks": [
+      "3.1",
+      "3.2"
+    ],
+    "viewport": [
+      390,
+      844
+    ],
+    "input": {
+      "width": 640,
+      "height": 240
+    },
+    "expected": {
+      "viewBox": "0 0 640 240",
+      "screenWidth": 360,
+      "screenHeight": 135
+    },
+    "actual": {
+      "alerts": [],
+      "height": "240",
+      "host": {
+        "bottom": 591.796875,
+        "height": 520.796875,
+        "left": 15,
+        "right": 375,
+        "top": 71,
+        "width": 360,
+        "x": 15,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 398.890625,
+        "height": 135,
+        "left": 15,
+        "right": 375,
+        "top": 263.890625,
+        "width": 360,
+        "x": 15,
+        "y": 263.890625
+      },
+      "viewBox": "0 0 640 240",
+      "width": "640"
+    }
+  },
+  {
+    "id": "B1-DIM-WIDE-RESTORED",
+    "tasks": [
+      "3.1",
+      "3.2"
+    ],
+    "expected": {
+      "viewBox": "0 0 640 240",
+      "screenWidth": 640,
+      "screenHeight": 240
+    },
+    "actual": {
+      "alerts": [],
+      "height": "240",
+      "host": {
+        "bottom": 693,
+        "height": 622,
+        "left": 369,
+        "right": 1265,
+        "top": 71,
+        "width": 896,
+        "x": 369,
+        "y": 71
+      },
+      "screen": {
+        "bottom": 502,
+        "height": 240,
+        "left": 369,
+        "right": 1009,
+        "top": 262,
+        "width": 640,
+        "x": 369,
+        "y": 262
+      },
+      "viewBox": "0 0 640 240",
+      "width": "640"
+    }
+  },
+  {
+    "id": "B1-NAV-ANIMATION",
+    "tasks": [
+      "9.26"
+    ],
+    "actual": {
+      "mouse": [
+        {
+          "tab": "入场动画",
+          "selected": [
+            "        - tab \"入场动画\" [active] [selected]",
+            "      - tab \"布局\" [selected]"
+          ],
+          "unchanged": true
+        },
+        {
+          "tab": "更新动画",
+          "selected": [
+            "        - tab \"更新动画\" [active] [selected]",
+            "      - tab \"布局\" [selected]"
+          ],
+          "unchanged": true
+        },
+        {
+          "tab": "数据场景",
+          "selected": [
+            "        - tab \"数据场景\" [active] [selected]",
+            "      - tab \"布局\" [selected]"
+          ],
+          "unchanged": true
+        }
+      ],
+      "home": [
+        "        - tab \"入场动画\" [active] [selected]",
+        "      - tab \"布局\" [selected]"
+      ],
+      "end": [
+        "        - tab \"数据场景\" [active] [selected]",
+        "      - tab \"布局\" [selected]"
+      ],
+      "left": [
+        "        - tab \"更新动画\" [active] [selected]",
+        "      - tab \"布局\" [selected]"
+      ]
+    }
+  },
+  {
+    "id": "B1-COLOR-PRESETS",
+    "tasks": [
+      "9.27"
+    ],
+    "actual": [
+      {
+        "preset": "#2563eb",
+        "actual": {
+          "opacity": "0.5",
+          "stroke": "#2563eb",
+          "text": "#2563eb"
+        },
+        "pass": true
+      },
+      {
+        "preset": "#dc2626",
+        "actual": {
+          "opacity": "0.5",
+          "stroke": "#dc2626",
+          "text": "#dc2626"
+        },
+        "pass": true
+      },
+      {
+        "preset": "#16a34a",
+        "actual": {
+          "opacity": "0.5",
+          "stroke": "#16a34a",
+          "text": "#16a34a"
+        },
+        "pass": true
+      },
+      {
+        "preset": "#9333ea",
+        "actual": {
+          "opacity": "0.5",
+          "stroke": "#9333ea",
+          "text": "#9333ea"
+        },
+        "pass": true
+      },
+      {
+        "preset": "#0891b2",
+        "actual": {
+          "opacity": "0.5",
+          "stroke": "#0891b2",
+          "text": "#0891b2"
+        },
+        "pass": true
+      },
+      {
+        "preset": "#f59e0b",
+        "actual": {
+          "opacity": "0.5",
+          "stroke": "#f59e0b",
+          "text": "#f59e0b"
+        },
+        "pass": true
+      },
+      {
+        "preset": "#ffffff",
+        "actual": {
+          "opacity": "0.5",
+          "stroke": "#ffffff",
+          "text": "#ffffff"
+        },
+        "pass": true
+      },
+      {
+        "preset": "#000000",
+        "actual": {
+          "opacity": "0.5",
+          "stroke": "#000000",
+          "text": "#000000"
+        },
+        "pass": true
+      }
+    ],
+    "pass": true
+  },
+  {
+    "id": "B1-COLOR-ZERO-ROUNDTRIP-BEFORE",
+    "tasks": [
+      "9.27"
+    ],
+    "expected": "rgba(37, 99, 235, 0) -> rgb(37, 99, 235)",
+    "actual": {
+      "alpha0": "rgba(37, 99, 235, 0)",
+      "alpha1": "rgb(0, 0, 0)"
+    }
+  },
+  {
+    "id": "B1-ALPHA-FIXED",
+    "tasks": [
+      "9.27"
+    ],
+    "expected": {
+      "alpha0": "rgba(37, 99, 235, 0)",
+      "alpha1": "rgb(37, 99, 235)",
+      "halfAlpha": "rgba(37, 99, 235, 0.5)",
+      "strokeOpacity": "0.5",
+      "effectiveOpacity": 0.25,
+      "reopenedAlpha": "0.5"
+    },
+    "actual": {
+      "alpha0": "rgba(37, 99, 235, 0)",
+      "alpha1": "rgb(37, 99, 235)",
+      "halfAlpha": {
+        "alpha": "0.5",
+        "opacity": "0.5",
+        "stroke": "rgba(37, 99, 235, 0.5)",
+        "text": "rgba(37, 99, 235, 0.5)"
+      },
+      "reopenedAlpha": "0.5"
+    },
+    "pass": true
+  }
+]

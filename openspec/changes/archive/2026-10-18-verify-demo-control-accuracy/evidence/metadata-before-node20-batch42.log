@@ -1,0 +1,29 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ❯ tests/integration/Waveform.typography.test.ts (10 tests | 2 failed | 8 skipped) 5ms
+   × Waveform typography > fits full-width metadata with native measurement=false and restores short text 4ms
+     → setup is not defined
+   × Waveform typography > fits full-width metadata with native measurement=true and restores short text 0ms
+     → setup is not defined
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/Waveform.typography.test.ts > Waveform typography > fits full-width metadata with native measurement=false and restores short text
+ FAIL  tests/integration/Waveform.typography.test.ts > Waveform typography > fits full-width metadata with native measurement=true and restores short text
+ReferenceError: setup is not defined
+ ❯ tests/integration/Waveform.typography.test.ts:162:36
+    160|     })
+    161|     try {
+    162|       const { container, chart } = setup({
+       |                                    ^
+    163|         height: 300, animationEnabled: false,
+    164|         xAxis: { title: { visible: true, text: '横轴中文'.repeat(60), …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ Test Files  1 failed (1)
+      Tests  2 failed | 8 skipped (10)
+   Start at  17:52:36
+   Duration  1.13s (transform 199ms, setup 0ms, collect 387ms, tests 5ms, environment 462ms, prepare 66ms)
+

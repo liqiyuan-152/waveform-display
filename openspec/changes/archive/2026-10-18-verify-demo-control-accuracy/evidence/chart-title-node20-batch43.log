@@ -1,0 +1,11 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/App.controls.test.ts (40 tests | 39 skipped) 872ms
+   ✓ Demo controls to rendered SVG > validates chart-title content and typography boundaries, CSS fallback and restoration 871ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 39 skipped (40)
+   Start at  17:54:59
+   Duration  2.95s (transform 467ms, setup 0ms, collect 1.54s, tests 872ms, environment 329ms, prepare 43ms)
+

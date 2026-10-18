@@ -1,0 +1,23 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/integration/Waveform.events.test.ts (6 tests) 321ms
+ ✓ tests/integration/Waveform.legend.test.ts (30 tests) 643ms
+ ✓ tests/integration/Waveform.axes.test.ts (39 tests) 728ms
+ ✓ tests/demo/App.controls.test.ts (18 tests) 8295ms
+   ✓ Demo controls to rendered SVG > applies responsive aspect ratio and height limits with validation and restoration 623ms
+   ✓ Demo controls to rendered SVG > applies exact manual padding on all four sides, rejects negatives and restores auto layout 319ms
+   ✓ Demo controls to rendered SVG > validates all frame fields, enum candidates and restoration without altering curve geometry 421ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 3034ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 358ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 532ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 347ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 429ms
+   ✓ Demo controls to rendered SVG > updates legend layout and empty-state content, and restores the original curves 302ms
+   ✓ Demo controls to rendered SVG > maps a curve to the selected axis and back using each axis scale 324ms
+
+ Test Files  4 passed (4)
+      Tests  93 passed (93)
+   Start at  16:14:51
+   Duration  10.71s (transform 891ms, setup 0ms, collect 4.49s, tests 9.99s, environment 1.30s, prepare 262ms)
+

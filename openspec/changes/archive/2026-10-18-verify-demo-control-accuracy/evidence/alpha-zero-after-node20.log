@@ -1,0 +1,14 @@
+
+> waveform-display@0.1.17 test /Users/liqiyuan/WebstormProjects/waveform-display
+> vitest run "tests/demo/ColorControl.test.ts"
+
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/ColorControl.test.ts (5 tests) 423ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  14:12:03
+   Duration  1.91s (transform 89ms, setup 0ms, collect 969ms, tests 423ms, environment 293ms, prepare 72ms)
+

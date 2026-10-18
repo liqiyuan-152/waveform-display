@@ -1,0 +1,22 @@
+{
+  "capturedAt": "2026-10-18T09:32:09.434Z",
+  "case": "C-09",
+  "steps": "Original4; select right value axis; set title to 很长的值轴标题 repeated30",
+  "expected": "Rotated title fits plot vertical span without clipping outside SVG",
+  "actual": {
+    "text": "很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题很长的值轴标题 (ms)",
+    "size": "14",
+    "rect": {
+      "left": 1041.234375,
+      "right": 1058.234375,
+      "top": -1130.1015625,
+      "bottom": 1844.1015625
+    },
+    "svg": {
+      "left": 369,
+      "right": 1085,
+      "top": 71,
+      "bottom": 673
+    }
+  }
+}

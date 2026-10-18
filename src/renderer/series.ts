@@ -25,12 +25,11 @@ export function renderSeries(ctx: RenderContext) {
     }
     const yScale = yAxisById.get(s.yAxis ?? '')?.scale ?? primaryYAxis.scale
     const lineStyle = {
-      color: options.line.color,
-      lineWidth: options.line.width,
-      lineType: options.line.type,
-      lineStyle: options.line.style,
-      opacity: options.line.opacity,
-      ...s.style,
+      color: s.style?.color ?? options.line.color,
+      lineWidth: s.style?.lineWidth ?? options.line.width,
+      lineType: s.style?.lineType ?? options.line.type,
+      lineStyle: s.style?.lineStyle ?? options.line.style,
+      opacity: s.style?.opacity ?? options.line.opacity,
     }
 
     if (options.line.visible) {
@@ -51,7 +50,14 @@ export function renderSeries(ctx: RenderContext) {
         .attr('vector-effect', 'non-scaling-stroke')
     }
 
-    const pointStyle = { ...options.point, ...s.style?.point }
+    const pointStyle = {
+      visible: s.style?.point?.visible ?? options.point.visible,
+      type: s.style?.point?.type ?? options.point.type,
+      size: s.style?.point?.size ?? options.point.size,
+      color: s.style?.point?.color ?? options.point.color,
+      borderColor: s.style?.point?.borderColor ?? options.point.borderColor,
+      borderWidth: s.style?.point?.borderWidth ?? options.point.borderWidth,
+    }
     if (pointStyle.visible) {
       const symbol = d3.symbol().type(symbolType(pointStyle.type)).size(pointStyle.size * pointStyle.size * 4)
       seriesLayer.append('g')

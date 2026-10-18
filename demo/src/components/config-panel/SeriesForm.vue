@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { Checkbox, Segmented, Select, Empty } from 'ant-design-vue'
 import type { WaveformOptions, WaveformSeries } from '../../../../src/index'
 import { getAtPath, setAtPath } from '../../config/fields'
@@ -8,6 +8,9 @@ import ConfigField from './ConfigField.vue'
 const props = defineProps<{ series: WaveformSeries[]; options: WaveformOptions }>()
 const emit = defineEmits<{ change: [series: WaveformSeries[]] }>()
 const selected = ref(0), category = ref<'line' | 'point'>('line')
+watch(() => props.series.length, length => {
+  selected.value = Math.max(0, Math.min(selected.value, length - 1))
+}, { flush: 'sync' })
 const index = computed(() => Math.min(selected.value, props.series.length - 1))
 const item = computed(() => props.series[index.value])
 function update(path: string, value: unknown) {

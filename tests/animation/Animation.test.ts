@@ -17,6 +17,15 @@ describe('animation timing and entry clipping', () => {
     expect(animation.sample(0)).toEqual({ done: true, value: 1 })
   })
 
+  it('samples linear and cubicInOut at non-symmetric progress points', () => {
+    const linear = new Animation({ duration: 100, easing: 'linear' })
+    const cubic = new Animation({ duration: 100, easing: 'cubicInOut' })
+    expect(linear.sample(25).value).toBeCloseTo(0.25)
+    expect(cubic.sample(25).value).toBeCloseTo(0.0625)
+    expect(linear.sample(75).value).toBeCloseTo(0.75)
+    expect(cubic.sample(75).value).toBeCloseTo(0.9375)
+  })
+
   it('limits clip geometry for all directions including easing overshoot', () => {
     expect(entryClip(100, 0.5, 'left-to-right')).toEqual({ x: 0, width: 50 })
     expect(entryClip(100, 0.5, 'right-to-left')).toEqual({ x: 50, width: 50 })

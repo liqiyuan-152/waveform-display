@@ -1,0 +1,43 @@
+{
+  "batch": 18,
+  "purpose": "值轴与曲线选择的真实 Demo 入口验证",
+  "environment": {
+    "url": "http://127.0.0.1:5174/waveform-display/",
+    "browser": "ChatGPT in-app browser",
+    "viewport": "截图记录",
+    "dataset": "原始数据",
+    "axisMode": "multiple",
+    "curveCount": 4
+  },
+  "axisSelection": {
+    "steps": [
+      "打开坐标轴→值轴→多值轴",
+      "选择左轴并设置轴线颜色为 #abcdef",
+      "切换右轴并设置轴线颜色为 #fedcba"
+    ],
+    "observed": {
+      "leftAxisFormValue": "#abcdef",
+      "rightAxisFormValue": "#fedcba",
+      "rightAxisSelectorValue": "右轴",
+      "waveformStillHasFourCurves": true
+    },
+    "screenshot": "value-axis-selection-batch18.png",
+    "scope": "入口选择和表单目标切换由真实浏览器确认；左右轴 SVG 属性及坐标映射由 App/SVG 自动化测试确认。"
+  },
+  "seriesSelection": {
+    "steps": [
+      "打开曲线页签",
+      "展开选择曲线并选择 SX2_7_02",
+      "确认表单颜色从第一条曲线值切换为第二条曲线值",
+      "设置第二条曲线颜色为 #123abc"
+    ],
+    "observed": {
+      "selectedSeries": "SX2_7_02",
+      "formColorBeforeEdit": "#dc2626",
+      "formColorAfterEdit": "#123abc",
+      "waveformStillHasFourCurves": true
+    },
+    "screenshot": "series-selection-batch18.png",
+    "scope": "曲线选择入口、表单值切换和编辑后四条曲线保留由真实浏览器确认；同伴隔离及继承状态由自动化测试确认。"
+  }
+}

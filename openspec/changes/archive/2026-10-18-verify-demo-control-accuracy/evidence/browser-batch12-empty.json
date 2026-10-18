@@ -1,0 +1,18 @@
+{
+  "controls": [
+    "emptyState.visible",
+    "emptyState.text",
+    "emptyState.color",
+    "emptyState.fontSize"
+  ],
+  "observed": {
+    "previewEmpty": true,
+    "visible": false,
+    "text": "暂无波形 Ω",
+    "color": "#123456",
+    "fontSize": 20,
+    "paths": "none"
+  },
+  "restoration": "display toggle was switched off after styling; preview can be exited to restore original curves",
+  "screenshot": "empty-state-controls-batch12.jpg"
+}

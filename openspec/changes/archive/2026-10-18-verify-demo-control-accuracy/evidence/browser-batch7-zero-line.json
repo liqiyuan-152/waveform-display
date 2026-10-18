@@ -1,0 +1,25 @@
+{
+  "precondition": {
+    "yAxisMin": -10,
+    "yAxisMax": 10,
+    "axis": "left"
+  },
+  "controls": [
+    "zeroLine.visible",
+    "zeroLine.color",
+    "zeroLine.opacity",
+    "zeroLine.width",
+    "zeroLine.dash",
+    "zeroLine.axisId"
+  ],
+  "observed": {
+    "visible": true,
+    "color": "#123456",
+    "opacity": 0.25,
+    "width": 2.5,
+    "dash": "8 2",
+    "axisId": "right"
+  },
+  "crossZero": "zero line is rendered because the selected domain spans zero",
+  "screenshot": "zero-line-controls-batch7.jpg"
+}

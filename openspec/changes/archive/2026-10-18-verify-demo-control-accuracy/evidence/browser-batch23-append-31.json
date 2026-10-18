@@ -1,0 +1,27 @@
+{
+  "batch": 23,
+  "purpose": "追加点完整点击序列入口复验",
+  "environment": {
+    "url": "http://127.0.0.1:5174/waveform-display/",
+    "browser": "ChatGPT in-app browser",
+    "dataset": "原始数据",
+    "scenario": "追加点"
+  },
+  "steps": [
+    "重载 Demo 并打开数据场景",
+    "点击追加点 10 次，检查页面稳定",
+    "继续点击 10 次，检查页面稳定",
+    "再点击 11 次，总计 31 次"
+  ],
+  "observed": {
+    "clicks": 31,
+    "buttonRemainedAvailable": true,
+    "waveformRemainedRendered": true,
+    "screenshot": "append-31-clicks-batch23.png"
+  },
+  "exactAssertions": {
+    "test": "tests/demo/animationScenarios.test.ts",
+    "checks": ["每次增加1点", "旧点ID/坐标/样式/绑定保留", "10/20/30边界不回绕", "X坐标持续递增"]
+  },
+  "limitation": "浏览器AX树不暴露点数，精确点数和身份由同批自动化生成器断言提供。"
+}

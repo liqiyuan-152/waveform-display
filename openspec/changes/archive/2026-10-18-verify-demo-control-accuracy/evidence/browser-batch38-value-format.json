@@ -1,0 +1,2851 @@
+{
+  "capturedAt": "2026-10-18T09:30:54.076Z",
+  "environment": {
+    "agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "viewport": [
+      1100,
+      700
+    ],
+    "dark": true,
+    "reducedMotion": false
+  },
+  "setup": "Reload original4, finish/disable animations via API only. Axis selection real menu clicks, text uses native setter/input events.",
+  "steps": [
+    {
+      "id": "B38-1",
+      "axis": "left",
+      "label": "最小值",
+      "input": "0",
+      "expected": {},
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 5000,
+              "text": "0.5"
+            },
+            {
+              "value": 10000,
+              "text": "1"
+            },
+            {
+              "value": 15000,
+              "text": "1.5"
+            },
+            {
+              "value": 20000,
+              "text": "2"
+            },
+            {
+              "value": 25000,
+              "text": "2.5"
+            },
+            {
+              "value": 30000,
+              "text": "3"
+            },
+            {
+              "value": 35000,
+              "text": "3.5"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-2",
+      "axis": "left",
+      "label": "最大值",
+      "input": "1000",
+      "expected": {},
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 200,
+              "text": "0.2"
+            },
+            {
+              "value": 400,
+              "text": "0.4"
+            },
+            {
+              "value": 600,
+              "text": "0.6"
+            },
+            {
+              "value": 800,
+              "text": "0.8"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "ms  E+03"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-3",
+      "axis": "left",
+      "label": "刻度数量",
+      "input": "3",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "ms  E+03",
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "ms  E+03"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-4",
+      "axis": "left",
+      "label": "刻度单位",
+      "input": "V",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "V  E+03",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "V  E+03"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-5",
+      "axis": "left",
+      "label": "刻度单位",
+      "input": " 微伏 μV ",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "微伏 μV  E+03",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "微伏 μV  E+03"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-6",
+      "axis": "left",
+      "label": "刻度单位",
+      "input": " ",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "E+03",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-7",
+      "axis": "left",
+      "label": "刻度单位",
+      "input": "长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位  E+03",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位  E+03"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-8",
+      "axis": "left",
+      "label": "刻度单位",
+      "input": "",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "E+03",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-9",
+      "axis": "left",
+      "label": "刻度单位",
+      "input": "ms",
+      "expected": {
+        "header": "ms  E+03",
+        "valid": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "ms  E+03"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-10",
+      "axis": "left",
+      "label": "数字格式",
+      "input": ".2f",
+      "expected": {
+        "texts": [
+          "0.00",
+          "500.00",
+          "1000.00"
+        ],
+        "header": null,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0.00"
+            },
+            {
+              "value": 500,
+              "text": "500.00"
+            },
+            {
+              "value": 1000,
+              "text": "1000.00"
+            }
+          ],
+          "header": null
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-11",
+      "axis": "left",
+      "label": "数字格式",
+      "input": ".1e",
+      "expected": {
+        "texts": [
+          "0.0e+0",
+          "5.0e+2",
+          "1.0e+3"
+        ],
+        "header": null,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0.0e+0"
+            },
+            {
+              "value": 500,
+              "text": "5.0e+2"
+            },
+            {
+              "value": 1000,
+              "text": "1.0e+3"
+            }
+          ],
+          "header": null
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-12",
+      "axis": "left",
+      "label": "数字格式",
+      "input": "not-a-format",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0.0e+0"
+            },
+            {
+              "value": 500,
+              "text": "5.0e+2"
+            },
+            {
+              "value": 1000,
+              "text": "1.0e+3"
+            }
+          ],
+          "header": null
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": "请输入有效的数字格式",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-13",
+      "axis": "left",
+      "label": "数字格式",
+      "input": "..2f",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0.0e+0"
+            },
+            {
+              "value": 500,
+              "text": "5.0e+2"
+            },
+            {
+              "value": 1000,
+              "text": "1.0e+3"
+            }
+          ],
+          "header": null
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": "请输入有效的数字格式",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-14",
+      "axis": "left",
+      "label": "数字格式",
+      "input": "",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "ms  E+03",
+        "valid": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "ms  E+03"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-15",
+      "axis": "left",
+      "label": "最小值",
+      "input": "",
+      "expected": {},
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 40000,
+              "text": "4"
+            },
+            {
+              "value": 20000,
+              "text": "2"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-16",
+      "axis": "left",
+      "label": "最大值",
+      "input": "",
+      "expected": {},
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-17",
+      "axis": "left",
+      "label": "刻度数量",
+      "input": "6",
+      "expected": {
+        "valid": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-18",
+      "axis": "right",
+      "label": "最小值",
+      "input": "0",
+      "expected": {},
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 5000,
+              "text": "0.5"
+            },
+            {
+              "value": 10000,
+              "text": "1"
+            },
+            {
+              "value": 15000,
+              "text": "1.5"
+            },
+            {
+              "value": 20000,
+              "text": "2"
+            },
+            {
+              "value": 25000,
+              "text": "2.5"
+            },
+            {
+              "value": 30000,
+              "text": "3"
+            },
+            {
+              "value": 35000,
+              "text": "3.5"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-19",
+      "axis": "right",
+      "label": "最大值",
+      "input": "1000",
+      "expected": {},
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 200,
+              "text": "0.2"
+            },
+            {
+              "value": 400,
+              "text": "0.4"
+            },
+            {
+              "value": 600,
+              "text": "0.6"
+            },
+            {
+              "value": 800,
+              "text": "0.8"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-20",
+      "axis": "right",
+      "label": "刻度数量",
+      "input": "3",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "E+03  ms",
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-21",
+      "axis": "right",
+      "label": "刻度单位",
+      "input": "V",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "E+03  V",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03  V"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-22",
+      "axis": "right",
+      "label": "刻度单位",
+      "input": " 微伏 μV ",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "E+03  微伏 μV",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03  微伏 μV"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-23",
+      "axis": "right",
+      "label": "刻度单位",
+      "input": " ",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "E+03",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-24",
+      "axis": "right",
+      "label": "刻度单位",
+      "input": "长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "E+03  长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03  长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位长单位"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-25",
+      "axis": "right",
+      "label": "刻度单位",
+      "input": "",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "E+03",
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-26",
+      "axis": "right",
+      "label": "刻度单位",
+      "input": "ms",
+      "expected": {
+        "header": "E+03  ms",
+        "valid": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-27",
+      "axis": "right",
+      "label": "数字格式",
+      "input": ".2f",
+      "expected": {
+        "texts": [
+          "0.00",
+          "500.00",
+          "1000.00"
+        ],
+        "header": null,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0.00"
+            },
+            {
+              "value": 500,
+              "text": "500.00"
+            },
+            {
+              "value": 1000,
+              "text": "1000.00"
+            }
+          ],
+          "header": null
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-28",
+      "axis": "right",
+      "label": "数字格式",
+      "input": ".1e",
+      "expected": {
+        "texts": [
+          "0.0e+0",
+          "5.0e+2",
+          "1.0e+3"
+        ],
+        "header": null,
+        "valid": true,
+        "peerUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0.0e+0"
+            },
+            {
+              "value": 500,
+              "text": "5.0e+2"
+            },
+            {
+              "value": 1000,
+              "text": "1.0e+3"
+            }
+          ],
+          "header": null
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-29",
+      "axis": "right",
+      "label": "数字格式",
+      "input": "not-a-format",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0.0e+0"
+            },
+            {
+              "value": 500,
+              "text": "5.0e+2"
+            },
+            {
+              "value": 1000,
+              "text": "1.0e+3"
+            }
+          ],
+          "header": null
+        }
+      ],
+      "fieldError": "请输入有效的数字格式",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-30",
+      "axis": "right",
+      "label": "数字格式",
+      "input": "..2f",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0.0e+0"
+            },
+            {
+              "value": 500,
+              "text": "5.0e+2"
+            },
+            {
+              "value": 1000,
+              "text": "1.0e+3"
+            }
+          ],
+          "header": null
+        }
+      ],
+      "fieldError": "请输入有效的数字格式",
+      "svgUnchanged": true,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-31",
+      "axis": "right",
+      "label": "数字格式",
+      "input": "",
+      "expected": {
+        "texts": [
+          "0",
+          "0.5",
+          "1"
+        ],
+        "header": "E+03  ms",
+        "valid": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 0,
+              "text": "0"
+            },
+            {
+              "value": 500,
+              "text": "0.5"
+            },
+            {
+              "value": 1000,
+              "text": "1"
+            }
+          ],
+          "header": "E+03  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-32",
+      "axis": "right",
+      "label": "最小值",
+      "input": "",
+      "expected": {},
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 40000,
+              "text": "4"
+            },
+            {
+              "value": 20000,
+              "text": "2"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-33",
+      "axis": "right",
+      "label": "最大值",
+      "input": "",
+      "expected": {},
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32500,
+              "text": "3.25"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    },
+    {
+      "id": "B38-34",
+      "axis": "right",
+      "label": "刻度数量",
+      "input": "6",
+      "expected": {
+        "valid": true
+      },
+      "actual": [
+        {
+          "id": "left",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32750,
+              "text": "3.275"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32850,
+              "text": "3.285"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            }
+          ],
+          "header": "ms  E+04"
+        },
+        {
+          "id": "right",
+          "ticks": [
+            {
+              "value": 32700,
+              "text": "3.27"
+            },
+            {
+              "value": 32800,
+              "text": "3.28"
+            },
+            {
+              "value": 32900,
+              "text": "3.29"
+            },
+            {
+              "value": 33000,
+              "text": "3.3"
+            },
+            {
+              "value": 33100,
+              "text": "3.31"
+            },
+            {
+              "value": 33200,
+              "text": "3.32"
+            },
+            {
+              "value": 33300,
+              "text": "3.33"
+            },
+            {
+              "value": 33400,
+              "text": "3.34"
+            },
+            {
+              "value": 33500,
+              "text": "3.35"
+            }
+          ],
+          "header": "E+04  ms"
+        }
+      ],
+      "fieldError": null,
+      "svgUnchanged": false,
+      "peerUnchanged": true
+    }
+  ],
+  "assertions": [
+    {
+      "id": "B38-3",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-3",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-3",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-4",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-4",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-4",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-4",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-5",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-5",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-5",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-5",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-6",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-6",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-6",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-6",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-7",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-7",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-7",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-7",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-8",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-8",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-8",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-8",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-9",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-9",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-10",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-10",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-10",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-10",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-11",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-11",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-11",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-11",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-12",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B38-13",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B38-14",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-14",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-14",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-17",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-20",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-20",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-20",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-21",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-21",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-21",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-21",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-22",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-22",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-22",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-22",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-23",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-23",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-23",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-23",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-24",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-24",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-24",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-24",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-25",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-25",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-25",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-25",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-26",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-26",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-27",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-27",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-27",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-27",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-28",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-28",
+      "kind": "peer isolation",
+      "pass": true
+    },
+    {
+      "id": "B38-28",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-28",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-29",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B38-30",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B38-31",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B38-31",
+      "kind": "texts",
+      "pass": true
+    },
+    {
+      "id": "B38-31",
+      "kind": "header",
+      "pass": true
+    },
+    {
+      "id": "B38-34",
+      "kind": "valid",
+      "pass": true
+    }
+  ]
+}

@@ -1,10 +1,11 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import { Select } from 'ant-design-vue'
-import { tabs as legacyTabs, parseNumberInput as oldNumber, parseDimension as oldDimension } from '../fixtures/legacyConfigPanel'
+import { Select, Slider } from 'ant-design-vue'
+import { tabs as legacyTabs, parseNumberInput as oldNumber } from '../fixtures/legacyConfigPanel'
 import { tabs, axisFields, parseNumberInput, parseDimension, type FieldDefinition } from '../../demo/src/config/fields'
 import ConfigField from '../../demo/src/components/config-panel/ConfigField.vue'
+import { seriesFields } from '../../demo/src/config/seriesFields'
 
 const fields = tabs.flatMap(tab => tab.subsections?.flatMap(section => section.fields) ?? [])
 describe('configuration field migration', () => {
@@ -20,8 +21,33 @@ describe('configuration field migration', () => {
     }
     for (const raw of ['', '0', '-1', '1.23456789', '1e-8', '1e', '12px', '100%']) {
       expect(parseNumberInput(raw, true)).toEqual(oldNumber(raw, true))
-      expect(parseDimension(raw)).toEqual(oldDimension(raw))
     }
+  })
+
+  it('accepts positive dimensions and rejects unsupported or invalid lengths', () => {
+    for (const raw of ['640', '1.23456789', '1e-8', '12px', '100%', '50%', '.5px']) {
+      expect(parseDimension(raw).valid, raw).toBe(true)
+    }
+    for (const raw of ['', '0', '-1', '1e', '0%', '101%', 'Infinity', 'NaN', '2em', 'abc']) {
+      expect(parseDimension(raw).valid, raw).toBe(false)
+    }
+  })
+
+  it.each([...fields, ...seriesFields].filter(field => field.kind === 'range'))('keeps invalid $path text separate from the committed slider value', async field => {
+    const wrapper = mount(ConfigField, { props: { field, value: 0.4 } })
+    try {
+      for (const value of ['-0.1', '1.1', 'NaN', 'Infinity', '']) {
+        await wrapper.find('input').setValue(value)
+        expect(wrapper.find('[role=alert]').exists(), value).toBe(true)
+        expect(wrapper.find('[role=slider]').attributes('aria-valuenow')).toBe('0.4')
+        expect(wrapper.emitted('change')).toBeUndefined()
+      }
+      // A deliberate slider action repairs the invalid editor and submits its valid value.
+      wrapper.findComponent(Slider).vm.$emit('change', 0.5)
+      await wrapper.vm.$nextTick()
+      expect(wrapper.find('[role=alert]').exists()).toBe(false)
+      expect(wrapper.emitted('change')).toEqual([[0.5]])
+    } finally { wrapper.unmount() }
   })
 
   it.each(fields.map(field => [field.path, field] as const))('renders and submits %s through the Vue control', async (_path, field: FieldDefinition) => {
@@ -35,6 +61,7 @@ describe('configuration field migration', () => {
     else await wrapper.find('input').setValue(value)
     expect(wrapper.emitted('change')?.length, field.path).toBeGreaterThan(0)
     expect(wrapper.find('[role=alert]').exists()).toBe(false)
+    if (field.kind === 'range') expect(wrapper.find('[role=slider]').attributes('aria-label')).toBe(`${field.label}滑块`)
     wrapper.unmount()
   })
 })

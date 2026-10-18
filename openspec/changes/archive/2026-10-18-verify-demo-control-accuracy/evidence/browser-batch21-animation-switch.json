@@ -1,0 +1,24 @@
+{
+  "batch": 21,
+  "purpose": "全局动画开关与数据场景入口验证",
+  "environment": {
+    "url": "http://127.0.0.1:5174/waveform-display/",
+    "browser": "ChatGPT in-app browser",
+    "dataset": "原始数据"
+  },
+  "enabled": {
+    "steps": ["重载 Demo，确认启用动画为开", "打开数据场景并点击追加点"],
+    "observed": {"globalSwitch": true, "curvesUpdated": true, "curveCount": 4},
+    "screenshot": "animation-scenario-enabled-batch21.png"
+  },
+  "disabled": {
+    "steps": ["重载 Demo，关闭启用动画", "打开数据场景并点击追加点"],
+    "observed": {"globalSwitch": false, "curvesUpdated": true, "staticConvergenceAllowed": true},
+    "screenshot": "animation-scenario-disabled-batch21.png"
+  },
+  "automation": {
+    "test": "tests/demo/App.controls.test.ts",
+    "coverage": "switch applies to subsequent scenario updates; animation lifecycle tests cover threshold and category combinations",
+    "related": "tests/integration/Waveform.animation.test.ts"
+  }
+}

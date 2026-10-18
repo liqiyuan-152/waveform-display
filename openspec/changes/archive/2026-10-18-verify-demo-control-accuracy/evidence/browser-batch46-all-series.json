@@ -1,0 +1,431 @@
+{
+  "rows": [
+    {
+      "index": 0,
+      "case": "selected identity",
+      "selectedLabel": "SX2_7_03_CH1",
+      "expected": "SX2_7_03_CH1",
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "线宽",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "连线类型",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "线条样式",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "透明度",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "显示数据点",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "数据点形状",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "数据点大小",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "数据点颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "点边框颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 0,
+      "label": "点边框宽度",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "case": "selected identity",
+      "selectedLabel": "SX2_7_02",
+      "expected": "SX2_7_02",
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "线宽",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "连线类型",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "线条样式",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "透明度",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "显示数据点",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "数据点形状",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "数据点大小",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "数据点颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "点边框颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 1,
+      "label": "点边框宽度",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "case": "selected identity",
+      "selectedLabel": "SX2_7_05",
+      "expected": "SX2_7_05",
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "线宽",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "连线类型",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "线条样式",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "透明度",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "显示数据点",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "数据点形状",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "数据点大小",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "数据点颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "点边框颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 2,
+      "label": "点边框宽度",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "case": "selected identity",
+      "selectedLabel": "SX2_7_01",
+      "expected": "SX2_7_01",
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "线宽",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "连线类型",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "线条样式",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "透明度",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "显示数据点",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "数据点形状",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "数据点大小",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "数据点颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "点边框颜色",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    },
+    {
+      "index": 3,
+      "label": "点边框宽度",
+      "customPass": true,
+      "inheritPass": true,
+      "renderedPass": true,
+      "peersPreserved": true,
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "method": "All four original names are selected with real DevTools dropdown clicks. API prepares explicit overrides and three-point samples retaining names, IDs and axis bindings. Fields use native setter/input, switch and checkbox DOM click; enum fields emit the same ConfigField change event (real candidate selection was verified in batches14/15). Global updates use App edit handler; each series starts from explicit peers and distinct pre-update global values. Exact stepped coordinates and diamond polygon area check geometry, peer line/point DOM must remain unchanged.",
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+}

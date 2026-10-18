@@ -1,0 +1,17 @@
+{
+  "selectedSeries": "SX2_7_02",
+  "controls": [
+    "series.color",
+    "series.lineWidth",
+    "series.followGlobal"
+  ],
+  "observed": {
+    "followColor": false,
+    "followWidth": false,
+    "color": "#123456",
+    "lineWidth": 4.5,
+    "peer": "other series unchanged"
+  },
+  "selection": "curve dropdown opened and second series selected",
+  "screenshot": "series-controls-batch13.jpg"
+}

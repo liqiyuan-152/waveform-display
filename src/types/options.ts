@@ -105,7 +105,9 @@ export interface WaveformOptions {
   animationThreshold?: number
   animation?: import('./animation.js').AnimationEnterOptions
   animationUpdate?: import('./animation.js').AnimationUpdateOptions
+  /** Positive number/px or (0,100]% of container width. Percentage width enables aspect-ratio sizing when responsive is enabled. */
   width?: number | string
+  /** Positive number/px or (0,100]% of container height. Responsive aspect-ratio sizing takes precedence. */
   height?: number | string
   responsive?: ResponsiveOptions
   layout?: LayoutOptions

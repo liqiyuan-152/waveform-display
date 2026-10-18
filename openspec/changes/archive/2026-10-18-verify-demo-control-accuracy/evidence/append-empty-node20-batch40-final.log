@@ -1,0 +1,41 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/animationScenarios.test.ts (4 tests) 20ms
+ ✓ tests/demo/App.controls.test.ts (38 tests) 25475ms
+   ✓ Demo controls to rendered SVG > appends to retained data when leaving empty preview, but disables append for no series 922ms
+   ✓ Demo controls to rendered SVG > applies responsive aspect ratio and height limits with validation and restoration 536ms
+   ✓ Demo controls to rendered SVG > applies exact manual padding on all four sides, rejects negatives and restores auto layout 561ms
+   ✓ Demo controls to rendered SVG > applies fixed dimensions and frame appearance, then restores visibility 424ms
+   ✓ Demo controls to rendered SVG > validates all frame fields, enum candidates and restoration without altering curve geometry 840ms
+   ✓ Demo controls to rendered SVG > preserves series overrides while global opacity, interpolation and visibility affect all paths 520ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 4141ms
+   ✓ Demo controls to rendered SVG > validates global line boundaries on inherited series while isolating explicit overrides 984ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 592ms
+   ✓ Demo controls to rendered SVG > validates X tick geometry and typography boundaries while preserving other axes 965ms
+   ✓ Demo controls to rendered SVG > applies X number formats and units with formatter precedence and valid empty text 552ms
+   ✓ Demo controls to rendered SVG > validates X title text, units, appearance, fitting and offset without losing hidden settings 903ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 701ms
+   ✓ Demo controls to rendered SVG > uses the domain strategy count only when extending bounds and rejects invalid drafts 423ms
+   ✓ Demo controls to rendered SVG > validates value axis 0 bounds, density, strategy and visibility with isolated mapping 687ms
+   ✓ Demo controls to rendered SVG > validates value axis 1 bounds, density, strategy and visibility with isolated mapping 789ms
+   ✓ Demo controls to rendered SVG > validates value axis 0 tick geometry and colors without changing peer styles 972ms
+   ✓ Demo controls to rendered SVG > validates value axis 1 tick geometry and colors without changing peer styles 982ms
+   ✓ Demo controls to rendered SVG > formats value axis 0 with shared exponents, units and explicit format precedence 647ms
+   ✓ Demo controls to rendered SVG > formats value axis 1 with shared exponents, units and explicit format precedence 596ms
+   ✓ Demo controls to rendered SVG > validates value axis 0 title content, appearance, automatic fitting and offset 1230ms
+   ✓ Demo controls to rendered SVG > validates value axis 1 title content, appearance, automatic fitting and offset 1010ms
+   ✓ Demo controls to rendered SVG > keeps X tick density, minimum interval and explicit step priorities observable in the grid 468ms
+   ✓ Demo controls to rendered SVG > applies shared and per-direction grid width, axis binding and visibility 393ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 467ms
+   ✓ Demo controls to rendered SVG > validates grid color and shared or directional width boundaries without altering the curves 638ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 588ms
+   ✓ Demo controls to rendered SVG > updates legend layout and empty-state content, and restores the original curves 472ms
+   ✓ Demo controls to rendered SVG > returns a curve to global inheritance without changing its peers 327ms
+   ✓ Demo controls to rendered SVG > maps a curve to the selected axis and back using each axis scale 627ms
+
+ Test Files  2 passed (2)
+      Tests  42 passed (42)
+   Start at  17:49:39
+   Duration  28.75s (transform 838ms, setup 0ms, collect 2.37s, tests 25.50s, environment 555ms, prepare 246ms)
+

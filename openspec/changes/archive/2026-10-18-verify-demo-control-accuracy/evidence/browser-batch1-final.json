@@ -1,0 +1,1495 @@
+{
+  "capturedAt": "2026-10-18T06:20:00.397Z",
+  "sourceManifest": "execution-batch-1-complete-manifest.json",
+  "browser": {
+    "name": "Codex in-app browser",
+    "id": "3",
+    "version": "not exposed by tool",
+    "reducedMotion": "not queried; no animation timing signoff in this batch"
+  },
+  "environment": {
+    "host": {
+      "bottom": 693,
+      "height": 622,
+      "left": 369,
+      "right": 1265,
+      "top": 71,
+      "width": 896,
+      "x": 369,
+      "y": 71
+    },
+    "theme": "dark",
+    "viewport": [
+      1280,
+      720
+    ]
+  },
+  "cases": [
+    {
+      "id": "B1F-ALPHA-DRAG",
+      "tasks": [
+        "9.27"
+      ],
+      "dataset": "scientific-sample",
+      "expected": {
+        "color": "rgba(37, 99, 235, 0.25)",
+        "opacity": "0.5",
+        "effectiveOpacity": 0.125
+      },
+      "actual": {
+        "opacity": "0.5",
+        "stroke": "rgba(37, 99, 235, 0.25)",
+        "text": "rgba(37, 99, 235, 0.25)"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-ALPHA-ZERO-REOPEN",
+      "tasks": [
+        "9.27"
+      ],
+      "dataset": "scientific-sample",
+      "expected": "rgb(37, 99, 235)",
+      "actual": "rgb(37, 99, 235)",
+      "pass": true
+    },
+    {
+      "id": "B1F-COLOR-INHERITED-DISABLED",
+      "tasks": [
+        "9.27"
+      ],
+      "expected": {
+        "button": true,
+        "input": true
+      },
+      "actual": {
+        "button": true,
+        "input": true
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-NAV-ALL",
+      "tasks": [
+        "9.26"
+      ],
+      "dataset": "original",
+      "expected": "6 tabs and all subsections preserve SVG; checked radio matches clicked label",
+      "actual": [
+        {
+          "tab": "布局",
+          "unchanged": true
+        },
+        {
+          "tab": "布局",
+          "section": "尺寸与留白",
+          "selected": "尺寸与留白",
+          "unchanged": true
+        },
+        {
+          "tab": "布局",
+          "section": "边框",
+          "selected": "边框",
+          "unchanged": true
+        },
+        {
+          "tab": "线点",
+          "unchanged": true
+        },
+        {
+          "tab": "线点",
+          "section": "线条",
+          "selected": "线条",
+          "unchanged": true
+        },
+        {
+          "tab": "线点",
+          "section": "数据点",
+          "selected": "数据点",
+          "unchanged": true
+        },
+        {
+          "tab": "坐标轴",
+          "unchanged": true
+        },
+        {
+          "tab": "坐标轴",
+          "section": "X 轴",
+          "selected": "X 轴",
+          "unchanged": true
+        },
+        {
+          "tab": "坐标轴",
+          "section": "值轴",
+          "selected": "值轴",
+          "unchanged": true
+        },
+        {
+          "tab": "网格",
+          "unchanged": true
+        },
+        {
+          "tab": "网格",
+          "section": "网格线",
+          "selected": "网格线",
+          "unchanged": true
+        },
+        {
+          "tab": "网格",
+          "section": "零线",
+          "selected": "零线",
+          "unchanged": true
+        },
+        {
+          "tab": "文字",
+          "unchanged": true
+        },
+        {
+          "tab": "文字",
+          "section": "标题",
+          "selected": "标题",
+          "unchanged": true
+        },
+        {
+          "tab": "文字",
+          "section": "炮号",
+          "selected": "炮号",
+          "unchanged": true
+        },
+        {
+          "tab": "文字",
+          "section": "图框编号",
+          "selected": "图框编号",
+          "unchanged": true
+        },
+        {
+          "tab": "文字",
+          "section": "图例",
+          "selected": "图例",
+          "unchanged": true
+        },
+        {
+          "tab": "文字",
+          "section": "空状态",
+          "selected": "空状态",
+          "unchanged": true
+        },
+        {
+          "tab": "曲线",
+          "unchanged": true
+        },
+        {
+          "tab": "曲线",
+          "section": "线条",
+          "selected": "线条",
+          "unchanged": true
+        },
+        {
+          "tab": "曲线",
+          "section": "数据点",
+          "selected": "数据点",
+          "unchanged": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "B1F-NAV-SELECTION",
+      "tasks": [
+        "9.26"
+      ],
+      "expected": {
+        "remember": "SX2_7_01",
+        "afterDataset": "小数值测试"
+      },
+      "actual": {
+        "remember": "SX2_7_01",
+        "afterDataset": "小数值测试"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-NAV-KEYS",
+      "tasks": [
+        "9.26"
+      ],
+      "actual": [
+        {
+          "from": "曲线",
+          "key": "Home",
+          "expected": "布局",
+          "pass": true
+        },
+        {
+          "from": "布局",
+          "key": "End",
+          "expected": "曲线",
+          "pass": true
+        },
+        {
+          "from": "曲线",
+          "key": "ArrowLeft",
+          "expected": "文字",
+          "pass": true
+        },
+        {
+          "from": "文字",
+          "key": "ArrowRight",
+          "expected": "曲线",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-640px-240px",
+      "tasks": [
+        "3.1",
+        "3.2"
+      ],
+      "dataset": "scientific-sample",
+      "input": {
+        "width": "640px",
+        "height": "240px",
+        "expected": "0 0 640 240"
+      },
+      "expected": {
+        "viewBox": "0 0 640 240",
+        "screen": {
+          "width": 640,
+          "height": 240,
+          "tolerance": 0.02
+        }
+      },
+      "actual": {
+        "alerts": [],
+        "height": "240",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 502,
+          "height": 240,
+          "left": 369,
+          "right": 1009,
+          "top": 262,
+          "width": 640,
+          "x": 369,
+          "y": 262
+        },
+        "viewBox": "0 0 640 240",
+        "width": "640"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-640-240",
+      "tasks": [
+        "3.1",
+        "3.2"
+      ],
+      "dataset": "scientific-sample",
+      "input": {
+        "width": "640",
+        "height": "240",
+        "expected": "0 0 640 240"
+      },
+      "expected": {
+        "viewBox": "0 0 640 240",
+        "screen": {
+          "width": 640,
+          "height": 240,
+          "tolerance": 0.02
+        }
+      },
+      "actual": {
+        "alerts": [],
+        "height": "240",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 502,
+          "height": 240,
+          "left": 369,
+          "right": 1009,
+          "top": 262,
+          "width": 640,
+          "x": 369,
+          "y": 262
+        },
+        "viewBox": "0 0 640 240",
+        "width": "640"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-0.5-1.25",
+      "tasks": [
+        "3.1",
+        "3.2"
+      ],
+      "dataset": "scientific-sample",
+      "input": {
+        "width": "0.5",
+        "height": "1.25",
+        "expected": "0 0 0.5 1.25"
+      },
+      "expected": {
+        "viewBox": "0 0 0.5 1.25",
+        "screen": {
+          "width": 0.5,
+          "height": 1.25,
+          "tolerance": 0.02
+        }
+      },
+      "actual": {
+        "alerts": [],
+        "height": "1.25",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 382.625,
+          "height": 1.25,
+          "left": 369,
+          "right": 369.5,
+          "top": 381.375,
+          "width": 0.5,
+          "x": 369,
+          "y": 381.375
+        },
+        "viewBox": "0 0 0.5 1.25",
+        "width": "0.5"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-50%-25%",
+      "tasks": [
+        "3.1",
+        "3.2"
+      ],
+      "dataset": "scientific-sample",
+      "input": {
+        "width": "50%",
+        "height": "25%",
+        "expected": "0 0 448 155.5"
+      },
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "screen": {
+          "width": 448,
+          "height": 155.5,
+          "tolerance": 0.02
+        }
+      },
+      "actual": {
+        "alerts": [],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-宽度-0",
+      "tasks": [
+        "3.1"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的宽度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-宽度--1",
+      "tasks": [
+        "3.1"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的宽度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-宽度-0%",
+      "tasks": [
+        "3.1"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的宽度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-宽度-101%",
+      "tasks": [
+        "3.1"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的宽度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-宽度-bad",
+      "tasks": [
+        "3.1"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的宽度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-宽度-12em",
+      "tasks": [
+        "3.1"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的宽度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-宽度-NaN",
+      "tasks": [
+        "3.1"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的宽度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-宽度-Infinity",
+      "tasks": [
+        "3.1"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的宽度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-宽度-",
+      "tasks": [
+        "3.1"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的宽度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-高度-0",
+      "tasks": [
+        "3.2"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的高度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-高度--1",
+      "tasks": [
+        "3.2"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的高度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-高度-0%",
+      "tasks": [
+        "3.2"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的高度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-高度-101%",
+      "tasks": [
+        "3.2"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的高度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-高度-bad",
+      "tasks": [
+        "3.2"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的高度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-高度-12em",
+      "tasks": [
+        "3.2"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的高度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-高度-NaN",
+      "tasks": [
+        "3.2"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的高度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-高度-Infinity",
+      "tasks": [
+        "3.2"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的高度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-INVALID-高度-",
+      "tasks": [
+        "3.2"
+      ],
+      "expected": {
+        "viewBox": "0 0 448 155.5",
+        "feedback": true
+      },
+      "actual": {
+        "alerts": [
+          "请输入有效的高度"
+        ],
+        "height": "155.5",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 459.75,
+          "height": 155.5,
+          "left": 369,
+          "right": 817,
+          "top": 304.25,
+          "width": 448,
+          "x": 369,
+          "y": 304.25
+        },
+        "viewBox": "0 0 448 155.5",
+        "width": "50%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-RESTORED",
+      "tasks": [
+        "3.1",
+        "3.2"
+      ],
+      "expected": "0 0 896 622",
+      "actual": {
+        "alerts": [],
+        "height": "622",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "viewBox": "0 0 896 622",
+        "width": "100%"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-NAV-RADIO-KEYS",
+      "tasks": [
+        "9.26"
+      ],
+      "expected": "Right selects 边框, Left returns 尺寸与留白",
+      "actual": {
+        "right": [
+          "      - radio \"跟随系统\" [checked]",
+          "      - radio \"小数值测试\" [checked]",
+          "    - radio \"边框\" [checked] [active]"
+        ],
+        "left": [
+          "      - radio \"跟随系统\" [checked]",
+          "      - radio \"小数值测试\" [checked]",
+          "    - radio \"尺寸与留白\" [checked] [active]"
+        ]
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-NAV-ANIM",
+      "tasks": [
+        "9.26"
+      ],
+      "actual": [
+        {
+          "tab": "入场动画",
+          "pass": true
+        },
+        {
+          "tab": "更新动画",
+          "pass": true
+        },
+        {
+          "tab": "数据场景",
+          "pass": true
+        },
+        {
+          "from": "数据场景",
+          "key": "Home",
+          "expected": "入场动画",
+          "pass": true
+        },
+        {
+          "from": "入场动画",
+          "key": "End",
+          "expected": "数据场景",
+          "pass": true
+        },
+        {
+          "from": "数据场景",
+          "key": "ArrowLeft",
+          "expected": "更新动画",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "B1F-COLOR-PRESETS",
+      "tasks": [
+        "9.27"
+      ],
+      "dataset": "scientific-sample",
+      "actual": [
+        {
+          "expected": "#2563eb",
+          "actual": {
+            "input": "#2563eb",
+            "opacity": "0.5",
+            "stroke": "#2563eb",
+            "swatch": "background: rgb(37, 99, 235);"
+          },
+          "pass": true,
+          "expectedSwatch": "rgb(37, 99, 235)"
+        },
+        {
+          "expected": "#dc2626",
+          "actual": {
+            "input": "#dc2626",
+            "opacity": "0.5",
+            "stroke": "#dc2626",
+            "swatch": "background: rgb(220, 38, 38);"
+          },
+          "pass": true,
+          "expectedSwatch": "rgb(220, 38, 38)"
+        },
+        {
+          "expected": "#16a34a",
+          "actual": {
+            "input": "#16a34a",
+            "opacity": "0.5",
+            "stroke": "#16a34a",
+            "swatch": "background: rgb(22, 163, 74);"
+          },
+          "pass": true,
+          "expectedSwatch": "rgb(22, 163, 74)"
+        },
+        {
+          "expected": "#9333ea",
+          "actual": {
+            "input": "#9333ea",
+            "opacity": "0.5",
+            "stroke": "#9333ea",
+            "swatch": "background: rgb(147, 51, 234);"
+          },
+          "pass": true,
+          "expectedSwatch": "rgb(147, 51, 234)"
+        },
+        {
+          "expected": "#0891b2",
+          "actual": {
+            "input": "#0891b2",
+            "opacity": "0.5",
+            "stroke": "#0891b2",
+            "swatch": "background: rgb(8, 145, 178);"
+          },
+          "pass": true,
+          "expectedSwatch": "rgb(8, 145, 178)"
+        },
+        {
+          "expected": "#f59e0b",
+          "actual": {
+            "input": "#f59e0b",
+            "opacity": "0.5",
+            "stroke": "#f59e0b",
+            "swatch": "background: rgb(245, 158, 11);"
+          },
+          "pass": true,
+          "expectedSwatch": "rgb(245, 158, 11)"
+        },
+        {
+          "expected": "#ffffff",
+          "actual": {
+            "input": "#ffffff",
+            "opacity": "0.5",
+            "stroke": "#ffffff",
+            "swatch": "background: rgb(255, 255, 255);"
+          },
+          "pass": true,
+          "expectedSwatch": "rgb(255, 255, 255)"
+        },
+        {
+          "expected": "#000000",
+          "actual": {
+            "input": "#000000",
+            "opacity": "0.5",
+            "stroke": "#000000",
+            "swatch": "background: rgb(0, 0, 0);"
+          },
+          "pass": true,
+          "expectedSwatch": "rgb(0, 0, 0)"
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "B1F-NAV-MEMORY",
+      "tasks": [
+        "9.26"
+      ],
+      "actual": [
+        {
+          "tab": "坐标轴",
+          "section": "值轴",
+          "pass": true
+        },
+        {
+          "tab": "网格",
+          "section": "零线",
+          "pass": true
+        },
+        {
+          "tab": "文字",
+          "section": "空状态",
+          "pass": true
+        },
+        {
+          "tab": "线点",
+          "section": "线条",
+          "pass": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-NARROW",
+      "tasks": [
+        "3.1",
+        "3.2"
+      ],
+      "dataset": "scientific-sample",
+      "viewport": [
+        390,
+        844
+      ],
+      "expected": {
+        "viewBox": "0 0 640 240",
+        "screenWidth": 360,
+        "screenHeight": 135
+      },
+      "actual": {
+        "alerts": [],
+        "height": "240",
+        "host": {
+          "bottom": 591.796875,
+          "height": 520.796875,
+          "left": 15,
+          "right": 375,
+          "top": 71,
+          "width": 360,
+          "x": 15,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 398.890625,
+          "height": 135,
+          "left": 15,
+          "right": 375,
+          "top": 263.890625,
+          "width": 360,
+          "x": 15,
+          "y": 263.890625
+        },
+        "viewBox": "0 0 640 240",
+        "width": "640"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-DIM-WIDE",
+      "tasks": [
+        "3.1",
+        "3.2"
+      ],
+      "dataset": "scientific-sample",
+      "expected": {
+        "viewBox": "0 0 640 240",
+        "screenWidth": 640,
+        "screenHeight": 240
+      },
+      "actual": {
+        "alerts": [],
+        "height": "240",
+        "host": {
+          "bottom": 693,
+          "height": 622,
+          "left": 369,
+          "right": 1265,
+          "top": 71,
+          "width": 896,
+          "x": 369,
+          "y": 71
+        },
+        "screen": {
+          "bottom": 502,
+          "height": 240,
+          "left": 369,
+          "right": 1009,
+          "top": 262,
+          "width": 640,
+          "x": 369,
+          "y": 262
+        },
+        "viewBox": "0 0 640 240",
+        "width": "640"
+      },
+      "pass": true
+    },
+    {
+      "id": "B1F-ALPHA-HALF",
+      "tasks": [
+        "9.27"
+      ],
+      "dataset": "scientific-sample",
+      "expected": {
+        "stroke": "rgba(37, 99, 235, 0.5)",
+        "opacity": "0.5",
+        "effectiveOpacity": 0.25
+      },
+      "actual": {
+        "alpha": "0.5",
+        "color": "rgba(37, 99, 235, 0.5)",
+        "opacity": "0.5",
+        "stroke": "rgba(37, 99, 235, 0.5)"
+      },
+      "pass": true
+    }
+  ],
+  "defaultDataset": "scientific-sample",
+  "seriesIdentity": {
+    "original": [
+      {
+        "id": "1157",
+        "name": "SX2_7_03_CH1"
+      },
+      {
+        "id": "1156",
+        "name": "SX2_7_02"
+      },
+      {
+        "id": "1159",
+        "name": "SX2_7_05"
+      },
+      {
+        "id": "1155",
+        "name": "SX2_7_01"
+      }
+    ],
+    "scientific": [
+      {
+        "id": "scientific-sample",
+        "name": "小数值测试"
+      }
+    ]
+  },
+  "notes": [
+    "Cases marked original use the fixture IDs above; NAV-SELECTION changes original -> scientific.",
+    "Scope is SVG attributes, DOM geometry and control binding; no animation timing or pixel color metrology signoff.",
+    "All source fingerprints match the manifest; diagnostic pre-fix records remain separately in browser-batch1.json."
+  ]
+}

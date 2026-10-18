@@ -1,0 +1,31 @@
+{
+  "controls": [
+    "point.visible",
+    "point.type",
+    "point.size",
+    "point.color",
+    "point.borderColor",
+    "point.borderWidth"
+  ],
+  "observed": {
+    "visible": true,
+    "size": 0,
+    "color": "#112233",
+    "borderColor": "#445566",
+    "borderWidth": 2.5,
+    "zeroSize": "SVG point coordinates collapse to zero per automated geometry oracle"
+  },
+  "priorShapeCoverage": [
+    "circle",
+    "square",
+    "triangle",
+    "diamond"
+  ],
+  "invalidCoverage": [
+    "negative size",
+    "empty size",
+    "invalid color",
+    "empty color"
+  ],
+  "screenshot": "point-controls-batch4.jpg"
+}

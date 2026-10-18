@@ -1,0 +1,119 @@
+
+> waveform-display@0.1.17 check /Users/liqiyuan/WebstormProjects/waveform-display
+> pnpm typecheck && pnpm test && pnpm build && pnpm build:demo
+
+
+> waveform-display@0.1.17 typecheck /Users/liqiyuan/WebstormProjects/waveform-display
+> tsc --noEmit && vue-tsc -p demo/tsconfig.json --noEmit
+
+
+> waveform-display@0.1.17 test /Users/liqiyuan/WebstormProjects/waveform-display
+> vitest run
+
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/config-panel.test.ts (19 tests) 320ms
+ ✓ tests/integration/Waveform.frame.test.ts (12 tests) 652ms
+ ✓ tests/integration/Waveform.layout.test.ts (14 tests) 1053ms
+ ✓ tests/integration/Waveform.legend.test.ts (30 tests) 1519ms
+ ✓ tests/integration/Waveform.axes.test.ts (39 tests) 1938ms
+ ✓ tests/integration/Waveform.animation.test.ts (29 tests) 2166ms
+ ✓ tests/integration/Waveform.headers.test.ts (7 tests) 864ms
+ ✓ tests/integration/Waveform.grid.test.ts (15 tests) 1087ms
+ ✓ tests/integration/Waveform.typography.test.ts (8 tests) 472ms
+ ✓ tests/integration/Waveform.lifecycle.test.ts (7 tests) 690ms
+ ✓ tests/integration/Waveform.controlGeometry.test.ts (8 tests) 1738ms
+   ✓ independent geometry oracle for control accuracy (OpenSpec 2.2 / 2.6) > checks inherited square placement, area, zero size and restoration 533ms
+ ✓ tests/integration/Waveform.styleInheritance.test.ts (12 tests) 1578ms
+ ✓ tests/integration/Waveform.events.test.ts (6 tests) 572ms
+ ✓ tests/demo/useWaveform.test.ts (5 tests) 258ms
+ ✓ tests/integration/Waveform.verticalPadding.test.ts (7 tests) 945ms
+ ✓ tests/integration/Waveform.ticks.test.ts (5 tests) 491ms
+ ✓ tests/integration/Waveform.update.test.ts (3 tests) 492ms
+ ✓ tests/integration/Waveform.dimensions.test.ts (5 tests) 986ms
+   ✓ dimension controls and percentage container reference (OpenSpec 3.1 / 3.2) > resolves numbers, px and percentages independently on both axes and restores the baseline 316ms
+ ✓ tests/integration/Waveform.compatibility.test.ts (1 test) 184ms
+ ✓ tests/demo/VueConfigPanel.test.ts (5 tests) 6456ms
+   ✓ Vue configuration behavior > rejects invalid CSS colors and zero tick steps without changing the chart 1982ms
+   ✓ Vue configuration behavior > submits minimal patches and preserves sibling values, precision, optional clearing and validation 1144ms
+   ✓ Vue configuration behavior > preserves alpha colors, shared grid settings and empty preview 1190ms
+   ✓ Vue configuration behavior > keeps raw axis defaults absent and restores axes and bindings through mode changes 1130ms
+   ✓ Vue configuration behavior > supports keyboard tabs, remembered subsections and series style inheritance 1009ms
+ ✓ tests/demo/theme.test.ts (3 tests) 2407ms
+   ✓ demo theme > syncs the SVG background with the theme while preserving other SVG content 2398ms
+ ✓ tests/demo/AnimationPanel.test.ts (1 test) 1413ms
+   ✓ animation panel > keeps every parameter and action wired across the three categories 1412ms
+ ✓ tests/integration/Waveform.line.test.ts (2 tests) 145ms
+ ✓ tests/demo/main.test.ts (1 test) 2193ms
+   ✓ demo data selection > switches the preview and series controls between datasets 2192ms
+ ✓ tests/renderer/formatters.test.ts (21 tests) 10ms
+ ✓ tests/layout/ticks.test.ts (8 tests) 9ms
+ ✓ tests/integration/Waveform.options.test.ts (1 test) 12ms
+ ✓ tests/animation/diff.test.ts (6 tests) 12ms
+ ✓ tests/animation/Animator.test.ts (3 tests) 11ms
+ ✓ tests/renderer/xTicks.test.ts (11 tests) 5ms
+ ✓ tests/demo/ColorControl.test.ts (5 tests) 1324ms
+   ✓ color control > retains explicit RGB channels when restoring transparent rgba(37, 99, 235, 0) 850ms
+ ✓ tests/demo/animationScenarios.test.ts (2 tests) 17ms
+ ✓ tests/animation/config.test.ts (13 tests) 29ms
+ ✓ tests/model/OptionManager.test.ts (2 tests) 6ms
+ ✓ tests/demo/fields.test.ts (103 tests) 4258ms
+   ✓ configuration field migration > renders and submits width through the Vue control 519ms
+ ✓ tests/layout/domain.test.ts (5 tests) 12ms
+ ✓ tests/model/WaveformModel.test.ts (3 tests) 9ms
+ ✓ tests/demo/OptionsDraft.test.ts (3 tests) 6ms
+ ✓ tests/layout/LayoutEngine.test.ts (2 tests) 10ms
+ ✓ tests/data/normalize.test.ts (2 tests) 3ms
+ ✓ tests/animation/Animation.test.ts (3 tests) 3ms
+ ✓ tests/demo/scientific-data.test.ts (1 test) 6ms
+ ✓ tests/renderer/helpers.test.ts (2 tests) 3ms
+ ✓ tests/demo/SeriesForm.selection.test.ts (1 test) 757ms
+   ✓ series selection after data changes (OpenSpec 9.26) > keeps a valid selected index while the dataset shrinks, empties and grows 756ms
+ ✓ tests/demo/App.controls.test.ts (14 tests) 17235ms
+   ✓ Demo controls to rendered SVG > applies responsive aspect ratio and height limits with validation and restoration 2120ms
+   ✓ Demo controls to rendered SVG > applies exact manual padding on all four sides, rejects negatives and restores auto layout 1747ms
+   ✓ Demo controls to rendered SVG > applies fixed dimensions and frame appearance, then restores visibility 1211ms
+   ✓ Demo controls to rendered SVG > preserves series overrides while global opacity, interpolation and visibility affect all paths 1323ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 7913ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 425ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 444ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 391ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 414ms
+   ✓ Demo controls to rendered SVG > returns a curve to global inheritance without changing its peers 330ms
+
+ Test Files  45 passed (45)
+      Tests  455 passed (455)
+   Start at  14:14:44
+   Duration  21.08s (transform 1.97s, setup 0ms, collect 35.57s, tests 54.35s, environment 23.26s, prepare 4.00s)
+
+
+> waveform-display@0.1.17 build /Users/liqiyuan/WebstormProjects/waveform-display
+> vite build && tsc -p tsconfig.build.json
+
+vite v6.4.3 building for production...
+transforming...
+✓ 61 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/waveform-display.js  84.04 kB │ gzip: 23.27 kB
+dist/waveform-display.umd.cjs  66.38 kB │ gzip: 21.20 kB
+✓ built in 250ms
+
+> waveform-display@0.1.17 build:demo /Users/liqiyuan/WebstormProjects/waveform-display
+> vite build --config demo/vite.config.ts
+
+vite v6.4.3 building for production...
+transforming...
+✓ 3811 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist-demo/index.html                   0.40 kB │ gzip:   0.28 kB
+../dist-demo/assets/index-Dbg6aN96.css    7.09 kB │ gzip:   2.35 kB
+../dist-demo/assets/index-Cazc-uuw.js   797.41 kB │ gzip: 248.98 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.86s

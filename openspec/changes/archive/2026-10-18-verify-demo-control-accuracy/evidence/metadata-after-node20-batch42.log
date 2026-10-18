@@ -1,0 +1,26 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ❯ tests/integration/Waveform.typography.test.ts (10 tests | 1 failed) 238ms
+   × Waveform typography > shrinks long metadata labels to keep the upper and lower lanes separate 9ms
+     → expected 44.30625 to be less than or equal to 42
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/integration/Waveform.typography.test.ts > Waveform typography > shrinks long metadata labels to keep the upper and lower lanes separate
+AssertionError: expected 44.30625 to be less than or equal to 42
+ ❯ tests/integration/Waveform.typography.test.ts:201:87
+    199|     expect(Number(title.getAttribute('font-size'))).toBeLessThan(24)
+    200|     expect(Number(shot.getAttribute('font-size'))).toBeLessThan(24)
+    201|     expect(title.textContent!.length * Number(title.getAttribute('font…
+       |                                                                                       ^
+    202|     expect(shot.textContent!.length * Number(shot.getAttribute('font-s…
+    203|   })
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 9 passed (10)
+   Start at  17:53:15
+   Duration  1.18s (transform 161ms, setup 0ms, collect 324ms, tests 238ms, environment 386ms, prepare 48ms)
+

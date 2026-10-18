@@ -1,0 +1,29 @@
+{
+  "batch": 19,
+  "purpose": "逐条曲线坐标轴绑定与实际坐标映射入口验证",
+  "environment": {
+    "url": "http://127.0.0.1:5174/waveform-display/",
+    "browser": "ChatGPT in-app browser",
+    "dataset": "原始数据",
+    "axisMode": "multiple",
+    "curve": "SX2_7_03_CH1"
+  },
+  "steps": [
+    "打开曲线页签并选择 SX2_7_03_CH1",
+    "在坐标轴选择器中从左轴切换到右轴",
+    "确认右轴选择状态、曲线仍显示且右侧刻度标签随绑定变化",
+    "再切回左轴并确认左轴状态恢复"
+  ],
+  "observed": {
+    "selectedAxisAfterSwitch": "右轴",
+    "selectedAxisAfterRestore": "左轴",
+    "curveCountPreserved": true,
+    "axisLabelsChangedDuringSwitch": true,
+    "axisLabelsRestored": true
+  },
+  "screenshots": [
+    "series-axis-binding-batch19.png",
+    "series-axis-binding-batch19-restored.png"
+  ],
+  "scope": "真实浏览器确认绑定入口、选择状态和可见轴标签变化；自动化测试确认左右轴范围不同时时间曲线首点 Y 坐标随绑定切换并可恢复。"
+}

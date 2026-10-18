@@ -1,0 +1,25 @@
+{
+  "batch": 22,
+  "purpose": "入场/更新动画控件入口验证",
+  "environment": {
+    "url": "http://127.0.0.1:5174/waveform-display/",
+    "browser": "ChatGPT in-app browser",
+    "dataset": "原始数据"
+  },
+  "entrance": {
+    "direction": "从中心展开",
+    "duration": 600,
+    "delay": 100,
+    "staggerDelay": 50,
+    "screenshot": "animation-entrance-controls-batch22.png"
+  },
+  "update": {
+    "easing": "匀速 (linear)",
+    "duration": 0,
+    "screenshot": "animation-update-controls-batch22.png"
+  },
+  "automation": {
+    "timing": "tests/animation/Animation.test.ts and tests/integration/Waveform.animation.test.ts",
+    "uiValidation": "tests/demo/App.controls.test.ts"
+  }
+}

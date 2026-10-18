@@ -1,0 +1,11 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/animationScenarios.test.ts (4 tests) 10ms
+ ✓ tests/integration/Waveform.animation.test.ts (31 tests) 550ms
+
+ Test Files  2 passed (2)
+      Tests  35 passed (35)
+   Start at  18:01:35
+   Duration  1.45s (transform 192ms, setup 0ms, collect 351ms, tests 560ms, environment 379ms, prepare 119ms)
+

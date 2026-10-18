@@ -1,0 +1,29 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/config-panel.test.ts (19 tests) 298ms
+ ✓ tests/integration/Waveform.axes.test.ts (39 tests) 840ms
+ ✓ tests/integration/Waveform.animation.test.ts (29 tests) 1039ms
+ ✓ tests/demo/SeriesForm.selection.test.ts (1 test) 601ms
+   ✓ series selection after data changes (OpenSpec 9.26) > keeps a valid selected index while the dataset shrinks, empties and grows 600ms
+ ✓ tests/demo/VueConfigPanel.test.ts (5 tests) 1861ms
+   ✓ Vue configuration behavior > rejects invalid CSS colors and zero tick steps without changing the chart 760ms
+   ✓ Vue configuration behavior > keeps raw axis defaults absent and restores axes and bindings through mode changes 323ms
+ ✓ tests/demo/App.controls.test.ts (17 tests) 8710ms
+   ✓ Demo controls to rendered SVG > applies responsive aspect ratio and height limits with validation and restoration 865ms
+   ✓ Demo controls to rendered SVG > applies exact manual padding on all four sides, rejects negatives and restores auto layout 379ms
+   ✓ Demo controls to rendered SVG > applies fixed dimensions and frame appearance, then restores visibility 301ms
+   ✓ Demo controls to rendered SVG > validates all frame fields, enum candidates and restoration without altering curve geometry 452ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 3113ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 361ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 535ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 350ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 435ms
+   ✓ Demo controls to rendered SVG > updates legend layout and empty-state content, and restores the original curves 307ms
+   ✓ Demo controls to rendered SVG > maps a curve to the selected axis and back using each axis scale 327ms
+
+ Test Files  6 passed (6)
+      Tests  110 passed (110)
+   Start at  16:09:09
+   Duration  11.66s (transform 1.28s, setup 0ms, collect 9.67s, tests 13.35s, environment 3.23s, prepare 480ms)
+

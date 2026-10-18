@@ -1,0 +1,11 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/App.controls.test.ts (22 tests | 21 skipped) 804ms
+   ✓ Demo controls to rendered SVG > validates global line boundaries on inherited series while isolating explicit overrides 804ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed | 21 skipped (22)
+   Start at  16:53:14
+   Duration  2.83s (transform 420ms, setup 0ms, collect 1.58s, tests 804ms, environment 252ms, prepare 39ms)
+

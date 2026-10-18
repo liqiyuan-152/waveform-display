@@ -155,6 +155,14 @@ describe('public animation lifecycle', () => {
     expect(chart.animation.isRunning()).toBe(false)
   })
 
+  it('synchronizes update data immediately when update duration is zero', () => {
+    const { chart } = create({ animationUpdate: { duration: 0 } })
+    chart.animation.finish()
+    chart.updateData([{ x: 0, y: 5 }, { x: 1, y: 6 }])
+    expect(chart.animation.isRunning()).toBe(false)
+    expect([...frames.keys()]).toHaveLength(0)
+  })
+
   it('honors manual and hidden pause reasons independently', () => {
     const { chart } = create()
     step(20)
@@ -414,6 +422,40 @@ describe('public animation lifecycle', () => {
     const target = draw.mock.lastCall![0]
     chart.render()
     expect(draw.mock.lastCall![0].primaryYAxis.ticks).toEqual(target.primaryYAxis.ticks)
+  })
+
+  it('keeps sliding geometry, ticks, grids and zero line on the same interpolated scales', () => {
+    const draw = vi.spyOn(SvgRenderer.prototype, 'draw')
+    const { chart, host } = create({ point: { visible: true }, zeroLine: { visible: true, boundaryThreshold: 0 } })
+    const previous = [{ id: 'series-0', data: [{ id: 'a', x: 0, y: -2 }, { id: 'b', x: 1, y: 2 }, { id: 'c', x: 2, y: 0 }] }]
+    chart.updateData(previous)
+    chart.animation.finish()
+    chart.updateData([{ id: 'series-0', data: [{ id: 'b', x: 1, y: 4 }, { id: 'c', x: 2, y: -4 }, { id: 'd', x: 3, y: 1 }] }])
+    expect(chart.animation.isRunning()).toBe(true)
+    for (const progress of [0.25, 0.5, 0.75, 1]) {
+      step(25)
+      const context = draw.mock.lastCall![0]
+      expect(context.xDomain).toEqual([progress, 2 + progress])
+      expect(context.primaryYAxis.domain).toEqual([-2 - 2 * progress, 2 + 2 * progress])
+      expect(context.series[0].data.map(point => point.id)).toEqual(['b', 'c', 'd'])
+      expect(context.series[0].data[0].y).toBe(2 + 2 * progress)
+      for (const selector of ['.waveform-grid-x .tick', '.waveform-axis-x .tick', '.waveform-grid-y .tick', '.waveform-axis-y--left .tick']) {
+        const nodes = [...host.querySelectorAll(selector)]
+        expect(nodes.length).toBeGreaterThan(0)
+        for (const node of nodes) {
+          const value = (node as Element & { __data__: number }).__data__
+          const xAxis = selector.includes('-x')
+          const position = (xAxis ? context.x(value) : context.primaryYAxis.scale(value)) + 0.5
+          expect(node.getAttribute('transform')).toBe(xAxis ? `translate(${position},0)` : `translate(0,${position})`)
+        }
+      }
+      expect(Number(host.querySelector('.waveform-zero-line')?.getAttribute('y1'))).toBeCloseTo(context.innerHeight / 2)
+      const symbol = host.querySelector('g[clip-path] > g path[transform]')
+      expect(symbol).not.toBeNull()
+      expect(symbol?.getAttribute('transform')).toBe(`translate(${context.x(1)},${context.primaryYAxis.scale(2 + 2 * progress)})`)
+    }
+    expect(chart.animation.isRunning()).toBe(false)
+    expect(frames.size).toBe(0)
   })
 
   it('staggered entries wait for their own delays and use update duration only for shared domains', () => {

@@ -1,0 +1,45 @@
+{
+  "capturedAt": "2026-10-18T09:25:39.734Z",
+  "axes": [
+    {
+      "id": "left",
+      "visible": true,
+      "min": null,
+      "max": null,
+      "count": 6,
+      "strategy": "nice"
+    },
+    {
+      "id": "right",
+      "visible": true,
+      "min": null,
+      "max": null,
+      "count": 6,
+      "strategy": "nice"
+    }
+  ],
+  "paths": 4,
+  "expected": {
+    "paths": 4,
+    "axes": [
+      {
+        "id": "left",
+        "visible": true,
+        "min": null,
+        "max": null,
+        "count": 6,
+        "strategy": "nice"
+      },
+      {
+        "id": "right",
+        "visible": true,
+        "min": null,
+        "max": null,
+        "count": 6,
+        "strategy": "nice"
+      }
+    ]
+  },
+  "pass": true,
+  "correction": "Prior restoration sample expected count10 incorrectly. src/config/defaults.ts yAxis.tickCount=6, and demo initial axes do not override it. Actual unchanged; corrected expected6. Prior false record retained."
+}

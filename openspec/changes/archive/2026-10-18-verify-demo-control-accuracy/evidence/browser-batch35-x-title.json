@@ -1,0 +1,2909 @@
+{
+  "capturedAt": "2026-10-18T09:16:22.079Z",
+  "env": {
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "viewport": [
+      1100,
+      700
+    ],
+    "dark": true,
+    "reducedMotion": false
+  },
+  "setup": "Original 4 series after reload, animation finished and API disabled. Values entered with native setter/input events; visible toggles and palette via real DevTools clicks.",
+  "steps": [
+    {
+      "id": "B35-1",
+      "label": "轴标题",
+      "input": "Elapsed",
+      "expected": {
+        "text": "Elapsed (ms)",
+        "valid": true,
+        "fit": true
+      },
+      "actual": {
+        "title": {
+          "text": "Elapsed (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 522.59375,
+            "bottom": 609,
+            "width": 17,
+            "height": 86.40625
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-2",
+      "label": "轴标题",
+      "input": "时间 Δt",
+      "expected": {
+        "text": "时间 Δt (ms)",
+        "valid": true,
+        "fit": true
+      },
+      "actual": {
+        "title": {
+          "text": "时间 Δt (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 528.3125,
+            "bottom": 609,
+            "width": 17,
+            "height": 80.6875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-3",
+      "label": "轴标题",
+      "input": " ",
+      "expected": {
+        "text": "  (ms)",
+        "valid": true,
+        "fit": true
+      },
+      "actual": {
+        "title": {
+          "text": "  (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 578.46875,
+            "bottom": 609,
+            "width": 17,
+            "height": 30.53125
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-4",
+      "label": "轴标题",
+      "input": "很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题",
+      "expected": {
+        "text": "很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题 (ms)",
+        "valid": true,
+        "fit": true
+      },
+      "actual": {
+        "title": {
+          "text": "很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题 (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 2.21,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1065.8125,
+            "right": 1068.2027587890625,
+            "top": 205.234375,
+            "bottom": 609,
+            "width": 2.3902587890625,
+            "height": 403.765625
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-5",
+      "label": "轴标题",
+      "input": "",
+      "expected": {
+        "text": null,
+        "valid": true,
+        "fit": false
+      },
+      "actual": {
+        "title": null,
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-6",
+      "label": "轴标题",
+      "input": "Time",
+      "expected": {
+        "text": "Time (ms)",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-7",
+      "label": "标题单位",
+      "input": "s",
+      "expected": {
+        "text": "Time (s)",
+        "valid": true,
+        "fit": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (s)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 554.609375,
+            "bottom": 609,
+            "width": 17,
+            "height": 54.390625
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-8",
+      "label": "标题单位",
+      "input": "微秒 μs",
+      "expected": {
+        "text": "Time (微秒 μs)",
+        "valid": true,
+        "fit": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (微秒 μs)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 514.234375,
+            "bottom": 609,
+            "width": 17,
+            "height": 94.765625
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-9",
+      "label": "标题单位",
+      "input": " ",
+      "expected": {
+        "text": "Time ( )",
+        "valid": true,
+        "fit": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time ( )",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 558.296875,
+            "bottom": 609,
+            "width": 17,
+            "height": 50.703125
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-10",
+      "label": "标题单位",
+      "input": "很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位",
+      "expected": {
+        "text": "Time (很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位)",
+        "valid": true,
+        "fit": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位很长单位)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 3.22,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1065.09375,
+            "right": 1069.09375,
+            "top": 210.640625,
+            "bottom": 609,
+            "width": 4,
+            "height": 398.359375
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-11",
+      "label": "标题单位",
+      "input": "",
+      "expected": {
+        "text": "Time",
+        "valid": true,
+        "fit": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 576.484375,
+            "bottom": 609,
+            "width": 17,
+            "height": 32.515625
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-12",
+      "label": "标题单位",
+      "input": "ms",
+      "expected": {
+        "text": "Time (ms)",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-13",
+      "label": "标题颜色",
+      "input": "#123456",
+      "expected": {
+        "fill": "#123456",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#123456",
+          "computedFill": "rgb(18, 52, 86)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-14",
+      "label": "标题颜色",
+      "input": "rgba(37, 99, 235, 0.5)",
+      "expected": {
+        "fill": "rgba(37, 99, 235, 0.5)",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "rgba(37, 99, 235, 0.5)",
+          "computedFill": "rgba(37, 99, 235, 0.5)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-15",
+      "label": "标题颜色",
+      "input": "transparent",
+      "expected": {
+        "fill": "transparent",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-16",
+      "label": "标题字重",
+      "input": "700",
+      "expected": {
+        "weight": "700",
+        "computedWeight": "700",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "700",
+          "computedWeight": "700",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1057,
+            "right": 1074,
+            "top": 539.15625,
+            "bottom": 609,
+            "width": 17,
+            "height": 69.84375
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-17",
+      "label": "标题字重",
+      "input": "bold",
+      "expected": {
+        "weight": "bold",
+        "computedWeight": "700",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "bold",
+          "computedWeight": "700",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1057,
+            "right": 1074,
+            "top": 539.15625,
+            "bottom": 609,
+            "width": 17,
+            "height": 69.84375
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-18",
+      "label": "标题字重",
+      "input": "normal",
+      "expected": {
+        "weight": "normal",
+        "computedWeight": "400",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "normal",
+          "computedWeight": "400",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.921875,
+            "right": 1073.921875,
+            "top": 543.828125,
+            "bottom": 609,
+            "width": 17,
+            "height": 65.171875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-19",
+      "label": "标题字重",
+      "input": "",
+      "expected": {
+        "weight": "",
+        "computedWeight": "400",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "",
+          "computedWeight": "400",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.921875,
+            "right": 1073.921875,
+            "top": 543.828125,
+            "bottom": 609,
+            "width": 17,
+            "height": 65.171875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-20",
+      "label": "标题字重",
+      "input": "自定义字重",
+      "expected": {
+        "weight": "自定义字重",
+        "computedWeight": "400",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "自定义字重",
+          "computedWeight": "400",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.921875,
+            "right": 1073.921875,
+            "top": 543.828125,
+            "bottom": 609,
+            "width": 17,
+            "height": 65.171875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-21",
+      "label": "标题字重",
+      "input": "500",
+      "expected": {
+        "weight": "500",
+        "computedWeight": "500",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-22",
+      "label": "标题字号",
+      "input": "18",
+      "expected": {
+        "maxSize": 18,
+        "exactSize": 18,
+        "fit": true,
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 696.234375,
+          "y": 538,
+          "size": 18,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 696.234375 538)",
+          "rect": {
+            "left": 1053,
+            "right": 1074,
+            "top": 525.875,
+            "bottom": 609,
+            "width": 21,
+            "height": 83.125
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 555,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-23",
+      "label": "标题字号",
+      "input": "1",
+      "expected": {
+        "maxSize": 1,
+        "exactSize": 1,
+        "fit": true,
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 1,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1066.5,
+            "right": 1067.676513671875,
+            "top": 603.765625,
+            "bottom": 609,
+            "width": 1.176513671875,
+            "height": 5.234375
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-24",
+      "label": "标题字号",
+      "input": "1.25",
+      "expected": {
+        "maxSize": 1.25,
+        "exactSize": 1.25,
+        "fit": true,
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 1.25,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1066.5625,
+            "right": 1067.783203125,
+            "top": 602.46875,
+            "bottom": 609,
+            "width": 1.220703125,
+            "height": 6.53125
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-25",
+      "label": "标题字号",
+      "input": "1000",
+      "expected": {
+        "maxSize": 1000,
+        "fit": true,
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 633.234375,
+          "y": 538,
+          "size": 45.55,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 633.234375 538)",
+          "rect": {
+            "left": 969.921875,
+            "right": 1023.921875,
+            "top": 408.78125,
+            "bottom": 609,
+            "width": 54,
+            "height": 200.21875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 1,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-26",
+      "label": "标题字号",
+      "input": "14",
+      "expected": {
+        "exactSize": 14,
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-27",
+      "label": "标题偏移",
+      "input": "100",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 467,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-28",
+      "label": "标题偏移",
+      "input": "120.25",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.484375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.484375 538)",
+          "rect": {
+            "left": 1057.1875,
+            "right": 1074.1875,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 447,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-29",
+      "label": "标题偏移",
+      "input": "0",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-30",
+      "label": "标题颜色",
+      "input": "not-a-color",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题颜色",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-31",
+      "label": "标题颜色",
+      "input": "",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "transparent",
+          "computedFill": "rgba(0, 0, 0, 0)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题颜色",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-32",
+      "label": "标题颜色",
+      "input": "#78E8FF",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-33",
+      "label": "标题字号",
+      "input": "0",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-34",
+      "label": "标题字号",
+      "input": "0.5",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-35",
+      "label": "标题字号",
+      "input": "-1",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-36",
+      "label": "标题字号",
+      "input": "NaN",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-37",
+      "label": "标题字号",
+      "input": "Infinity",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-38",
+      "label": "标题字号",
+      "input": "",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题字号",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-39",
+      "label": "标题字号",
+      "input": "14",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-40",
+      "label": "标题偏移",
+      "input": "-1",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题偏移",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-41",
+      "label": "标题偏移",
+      "input": "NaN",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题偏移",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-42",
+      "label": "标题偏移",
+      "input": "Infinity",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题偏移",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-43",
+      "label": "标题偏移",
+      "input": "",
+      "expected": {
+        "invalid": true,
+        "svgUnchanged": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 567,
+          "height": 508
+        }
+      },
+      "fieldError": "请输入有效的标题偏移",
+      "svgUnchanged": true
+    },
+    {
+      "id": "B35-44",
+      "label": "标题偏移",
+      "input": "8",
+      "expected": {
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-toggle-off",
+      "interaction": "real title switch off",
+      "expected": {
+        "text": null
+      },
+      "actual": {
+        "title": null,
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      }
+    },
+    {
+      "id": "B35-toggle-on",
+      "interaction": "real title switch on",
+      "expected": {
+        "text": "Time (ms)",
+        "exactSize": 14,
+        "fill": "#78E8FF",
+        "weight": "500",
+        "restored": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "restored": true
+    },
+    {
+      "id": "B35-palette",
+      "interaction": "real title palette #9333ea",
+      "expected": {
+        "fill": "#9333ea"
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#9333ea",
+          "computedFill": "rgb(147, 51, 234)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      }
+    },
+    {
+      "id": "B35-48",
+      "label": "标题字重",
+      "input": "很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重",
+      "expected": {
+        "computedWeight": "400",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重很长的无效字重",
+          "computedWeight": "400",
+          "fill": "#9333ea",
+          "computedFill": "rgb(147, 51, 234)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.921875,
+            "right": 1073.921875,
+            "top": 543.828125,
+            "bottom": 609,
+            "width": 17,
+            "height": 65.171875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-49",
+      "label": "标题字重",
+      "input": "500",
+      "expected": {
+        "computedWeight": "500",
+        "weight": "500",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#9333ea",
+          "computedFill": "rgb(147, 51, 234)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-50",
+      "label": "标题颜色",
+      "input": "#78E8FF",
+      "expected": {
+        "fill": "#78E8FF",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-51",
+      "label": "轴标题",
+      "input": "很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题",
+      "expected": {
+        "text": "很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题 (ms)",
+        "fit": true,
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题 (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 2.21,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1065.8125,
+            "right": 1068.2027587890625,
+            "top": 205.234375,
+            "bottom": 609,
+            "width": 2.3902587890625,
+            "height": 403.765625
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-52",
+      "label": "轴标题",
+      "input": "Time",
+      "expected": {
+        "text": "Time (ms)",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-53",
+      "label": "轴标题",
+      "input": "很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题",
+      "expected": {
+        "text": "很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题 (ms)",
+        "fit": true,
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题很长的轴标题 (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 2.21,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1065.8125,
+            "right": 1068.2027587890625,
+            "top": 205.234375,
+            "bottom": 609,
+            "width": 2.3902587890625,
+            "height": 403.765625
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    },
+    {
+      "id": "B35-54",
+      "label": "轴标题",
+      "input": "Time",
+      "expected": {
+        "text": "Time (ms)",
+        "valid": true
+      },
+      "actual": {
+        "title": {
+          "text": "Time (ms)",
+          "x": 698.234375,
+          "y": 538,
+          "size": 14,
+          "weight": "500",
+          "computedWeight": "500",
+          "fill": "#78E8FF",
+          "computedFill": "rgb(120, 232, 255)",
+          "transform": "rotate(-90 698.234375 538)",
+          "rect": {
+            "left": 1056.9375,
+            "right": 1073.9375,
+            "top": 542.28125,
+            "bottom": 609,
+            "width": 17,
+            "height": 66.71875
+          }
+        },
+        "svg": {
+          "left": 369,
+          "right": 1085,
+          "top": 71,
+          "bottom": 673
+        },
+        "frame": {
+          "width": 559,
+          "height": 508
+        }
+      },
+      "fieldError": null,
+      "svgUnchanged": false
+    }
+  ],
+  "visibleBefore": {
+    "title": {
+      "text": "Time (ms)",
+      "x": 698.234375,
+      "y": 538,
+      "size": 14,
+      "weight": "500",
+      "computedWeight": "500",
+      "fill": "#78E8FF",
+      "computedFill": "rgb(120, 232, 255)",
+      "transform": "rotate(-90 698.234375 538)",
+      "rect": {
+        "left": 1056.9375,
+        "right": 1073.9375,
+        "top": 542.28125,
+        "bottom": 609,
+        "width": 17,
+        "height": 66.71875
+      }
+    },
+    "svg": {
+      "left": 369,
+      "right": 1085,
+      "top": 71,
+      "bottom": 673
+    },
+    "frame": {
+      "width": 559,
+      "height": 508
+    }
+  },
+  "longLayout": {
+    "title": {
+      "left": 1065.8125,
+      "right": 1068.2027587890625,
+      "top": 205.234375,
+      "bottom": 609
+    },
+    "shot": {
+      "left": 1056.9375,
+      "right": 1073.9375,
+      "top": 105,
+      "bottom": 153.765625
+    },
+    "nonOverlapping": true
+  },
+  "assertions": [
+    {
+      "id": "B35-1",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-1",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-1",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-2",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-2",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-2",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-3",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-3",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-3",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-4",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-4",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-4",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-5",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-5",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-6",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-6",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-7",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-7",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-7",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-8",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-8",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-8",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-9",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-9",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-9",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-10",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-10",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-10",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-11",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-11",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-11",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-12",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-12",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-13",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-13",
+      "kind": "fill",
+      "pass": true
+    },
+    {
+      "id": "B35-14",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-14",
+      "kind": "fill",
+      "pass": true
+    },
+    {
+      "id": "B35-15",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-15",
+      "kind": "fill",
+      "pass": true
+    },
+    {
+      "id": "B35-16",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-16",
+      "kind": "weight attribute",
+      "pass": true
+    },
+    {
+      "id": "B35-16",
+      "kind": "computed weight",
+      "pass": true
+    },
+    {
+      "id": "B35-17",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-17",
+      "kind": "weight attribute",
+      "pass": true
+    },
+    {
+      "id": "B35-17",
+      "kind": "computed weight",
+      "pass": true
+    },
+    {
+      "id": "B35-18",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-18",
+      "kind": "weight attribute",
+      "pass": true
+    },
+    {
+      "id": "B35-18",
+      "kind": "computed weight",
+      "pass": true
+    },
+    {
+      "id": "B35-19",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-19",
+      "kind": "weight attribute",
+      "pass": true
+    },
+    {
+      "id": "B35-19",
+      "kind": "computed weight",
+      "pass": true
+    },
+    {
+      "id": "B35-20",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-20",
+      "kind": "weight attribute",
+      "pass": true
+    },
+    {
+      "id": "B35-20",
+      "kind": "computed weight",
+      "pass": true
+    },
+    {
+      "id": "B35-21",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-21",
+      "kind": "weight attribute",
+      "pass": true
+    },
+    {
+      "id": "B35-21",
+      "kind": "computed weight",
+      "pass": true
+    },
+    {
+      "id": "B35-22",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-22",
+      "kind": "size exact",
+      "pass": true
+    },
+    {
+      "id": "B35-22",
+      "kind": "size bounded",
+      "pass": true
+    },
+    {
+      "id": "B35-22",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-23",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-23",
+      "kind": "size exact",
+      "pass": true
+    },
+    {
+      "id": "B35-23",
+      "kind": "size bounded",
+      "pass": true
+    },
+    {
+      "id": "B35-23",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-24",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-24",
+      "kind": "size exact",
+      "pass": true
+    },
+    {
+      "id": "B35-24",
+      "kind": "size bounded",
+      "pass": true
+    },
+    {
+      "id": "B35-24",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-25",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-25",
+      "kind": "size bounded",
+      "pass": true
+    },
+    {
+      "id": "B35-25",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-26",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-26",
+      "kind": "size exact",
+      "pass": true
+    },
+    {
+      "id": "B35-27",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-28",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-29",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-30",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-31",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-32",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-33",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-34",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-35",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-36",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-37",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-38",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-39",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-40",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-41",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-42",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-43",
+      "kind": "invalid",
+      "pass": true
+    },
+    {
+      "id": "B35-44",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-toggle-off",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-toggle-on",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-toggle-on",
+      "kind": "fill",
+      "pass": true
+    },
+    {
+      "id": "B35-toggle-on",
+      "kind": "weight attribute",
+      "pass": true
+    },
+    {
+      "id": "B35-toggle-on",
+      "kind": "size exact",
+      "pass": true
+    },
+    {
+      "id": "B35-toggle-on",
+      "kind": "switch restoration",
+      "pass": true
+    },
+    {
+      "id": "B35-palette",
+      "kind": "fill",
+      "pass": true
+    },
+    {
+      "id": "B35-48",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-48",
+      "kind": "computed weight",
+      "pass": true
+    },
+    {
+      "id": "B35-49",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-49",
+      "kind": "weight attribute",
+      "pass": true
+    },
+    {
+      "id": "B35-49",
+      "kind": "computed weight",
+      "pass": true
+    },
+    {
+      "id": "B35-50",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-50",
+      "kind": "fill",
+      "pass": true
+    },
+    {
+      "id": "B35-51",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-51",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-51",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-52",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-52",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-53",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-53",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-53",
+      "kind": "viewport bounds",
+      "pass": true
+    },
+    {
+      "id": "B35-54",
+      "kind": "valid",
+      "pass": true
+    },
+    {
+      "id": "B35-54",
+      "kind": "text",
+      "pass": true
+    },
+    {
+      "id": "B35-offset-relative",
+      "kind": "offset delta",
+      "pass": true
+    },
+    {
+      "id": "B35-long-layout",
+      "kind": "shot/title separation",
+      "pass": true
+    }
+  ],
+  "offsetCheck": {
+    "expectedDelta": 20.25,
+    "actualDelta": 20.25,
+    "reference": "title x relative to frame width; left padding/axis content unchanged",
+    "tolerance": 1e-8
+  },
+  "notes": [
+    "font-weight is free CSS text. SVG preserves raw attribute; browser interprets bold=700, normal=400, empty or invalid CSS as inherited/default 400. This is not field-level rejection.",
+    "Offset affects automatic layout; measure relative to plot right, not screen absolute x.",
+    "Actual rotated text bounds checked in the browser with 0.02px tolerance; long Chinese text at font 2.21 remains inside viewport and separated from the existing shot."
+  ]
+}

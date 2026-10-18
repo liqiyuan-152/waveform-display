@@ -1,0 +1,21 @@
+
+> waveform-display@0.1.17 test /Users/liqiyuan/WebstormProjects/waveform-display
+> vitest run "tests/demo/App.controls.test.ts" "tests/integration/Waveform.styleInheritance.test.ts"
+
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/integration/Waveform.styleInheritance.test.ts (12 tests) 356ms
+ ✓ tests/demo/App.controls.test.ts (12 tests) 5532ms
+   ✓ Demo controls to rendered SVG > applies fixed dimensions and frame appearance, then restores visibility 534ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 2369ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 337ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 357ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 339ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 337ms
+
+ Test Files  2 passed (2)
+      Tests  24 passed (24)
+   Start at  13:24:01
+   Duration  7.38s (transform 486ms, setup 0ms, collect 1.85s, tests 5.89s, environment 527ms, prepare 77ms)
+

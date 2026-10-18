@@ -1,0 +1,32 @@
+{
+  "restoration": {
+    "initial": {
+      "x": "1",
+      "y": "1"
+    },
+    "afterStep": {
+      "x": "1",
+      "y": "1"
+    },
+    "restored": {
+      "x": "1",
+      "y": "1"
+    },
+    "directionalInputs": [
+      "",
+      ""
+    ],
+    "color": "#475569"
+  },
+  "keyboard": {
+    "mechanism": "DevTools真实按键",
+    "afterArrowUp": {
+      "x": "1.1",
+      "y": "1.1"
+    },
+    "afterArrowDown": {
+      "x": "1",
+      "y": "1"
+    }
+  }
+}

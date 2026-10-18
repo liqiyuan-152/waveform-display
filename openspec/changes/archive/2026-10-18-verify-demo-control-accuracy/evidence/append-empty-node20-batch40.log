@@ -1,0 +1,39 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/animationScenarios.test.ts (4 tests) 11ms
+ ✓ tests/demo/App.controls.test.ts (38 tests) 22359ms
+   ✓ Demo controls to rendered SVG > appends to retained data when leaving empty preview, but disables append for no series 639ms
+   ✓ Demo controls to rendered SVG > applies responsive aspect ratio and height limits with validation and restoration 542ms
+   ✓ Demo controls to rendered SVG > applies exact manual padding on all four sides, rejects negatives and restores auto layout 363ms
+   ✓ Demo controls to rendered SVG > validates all frame fields, enum candidates and restoration without altering curve geometry 572ms
+   ✓ Demo controls to rendered SVG > preserves series overrides while global opacity, interpolation and visibility affect all paths 385ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 4605ms
+   ✓ Demo controls to rendered SVG > validates global line boundaries on inherited series while isolating explicit overrides 654ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 408ms
+   ✓ Demo controls to rendered SVG > validates X tick geometry and typography boundaries while preserving other axes 692ms
+   ✓ Demo controls to rendered SVG > applies X number formats and units with formatter precedence and valid empty text 411ms
+   ✓ Demo controls to rendered SVG > validates X title text, units, appearance, fitting and offset without losing hidden settings 838ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 664ms
+   ✓ Demo controls to rendered SVG > uses the domain strategy count only when extending bounds and rejects invalid drafts 322ms
+   ✓ Demo controls to rendered SVG > validates value axis 0 bounds, density, strategy and visibility with isolated mapping 628ms
+   ✓ Demo controls to rendered SVG > validates value axis 1 bounds, density, strategy and visibility with isolated mapping 723ms
+   ✓ Demo controls to rendered SVG > validates value axis 0 tick geometry and colors without changing peer styles 813ms
+   ✓ Demo controls to rendered SVG > validates value axis 1 tick geometry and colors without changing peer styles 819ms
+   ✓ Demo controls to rendered SVG > formats value axis 0 with shared exponents, units and explicit format precedence 513ms
+   ✓ Demo controls to rendered SVG > formats value axis 1 with shared exponents, units and explicit format precedence 501ms
+   ✓ Demo controls to rendered SVG > validates value axis 0 title content, appearance, automatic fitting and offset 1028ms
+   ✓ Demo controls to rendered SVG > validates value axis 1 title content, appearance, automatic fitting and offset 1029ms
+   ✓ Demo controls to rendered SVG > keeps X tick density, minimum interval and explicit step priorities observable in the grid 433ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 465ms
+   ✓ Demo controls to rendered SVG > validates grid color and shared or directional width boundaries without altering the curves 551ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 597ms
+   ✓ Demo controls to rendered SVG > updates legend layout and empty-state content, and restores the original curves 353ms
+   ✓ Demo controls to rendered SVG > returns a curve to global inheritance without changing its peers 337ms
+   ✓ Demo controls to rendered SVG > maps a curve to the selected axis and back using each axis scale 401ms
+
+ Test Files  2 passed (2)
+      Tests  42 passed (42)
+   Start at  17:48:15
+   Duration  24.96s (transform 576ms, setup 0ms, collect 1.89s, tests 22.37s, environment 449ms, prepare 148ms)
+

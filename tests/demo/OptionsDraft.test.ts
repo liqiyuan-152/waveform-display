@@ -30,4 +30,11 @@ describe('raw option drafts', () => {
     expect(multi.options.yAxes?.[1].title).toEqual({ text: 'Right' })
     expect(multi.options.yAxes?.[1].title?.visible).toBeUndefined()
   })
+
+  it('rejects conflicting responsive height limits without mutating the draft', () => {
+    const draft = new OptionsDraft({ responsive: { minHeight: 220, maxHeight: 600 } })
+    expect(() => draft.set('responsive.minHeight', 601)).toThrow('最小高度不能大于最大高度')
+    expect(draft.options.responsive).toEqual({ minHeight: 220, maxHeight: 600 })
+    expect(draft.set('responsive.minHeight', 600)).toEqual({ responsive: { minHeight: 600 } })
+  })
 })

@@ -1,0 +1,18 @@
+
+> waveform-display@0.1.17 test /Users/liqiyuan/WebstormProjects/waveform-display
+> vitest run "tests/demo/ColorControl.test.ts" "tests/demo/fields.test.ts" "tests/demo/SeriesForm.selection.test.ts"
+
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/ColorControl.test.ts (1 test) 420ms
+   ✓ color control > selects presets and changes alpha without losing RGB channels 419ms
+ ✓ tests/demo/SeriesForm.selection.test.ts (1 test) 640ms
+   ✓ series selection after data changes (OpenSpec 9.26) > keeps a valid selected index while the dataset shrinks, empties and grows 639ms
+ ✓ tests/demo/fields.test.ts (103 tests) 1438ms
+
+ Test Files  3 passed (3)
+      Tests  105 passed (105)
+   Start at  14:10:25
+   Duration  3.50s (transform 571ms, setup 0ms, collect 4.12s, tests 2.50s, environment 1.15s, prepare 176ms)
+

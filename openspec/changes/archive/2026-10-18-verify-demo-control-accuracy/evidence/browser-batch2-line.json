@@ -1,0 +1,29 @@
+{
+  "batch": "execution-batch-2",
+  "controls": [
+    "line.visible",
+    "line.color",
+    "line.width",
+    "line.type",
+    "line.style",
+    "line.opacity"
+  ],
+  "observations": {
+    "visible": "toggle removed and restored 4 paths",
+    "color": "global color preserved series overrides #2563eb/#dc2626/#16a34a/#9333ea",
+    "width": "global width preserved explicit series width 1.5",
+    "types": [
+      "linear",
+      "step-start",
+      "step-middle",
+      "step-end"
+    ],
+    "styles": {
+      "solid": null,
+      "dashed": "8 5",
+      "dash-dot": "8 4 2 4"
+    },
+    "opacity": "0.95 after ArrowLeft"
+  },
+  "evidence": "line-controls-batch2.jpg"
+}

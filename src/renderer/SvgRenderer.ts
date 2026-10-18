@@ -14,10 +14,10 @@ export class SvgRenderer {
     container.append(this.root)
   }
 
-  prepare(width: number, height: number) {
+  prepare(width: number, height: number, displayWidth: string | number = '100%') {
     if (!this.plotNode) this.root.replaceChildren()
     return select(this.root)
-      .attr('width', '100%').attr('height', height)
+      .attr('width', displayWidth).attr('height', height)
       .attr('viewBox', `0 0 ${width} ${height}`)
       .attr('preserveAspectRatio', 'xMidYMid meet')
       .attr('xmlns', 'http://www.w3.org/2000/svg')

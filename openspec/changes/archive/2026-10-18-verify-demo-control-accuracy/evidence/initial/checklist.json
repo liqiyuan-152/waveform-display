@@ -1,0 +1,2510 @@
+{
+  "scope": "左侧控件逐项验收计划；计划条目不代表已通过",
+  "count": 177,
+  "acceptance": [
+    "一次只改一个值，记录操作前后 SVG",
+    "先满足显示条件，再检查从属项",
+    "区分全局配置与单曲线覆盖",
+    "动画过程与结束态分别验收",
+    "每项记录预期、实际、证据、结果"
+  ],
+  "tasks": [
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "宽度",
+      "path": "width",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "高度",
+      "path": "height",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "响应式布局",
+      "path": "responsive.enabled",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "宽高比",
+      "path": "responsive.aspectRatio",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "最小高度",
+      "path": "responsive.minHeight",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "最大高度",
+      "path": "responsive.maxHeight",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "自动留白",
+      "path": "layout.autoPadding",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "上留白",
+      "path": "padding.top",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "右留白",
+      "path": "padding.right",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "下留白",
+      "path": "padding.bottom",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "尺寸与留白",
+      "label": "左留白",
+      "path": "padding.left",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "边框",
+      "label": "显示边框",
+      "path": "frame.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "边框",
+      "label": "背景颜色",
+      "path": "frame.backgroundColor",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "边框",
+      "label": "边框颜色",
+      "path": "frame.borderColor",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "边框",
+      "label": "边框宽度",
+      "path": "frame.borderWidth",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "边框",
+      "label": "边框样式",
+      "path": "frame.borderStyle",
+      "kind": "select",
+      "values": [
+        "solid",
+        "dashed",
+        "dotted"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "布局",
+      "section": "边框",
+      "label": "圆角",
+      "path": "frame.radius",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "线条",
+      "label": "显示线条",
+      "path": "line.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "线条",
+      "label": "线条颜色",
+      "path": "line.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "线条",
+      "label": "线条宽度",
+      "path": "line.width",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "线条",
+      "label": "连线类型",
+      "path": "line.type",
+      "kind": "select",
+      "values": [
+        "linear",
+        "step-start",
+        "step-middle",
+        "step-end"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "线条",
+      "label": "线条样式",
+      "path": "line.style",
+      "kind": "select",
+      "values": [
+        "solid",
+        "dashed",
+        "dash-dot"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "线条",
+      "label": "线条透明度",
+      "path": "line.opacity",
+      "kind": "range",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "数据点",
+      "label": "显示数据点",
+      "path": "point.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "数据点",
+      "label": "数据点形状",
+      "path": "point.type",
+      "kind": "select",
+      "values": [
+        "circle",
+        "square",
+        "triangle",
+        "diamond"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "数据点",
+      "label": "数据点大小",
+      "path": "point.size",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "数据点",
+      "label": "数据点颜色",
+      "path": "point.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "数据点",
+      "label": "数据点边框",
+      "path": "point.borderColor",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "线点",
+      "section": "数据点",
+      "label": "点边框宽度",
+      "path": "point.borderWidth",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "范围策略",
+      "path": "xDomainStrategy.type",
+      "kind": "select",
+      "values": [
+        "data",
+        "nice"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "扩展边界",
+      "path": "xDomainStrategy.bounds",
+      "kind": "select",
+      "values": [
+        "both",
+        "end"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "策略刻度数",
+      "path": "xDomainStrategy.tickCount",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "包含手动范围",
+      "path": "xDomainStrategy.includeExplicit",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "显示坐标轴",
+      "path": "xAxis.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "最小值",
+      "path": "xAxis.min",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "最大值",
+      "path": "xAxis.max",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "刻度数量",
+      "path": "xAxis.tickCount",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "刻度策略",
+      "path": "xAxis.tickStrategy",
+      "kind": "select",
+      "values": [
+        "legacy",
+        "nice"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "最小刻度间隔",
+      "path": "xAxis.minInterval",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "刻度步长",
+      "path": "xAxis.tickStep",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "隐藏端点刻度",
+      "path": "xAxis.hideEndTicks",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "显示端点值",
+      "path": "xAxis.showEndValues",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "刻度长度",
+      "path": "xAxis.tickSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "刻度间距",
+      "path": "xAxis.tickPadding",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "数字格式",
+      "path": "xAxis.tickFormat",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "轴线颜色",
+      "path": "xAxis.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "轴线宽度",
+      "path": "xAxis.width",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "刻度字号",
+      "path": "xAxis.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "刻度文字颜色",
+      "path": "xAxis.fontColor",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "刻度单位",
+      "path": "xAxis.unit",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "显示轴标题",
+      "path": "xAxis.title.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "轴标题",
+      "path": "xAxis.title.text",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "标题单位",
+      "path": "xAxis.title.unit",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "标题颜色",
+      "path": "xAxis.title.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "标题字号",
+      "path": "xAxis.title.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "标题字重",
+      "path": "xAxis.title.fontWeight",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "X 轴",
+      "label": "标题偏移",
+      "path": "xAxis.title.offset",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "显示坐标轴",
+      "path": "yAxes.0.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "最小值",
+      "path": "yAxes.0.min",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "最大值",
+      "path": "yAxes.0.max",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度数量",
+      "path": "yAxes.0.tickCount",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度策略",
+      "path": "yAxes.0.tickStrategy",
+      "kind": "select",
+      "values": [
+        "legacy",
+        "nice"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度长度",
+      "path": "yAxes.0.tickSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度间距",
+      "path": "yAxes.0.tickPadding",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "数字格式",
+      "path": "yAxes.0.tickFormat",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "轴线颜色",
+      "path": "yAxes.0.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "轴线宽度",
+      "path": "yAxes.0.width",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度字号",
+      "path": "yAxes.0.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度文字颜色",
+      "path": "yAxes.0.fontColor",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度单位",
+      "path": "yAxes.0.unit",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "显示轴标题",
+      "path": "yAxes.0.title.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "轴标题",
+      "path": "yAxes.0.title.text",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "标题单位",
+      "path": "yAxes.0.title.unit",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "标题颜色",
+      "path": "yAxes.0.title.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "标题字号",
+      "path": "yAxes.0.title.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "标题字重",
+      "path": "yAxes.0.title.fontWeight",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "标题偏移",
+      "path": "yAxes.0.title.offset",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "显示坐标轴",
+      "path": "yAxes.1.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "最小值",
+      "path": "yAxes.1.min",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "最大值",
+      "path": "yAxes.1.max",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度数量",
+      "path": "yAxes.1.tickCount",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度策略",
+      "path": "yAxes.1.tickStrategy",
+      "kind": "select",
+      "values": [
+        "legacy",
+        "nice"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度长度",
+      "path": "yAxes.1.tickSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度间距",
+      "path": "yAxes.1.tickPadding",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "数字格式",
+      "path": "yAxes.1.tickFormat",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "轴线颜色",
+      "path": "yAxes.1.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "轴线宽度",
+      "path": "yAxes.1.width",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度字号",
+      "path": "yAxes.1.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度文字颜色",
+      "path": "yAxes.1.fontColor",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "刻度单位",
+      "path": "yAxes.1.unit",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "显示轴标题",
+      "path": "yAxes.1.title.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "轴标题",
+      "path": "yAxes.1.title.text",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "标题单位",
+      "path": "yAxes.1.title.unit",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "标题颜色",
+      "path": "yAxes.1.title.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "标题字号",
+      "path": "yAxes.1.title.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "标题字重",
+      "path": "yAxes.1.title.fontWeight",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "坐标轴",
+      "section": "值轴",
+      "label": "标题偏移",
+      "path": "yAxes.1.title.offset",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "网格线",
+      "label": "显示网格",
+      "path": "grid.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "网格线",
+      "label": "辅助线样式",
+      "path": "grid.style",
+      "kind": "select",
+      "values": [
+        "solid",
+        "dashed"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "网格线",
+      "label": "辅助线颜色",
+      "path": "grid.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "网格线",
+      "label": "辅助线宽度",
+      "path": "grid.width",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "网格线",
+      "label": "显示 X 网格",
+      "path": "grid.x.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "网格线",
+      "label": "X 网格宽度",
+      "path": "grid.x.width",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "网格线",
+      "label": "显示 Y 网格",
+      "path": "grid.y.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "网格线",
+      "label": "Y 网格宽度",
+      "path": "grid.y.width",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "网格线",
+      "label": "Y 网格参考轴",
+      "path": "grid.y.axisId",
+      "kind": "select",
+      "values": [],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "零线",
+      "label": "显示零线",
+      "path": "zeroLine.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "零线",
+      "label": "零线颜色",
+      "path": "zeroLine.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "零线",
+      "label": "零线透明度",
+      "path": "zeroLine.opacity",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "零线",
+      "label": "零线宽度",
+      "path": "zeroLine.width",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "零线",
+      "label": "零线虚线",
+      "path": "zeroLine.dash",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "网格",
+      "section": "零线",
+      "label": "零线参考轴",
+      "path": "zeroLine.axisId",
+      "kind": "select",
+      "values": [],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "标题",
+      "label": "显示图表标题",
+      "path": "title.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "标题",
+      "label": "图表标题",
+      "path": "title.text",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "标题",
+      "label": "标题对齐",
+      "path": "title.align",
+      "kind": "select",
+      "values": [
+        "left",
+        "center",
+        "right"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "标题",
+      "label": "标题颜色",
+      "path": "title.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "标题",
+      "label": "标题字号",
+      "path": "title.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "标题",
+      "label": "标题字重",
+      "path": "title.fontWeight",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "炮号",
+      "label": "显示炮号",
+      "path": "shot.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "炮号",
+      "label": "炮号文字",
+      "path": "shot.text",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "炮号",
+      "label": "炮号颜色",
+      "path": "shot.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "炮号",
+      "label": "炮号字号",
+      "path": "shot.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "炮号",
+      "label": "炮号字重",
+      "path": "shot.fontWeight",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图框编号",
+      "label": "图框编号",
+      "path": "frameNumber",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图框编号",
+      "label": "编号颜色",
+      "path": "frameNumberStyle.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图框编号",
+      "label": "编号透明度",
+      "path": "frameNumberStyle.opacity",
+      "kind": "range",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图框编号",
+      "label": "编号字号",
+      "path": "frameNumberStyle.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图框编号",
+      "label": "编号字体",
+      "path": "frameNumberStyle.fontFamily",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图框编号",
+      "label": "编号字重",
+      "path": "frameNumberStyle.fontWeight",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图例",
+      "label": "显示图例",
+      "path": "legend.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图例",
+      "label": "图例位置",
+      "path": "legend.position",
+      "kind": "select",
+      "values": [
+        "top-left",
+        "top-right",
+        "bottom-left",
+        "bottom-right"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图例",
+      "label": "图例方向",
+      "path": "legend.orientation",
+      "kind": "select",
+      "values": [
+        "horizontal",
+        "vertical"
+      ],
+      "steps": [
+        "逐个选择候选值",
+        "核对 SVG 几何/样式/绑定",
+        "恢复初始选项"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图例",
+      "label": "图例文字颜色",
+      "path": "legend.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图例",
+      "label": "图例字号",
+      "path": "legend.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图例",
+      "label": "图例间距",
+      "path": "legend.itemGap",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图例",
+      "label": "图例线长",
+      "path": "legend.lineLength",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "图例",
+      "label": "单项最大宽度",
+      "path": "legend.maxItemWidth",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "空状态",
+      "label": "显示空数据文字",
+      "path": "emptyState.visible",
+      "kind": "boolean",
+      "steps": [
+        "切换开/关",
+        "核对 SVG 元素是否存在",
+        "恢复后确认样式保留"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "空状态",
+      "label": "提示文字",
+      "path": "emptyState.text",
+      "kind": "text",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "空状态",
+      "label": "提示颜色",
+      "path": "emptyState.color",
+      "kind": "color",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "文字",
+      "section": "空状态",
+      "label": "提示字号",
+      "path": "emptyState.fontSize",
+      "kind": "number",
+      "steps": [
+        "输入正常值",
+        "核对 SVG 数值或文字",
+        "输入边界值",
+        "输入非法值或清空",
+        "恢复初始值"
+      ],
+      "status": "待逐项签收；本轮覆盖范围见 report.txt"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "颜色",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "线宽",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "连线类型",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "线条样式",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "透明度",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "显示数据点",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "数据点形状",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "数据点大小",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "数据点颜色",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "点边框颜色",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "曲线",
+      "section": "逐条曲线",
+      "label": "点边框宽度",
+      "steps": [
+        "选择每条曲线",
+        "关闭跟随全局并修改",
+        "核对只影响当前曲线",
+        "重新跟随全局",
+        "修改全局值并验证跟随"
+      ],
+      "status": "颜色和线宽继承已发现缺陷；其余待逐项签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "界面主题",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "测试数据",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "值轴模式",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "选择值轴",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "选择曲线",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "曲线坐标轴",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "预览空数据状态",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "启用动画",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "入场动画",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "入场方向",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "入场时长",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "入场延迟",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "错峰间隔",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "重播入场",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "更新动画",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "更新时长",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "更新缓动",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "暂停",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "恢复",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "结束动画",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "追加点",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "滑动窗口",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "坐标域变化",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "极端位移",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    },
+    {
+      "group": "导航与动态控制",
+      "label": "自动留白变化",
+      "steps": [
+        "执行操作",
+        "核对对应 SVG 或时间线行为",
+        "恢复原始数据与配置"
+      ],
+      "status": "本轮复用现有测试，待逐项浏览器签收"
+    }
+  ]
+}

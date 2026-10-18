@@ -22,6 +22,49 @@ function translation(node: Element): number[] {
 }
 
 describe('axis headers and zero-line defaults', () => {
+  it('fits full-width titles without native measurement and collapses safely without height', () => {
+    const { chart, svg } = setup([
+      { data: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
+      { data: [{ x: 0, y: 1 }, { x: 1, y: 0 }] },
+    ], { animationEnabled: false, height: 300, yAxis: { title: { visible: true, text: '中文长标题'.repeat(60), fontSize: 14 } } })
+    const title = () => svg.querySelector('.waveform-axis-y-title')!
+    expect(Number(title().getAttribute('font-size'))).toBeLessThan(14)
+    expect(title().textContent).toBe('中文长标题'.repeat(60))
+    chart.updateOptions({ height: 1 })
+    expect(Number(title().getAttribute('font-size'))).toBe(0)
+    chart.updateOptions({ height: 300, yAxis: { title: { text: 'Value' } } })
+    expect(title().getAttribute('font-size')).toBe('14')
+    expect(svg.querySelectorAll('[visibility="hidden"][aria-hidden="true"]')).toHaveLength(0)
+    chart.destroy()
+  })
+
+  it.each(['left', 'right'] as const)('fits long %s value-axis titles to the plot and restores the requested size', (position) => {
+    Object.defineProperty(SVGElement.prototype, 'getComputedTextLength', {
+      configurable: true,
+      value(this: SVGElement) {
+        const size = Number(this.getAttribute('font-size') || 0)
+        return Array.from(this.textContent ?? '').reduce((width, char) => width + size * (/[^\x00-\x7f]/.test(char) ? 1 : 0.6), 0)
+      },
+    })
+    try {
+      const { chart, svg } = setup([
+        { id: 'a', yAxis: 'target', data: [{ x: 0, y: 0 }, { x: 1, y: 1 }] },
+        { id: 'b', yAxis: 'target', data: [{ x: 0, y: 1 }, { x: 1, y: 0 }] },
+      ], { animationEnabled: false, height: 300, yAxes: [{ id: 'target', position, title: { visible: true, text: '长标题'.repeat(60), unit: 'V', fontSize: 14 } }] })
+      const title = () => svg.querySelector<SVGTextElement>('.waveform-axis-y-title')!
+      const height = () => Number(svg.querySelector('.waveform-frame-border')!.getAttribute('height'))
+      expect(Number(title().getAttribute('font-size'))).toBeLessThan(14)
+      expect(title().getComputedTextLength()).toBeLessThanOrEqual(height() - 4 + 1e-8)
+      chart.updateOptions({ height: 180 })
+      expect(title().getComputedTextLength()).toBeLessThanOrEqual(height() - 4 + 1e-8)
+      chart.updateOptions({ yAxes: [{ id: 'target', position, title: { visible: true, text: 'Value', unit: 'V', fontSize: 14 } }] })
+      expect(title().getAttribute('font-size')).toBe('14')
+      chart.destroy()
+    } finally {
+      Reflect.deleteProperty(SVGElement.prototype, 'getComputedTextLength')
+    }
+  })
+
   it.each(['left', 'right'] as const)('aligns actual %s glyph bounds and avoids the legend through updates', (position) => {
     Object.defineProperty(SVGElement.prototype, 'getBBox', {
       configurable: true,
@@ -106,7 +149,7 @@ describe('axis headers and zero-line defaults', () => {
     const width = Number(svg.getAttribute('viewBox')!.split(' ')[2])
     const headerWidth = 'millivolts / second\u00a0\u00a0E+03'.split('').reduce((sum, char) => sum + 11 * (/\s/.test(char) ? 0.33 : 0.6), 0)
     expect(width).toBe(420)
-    expect(svg.getAttribute('width')).toBe('100%')
+    expect(svg.getAttribute('width')).toBe('420')
     expect(plotX).toBeLessThan(headerWidth)
     expect(width - plotX - innerWidth).toBeLessThan(headerWidth)
     expect(plotY).toBe(19)

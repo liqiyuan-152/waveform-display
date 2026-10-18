@@ -1,0 +1,17 @@
+
+> waveform-display@0.1.17 typecheck /Users/liqiyuan/WebstormProjects/waveform-display
+> tsc --noEmit && vue-tsc -p demo/tsconfig.json --noEmit
+
+tests/demo/App.controls.test.ts(53,50): error TS2345: Argument of type '"series"' is not assignable to parameter of type 'keyof VNodeProps | keyof AllowedComponentProps'.
+tests/demo/App.controls.test.ts(61,24): error TS2345: Argument of type '"empty"' is not assignable to parameter of type 'keyof VNodeProps | keyof AllowedComponentProps'.
+tests/demo/App.controls.test.ts(62,36): error TS18046: 'previous' is of type 'unknown'.
+tests/demo/App.controls.test.ts(63,5): error TS2571: Object is of type 'unknown'.
+tests/demo/App.controls.test.ts(63,17): error TS2345: Argument of type '"series"' is not assignable to parameter of type 'keyof VNodeProps | keyof AllowedComponentProps'.
+tests/demo/App.controls.test.ts(63,36): error TS7006: Parameter 'series' implicitly has an 'any' type.
+tests/demo/App.controls.test.ts(63,44): error TS7006: Parameter 'index' implicitly has an 'any' type.
+tests/demo/App.controls.test.ts(64,40): error TS18046: 'previous' is of type 'unknown'.
+tests/demo/App.controls.test.ts(65,48): error TS18046: 'previous' is of type 'unknown'.
+tests/demo/App.controls.test.ts(66,52): error TS18046: 'previous' is of type 'unknown'.
+tests/demo/App.controls.test.ts(74,24): error TS2345: Argument of type '"series"' is not assignable to parameter of type 'keyof VNodeProps | keyof AllowedComponentProps'.
+tests/demo/App.controls.test.ts(77,24): error TS2345: Argument of type '"series"' is not assignable to parameter of type 'keyof VNodeProps | keyof AllowedComponentProps'.
+ ELIFECYCLE  Command failed with exit code 2.

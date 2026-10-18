@@ -1,0 +1,64 @@
+{
+  "preparation": "Read App Vue development state; updateSeries([]) prepares absent UI-only no-curves branch. Empty-preview and scenario actions use real DevTools clicks; direct scenario call checks handler guard.",
+  "steps": [
+    {
+      "case": "empty preview retains underlying curves",
+      "empty": true,
+      "series": 4,
+      "paths": 0,
+      "appendDisabled": false,
+      "pass": true
+    },
+    {
+      "case": "append exits empty preview",
+      "empty": false,
+      "paths": 4,
+      "curves": [
+        {
+          "id": "1157",
+          "count": 1001,
+          "prefixPreserved": true,
+          "metadataPreserved": true
+        },
+        {
+          "id": "1156",
+          "count": 1001,
+          "prefixPreserved": true,
+          "metadataPreserved": true
+        },
+        {
+          "id": "1159",
+          "count": 1001,
+          "prefixPreserved": true,
+          "metadataPreserved": true
+        },
+        {
+          "id": "1155",
+          "count": 1001,
+          "prefixPreserved": true,
+          "metadataPreserved": true
+        }
+      ],
+      "pass": true
+    },
+    {
+      "case": "no curves disables append and handler creates nothing",
+      "series": 0,
+      "disabled": true,
+      "svgUnchanged": true,
+      "pass": true
+    },
+    {
+      "case": "other scenario remains available",
+      "series": 2,
+      "appendDisabled": false,
+      "pass": true
+    }
+  ],
+  "pass": true,
+  "viewport": {
+    "width": 1100,
+    "height": 700
+  },
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+}

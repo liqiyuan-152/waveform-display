@@ -1,0 +1,25 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/integration/Waveform.grid.test.ts (15 tests) 647ms
+ ✓ tests/integration/Waveform.styleInheritance.test.ts (12 tests) 726ms
+ ✓ tests/integration/Waveform.controlGeometry.test.ts (8 tests) 806ms
+ ✓ tests/demo/fields.test.ts (105 tests) 1235ms
+ ✓ tests/demo/App.controls.test.ts (23 tests) 9786ms
+   ✓ Demo controls to rendered SVG > applies responsive aspect ratio and height limits with validation and restoration 736ms
+   ✓ Demo controls to rendered SVG > applies exact manual padding on all four sides, rejects negatives and restores auto layout 369ms
+   ✓ Demo controls to rendered SVG > validates all frame fields, enum candidates and restoration without altering curve geometry 415ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 3087ms
+   ✓ Demo controls to rendered SVG > validates global line boundaries on inherited series while isolating explicit overrides 566ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 344ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 528ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 374ms
+   ✓ Demo controls to rendered SVG > validates grid color and shared or directional width boundaries without altering the curves 455ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 425ms
+   ✓ Demo controls to rendered SVG > maps a curve to the selected axis and back using each axis scale 325ms
+
+ Test Files  5 passed (5)
+      Tests  163 passed (163)
+   Start at  16:58:42
+   Duration  12.54s (transform 1.05s, setup 0ms, collect 7.16s, tests 13.20s, environment 2.05s, prepare 296ms)
+

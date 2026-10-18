@@ -1,0 +1,29 @@
+{
+  "controls": [
+    "layout.autoPadding",
+    "padding.top",
+    "padding.right",
+    "padding.bottom",
+    "padding.left"
+  ],
+  "observed": {
+    "autoPadding": false,
+    "top": 40,
+    "right": 50,
+    "bottom": 60,
+    "left": 70,
+    "plotTransform": "translate(70,40)",
+    "plotSize": "total minus 120 horizontal and 100 vertical"
+  },
+  "conflict": {
+    "minHeight": 400,
+    "maxHeight": 300,
+    "rejected": true,
+    "error": "最小高度不能大于最大高度",
+    "previousWaveformPreserved": true
+  },
+  "screenshots": [
+    "responsive-controls-batch3.jpg",
+    "padding-controls-batch3.jpg"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "batch": 20,
+  "purpose": "区分预览空数据与全部曲线被图例隐藏",
+  "environment": {
+    "url": "http://127.0.0.1:5174/waveform-display/",
+    "browser": "ChatGPT in-app browser",
+    "dataset": "原始数据",
+    "curveCount": 4
+  },
+  "hiddenSeries": {
+    "steps": ["依次取消四条图例曲线复选框", "确认全部复选框为 false"],
+    "observed": {"allLegendCheckboxesOff": true, "noCurvePathsVisible": true, "axisFrameRemains": true},
+    "screenshot": "all-series-hidden-batch20.png"
+  },
+  "restore": {
+    "steps": ["依次重新勾选四条曲线"],
+    "observed": {"allLegendCheckboxesOn": true, "curvePathsReturned": true, "curveCountPreserved": true}
+  },
+  "emptyPreview": {
+    "evidence": "browser-batch12-empty.json",
+    "scope": "空预览通过独立入口清空预览数据并退出恢复原始数据；本批只补全部曲线隐藏分支。"
+  }
+}

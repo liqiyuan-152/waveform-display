@@ -1,0 +1,28 @@
+{
+  "selectedSeries": "SX2_7_02",
+  "controls": [
+    "series.lineType",
+    "series.lineStyle",
+    "series.opacity"
+  ],
+  "observed": {
+    "lineType": "step-end",
+    "lineStyle": "dashed",
+    "opacity": 0.4,
+    "followGlobal": {
+      "lineType": false,
+      "lineStyle": false,
+      "opacity": false
+    }
+  },
+  "candidateCoverage": [
+    "linear",
+    "step-start",
+    "step-middle",
+    "step-end",
+    "solid",
+    "dashed",
+    "dash-dot"
+  ],
+  "screenshot": "series-line-controls-batch14.jpg"
+}

@@ -1,0 +1,27 @@
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/integration/Waveform.headers.test.ts (7 tests) 235ms
+ ✓ tests/demo/fields.test.ts (106 tests) 1266ms
+ ✓ tests/demo/App.controls.test.ts (29 tests) 12092ms
+   ✓ Demo controls to rendered SVG > applies responsive aspect ratio and height limits with validation and restoration 737ms
+   ✓ Demo controls to rendered SVG > applies exact manual padding on all four sides, rejects negatives and restores auto layout 364ms
+   ✓ Demo controls to rendered SVG > validates all frame fields, enum candidates and restoration without altering curve geometry 414ms
+   ✓ Demo controls to rendered SVG > renders point shape, size, fill and border independently of line visibility 3070ms
+   ✓ Demo controls to rendered SVG > validates global line boundaries on inherited series while isolating explicit overrides 564ms
+   ✓ Demo controls to rendered SVG > applies X axis domain, formatting, tick styling, titles and endpoint visibility 345ms
+   ✓ Demo controls to rendered SVG > validates X tick geometry and typography boundaries while preserving other axes 567ms
+   ✓ Demo controls to rendered SVG > applies X number formats and units with formatter precedence and valid empty text 344ms
+   ✓ Demo controls to rendered SVG > validates X title text, units, appearance, fitting and offset without losing hidden settings 649ms
+   ✓ Demo controls to rendered SVG > edits left and right axes independently and restores bindings through single-axis mode 516ms
+   ✓ Demo controls to rendered SVG > keeps X tick density, minimum interval and explicit step priorities observable in the grid 363ms
+   ✓ Demo controls to rendered SVG > shows a zero line only for a domain spanning zero and applies its exact style 330ms
+   ✓ Demo controls to rendered SVG > validates grid color and shared or directional width boundaries without altering the curves 429ms
+   ✓ Demo controls to rendered SVG > applies title, shot and frame-number text and typography 413ms
+   ✓ Demo controls to rendered SVG > maps a curve to the selected axis and back using each axis scale 324ms
+
+ Test Files  3 passed (3)
+      Tests  142 passed (142)
+   Start at  17:19:06
+   Duration  14.56s (transform 775ms, setup 0ms, collect 4.92s, tests 13.59s, environment 931ms, prepare 141ms)
+

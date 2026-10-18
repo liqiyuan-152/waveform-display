@@ -1,0 +1,26 @@
+{
+  "controls": [
+    "grid.visible",
+    "grid.style",
+    "grid.color",
+    "grid.width",
+    "grid.x.visible",
+    "grid.x.width",
+    "grid.y.visible",
+    "grid.y.width",
+    "grid.y.axisId"
+  ],
+  "observed": {
+    "visible": true,
+    "style": "solid",
+    "color": "#123456",
+    "width": 2.5,
+    "xVisible": true,
+    "xWidth": 4,
+    "yVisible": true,
+    "yWidth": 5,
+    "axisId": "right"
+  },
+  "hiddenCheck": "grid visible and X grid were toggled off during the same run",
+  "screenshot": "grid-controls-batch6.jpg"
+}

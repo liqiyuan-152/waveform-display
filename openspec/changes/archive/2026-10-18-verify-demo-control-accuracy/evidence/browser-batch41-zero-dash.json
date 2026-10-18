@@ -1,0 +1,105 @@
+{
+  "method": "App edit API prepares animation=false and left domain [-10,10]; real DevTools click selects zero-line section. Field values use native input setter and input event.",
+  "rows": [
+    {
+      "value": "8 2",
+      "raw": "8 2",
+      "computed": "8px, 2px",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "8px, 2px",
+      "pass": true
+    },
+    {
+      "value": "0",
+      "raw": "0",
+      "computed": "0px",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "0px",
+      "pass": true
+    },
+    {
+      "value": "0.5, 2.25",
+      "raw": "0.5, 2.25",
+      "computed": "0.5px, 2.25px",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "0.5px, 2.25px",
+      "pass": true
+    },
+    {
+      "value": "3 2 1",
+      "raw": "3 2 1",
+      "computed": "3px, 2px, 1px",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "3px, 2px, 1px",
+      "pass": true
+    },
+    {
+      "value": "10%",
+      "raw": "10%",
+      "computed": "10%",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "10%",
+      "pass": true
+    },
+    {
+      "value": "none",
+      "raw": "none",
+      "computed": "none",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "none",
+      "pass": true
+    },
+    {
+      "value": "",
+      "raw": "",
+      "computed": "none",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "none",
+      "pass": true
+    },
+    {
+      "value": " ",
+      "raw": " ",
+      "computed": "none",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "none",
+      "pass": true
+    },
+    {
+      "value": "-1 2",
+      "raw": "-1 2",
+      "computed": "none",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "none",
+      "pass": true
+    },
+    {
+      "value": "not-a-dash",
+      "raw": "not-a-dash",
+      "computed": "none",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "none",
+      "pass": true
+    },
+    {
+      "value": "4 4",
+      "raw": "4 4",
+      "computed": "4px, 4px",
+      "error": false,
+      "geometryPreserved": true,
+      "expected": "4px, 4px",
+      "pass": true
+    }
+  ],
+  "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36"
+}

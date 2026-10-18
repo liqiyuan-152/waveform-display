@@ -1,0 +1,30 @@
+{
+  "controls": [
+    "title.visible",
+    "title.text",
+    "title.align",
+    "title.color",
+    "title.fontSize",
+    "title.fontWeight",
+    "frameNumber",
+    "frameNumberStyle.color",
+    "frameNumberStyle.opacity",
+    "frameNumberStyle.fontSize",
+    "frameNumberStyle.fontFamily",
+    "frameNumberStyle.fontWeight"
+  ],
+  "observed": {
+    "title": "波形审计",
+    "align": "right",
+    "color": "#123456",
+    "fontSize": 22,
+    "fontWeight": 700,
+    "frameNumber": "42",
+    "frameColor": "#654321",
+    "frameOpacity": 0.3,
+    "frameFontSize": 40,
+    "frameFamily": "serif",
+    "frameWeight": 700
+  },
+  "screenshot": "text-controls-batch9.jpg"
+}

@@ -1,4 +1,5 @@
 import * as d3 from 'd3'
+import { parseDimension as parseChartDimension } from '../../../src/config/dimension'
 
 type FieldKind = 'boolean' | 'color' | 'number' | 'range' | 'select' | 'text'
 
@@ -208,9 +209,8 @@ export function parseNumberInput(raw: string, optional = false): ParseResult<num
 
 export function parseDimension(raw: string): ParseResult<string | number> {
   const value = raw.trim()
-  if (!value) return { valid: false }
-  const numeric = Number(value)
-  return Number.isFinite(numeric) ? { valid: true, value: numeric } : { valid: true, value }
+  const parsed = parseChartDimension(value)
+  return parsed ? { valid: true, value: /(?:px|%)$/i.test(value) ? value : parsed.value } : { valid: false }
 }
 
 export function colorPickerValue(value: unknown): string {

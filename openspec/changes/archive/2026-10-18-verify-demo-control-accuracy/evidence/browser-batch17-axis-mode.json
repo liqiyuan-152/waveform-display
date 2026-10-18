@@ -1,0 +1,15 @@
+{
+  "sequence": [
+    "multiple",
+    "single",
+    "multiple"
+  ],
+  "observed": {
+    "singleAxisAxisCount": 1,
+    "multipleAxisAxisCount": 2,
+    "selectedAxis": "right",
+    "curveCount": 4,
+    "axisSelectorRestored": true
+  },
+  "screenshot": "value-axis-navigation-batch17.jpg"
+}

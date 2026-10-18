@@ -1,0 +1,18 @@
+{
+  "archive": {
+    "change": "verify-demo-control-accuracy",
+    "archivedAs": "2026-10-18-verify-demo-control-accuracy",
+    "path": "/Users/liqiyuan/WebstormProjects/waveform-display/openspec/changes/archive/2026-10-18-verify-demo-control-accuracy",
+    "specsUpdated": true,
+    "totals": {
+      "added": 4,
+      "modified": 1,
+      "removed": 0,
+      "renamed": 0
+    }
+  },
+  "root": {
+    "path": "/Users/liqiyuan/WebstormProjects/waveform-display",
+    "source": "nearest"
+  }
+}

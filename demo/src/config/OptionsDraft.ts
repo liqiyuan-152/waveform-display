@@ -22,6 +22,14 @@ export class OptionsDraft {
   }
 
   set(path: string, value: unknown): WaveformOptions {
+    if (path === 'responsive.minHeight' || path === 'responsive.maxHeight') {
+      const candidate = setAtPath(this.raw, path, value)
+      const min = candidate.responsive?.minHeight
+      const max = candidate.responsive?.maxHeight
+      if (typeof min === 'number' && typeof max === 'number' && min > max) {
+        throw new Error('最小高度不能大于最大高度')
+      }
+    }
     if (path.startsWith('yAxes.')) {
       const axes = this.axes()
       const updated = setAtPath({ yAxes: axes }, path, value).yAxes

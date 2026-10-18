@@ -1,0 +1,15 @@
+
+> waveform-display@0.1.17 test /Users/liqiyuan/WebstormProjects/waveform-display
+> vitest run "tests/integration/Waveform.controlGeometry.test.ts" "tests/integration/Waveform.styleInheritance.test.ts"
+
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/integration/Waveform.styleInheritance.test.ts (12 tests) 521ms
+ ✓ tests/integration/Waveform.controlGeometry.test.ts (8 tests) 544ms
+
+ Test Files  2 passed (2)
+      Tests  20 passed (20)
+   Start at  13:58:04
+   Duration  1.61s (transform 338ms, setup 0ms, collect 998ms, tests 1.07s, environment 683ms, prepare 135ms)
+

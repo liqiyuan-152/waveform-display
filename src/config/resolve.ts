@@ -1,5 +1,6 @@
 import { defaultOptions } from './defaults.js'
 import { resolveAnimation } from './animation.js'
+import { parseDimension } from './dimension.js'
 import type { AxisLabelOptions, ValueAxisOptions, WaveformOptions } from '../types/options.js'
 
 export interface ResolvedValueAxisOptions extends ValueAxisOptions {
@@ -46,12 +47,27 @@ function resolveValueAxes(options: WaveformOptions): ResolvedValueAxisOptions[] 
 }
 
 export function resolveOptions(options: WaveformOptions = {}) {
+  for (const key of ['width', 'height'] as const) {
+    if (options[key] !== undefined && !parseDimension(options[key])) {
+      throw new Error(`${key} must be a positive number, px length, or percentage in (0, 100]`)
+    }
+  }
   const yAxes = resolveValueAxes(options)
+  const responsive = { ...defaultOptions.responsive, ...options.responsive }
+  if (!Number.isFinite(responsive.minHeight) || !Number.isFinite(responsive.maxHeight)
+    || responsive.minHeight < 0 || responsive.maxHeight < 0) {
+    throw new Error('responsive height limits must be finite non-negative numbers')
+  }
+  if (responsive.minHeight > responsive.maxHeight) {
+    throw new Error('responsive.minHeight must be less than or equal to responsive.maxHeight')
+  }
   return {
     ...defaultOptions,
     ...options,
+    width: options.width ?? defaultOptions.width,
+    height: options.height ?? defaultOptions.height,
     ...resolveAnimation(options),
-    responsive: { ...defaultOptions.responsive, ...options.responsive },
+    responsive,
     layout: { ...defaultOptions.layout, ...options.layout },
     padding: { ...defaultOptions.padding, ...options.padding },
     frame: {

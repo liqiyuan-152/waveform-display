@@ -1,0 +1,999 @@
+{
+  "changeName": "verify-demo-control-accuracy",
+  "changeDir": "/Users/liqiyuan/WebstormProjects/waveform-display/openspec/changes/verify-demo-control-accuracy",
+  "schemaName": "spec-driven",
+  "contextFiles": {
+    "proposal": [
+      "/Users/liqiyuan/WebstormProjects/waveform-display/openspec/changes/verify-demo-control-accuracy/proposal.md"
+    ],
+    "specs": [
+      "/Users/liqiyuan/WebstormProjects/waveform-display/openspec/changes/verify-demo-control-accuracy/specs/chart-update-and-interaction/spec.md",
+      "/Users/liqiyuan/WebstormProjects/waveform-display/openspec/changes/verify-demo-control-accuracy/specs/demo-configuration/spec.md"
+    ],
+    "design": [
+      "/Users/liqiyuan/WebstormProjects/waveform-display/openspec/changes/verify-demo-control-accuracy/design.md"
+    ],
+    "tasks": [
+      "/Users/liqiyuan/WebstormProjects/waveform-display/openspec/changes/verify-demo-control-accuracy/tasks.md"
+    ]
+  },
+  "progress": {
+    "total": 193,
+    "complete": 63,
+    "remaining": 130
+  },
+  "tasks": [
+    {
+      "id": "1",
+      "description": "1.1 使用 openspec new change 创建变更并补齐提案、规范、设计，检查 CLI 能识别所有工件。",
+      "done": true
+    },
+    {
+      "id": "2",
+      "description": "1.2 将首轮清单、报告、截图归入 evidence/initial，并将 177 项展开为以下任务，核对无遗漏。",
+      "done": true
+    },
+    {
+      "id": "3",
+      "description": "1.3 建立规范场景、测试、浏览器证据和剩余任务的映射，验证每个结论可追溯。",
+      "done": true
+    },
+    {
+      "id": "4",
+      "description": "1.4 为后续每批验证建立版本与环境证据清单，保存提交/差异、相关源摘要、运行命令、数据ID和浏览器条件；核对证据可复现且不追认历史日志版本。",
+      "done": true
+    },
+    {
+      "id": "5",
+      "description": "2.1 修复 C-01：单曲线线条样式返回继承时保留全局值，验证颜色、宽度、连线、虚线、透明度的自定义→继承→全局更新，以及其他曲线隔离。",
+      "done": true
+    },
+    {
+      "id": "6",
+      "description": "2.2 补查并修复数据点 undefined 继承，验证 visible/type/size/color/borderColor/borderWidth；size=0 需断言实际符号面积退化为0，false检查点路径不存在，不能只检查输入对象。继承回归与独立零面积绘制断言通过，见verification.md执行批次1。",
+      "done": true
+    },
+    {
+      "id": "7",
+      "description": "2.3 修复 C-02：图例尊重单曲线线宽 0，验证图例、波形和同步 SVG 导出一致。",
+      "done": true
+    },
+    {
+      "id": "8",
+      "description": "2.4 将两项 it.fails 转为普通测试，运行针对性 Demo/渲染回归，确认无预期失败掩盖缺陷。",
+      "done": true
+    },
+    {
+      "id": "9",
+      "description": "2.5 真实浏览器复验 C-01、C-02，保存修复后截图和属性证据，与历史截图比较。",
+      "done": true
+    },
+    {
+      "id": "10",
+      "description": "2.6 补强几何断言的独立预期：用固定小样例计算线性坐标、三种阶梯转折和四种点符号的目标形状/面积；验证继承后的绝对结果，不只比较两条调用同一渲染器的路径相等。",
+      "done": true
+    },
+    {
+      "id": "11",
+      "description": "3.1 尺寸与留白 / 宽度（`width`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "12",
+      "description": "3.2 尺寸与留白 / 高度（`height`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "13",
+      "description": "3.3 尺寸与留白 / 响应式布局（`responsive.enabled`）：切换开/关；覆盖百分比、数字/纯数字字符串/px宽度分支，以及百分比→固定宽高和销毁时的观察器释放；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "14",
+      "description": "3.4 尺寸与留白 / 宽高比（`responsive.aspectRatio`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "15",
+      "description": "3.5 尺寸与留白 / 最小高度（`responsive.minHeight`）：输入正常值；区分Demo下限1与公共API既有0值；上下限相等合法，最小值大于最大值拒绝并保留上一有效图；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "16",
+      "description": "3.6 尺寸与留白 / 最大高度（`responsive.maxHeight`）：输入正常值；上下限相等合法，冲突拒绝并保留上一有效图；检查拒绝值不经草稿泄漏到后续提交；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "17",
+      "description": "3.7 尺寸与留白 / 自动留白（`layout.autoPadding`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "18",
+      "description": "3.8 尺寸与留白 / 上留白（`padding.top`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "19",
+      "description": "3.9 尺寸与留白 / 右留白（`padding.right`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "20",
+      "description": "3.10 尺寸与留白 / 下留白（`padding.bottom`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "21",
+      "description": "3.11 尺寸与留白 / 左留白（`padding.left`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "22",
+      "description": "3.12 边框 / 显示边框（`frame.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "23",
+      "description": "3.13 边框 / 背景颜色（`frame.backgroundColor`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "24",
+      "description": "3.14 边框 / 边框颜色（`frame.borderColor`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "25",
+      "description": "3.15 边框 / 边框宽度（`frame.borderWidth`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "26",
+      "description": "3.16 边框 / 边框样式（`frame.borderStyle`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：solid, dashed, dotted；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "27",
+      "description": "3.17 边框 / 圆角（`frame.radius`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "28",
+      "description": "4.1 线条 / 显示线条（`line.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "29",
+      "description": "4.2 线条 / 线条颜色（`line.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "30",
+      "description": "4.3 线条 / 线条宽度（`line.width`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "31",
+      "description": "4.4 线条 / 连线类型（`line.type`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：linear, step-start, step-middle, step-end；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "32",
+      "description": "4.5 线条 / 线条样式（`line.style`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：solid, dashed, dash-dot；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "33",
+      "description": "4.6 线条 / 线条透明度（`line.opacity`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "34",
+      "description": "4.7 数据点 / 显示数据点（`point.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "35",
+      "description": "4.8 数据点 / 数据点形状（`point.type`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：circle, square, triangle, diamond；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "36",
+      "description": "4.9 数据点 / 数据点大小（`point.size`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "37",
+      "description": "4.10 数据点 / 数据点颜色（`point.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "38",
+      "description": "4.11 数据点 / 数据点边框（`point.borderColor`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "39",
+      "description": "4.12 数据点 / 点边框宽度（`point.borderWidth`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "40",
+      "description": "5.1 X 轴 / 范围策略（`xDomainStrategy.type`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：data, nice；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "41",
+      "description": "5.2 X 轴 / 扩展边界（`xDomainStrategy.bounds`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：both, end；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "42",
+      "description": "5.3 X 轴 / 策略刻度数（`xDomainStrategy.tickCount`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "43",
+      "description": "5.4 X 轴 / 包含手动范围（`xDomainStrategy.includeExplicit`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "44",
+      "description": "5.5 X 轴 / 显示坐标轴（`xAxis.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "45",
+      "description": "5.6 X 轴 / 最小值（`xAxis.min`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "46",
+      "description": "5.7 X 轴 / 最大值（`xAxis.max`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "47",
+      "description": "5.8 X 轴 / 刻度数量（`xAxis.tickCount`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "48",
+      "description": "5.9 X 轴 / 刻度策略（`xAxis.tickStrategy`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：legacy, nice；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "49",
+      "description": "5.10 X 轴 / 最小刻度间隔（`xAxis.minInterval`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "50",
+      "description": "5.11 X 轴 / 刻度步长（`xAxis.tickStep`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "51",
+      "description": "5.12 X 轴 / 隐藏端点刻度（`xAxis.hideEndTicks`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "52",
+      "description": "5.13 X 轴 / 显示端点值（`xAxis.showEndValues`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "53",
+      "description": "5.14 X 轴 / 刻度长度（`xAxis.tickSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "54",
+      "description": "5.15 X 轴 / 刻度间距（`xAxis.tickPadding`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "55",
+      "description": "5.16 X 轴 / 数字格式（`xAxis.tickFormat`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "56",
+      "description": "5.17 X 轴 / 轴线颜色（`xAxis.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "57",
+      "description": "5.18 X 轴 / 轴线宽度（`xAxis.width`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "58",
+      "description": "5.19 X 轴 / 刻度字号（`xAxis.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "59",
+      "description": "5.20 X 轴 / 刻度文字颜色（`xAxis.fontColor`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "60",
+      "description": "5.21 X 轴 / 刻度单位（`xAxis.unit`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "61",
+      "description": "5.22 X 轴 / 显示轴标题（`xAxis.title.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "62",
+      "description": "5.23 X 轴 / 轴标题（`xAxis.title.text`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "63",
+      "description": "5.24 X 轴 / 标题单位（`xAxis.title.unit`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "64",
+      "description": "5.25 X 轴 / 标题颜色（`xAxis.title.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "65",
+      "description": "5.26 X 轴 / 标题字号（`xAxis.title.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "66",
+      "description": "5.27 X 轴 / 标题字重（`xAxis.title.fontWeight`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "67",
+      "description": "5.28 X 轴 / 标题偏移（`xAxis.title.offset`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "68",
+      "description": "5.29 值轴 / 显示坐标轴（`yAxes.0.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "69",
+      "description": "5.30 值轴 / 最小值（`yAxes.0.min`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "70",
+      "description": "5.31 值轴 / 最大值（`yAxes.0.max`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "71",
+      "description": "5.32 值轴 / 刻度数量（`yAxes.0.tickCount`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "72",
+      "description": "5.33 值轴 / 刻度策略（`yAxes.0.tickStrategy`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：legacy, nice；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "73",
+      "description": "5.34 值轴 / 刻度长度（`yAxes.0.tickSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "74",
+      "description": "5.35 值轴 / 刻度间距（`yAxes.0.tickPadding`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "75",
+      "description": "5.36 值轴 / 数字格式（`yAxes.0.tickFormat`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "76",
+      "description": "5.37 值轴 / 轴线颜色（`yAxes.0.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "77",
+      "description": "5.38 值轴 / 轴线宽度（`yAxes.0.width`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "78",
+      "description": "5.39 值轴 / 刻度字号（`yAxes.0.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "79",
+      "description": "5.40 值轴 / 刻度文字颜色（`yAxes.0.fontColor`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "80",
+      "description": "5.41 值轴 / 刻度单位（`yAxes.0.unit`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "81",
+      "description": "5.42 值轴 / 显示轴标题（`yAxes.0.title.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "82",
+      "description": "5.43 值轴 / 轴标题（`yAxes.0.title.text`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "83",
+      "description": "5.44 值轴 / 标题单位（`yAxes.0.title.unit`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "84",
+      "description": "5.45 值轴 / 标题颜色（`yAxes.0.title.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "85",
+      "description": "5.46 值轴 / 标题字号（`yAxes.0.title.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "86",
+      "description": "5.47 值轴 / 标题字重（`yAxes.0.title.fontWeight`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "87",
+      "description": "5.48 值轴 / 标题偏移（`yAxes.0.title.offset`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "88",
+      "description": "5.49 值轴 / 显示坐标轴（`yAxes.1.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "89",
+      "description": "5.50 值轴 / 最小值（`yAxes.1.min`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "90",
+      "description": "5.51 值轴 / 最大值（`yAxes.1.max`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "91",
+      "description": "5.52 值轴 / 刻度数量（`yAxes.1.tickCount`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "92",
+      "description": "5.53 值轴 / 刻度策略（`yAxes.1.tickStrategy`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：legacy, nice；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "93",
+      "description": "5.54 值轴 / 刻度长度（`yAxes.1.tickSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "94",
+      "description": "5.55 值轴 / 刻度间距（`yAxes.1.tickPadding`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "95",
+      "description": "5.56 值轴 / 数字格式（`yAxes.1.tickFormat`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "96",
+      "description": "5.57 值轴 / 轴线颜色（`yAxes.1.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "97",
+      "description": "5.58 值轴 / 轴线宽度（`yAxes.1.width`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "98",
+      "description": "5.59 值轴 / 刻度字号（`yAxes.1.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "99",
+      "description": "5.60 值轴 / 刻度文字颜色（`yAxes.1.fontColor`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "100",
+      "description": "5.61 值轴 / 刻度单位（`yAxes.1.unit`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "101",
+      "description": "5.62 值轴 / 显示轴标题（`yAxes.1.title.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "102",
+      "description": "5.63 值轴 / 轴标题（`yAxes.1.title.text`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "103",
+      "description": "5.64 值轴 / 标题单位（`yAxes.1.title.unit`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "104",
+      "description": "5.65 值轴 / 标题颜色（`yAxes.1.title.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "105",
+      "description": "5.66 值轴 / 标题字号（`yAxes.1.title.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "106",
+      "description": "5.67 值轴 / 标题字重（`yAxes.1.title.fontWeight`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "107",
+      "description": "5.68 值轴 / 标题偏移（`yAxes.1.title.offset`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "108",
+      "description": "6.1 网格线 / 显示网格（`grid.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "109",
+      "description": "6.2 网格线 / 辅助线样式（`grid.style`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：solid, dashed；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "110",
+      "description": "6.3 网格线 / 辅助线颜色（`grid.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "111",
+      "description": "6.4 网格线 / 辅助线宽度（`grid.width`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "112",
+      "description": "6.5 网格线 / 显示 X 网格（`grid.x.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "113",
+      "description": "6.6 网格线 / X 网格宽度（`grid.x.width`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "114",
+      "description": "6.7 网格线 / 显示 Y 网格（`grid.y.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "115",
+      "description": "6.8 网格线 / Y 网格宽度（`grid.y.width`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "116",
+      "description": "6.9 网格线 / Y 网格参考轴（`grid.y.axisId`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "117",
+      "description": "6.10 零线 / 显示零线（`zeroLine.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "118",
+      "description": "6.11 零线 / 零线颜色（`zeroLine.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "119",
+      "description": "6.12 零线 / 零线透明度（`zeroLine.opacity`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "120",
+      "description": "6.13 零线 / 零线宽度（`zeroLine.width`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "121",
+      "description": "6.14 零线 / 零线虚线（`zeroLine.dash`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "122",
+      "description": "6.15 零线 / 零线参考轴（`zeroLine.axisId`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "123",
+      "description": "7.1 标题 / 显示图表标题（`title.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "124",
+      "description": "7.2 标题 / 图表标题（`title.text`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "125",
+      "description": "7.3 标题 / 标题对齐（`title.align`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：left, center, right；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "126",
+      "description": "7.4 标题 / 标题颜色（`title.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "127",
+      "description": "7.5 标题 / 标题字号（`title.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "128",
+      "description": "7.6 标题 / 标题字重（`title.fontWeight`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "129",
+      "description": "7.7 炮号 / 显示炮号（`shot.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "130",
+      "description": "7.8 炮号 / 炮号文字（`shot.text`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "131",
+      "description": "7.9 炮号 / 炮号颜色（`shot.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "132",
+      "description": "7.10 炮号 / 炮号字号（`shot.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "133",
+      "description": "7.11 炮号 / 炮号字重（`shot.fontWeight`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "134",
+      "description": "7.12 图框编号 / 图框编号（`frameNumber`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "135",
+      "description": "7.13 图框编号 / 编号颜色（`frameNumberStyle.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "136",
+      "description": "7.14 图框编号 / 编号透明度（`frameNumberStyle.opacity`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "137",
+      "description": "7.15 图框编号 / 编号字号（`frameNumberStyle.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "138",
+      "description": "7.16 图框编号 / 编号字体（`frameNumberStyle.fontFamily`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "139",
+      "description": "7.17 图框编号 / 编号字重（`frameNumberStyle.fontWeight`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "140",
+      "description": "7.18 图例 / 显示图例（`legend.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "141",
+      "description": "7.19 图例 / 图例位置（`legend.position`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：top-left, top-right, bottom-left, bottom-right；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "142",
+      "description": "7.20 图例 / 图例方向（`legend.orientation`）：逐个选择候选值；核对 SVG 几何/样式/绑定；恢复初始选项；候选值：horizontal, vertical；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "143",
+      "description": "7.21 图例 / 图例文字颜色（`legend.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "144",
+      "description": "7.22 图例 / 图例字号（`legend.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "145",
+      "description": "7.23 图例 / 图例间距（`legend.itemGap`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "146",
+      "description": "7.24 图例 / 图例线长（`legend.lineLength`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "147",
+      "description": "7.25 图例 / 单项最大宽度（`legend.maxItemWidth`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": true
+    },
+    {
+      "id": "148",
+      "description": "7.26 空状态 / 显示空数据文字（`emptyState.visible`）：切换开/关；核对 SVG 元素或布局计算是否准确生效；恢复后确认样式保留；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "149",
+      "description": "7.27 空状态 / 提示文字（`emptyState.text`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "150",
+      "description": "7.28 空状态 / 提示颜色（`emptyState.color`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "151",
+      "description": "7.29 空状态 / 提示字号（`emptyState.fontSize`）：输入正常值；核对 SVG 数值或文字；输入边界值；输入非法值或清空；恢复初始值；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "152",
+      "description": "8.1 逐条曲线 / 颜色：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "153",
+      "description": "8.2 逐条曲线 / 线宽：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "154",
+      "description": "8.3 逐条曲线 / 连线类型：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "155",
+      "description": "8.4 逐条曲线 / 线条样式：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "156",
+      "description": "8.5 逐条曲线 / 透明度：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "157",
+      "description": "8.6 逐条曲线 / 显示数据点：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "158",
+      "description": "8.7 逐条曲线 / 数据点形状：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "159",
+      "description": "8.8 逐条曲线 / 数据点大小：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "160",
+      "description": "8.9 逐条曲线 / 数据点颜色：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "161",
+      "description": "8.10 逐条曲线 / 点边框颜色：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "162",
+      "description": "8.11 逐条曲线 / 点边框宽度：选择每条曲线；关闭跟随全局并修改；核对只影响当前曲线；重新跟随全局；修改全局值并验证跟随；记录实际结果与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "163",
+      "description": "9.1 界面主题：分别切换浅色、深色、跟随系统；检查界面可读性、图框背景和自定义颜色交互；记录系统主题变化与恢复后的状态；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "164",
+      "description": "9.2 测试数据：原始→小数值→原始往返；核对曲线数量、科学计数、选择列表、数据集内覆盖保留及轴绑定；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "165",
+      "description": "9.3 值轴模式：多→单→多往返；检查左右轴配置、曲线绑定及网格/零线参考轴恢复，单轴编辑保留；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "166",
+      "description": "9.4 选择值轴：分别选择左右轴；选择动作只更改编辑目标；随后修改颜色只改变被选轴样式，修改范围检查该轴及绑定曲线的坐标映射，另一轴不受误改；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "167",
+      "description": "9.5 选择曲线：逐条选择曲线；表单值和继承状态来自对应曲线，选择不改图，编辑只影响所选曲线；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "168",
+      "description": "9.6 曲线坐标轴：在双轴且两轴范围明显不同时逐条更改绑定并往返；核对实际Y坐标、轴显示和参考轴有效性，不只检查ID；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "169",
+      "description": "9.7 预览空数据状态：进入空预览并退出；检查提示、无残留路径、原数据和配置恢复；与全部曲线被图例隐藏分别验收；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "170",
+      "description": "9.8 启用动画：开/关总开关后触发新数据；与类别开关组合验证，记录点数阈值/reduced-motion和允许的静态收敛；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "171",
+      "description": "9.9 入场动画：总开关开启时切换入场类别并重播；核对有/无裁剪过渡，更新类别不被误改；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "172",
+      "description": "9.10 入场方向：逐个选择 left-to-right、right-to-left、center-out 并重播；核对起始、中间裁剪及终态；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "173",
+      "description": "9.11 入场时长：可控时钟验证 duration=0、正值、负数/空输入；0时忽略delay/stagger同步终态且无动画批次，正值核对时长，修改后重播生效；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "174",
+      "description": "9.12 入场延迟：可控时钟验证 delay=0、正值及非法输入；延迟内不推进，延迟后按指定时长运行；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "175",
+      "description": "9.13 错峰间隔：至少两条小数据曲线，验证 staggerDelay=0、正值及非法输入；比较曲线开始时刻差值，排除阈值降级；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "176",
+      "description": "9.14 重播入场：满足开关/非空条件时重播，核对新裁剪；空数据、总/类别开关关闭时禁用按钮，连续重播无旧帧覆盖；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "177",
+      "description": "9.15 更新动画：总开关开启时分别开关更新类别后改变数据；检查过渡/静态结果，入场类别不被误改；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "178",
+      "description": "9.16 更新时长：可控时钟验证更新 duration=0、正值及非法输入；0时同步终态且无动画批次，正值检查完整时长，后续更新符合目标；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "179",
+      "description": "9.17 更新缓动：逐个选择 linear、cubicInOut，在固定非对称进度点比较理论插值，不能只检查起止态；恢复初始缓动；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "180",
+      "description": "9.18 暂停：先确认运行中再暂停；推进时钟/观察多帧几何不变；重复暂停不破坏终态；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "181",
+      "description": "9.19 恢复：暂停后恢复应继续剩余进度而非重新开始；空闲恢复不创建意外动画；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "182",
+      "description": "9.20 结束动画：运行中结束应完整到目标且清除临时裁剪/图层，无旧帧覆盖；重复结束幂等；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "183",
+      "description": "9.21 追加点：按用户已确认的保留旧点持续追加契约，区分空点集曲线、无曲线数组和空预览；后两者语义待明确，不擅自签收示例回退；从原始数据及其他场景点击；逐条核对ID/坐标/样式/绑定不变，每次增加1点，版本经过10/20/30不回绕，轴/网格同步；验证对应预期的中间帧与终态；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "184",
+      "description": "9.22 滑动窗口：滑动窗口后核对淘汰/新增点、窗口范围与坐标映射，无旧点残留；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "185",
+      "description": "9.23 坐标域变化：坐标域变化时逐帧核对曲线、轴、网格、零线共用表现比例尺和正确终态；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "186",
+      "description": "9.24 极端位移：极端位移核对允许降级的条件、无越界残留；静态收敛不计作时长通过；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "187",
+      "description": "9.25 自动留白变化：自动留白变化后核对绘图区和文字无意外遮挡，按布局变化的静态收敛规则验收并恢复场景；按 acceptance.md 记录预期、实际与证据后签收。",
+      "done": false
+    },
+    {
+      "id": "188",
+      "description": "9.26 页签与子分类导航：鼠标遍历6个配置页签、全部子分类和3个动画页签；页签用方向键/Home/End检查焦点与选中状态一致，子分类按其控件键盘规则检查；检查子分类及曲线选择记忆、数据集变更后的选择有效性，导航不意外改图；保存浏览器证据。",
+      "done": true
+    },
+    {
+      "id": "189",
+      "description": "9.27 颜色面板与透明度入口：打开色板、逐个预设、调整Alpha滑块并键盘操作；校验文本值/色块/SVG一致，继承状态下禁用，组合线条或零线opacity验证最终乘积，关闭重开状态正确；记录独立预期和实际。",
+      "done": true
+    },
+    {
+      "id": "190",
+      "description": "10.1 执行 pnpm check，保存完整日志并确认普通测试、类型、库与 Demo 构建通过。",
+      "done": false
+    },
+    {
+      "id": "191",
+      "description": "10.2 执行 openspec validate verify-demo-control-accuracy --strict，保存校验日志，核对任务勾选与证据一致。",
+      "done": false
+    },
+    {
+      "id": "192",
+      "description": "10.3 使用 Node 20、pnpm 9 复验，记录真实运行时版本与结果。",
+      "done": false
+    },
+    {
+      "id": "193",
+      "description": "10.4 核对全部验收任务（含177项基础目录及后续新增项）均有完整证据，处理所有缺陷与契约待明确项后才归档；仍有待测或未解决项时保持变更开放。",
+      "done": false
+    }
+  ],
+  "state": "ready",
+  "instruction": "Read context files, work through pending tasks, mark complete as you go.\nPause if you hit blockers or need clarification.",
+  "context": "Language: zh-CN\nAll artifacts must be written in zh-CN.\nKeep OpenSpec structural headings and SHALL/MUST keywords in English.\n",
+  "root": {
+    "path": "/Users/liqiyuan/WebstormProjects/waveform-display",
+    "source": "nearest"
+  }
+}

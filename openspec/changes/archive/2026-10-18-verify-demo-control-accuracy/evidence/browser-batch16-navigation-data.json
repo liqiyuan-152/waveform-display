@@ -1,0 +1,24 @@
+{
+  "themeSequence": [
+    "dark",
+    "light",
+    "follow-system"
+  ],
+  "dataSequence": [
+    "small-values",
+    "original"
+  ],
+  "observed": {
+    "smallValuesAxes": "scientific E-04 labels",
+    "smallValuesSeriesSelectionRestored": true,
+    "originalSeriesCount": 4,
+    "originalLabels": [
+      "SX2_7_03_CH1",
+      "SX2_7_02",
+      "SX2_7_05",
+      "SX2_7_01"
+    ],
+    "themeRestored": "follow-system"
+  },
+  "screenshot": "navigation-data-batch16.jpg"
+}

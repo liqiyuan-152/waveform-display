@@ -1,0 +1,36 @@
+{
+  "batch": 24,
+  "purpose": "动画数据场景入口复验",
+  "environment": {
+    "url": "http://127.0.0.1:5174/waveform-display/",
+    "browser": "ChatGPT in-app browser",
+    "dataset": "原始数据",
+    "animationEnabled": true
+  },
+  "steps": [
+    "在数据场景页点击滑动窗口",
+    "在数据场景页点击坐标域变化",
+    "在数据场景页点击极端位移",
+    "在数据场景页点击自动留白变化"
+  ],
+  "observed": {
+    "window": {
+      "axisLabels": ["32", "34", "36", "38", "40", "42", "44", "45"],
+      "yLabels": ["-1", "-0.5", "0", "0.5", "1"],
+      "seriesVisible": ["信号通道", "参考通道"]
+    },
+    "domain": {
+      "axisLabels": ["0", "2", "4", "6", "8", "10", "12", "13"],
+      "yLabels": ["-2", "-1", "0", "1", "2"]
+    },
+    "extreme": {
+      "yLabels": ["-4", "-2", "0", "2", "4"],
+      "waveformRendered": true
+    },
+    "autoPadding": {
+      "yLabels": ["-1", "-0.5", "0", "0.5", "1"],
+      "waveformRendered": true
+    }
+  },
+  "limitation": "AX 树只暴露轴标签和曲线可访问名称，不暴露逐帧 SVG 几何、绘图区边界或自动留白像素；9.22–9.25 仍需 DevTools/DOM 属性和截图证据后签收。"
+}
