@@ -1,0 +1,14 @@
+{
+  "browser": "Chrome 155 macOS",
+  "viewport": [1440, 1000],
+  "dpr": 1,
+  "fixture": "tests/fixtures/browser/baseline.html",
+  "instances": 5,
+  "updatedInstance": 0,
+  "points": 1000,
+  "updatesPerRun": 20,
+  "samplesMs": [27, 33.600000001490116, 28.400000002235174, 21.5, 19.899999998509884],
+  "documentNodesAfter": 519,
+  "svgAfter": 5,
+  "note": "重构前基线；动画默认关闭。需相同浏览器和负载复测，不作为重构后性能结论。"
+}

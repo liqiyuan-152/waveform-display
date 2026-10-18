@@ -1,4 +1,5 @@
 export interface WaveformPoint {
+  id?: string
   x: number
   y: number
 }

@@ -1,0 +1,151 @@
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  1.007MB
+Step 1/15 : FROM node@sha256:b21fe589dfbe5cc39365d0544b9be3f1f33f55f3c86c87a76ff65a02f8f5848e AS build
+docker.io/library/node@sha256:b21fe589dfbe5cc39365d0544b9be3f1f33f55f3c86c87a76ff65a02f8f5848e: Pulling from library/node
+81bbe160aa65: Pulling fs layer
+a6efb3d89d6f: Pulling fs layer
+21b7accdc53f: Pulling fs layer
+85423f326066: Pulling fs layer
+5be39782492f: Pulling fs layer
+81bbe160aa65: Download complete
+a6efb3d89d6f: Download complete
+5be39782492f: Download complete
+739779e439e0: Download complete
+21b7accdc53f: Download complete
+4a1daa3ecbc2: Download complete
+a6efb3d89d6f: Pull complete
+21b7accdc53f: Pull complete
+85423f326066: Download complete
+85423f326066: Pull complete
+81bbe160aa65: Pull complete
+5be39782492f: Pull complete
+Digest: sha256:b21fe589dfbe5cc39365d0544b9be3f1f33f55f3c86c87a76ff65a02f8f5848e
+Status: Downloaded newer image for node@sha256:b21fe589dfbe5cc39365d0544b9be3f1f33f55f3c86c87a76ff65a02f8f5848e
+ ---> b21fe589dfbe
+Step 2/15 : WORKDIR /src
+ ---> Running in bf4d06560f3b
+ ---> Removed intermediate container bf4d06560f3b
+ ---> 4b548196864b
+Step 3/15 : RUN corepack enable
+ ---> Running in b66a693652da
+ ---> Removed intermediate container b66a693652da
+ ---> 64a6abb1a34a
+Step 4/15 : RUN corepack prepare pnpm@9 --activate
+ ---> Running in be1783c88896
+Preparing pnpm@9 for immediate activation...
+ ---> Removed intermediate container be1783c88896
+ ---> ca9b04246d03
+Step 5/15 : COPY package.json pnpm-lock.yaml ./
+ ---> 6bd0ad968ea6
+Step 6/15 : RUN pnpm install --frozen-lockfile
+ ---> Running in f33afdc286ee
+Lockfile is up to date, resolution step is skipped
+Progress: resolved 1, reused 0, downloaded 0, added 0
+Packages: +162
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+   ╭───────────────────────────────────────────────────────────────────╮
+   │                                                                   │
+   │                Update available! 9.15.9 → 12.14.0.                │
+   │   Changelog: https://github.com/pnpm/pnpm/releases/tag/v12.14.0   │
+   │            Run "corepack use pnpm@12.14.0" to update.             │
+   │                                                                   │
+   ╰───────────────────────────────────────────────────────────────────╯
+
+Progress: resolved 162, reused 0, downloaded 36, added 30
+Progress: resolved 162, reused 0, downloaded 104, added 104
+Progress: resolved 162, reused 0, downloaded 161, added 161
+Progress: resolved 162, reused 0, downloaded 162, added 162, done
+.../esbuild@0.25.12/node_modules/esbuild postinstall$ node install.js
+.../esbuild@0.21.5/node_modules/esbuild postinstall$ node install.js
+.../esbuild@0.21.5/node_modules/esbuild postinstall: Done
+.../esbuild@0.25.12/node_modules/esbuild postinstall: Done
+
+dependencies:
++ d3 7.9.0
+
+devDependencies:
++ @types/d3 7.4.3
++ jsdom 27.4.0
++ typescript 5.9.3
++ vite 6.4.3
++ vitest 2.1.9
+
+Done in 3.5s using pnpm v9.15.9
+ ---> Removed intermediate container f33afdc286ee
+ ---> 862af4a79ebc
+Step 7/15 : COPY . .
+ ---> 825c343116f9
+Step 8/15 : ARG DEMO_BASE_PATH=/
+ ---> Running in 24108e783b7e
+ ---> Removed intermediate container 24108e783b7e
+ ---> 72730437b7f8
+Step 9/15 : ENV DEMO_BASE_PATH=$DEMO_BASE_PATH
+ ---> Running in 13e0119b2154
+ ---> Removed intermediate container 13e0119b2154
+ ---> 9fe90e4ea27c
+Step 10/15 : RUN pnpm build:demo
+ ---> Running in de0b7365dcf8
+
+> waveform-display@0.1.17 build:demo /src
+> vite build --config demo/vite.config.ts
+
+vite v6.4.3 building for production...
+transforming...
+✓ 589 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist-demo/index.html                   0.37 kB │ gzip:  0.27 kB
+../dist-demo/assets/index-CxfymnY5.css    9.17 kB │ gzip:  2.28 kB
+../dist-demo/assets/index-9r-wiKUm.js   157.71 kB │ gzip: 46.68 kB
+✓ built in 886ms
+ ---> Removed intermediate container de0b7365dcf8
+ ---> 17663afe1727
+Step 11/15 : FROM nginx@sha256:5b4900b042ccfa8b0a73df622c3a60f2322faeb2be800cbee5aa7b44d241649e
+docker.io/library/nginx@sha256:5b4900b042ccfa8b0a73df622c3a60f2322faeb2be800cbee5aa7b44d241649e: Pulling from library/nginx
+2c14b98587ea: Pulling fs layer
+d8ad8cd72600: Pulling fs layer
+9b38294787f3: Pulling fs layer
+e97fce410b87: Pulling fs layer
+6e3c2740a816: Pulling fs layer
+dcb415bd1d13: Pulling fs layer
+d8e8bc3e2dee: Pulling fs layer
+946b8edb1505: Pulling fs layer
+6e3c2740a816: Download complete
+dcb415bd1d13: Download complete
+d8e8bc3e2dee: Download complete
+e97fce410b87: Download complete
+d8ad8cd72600: Download complete
+9b38294787f3: Download complete
+946b8edb1505: Download complete
+2c14b98587ea: Download complete
+6e3c2740a816: Pull complete
+dcb415bd1d13: Pull complete
+d8e8bc3e2dee: Pull complete
+e97fce410b87: Pull complete
+d8ad8cd72600: Pull complete
+9b38294787f3: Pull complete
+946b8edb1505: Pull complete
+2c14b98587ea: Pull complete
+7a48647e3c77: Download complete
+938f212607b2: Download complete
+Digest: sha256:5b4900b042ccfa8b0a73df622c3a60f2322faeb2be800cbee5aa7b44d241649e
+Status: Downloaded newer image for nginx@sha256:5b4900b042ccfa8b0a73df622c3a60f2322faeb2be800cbee5aa7b44d241649e
+ ---> 5b4900b042cc
+Step 12/15 : ENV NGINX_ENVSUBST_FILTER='^SHOWCASE_ORIGIN$'
+ ---> Running in 27203d3d1d53
+ ---> Removed intermediate container 27203d3d1d53
+ ---> c004d2ffb920
+Step 13/15 : COPY --from=build /src/dist-demo /usr/share/nginx/html
+ ---> ff2eaff7fbc6
+Step 14/15 : COPY deploy/nginx.conf.template /etc/nginx/templates/default.conf.template
+ ---> 4521e50e2780
+Step 15/15 : EXPOSE 8080
+ ---> Running in 9d0a957d4d04
+ ---> Removed intermediate container 9d0a957d4d04
+ ---> 88c8ae4aca58
+Successfully built 88c8ae4aca58
+Successfully tagged waveform-display-demo:validation

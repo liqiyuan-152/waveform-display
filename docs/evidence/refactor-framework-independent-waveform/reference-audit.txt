@@ -1,0 +1,9 @@
+参考核对：2026-10-18
+waveform-analysis HEAD: e8985d7027b37036247cc2d9069a17297bde889b
+限定只读；src/animation、xAxisTicks.ts、yAxisTicks.ts 无工作区修改。
+根目录无 LICENSE；package.json 无 license 声明。
+THIRD_PARTY_NOTICES.md 明确“不指定本项目自身的许可证”。
+因此不复制其实现，按本变更明确的行为规范独立实现数值引擎、匹配和刻度策略。
+动画、入场裁剪、数值插值、实例时间线只作行为参考。
+不复用分页/标注源码、预设、控制器对象或公共类型。
+本项目重构前 HEAD: dc651edd2137ee3ac15bde0a6cf321f587fc0bba

@@ -37,7 +37,7 @@ npm install waveform-display
 ## 示例项目
 
 - 在线地址：[https://lqycustomsite.online/waveform-display/](https://lqycustomsite.online/waveform-display/)
-- 示例源码：[`src/demo/`](./src/demo/)
+- 示例源码：[`demo/`](./demo/)
 
 克隆仓库并安装依赖后，可运行 `pnpm dev` 在本地启动示例项目。
 
@@ -61,13 +61,14 @@ pnpm dev
 
 ## 构建与检查
 
-所有测试统一存放在根目录 `tests/` 下，并按照 `core`、`renderer` 和 `demo` 模块分类。可以运行全部测试，也可以按路径执行单个测试文件：
+所有测试统一存放在根目录 `tests/` 下，并按照 `data`、`layout`、`model`、`integration`、`animation` 和 `demo` 模块分类。可以运行全部测试，也可以按路径执行单个测试文件：
 
 ```bash
 pnpm test
-pnpm test -- tests/core/Waveform.axes.test.ts
+pnpm test -- tests/integration/Waveform.axes.test.ts
 pnpm check
 pnpm build
+pnpm build:demo
 ```
 
 ## 基本用法
@@ -375,3 +376,22 @@ chart.updateOptions({ zeroLine: { color: '#ff000080', opacity: 1 } })
 - **回滚**：当前生产环境通过还原 `main` 中的对应提交触发重新部署；没有自动回滚。只有在稳定 Release 镜像流程完成服务器接入后，才能使用其中按部署请求 ID 恢复不可变镜像的功能。
 
 当前生产部署的运行阶段依赖服务器已有的 `local/sub2api-cpa-converter:1bd8fb805d5d` 镜像，构建阶段使用 Node.js 22；请确保服务器保留该运行时镜像。可选的稳定 Release 镜像构建和 npm 发布不依赖这个 Dokploy 运行时镜像。
+
+## 原子更新、动画与生命周期
+
+```ts
+chart.update({ data: nextData, options: { animationEnabled: true } })
+chart.updateOptions({
+  animation: { duration: 1000, direction: 'center-out', staggerDelay: 100 },
+  animationUpdate: { duration: 300 },
+  xAxis: { tickStrategy: 'nice', minInterval: 0.1 },
+})
+chart.animation.pause()
+chart.animation.resume()
+chart.animation.finish()
+const snapshot = chart.getOptions()
+```
+
+动画默认关闭；开启后按唯一序列 ID 与点 ID（或唯一 X）匹配。同步 SVG 导出会先收敛到最新目标。`Waveform.init()` 可复用容器已有实例，`Waveform.getInstanceByDom()` 可查询实例；直接重复构造会抛错。
+
+实现边界与使用变化见 [架构](docs/architecture.md)、[目录](docs/directory-structure.md)、[迁移说明](docs/migration.md) 和 [验收记录](docs/refactor-plan.md)。

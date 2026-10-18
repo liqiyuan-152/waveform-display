@@ -1,0 +1,12 @@
+Actual packed artifact: /tmp/waveform-packed-validation/waveform-display-0.1.17.tgz
+Clean consumer: /tmp/waveform-clean-consumer (no workspace source imports)
+Runtime Node v20.20.2; pnpm 9.15.0; TypeScript 5.6.3.
+Installed local tarball with pnpm add; no Vue, Ant Design Vue or @types/d3 installed in consumer.
+PASS: ESM import, new Waveform(HTMLElement), SVG export, destroy, host span preservation.
+PASS: tsc --strict --noEmit --target ES2020 --module NodeNext --moduleResolution NodeNext consumer.ts
+PASS: tsc --strict --noEmit --target ES2020 --module ESNext --moduleResolution Bundler consumer.ts
+PASS: createRequire(import.meta.url)('waveform-display').Waveform is a function on Node 20.20.2.
+PASS: browser UMD with d3.min.js and packed waveform-display.umd.cjs copied to .js: global WaveformDisplay.Waveform creates/export SVG; Vue is undefined.
+CommonJS result is specific to Node 20.20.2 (supports require of synchronous ESM dependencies); older Node 20 patch releases are not claimed.
+Initial consumer run found missing .js extensions in relative declaration imports. Library source imports were fixed and the artifact repacked; both strict modes subsequently passed.
+See package-scan.json for actual tarball dependency and forbidden-reference scan.

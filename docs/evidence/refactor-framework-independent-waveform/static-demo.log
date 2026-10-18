@@ -1,0 +1,13 @@
+
+> waveform-display@0.1.17 build:demo /Users/liqiyuan/WebstormProjects/waveform-display
+> vite build --config demo/vite.config.ts
+
+vite v6.4.3 building for production...
+transforming...
+✓ 622 modules transformed.
+rendering chunks...
+computing gzip size...
+../dist-demo/index.html                   0.40 kB │ gzip:  0.28 kB
+../dist-demo/assets/index-CxfymnY5.css    9.17 kB │ gzip:  2.28 kB
+../dist-demo/assets/index-BmF2pYoj.js   171.53 kB │ gzip: 51.07 kB
+✓ built in 582ms

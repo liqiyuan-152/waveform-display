@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { scientificSeries } from '../../src/demo/scientific-data'
+import { scientificSeries } from '../../demo/src/scientific-data'
 import { formatScientificAxisHeader, formatScientificAxisTick } from '../../src/renderer/formatters'
 
 describe('scientific demo data', () => {

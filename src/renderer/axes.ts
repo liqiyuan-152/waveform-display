@@ -1,10 +1,11 @@
+import { layoutNiceXLabels, layoutNiceYLabels } from './niceLabels.js'
 import * as d3 from 'd3'
-import type { AxisOptions } from '../types/options'
-import type { RenderContext } from './context'
-import { formatScientificAxisHeader, formatScientificAxisTick } from './formatters'
-import { createTextMeasurer } from './legend'
-import { yAxisTickValues } from './helpers'
-import { formatXAxisTick } from './xTicks'
+import type { AxisOptions } from '../types/options.js'
+import type { RenderContext } from './context.js'
+import { formatScientificAxisHeader, formatScientificAxisTick } from './formatters.js'
+import { createTextMeasurer } from './legend.js'
+import { yAxisTickValues } from './helpers.js'
+import { formatXAxisTick } from './xTicks.js'
 
 function formatTick(axis: AxisOptions, value: d3.NumberValue): string {
   const number = Number(value)
@@ -47,13 +48,13 @@ export function formatYAxisHeader(axis: AxisOptions, domain: [number, number]): 
   return axis.tickFormat ? '' : formatScientificAxisHeader(domain, axis.unit, axis.position !== 'right')
 }
 
-export function measureYAxis(axis: AxisOptions, domain: [number, number], svg?: RenderContext['svg']) {
+export function measureYAxis(axis: AxisOptions, domain: [number, number], svg?: RenderContext['svg'], tickValues?: number[]) {
   const fontSize = axis.fontSize ?? 11
   const measurer = svg ? createTextMeasurer(svg, fontSize, axis.fontFamily, axis.fontWeight) : undefined
   const measure = (label: string) => Math.max(...label.split('\n').map(line =>
     measurer?.measure(line) ?? estimateYAxisLabelWidth(line, fontSize)))
   try {
-    const labelWidth = Math.max(0, ...yAxisTickValues(domain, axis.tickCount ?? 6)
+    const labelWidth = Math.max(0, ...(tickValues ?? yAxisTickValues(domain, axis.tickCount ?? 6))
       .map(value => measure(formatYAxisTick(axis, value, domain))))
     // Ticks point into the plot, so only tick padding consumes exterior space.
     const tickFootprint = (axis.tickPadding ?? 6) + labelWidth
@@ -78,13 +79,13 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
   const { options: axisOptions, scale, domain, offset } = valueAxis
   const titleOffset = valueAxis.titleOffset ?? measureYAxis(axisOptions, domain).titleOffset
   const position = axisOptions.position
-  const tickValues = yAxisTickValues(domain, axisOptions.tickCount ?? 6)
+  const tickValues = valueAxis.ticks.majorValues
   const endTickValue = domain[1]
   const axis = position === 'right' ? d3.axisRight(scale) : d3.axisLeft(scale)
   axis.tickValues(tickValues)
     .tickSize(-(axisOptions.tickSize ?? 6))
     .tickPadding(axisOptions.tickPadding ?? 6)
-    .tickFormat(v => formatYAxisTick(axisOptions, Number(v), domain))
+    .tickFormat(v => formatYAxisTick(axisOptions, Number(v), valueAxis.formatDomain ?? domain))
 
   const axisX = position === 'right' ? innerWidth + offset : -offset
 
@@ -110,7 +111,7 @@ function renderYAxis(ctx: RenderContext, valueAxis: RenderContext['yAxes'][numbe
     .select('text')
     .attr('dy', '0')
 
-  const header = formatYAxisHeader(axisOptions, domain)
+  const header = formatYAxisHeader(axisOptions, valueAxis.formatDomain ?? domain)
   if (header) {
     const text = axisGroup.append('text')
       .attr('class', 'waveform-axis-y-header')
@@ -182,21 +183,21 @@ export function renderAxes(ctx: RenderContext) {
     }
     const fontSize = options.xAxis.fontSize ?? 11
     const labelGap = options.xAxis.tickPadding ?? 6
-    const measurer = createTextMeasurer(ctx.svg, fontSize, options.xAxis.fontFamily, options.xAxis.fontWeight)
+    const measurer = options.xAxis.tickStrategy === 'nice' ? undefined : createTextMeasurer(ctx.svg, fontSize, options.xAxis.fontFamily, options.xAxis.fontWeight)
     let visibleXTicks: number[]
     try {
-      const leftHalfWidth = measurer.measure(endpointLabels.start) / 2
-      const rightHalfWidth = measurer.measure(endpointLabels.end) / 2
-      visibleXTicks = xTicks.filter((tick) => {
+      const leftHalfWidth = measurer?.measure(endpointLabels.start)! / 2
+      const rightHalfWidth = measurer?.measure(endpointLabels.end)! / 2
+      visibleXTicks = options.xAxis.tickStrategy === 'nice' ? xTicks : xTicks.filter((tick) => {
         if (options.xAxis.hideEndTicks && isDomainEndpoint(tick, domain)) return false
         if (!options.xAxis.showEndValues) return true
         const position = x(tick)
-        const tickHalfWidth = measurer.measure(formatXAxisTick(options.xAxis, tick)) / 2
+        const tickHalfWidth = measurer!.measure(formatXAxisTick(options.xAxis, tick)) / 2
         return position >= leftHalfWidth + tickHalfWidth + 2
           && innerWidth - position >= rightHalfWidth + tickHalfWidth + 2
       })
     } finally {
-      measurer.destroy()
+      measurer?.destroy()
     }
     const axis = d3.axisBottom(x)
       .tickValues(visibleXTicks)
@@ -238,5 +239,9 @@ export function renderAxes(ctx: RenderContext) {
     }
   }
 
-  yAxes.filter(axis => axis.options.visible).forEach(axis => renderYAxis(ctx, axis))
+  if (options.xAxis.visible && options.xAxis.tickStrategy === 'nice') layoutNiceXLabels(ctx)
+  yAxes.filter(axis => axis.options.visible).forEach(axis => {
+    renderYAxis(ctx, axis)
+    if (axis.options.tickStrategy === 'nice') layoutNiceYLabels(ctx, axis, value => formatYAxisTick(axis.options, value, axis.formatDomain ?? axis.domain))
+  })
 }

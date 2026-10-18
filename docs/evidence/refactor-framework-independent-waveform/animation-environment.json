@@ -1,0 +1,6 @@
+{
+  "browser": "Chrome 155, 1440x1000 DPR1",
+  "reducedMotionEmulated": {"matches":true,"running":[false,false,false,false],"pendingRAF":0,"entryClips":0,"finalStaticEquivalent":[true,true,true,true]},
+  "sameOriginIframe": {"running":true,"requested":1,"cancelled":1,"svgAfterDestroy":0,"instanceLookupAfterDestroy":false},
+  "manualAndHiddenPause": "Deterministic integration test independently toggles document.hidden and manual pause; hidden elapsed time is excluded; resume(manual) leaves hidden pause active."
+}

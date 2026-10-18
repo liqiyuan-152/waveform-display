@@ -1,0 +1,27 @@
+{
+  "root": {
+    "url": "http://127.0.0.1:5177/",
+    "title": "Waveform Display",
+    "svg": 1,
+    "script": "/assets/index-Bluc7foY.js"
+  },
+  "subpath": {
+    "url": "http://127.0.0.1:5178/waveform-display/",
+    "title": "Waveform Display",
+    "svg": 1,
+    "script": "/waveform-display/assets/index-Bluc7foY.js"
+  },
+  "packedUMD": {
+    "exported": "function",
+    "svg": true,
+    "vue": "undefined"
+  },
+  "docker": {
+    "image": "waveform-display-demo:validation",
+    "imageId": "e2253701c7bf",
+    "health": "ok",
+    "title": "Waveform Display",
+    "svg": 1,
+    "errors": 0
+  }
+}

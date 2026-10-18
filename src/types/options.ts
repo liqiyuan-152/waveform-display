@@ -1,4 +1,4 @@
-import type { WaveformLineStyle, WaveformLineType, WaveformPointType } from './data'
+import type { WaveformLineStyle, WaveformLineType, WaveformPointType } from './data.js'
 
 export type BorderStyle = 'solid' | 'dashed' | 'dotted'
 export type GridLineStyle = 'solid' | 'dashed'
@@ -27,6 +27,7 @@ export interface AxisOptions {
   min?: number
   max?: number
   tickCount?: number
+  tickStrategy?: 'legacy' | 'nice'
   hideEndTicks?: boolean
   showEndValues?: boolean
   tickSize?: number
@@ -42,7 +43,7 @@ export interface AxisOptions {
   unit?: string
   title?: AxisLabelOptions
 }
-export interface XAxisOptions extends AxisOptions { tickStep?: number }
+export interface XAxisOptions extends AxisOptions { tickStep?: number; minInterval?: number }
 export interface ValueAxisOptions extends AxisOptions { id: string }
 export interface GridAxisOptions { visible?: boolean; color?: string; width?: number; dash?: string }
 export interface ValueGridAxisOptions extends GridAxisOptions { axisId?: string }
@@ -100,6 +101,10 @@ export interface XDomainStrategy {
 }
 
 export interface WaveformOptions {
+  animationEnabled?: boolean
+  animationThreshold?: number
+  animation?: import('./animation.js').AnimationEnterOptions
+  animationUpdate?: import('./animation.js').AnimationUpdateOptions
   width?: number | string
   height?: number | string
   responsive?: ResponsiveOptions

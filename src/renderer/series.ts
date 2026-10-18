@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
-import { curveFor, dashFor } from './helpers'
-import type { WaveformPoint, WaveformPointType } from '../types/data'
-import type { RenderContext } from './context'
+import { curveFor, dashFor } from './helpers.js'
+import type { WaveformPoint, WaveformPointType } from '../types/data.js'
+import type { RenderContext } from './context.js'
 
 function symbolType(type: WaveformPointType) {
   if (type === 'square') return d3.symbolSquare
@@ -14,7 +14,15 @@ export function renderSeries(ctx: RenderContext) {
   const { plot, series, x, yAxisById, primaryYAxis, options, clipId } = ctx
   const layer = plot.append('g').attr('clip-path', `url(#${clipId})`)
 
-  series.forEach(s => {
+  series.forEach((s, index) => {
+    const effect = ctx.seriesEffects?.[index]
+    const seriesLayer = effect ? layer.append('g').attr('opacity', effect.opacity ?? 1) : layer
+    if (effect?.clip) {
+      const id = `${clipId}-entry-${index}`
+      seriesLayer.append('defs').append('clipPath').attr('id', id).append('rect')
+        .attr('x', effect.clip.x).attr('width', effect.clip.width).attr('height', ctx.innerHeight)
+      seriesLayer.attr('clip-path', `url(#${id})`)
+    }
     const yScale = yAxisById.get(s.yAxis ?? '')?.scale ?? primaryYAxis.scale
     const lineStyle = {
       color: options.line.color,
@@ -32,7 +40,7 @@ export function renderSeries(ctx: RenderContext) {
         .y(d => yScale(d.y))
         .curve(curveFor(lineStyle.lineType))
 
-      layer.append('path')
+      seriesLayer.append('path')
         .datum(s.data)
         .attr('d', line)
         .attr('fill', 'none')
@@ -46,7 +54,7 @@ export function renderSeries(ctx: RenderContext) {
     const pointStyle = { ...options.point, ...s.style?.point }
     if (pointStyle.visible) {
       const symbol = d3.symbol().type(symbolType(pointStyle.type)).size(pointStyle.size * pointStyle.size * 4)
-      layer.append('g')
+      seriesLayer.append('g')
         .selectAll('path')
         .data(s.data.filter(d => Number.isFinite(d.x) && Number.isFinite(d.y)))
         .join('path')

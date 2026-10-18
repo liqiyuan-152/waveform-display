@@ -1,5 +1,5 @@
-import { borderDash } from './helpers'
-import type { RenderContext } from './context'
+import { borderDash } from './helpers.js'
+import type { RenderContext } from './context.js'
 
 export function renderFrameBackground(ctx: RenderContext) {
   const { plot, innerWidth, innerHeight, options } = ctx

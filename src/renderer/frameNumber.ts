@@ -1,4 +1,4 @@
-import type { RenderContext } from './context'
+import type { RenderContext } from './context.js'
 
 const MAX_AUTO_FONT_SIZE = 120
 const HEIGHT_RATIO = 0.65

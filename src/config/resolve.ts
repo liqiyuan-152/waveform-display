@@ -1,10 +1,18 @@
-import { defaultOptions } from './defaults'
-import type { AxisLabelOptions, ValueAxisOptions, WaveformOptions } from '../types/options'
+import { defaultOptions } from './defaults.js'
+import { resolveAnimation } from './animation.js'
+import type { AxisLabelOptions, ValueAxisOptions, WaveformOptions } from '../types/options.js'
 
 export interface ResolvedValueAxisOptions extends ValueAxisOptions {
   visible: boolean
   position: 'left' | 'right'
   title: Omit<Required<AxisLabelOptions>, 'offset'> & Pick<AxisLabelOptions, 'offset'>
+}
+
+function tickOptions(axis: import('../types/options.js').XAxisOptions | undefined, count: number) {
+  return {
+    tickStrategy: axis?.tickStrategy === 'nice' ? 'nice' as const : 'legacy' as const,
+    tickCount: Number.isFinite(axis?.tickCount) && axis!.tickCount! > 0 ? axis!.tickCount! : count,
+  }
 }
 
 function resolveValueAxes(options: WaveformOptions): ResolvedValueAxisOptions[] {
@@ -27,6 +35,7 @@ function resolveValueAxes(options: WaveformOptions): ResolvedValueAxisOptions[] 
     axes.push({
       ...legacyDefaults,
       ...axis,
+      ...tickOptions(axis, 6),
       id,
       title: { ...legacyDefaults.title, ...axis.title },
     })
@@ -41,6 +50,7 @@ export function resolveOptions(options: WaveformOptions = {}) {
   return {
     ...defaultOptions,
     ...options,
+    ...resolveAnimation(options),
     responsive: { ...defaultOptions.responsive, ...options.responsive },
     layout: { ...defaultOptions.layout, ...options.layout },
     padding: { ...defaultOptions.padding, ...options.padding },
@@ -52,9 +62,9 @@ export function resolveOptions(options: WaveformOptions = {}) {
     line: { ...defaultOptions.line, ...options.line },
     point: { ...defaultOptions.point, ...options.point },
     xDomainStrategy: { ...defaultOptions.xDomainStrategy, ...options.xDomainStrategy },
-    xAxis: { ...defaultOptions.xAxis, ...options.xAxis, title: { ...defaultOptions.xAxis.title, ...options.xAxis?.title } },
-    yAxis: { ...defaultOptions.yAxis, ...options.yAxis, title: { ...defaultOptions.yAxis.title, ...options.yAxis?.title } },
-    secondaryYAxis: { ...defaultOptions.secondaryYAxis, ...options.secondaryYAxis, title: { ...defaultOptions.secondaryYAxis.title, ...options.secondaryYAxis?.title } },
+    xAxis: { ...defaultOptions.xAxis, ...options.xAxis, ...tickOptions(options.xAxis, 8), minInterval: Number.isFinite(options.xAxis?.minInterval) && options.xAxis!.minInterval! >= 0 ? options.xAxis!.minInterval! : 0, title: { ...defaultOptions.xAxis.title, ...options.xAxis?.title } },
+    yAxis: { ...defaultOptions.yAxis, ...options.yAxis, ...tickOptions(options.yAxis, 6), title: { ...defaultOptions.yAxis.title, ...options.yAxis?.title } },
+    secondaryYAxis: { ...defaultOptions.secondaryYAxis, ...options.secondaryYAxis, ...tickOptions(options.secondaryYAxis, 6), title: { ...defaultOptions.secondaryYAxis.title, ...options.secondaryYAxis?.title } },
     yAxes,
     grid: {
       ...defaultOptions.grid,

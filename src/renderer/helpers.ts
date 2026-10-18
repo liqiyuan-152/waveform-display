@@ -1,5 +1,5 @@
 import * as d3 from 'd3'
-import type { WaveformLineStyle, WaveformLineType } from '../types/data'
+import type { WaveformLineStyle, WaveformLineType } from '../types/data.js'
 
 export function curveFor(type: WaveformLineType) {
   switch (type) {

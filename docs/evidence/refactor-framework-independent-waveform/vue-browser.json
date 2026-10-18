@@ -1,0 +1,5 @@
+{
+  "browser": "Chrome 155, 1440x1000, DPR 1",
+  "animationControls": {"enabled": true, "running": true, "paused": true, "finished": true, "charts": 1, "errors": 0},
+  "axisAndDatasetControls": {"single": 1, "right": "#123456", "charts": 1, "invalid": 0, "scientific": true}
+}

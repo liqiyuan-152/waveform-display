@@ -1,5 +1,5 @@
-import type { ReturnTypeOfResolveOptions } from '../types/internal'
-import type { RenderContext } from './context'
+import type { ReturnTypeOfResolveOptions } from '../types/internal.js'
+import type { RenderContext } from './context.js'
 
 const EDGE_INSET = 2
 const MIDDLE_GAP = 12

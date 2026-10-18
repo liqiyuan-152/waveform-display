@@ -1,0 +1,7 @@
+- Validating...
+✓ spec/axis-ticks
+✓ spec/chart-animation
+✓ spec/chart-update-and-interaction
+✓ spec/demo-configuration
+✓ spec/framework-independent-component
+Totals: 5 passed, 0 failed (5 items)

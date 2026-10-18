@@ -1,0 +1,20 @@
+{
+  "instances": 5,
+  "pointsPerInstance": 1000,
+  "updates": 5,
+  "simulatedFramesPerUpdate": 20,
+  "elapsedMs": [
+    117.5,
+    87.69999999552965,
+    87.5,
+    89.69999999552965,
+    101.19999999552965
+  ],
+  "maxRAF": 5,
+  "stableNodes": 1082,
+  "maxNodes": 1087,
+  "finalNodes": 1082,
+  "nodesAfterCleanup": 522,
+  "baselineNodes": 522,
+  "pendingAfterCleanup": 0
+}

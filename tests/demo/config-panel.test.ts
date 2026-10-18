@@ -10,7 +10,7 @@ import {
   parseNumberInput,
   setAtPath,
   setSeriesStyleOverride,
-} from '../../src/demo/config-panel'
+} from '../fixtures/legacyConfigPanel'
 
 afterEach(() => document.body.replaceChildren())
 

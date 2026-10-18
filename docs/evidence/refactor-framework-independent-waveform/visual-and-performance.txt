@@ -1,0 +1,9 @@
+Browser: Chrome 155, viewport 1440x1000, DPR1.
+Static five-case full-page screenshot final-charts.png is byte-identical to baseline-charts.png:
+SHA256 c539d35fd6aac8b586533351c0631d185b5287762fd4cf115e0b6ff9a17fe87a.
+Vue UI differs intentionally; vue-demo.png and final-demo.png preserve visual review evidence. Animation controls use the Demo's dark palette.
+Deterministic middle frame animation-middle.png: 3 entry directions, dashed curves and markers; shared domains with appended points. animation-browser.json verifies final static equivalence and zero RAF/clip/SVG resources after cleanup.
+Changed-target performance uses tests/fixtures/browser/changed-performance.js, both original dc651ed checkout and current tree, same browser, 5 instances with first updated, 1000 points, 20 different submissions/run, 2 warmup runs, 5 measured samples.
+Baseline median 19.4ms; current median 15.6ms. Both 519 document nodes, 5 SVG roots. See baseline-changed-performance.json and current-changed-performance.json. Timing varies with host load and is not a universal speed guarantee.
+Animation stress: 5 instances x1000 points, 5 update batches x20 deterministic frames; max RAF5 (one per instance), stable and final nodes1082, peak1087, cleanup restores baseline522, pending RAF0. CPU cost 87.5–117.5ms per 20-frame batch across all5 instances. See animation-resources.json and executable fixture.
+Auto-padding Demo: repeated automatic-domain scenarios produced plot left offsets72,80,89,72 and isRunning=false each time, confirming layout-change static fallback. Fixed-padding append scenario isRunning=true and pause/resume/finish passed.

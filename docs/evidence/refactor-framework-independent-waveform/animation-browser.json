@@ -1,0 +1,38 @@
+{
+  "middle": {
+    "running": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "pendingRAF": 4,
+    "clips": [
+      {
+        "x": "0",
+        "width": "255"
+      },
+      {
+        "x": "255",
+        "width": "255"
+      },
+      {
+        "x": "127.5",
+        "width": "255"
+      }
+    ],
+    "nodes": 541
+  },
+  "final": {
+    "stable": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "pendingRAF": 0,
+    "clips": 0,
+    "svgAfterDestroy": 0,
+    "pendingAfterDestroy": 0
+  }
+}

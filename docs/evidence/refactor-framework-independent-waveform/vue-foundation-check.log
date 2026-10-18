@@ -1,0 +1,69 @@
+
+> waveform-display@0.1.17 check /Users/liqiyuan/WebstormProjects/waveform-display
+> pnpm typecheck && pnpm test && pnpm build
+
+
+> waveform-display@0.1.17 typecheck /Users/liqiyuan/WebstormProjects/waveform-display
+> tsc --noEmit && vue-tsc -p demo/tsconfig.json --noEmit
+
+
+> waveform-display@0.1.17 test /Users/liqiyuan/WebstormProjects/waveform-display
+> vitest run
+
+
+ RUN  v2.1.9 /Users/liqiyuan/WebstormProjects/waveform-display
+
+ ✓ tests/demo/config-panel.test.ts (19 tests) 428ms
+ ✓ tests/integration/Waveform.frame.test.ts (12 tests) 966ms
+ ✓ tests/integration/Waveform.headers.test.ts (7 tests) 1158ms
+   ✓ axis headers and zero-line defaults > aligns actual left glyph bounds and avoids the legend through updates 687ms
+ ✓ tests/integration/Waveform.grid.test.ts (15 tests) 1241ms
+ ✓ tests/integration/Waveform.layout.test.ts (14 tests) 1293ms
+   ✓ Waveform horizontal padding coordination > measures rounded left labels and preserves coordinated padding across notation updates 681ms
+ ✓ tests/integration/Waveform.axes.test.ts (37 tests) 1451ms
+ ✓ tests/integration/Waveform.legend.test.ts (30 tests) 1635ms
+   ✓ Waveform legend > keeps the no-title plot height stable when switching from a channel name to a legend 300ms
+ ✓ tests/integration/Waveform.typography.test.ts (8 tests) 301ms
+ ✓ tests/integration/Waveform.lifecycle.test.ts (7 tests) 236ms
+ ✓ tests/integration/Waveform.ticks.test.ts (5 tests) 321ms
+ ✓ tests/integration/Waveform.events.test.ts (6 tests) 489ms
+ ✓ tests/demo/useWaveform.test.ts (3 tests) 45ms
+ ✓ tests/integration/Waveform.update.test.ts (3 tests) 435ms
+ ✓ tests/integration/Waveform.verticalPadding.test.ts (7 tests) 744ms
+ ✓ tests/renderer/formatters.test.ts (21 tests) 4ms
+ ✓ tests/layout/ticks.test.ts (8 tests) 12ms
+ ✓ tests/integration/Waveform.compatibility.test.ts (1 test) 133ms
+ ✓ tests/renderer/xTicks.test.ts (11 tests) 4ms
+ ✓ tests/model/OptionManager.test.ts (2 tests) 8ms
+ ✓ tests/layout/LayoutEngine.test.ts (2 tests) 4ms
+ ✓ tests/layout/domain.test.ts (5 tests) 7ms
+ ✓ tests/model/WaveformModel.test.ts (3 tests) 3ms
+ ✓ tests/integration/Waveform.options.test.ts (1 test) 13ms
+stdout | tests/demo/main.test.ts > demo data selection > switches the preview and series controls between datasets
+SVG export available via chart.toSVGString() or chart.downloadSVG()
+
+ ✓ tests/demo/main.test.ts (1 test) 683ms
+   ✓ demo data selection > switches the preview and series controls between datasets 682ms
+ ✓ tests/integration/Waveform.line.test.ts (2 tests) 138ms
+ ✓ tests/demo/scientific-data.test.ts (1 test) 2ms
+ ✓ tests/data/normalize.test.ts (2 tests) 3ms
+ ✓ tests/demo/OptionsDraft.test.ts (2 tests) 2ms
+ ✓ tests/renderer/helpers.test.ts (2 tests) 2ms
+
+ Test Files  29 passed (29)
+      Tests  237 passed (237)
+   Start at  02:43:20
+   Duration  5.26s (transform 914ms, setup 0ms, collect 8.23s, tests 11.76s, environment 9.20s, prepare 2.03s)
+
+
+> waveform-display@0.1.17 build /Users/liqiyuan/WebstormProjects/waveform-display
+> vite build && tsc -p tsconfig.build.json
+
+vite v6.4.3 building for production...
+transforming...
+✓ 50 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/waveform-display.js  61.21 kB │ gzip: 17.42 kB
+dist/waveform-display.umd.cjs  48.72 kB │ gzip: 15.93 kB
+✓ built in 171ms

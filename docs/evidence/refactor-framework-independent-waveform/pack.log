@@ -1,0 +1,95 @@
+
+> waveform-display@0.1.17 prepack /Users/liqiyuan/WebstormProjects/waveform-display
+> pnpm build
+
+
+> waveform-display@0.1.17 build /Users/liqiyuan/WebstormProjects/waveform-display
+> vite build && tsc -p tsconfig.build.json
+
+vite v6.4.3 building for production...
+transforming...
+✓ 60 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/waveform-display.js  82.19 kB │ gzip: 22.72 kB
+dist/waveform-display.umd.cjs  64.92 kB │ gzip: 20.70 kB
+✓ built in 202ms
+Tarball Contents
+dist/animation/Animation.d.ts
+dist/animation/Animator.d.ts
+dist/animation/easing.d.ts
+dist/animation/presentation/clip.d.ts
+dist/animation/presentation/GeometryTransitionPlanner.d.ts
+dist/animation/presentation/PointDiff.d.ts
+dist/animation/presentation/SeriesDiff.d.ts
+dist/animation/presentation/WaveformPresentation.d.ts
+dist/animation/WaveformAnimationController.d.ts
+dist/config/animation.d.ts
+dist/config/defaults.d.ts
+dist/config/equal.d.ts
+dist/config/merge.d.ts
+dist/config/resolve.d.ts
+dist/config/snapshot.d.ts
+dist/core/ActionDispatcher.d.ts
+dist/core/EventEmitter.d.ts
+dist/core/RenderScheduler.d.ts
+dist/core/target.d.ts
+dist/data/normalize.d.ts
+dist/index.d.ts
+dist/interaction/actions/ToggleSeriesAction.d.ts
+dist/layout/AxisLayout.d.ts
+dist/layout/domain/DataDomainStrategy.d.ts
+dist/layout/domain/domain.d.ts
+dist/layout/domain/DomainStrategy.d.ts
+dist/layout/domain/NiceDomainStrategy.d.ts
+dist/layout/LayoutEngine.d.ts
+dist/layout/ticks/labels.d.ts
+dist/layout/ticks/LegacyTickStrategy.d.ts
+dist/layout/ticks/NiceXTickStrategy.d.ts
+dist/layout/ticks/NiceYTickStrategy.d.ts
+dist/layout/ticks/numeric.d.ts
+dist/layout/ticks/resolve.d.ts
+dist/layout/ticks/TickStrategy.d.ts
+dist/model/OptionManager.d.ts
+dist/model/SeriesModel.d.ts
+dist/model/WaveformModel.d.ts
+dist/renderer/axes.d.ts
+dist/renderer/context.d.ts
+dist/renderer/formatters.d.ts
+dist/renderer/frame.d.ts
+dist/renderer/frameNumber.d.ts
+dist/renderer/grid.d.ts
+dist/renderer/helpers.d.ts
+dist/renderer/legend.d.ts
+dist/renderer/niceLabels.d.ts
+dist/renderer/series.d.ts
+dist/renderer/SvgRenderer.d.ts
+dist/renderer/utils/reconcile.d.ts
+dist/renderer/views/AxisView.d.ts
+dist/renderer/views/BaseView.d.ts
+dist/renderer/views/FrameBackgroundView.d.ts
+dist/renderer/views/FrameBorderView.d.ts
+dist/renderer/views/FrameNumberView.d.ts
+dist/renderer/views/GridView.d.ts
+dist/renderer/views/LegendView.d.ts
+dist/renderer/views/MetadataView.d.ts
+dist/renderer/views/SeriesView.d.ts
+dist/renderer/views/ViewRegistry.d.ts
+dist/renderer/views/ZeroLineView.d.ts
+dist/renderer/xMetadata.d.ts
+dist/renderer/xTicks.d.ts
+dist/types/actions.d.ts
+dist/types/animation.d.ts
+dist/types/data.d.ts
+dist/types/events.d.ts
+dist/types/internal.d.ts
+dist/types/options.d.ts
+dist/waveform-display.js
+dist/waveform-display.umd.cjs
+dist/Waveform.d.ts
+LICENSE
+package.json
+README.md
+
+Tarball Details
+/tmp/waveform-packed-validation/waveform-display-0.1.17.tgz

@@ -1,6 +1,6 @@
-import { dashFor } from './helpers'
-import type { WaveformSeries } from '../types/data'
-import type { RenderContext } from './context'
+import { dashFor } from './helpers.js'
+import type { WaveformSeries } from '../types/data.js'
+import type { RenderContext } from './context.js'
 
 interface LegendSeries {
   key: string

@@ -1,5 +1,5 @@
 import * as d3 from 'd3'
-import type { XAxisOptions } from '../types/options'
+import type { XAxisOptions } from '../types/options.js'
 
 const MIN_TICK_SPACING = 48
 const MAX_TICK_COUNT = 100

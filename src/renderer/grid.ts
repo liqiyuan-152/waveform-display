@@ -1,6 +1,5 @@
 import * as d3 from 'd3'
-import type { RenderContext } from './context'
-import { yAxisTickValues } from './helpers'
+import type { RenderContext } from './context.js'
 
 export function renderGrid(ctx: RenderContext) {
   const { plot, x, xTicks, yAxisById, primaryYAxis, innerWidth, innerHeight, options } = ctx
@@ -21,7 +20,7 @@ export function renderGrid(ctx: RenderContext) {
 
   if (options.grid.y.visible) {
     const valueAxis = yAxisById.get(options.grid.y.axisId ?? '') ?? primaryYAxis
-    const yTicks = yAxisTickValues(valueAxis.domain, valueAxis.options.tickCount)
+    const yTicks = valueAxis.ticks.majorValues
     plot.append('g')
       .attr('class', 'waveform-grid waveform-grid-y')
       .attr('data-axis-id', valueAxis.options.id)

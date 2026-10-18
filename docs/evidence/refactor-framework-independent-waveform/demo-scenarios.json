@@ -1,0 +1,7 @@
+{
+  "fixedPaddingAppendRunning": true,
+  "extremeDisplacementRunning": false,
+  "autoPaddingChangeRunning": false,
+  "entryDelayControlPresent": true,
+  "niceFixedBoundsUI": {"x":{"strategy":"nice","minInterval":0.5,"min":0,"max":14},"y":{"strategy":"nice","min":-4,"max":4},"running":true,"errors":0}
+}

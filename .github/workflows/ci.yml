@@ -18,7 +18,8 @@ jobs:
         with:
           node-version: 20
           cache: pnpm
-      - run: pnpm install --no-frozen-lockfile
+      - run: pnpm install --frozen-lockfile
       - run: pnpm check
+      - run: pnpm build:demo
       - name: Verify Showcase static image
         run: docker build --build-arg DEMO_BASE_PATH=/ -t waveform-display-demo:ci .
