@@ -1,19 +1,20 @@
-const SCIENTIFIC_MIN_ABSOLUTE_VALUE = 0.01
+const SCIENTIFIC_MIN_ABSOLUTE_VALUE = 0.001
 const SCIENTIFIC_MAX_PLAIN_ABSOLUTE_VALUE = 1000
 const Y_AXIS_NUMBER_FORMATTER = new Intl.NumberFormat('zh-CN', {
   minimumFractionDigits: 0,
-  maximumFractionDigits: 2,
+  maximumFractionDigits: 4,
 })
 
 function formatAxisNumber(value: number): string {
-  const formatted = Y_AXIS_NUMBER_FORMATTER.format(value)
+  const rounded = value === 0 ? 0 : Number(value.toPrecision(5))
+  const formatted = Y_AXIS_NUMBER_FORMATTER.format(rounded)
   return formatted === '-0' ? '0' : formatted
 }
 
 export function resolveScientificExponent(axisMin: number, axisMax: number): number | null {
   const maxAbsoluteValue = Math.max(Math.abs(axisMin), Math.abs(axisMax))
   if (!Number.isFinite(maxAbsoluteValue) || maxAbsoluteValue === 0) return null
-  if (maxAbsoluteValue < SCIENTIFIC_MIN_ABSOLUTE_VALUE || maxAbsoluteValue >= SCIENTIFIC_MAX_PLAIN_ABSOLUTE_VALUE) {
+  if (maxAbsoluteValue <= SCIENTIFIC_MIN_ABSOLUTE_VALUE || maxAbsoluteValue >= SCIENTIFIC_MAX_PLAIN_ABSOLUTE_VALUE) {
     return Math.floor(Math.log10(maxAbsoluteValue))
   }
   return null

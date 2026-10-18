@@ -547,25 +547,47 @@ describe('Waveform axes', () => {
     const yLabels = labels(svg, '.waveform-axis-y--left')
     const endLabel = svg.querySelector('.waveform-axis-y--left .waveform-axis-y-end-value')!
 
-    expect(yLabels[0]).toBe('3.27')
-    expect(yLabels[yLabels.length - 1]).toBe('3.35')
-    expect(endLabel.textContent).toBe('3.35')
+    expect(yLabels[0]).toBe('3.2748')
+    expect(yLabels[yLabels.length - 1]).toBe('3.3483')
+    expect(endLabel.textContent).toBe('3.3483')
     expect(Array.from(endLabel.querySelectorAll('tspan'), item => item.textContent)).toEqual([])
     expect(yLabels.filter(label => label.startsWith('E'))).toHaveLength(0)
     expect(svg.querySelector('.waveform-axis-y-header')?.textContent).toBe('E+04')
   })
 
-  it('uses scientific notation below 0.01 but not at the boundary', () => {
-    const small = render([{ x: 0, y: 0.002 }, { x: 1, y: 0.008 }])
+  it('uses scientific notation through 0.001 and plain values above it', () => {
+    const small = render([{ x: 0, y: 0.0002 }, { x: 1, y: 0.001 }])
     const smallLabels = labels(small, '.waveform-axis-y--left')
-    expect(smallLabels[0]).toBe('2')
-    expect(smallLabels[smallLabels.length - 1]).toBe('8')
+    expect(smallLabels[0]).toBe('0.2')
+    expect(smallLabels[smallLabels.length - 1]).toBe('1')
     expect(small.querySelector('.waveform-axis-y-header')?.textContent).toBe('E-03')
 
     const boundary = render([{ x: 0, y: 0.002 }, { x: 1, y: 0.01 }])
     const boundaryLabels = labels(boundary, '.waveform-axis-y--left')
     expect(boundaryLabels[boundaryLabels.length - 1]).toBe('0.01')
     expect(boundary.querySelector('.waveform-axis-y-header')).toBeNull()
+  })
+
+  it.each(['legacy', 'nice'] as const)('switches notation at inclusive boundaries with %s ticks', (tickStrategy) => {
+    const container = document.createElement('div')
+    document.body.append(container)
+    const chart = new Waveform(container, [{ x: 0, y: 0 }, { x: 1, y: 1 }], {
+      width: 800, responsive: { enabled: false },
+      yAxis: { unit: 'V', tickStrategy },
+    })
+    for (const [min, max, exponent] of [
+      [0, 0.001, 'E-03'], [-0.001, 0, 'E-03'], [-0.001, 0.001, 'E-03'],
+      [0, 0.001001, ''], [0, 0.008, ''], [0, 999.999, ''],
+      [0, 1000, 'E+03'], [-1000, 0, 'E+03'],
+    ] as const) {
+      chart.updateOptions({ yAxis: { min, max } })
+      const header = container.querySelector('.waveform-axis-y-header')
+      expect(header?.textContent).toBe(exponent ? `V\u00a0\u00a0${exponent}` : 'V')
+      expect(header?.getAttribute('y')).toBe('-8')
+      const ticks = Array.from(container.querySelectorAll('.waveform-axis-y .tick text'), node => node.textContent ?? '')
+      expect(ticks.every(label => !label.includes('E') && !label.includes('V'))).toBe(true)
+    }
+    chart.destroy()
   })
 
   it('uses one shared scientific exponent on each Y axis', () => {

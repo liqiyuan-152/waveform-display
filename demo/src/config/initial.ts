@@ -17,7 +17,8 @@ export const originalSeries: WaveformSeries[] = waveformData.map((waveform, inde
 }))
 export const initialOptions: WaveformOptions = {
   width: '100%',
-  responsive: { enabled: true, aspectRatio: 2.6 },
+  height: '100%',
+  responsive: { enabled: false, aspectRatio: 2.6 },
   layout: { autoPadding: true },
   padding: framePadding,
   frameNumber: 1,

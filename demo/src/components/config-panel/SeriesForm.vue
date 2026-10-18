@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { Checkbox, Segmented, Select, Empty } from 'ant-design-vue'
 import type { WaveformOptions, WaveformSeries } from '../../../../src/index'
 import { getAtPath, setAtPath } from '../../config/fields'
 import { seriesFields } from '../../config/seriesFields'
@@ -14,15 +15,15 @@ function update(path: string, value: unknown) {
 }
 </script>
 <template>
-  <p v-if="!item" class="config-empty">暂无曲线</p>
+  <Empty v-if="!item" description="暂无曲线" />
   <template v-else>
     <div class="series-toolbar">
-      <label>当前曲线<select v-model.number="selected" aria-label="选择曲线"><option v-for="(series, i) in series" :key="i" :value="i">{{ series.name || series.id || `曲线 ${i + 1}` }}</option></select></label>
-      <label v-if="(options.yAxes?.length ?? 0) > 1" class="series-axis">坐标轴<select :value="item.yAxis ?? options.yAxes?.[0].id" aria-label="坐标轴" @change="update('yAxis', ($event.target as HTMLSelectElement).value)"><option v-for="axis in options.yAxes" :key="axis.id" :value="axis.id">{{ axis.position === 'right' ? '右轴' : '左轴' }}</option></select></label>
+      <div class="series-selector"><span>当前曲线</span><Select v-model:value="selected" aria-label="选择曲线" :options="series.map((series, i) => ({ label: series.name || series.id || `曲线 ${i + 1}`, value: i }))" /></div>
+      <div v-if="(options.yAxes?.length ?? 0) > 1" class="series-selector"><span>坐标轴</span><Select :value="item.yAxis ?? options.yAxes?.[0].id" aria-label="坐标轴" :options="options.yAxes?.map(axis => ({ label: axis.position === 'right' ? '右轴' : '左轴', value: axis.id }))" @update:value="update('yAxis', $event)" /></div>
     </div>
-    <div class="segment-control series-segment-control" aria-label="曲线样式类型"><button v-for="entry in [{ id: 'line' as const, label: '线条' }, { id: 'point' as const, label: '数据点' }]" :key="entry.id" class="segment-button" :aria-pressed="category === entry.id" @click="category = entry.id">{{ entry.label }}</button></div>
+    <Segmented v-model:value="category" block aria-label="曲线样式类型" :options="[{ label: '线条', value: 'line' }, { label: '数据点', value: 'point' }]" />
     <div class="series-overrides"><div v-for="field in seriesFields.filter(field => field.category === category)" :key="field.path" class="series-override">
-      <div class="series-override__heading"><span>{{ field.label }}</span><label class="inherit-toggle"><input type="checkbox" :checked="getAtPath(item, field.path) === undefined" :aria-label="`${field.label}跟随全局`" @change="update(field.path, ($event.target as HTMLInputElement).checked ? undefined : getAtPath(options, field.inherited))"><span>跟随全局</span></label></div>
+      <div class="series-override__heading"><span>{{ field.label }}</span><Checkbox class="inherit-toggle" :checked="getAtPath(item, field.path) === undefined" :aria-label="`${field.label}跟随全局`" @update:checked="update(field.path, $event ? undefined : getAtPath(options, field.inherited))">跟随全局</Checkbox></div>
       <ConfigField :field="field" :value="getAtPath(item, field.path) ?? getAtPath(options, field.inherited)" :disabled="getAtPath(item, field.path) === undefined" @change="update(field.path, $event)" />
     </div></div>
   </template>

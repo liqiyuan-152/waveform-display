@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { Select } from 'ant-design-vue'
 import { tabs as legacyTabs, parseNumberInput as oldNumber, parseDimension as oldDimension } from '../fixtures/legacyConfigPanel'
 import { tabs, axisFields, parseNumberInput, parseDimension, type FieldDefinition } from '../../demo/src/config/fields'
 import ConfigField from '../../demo/src/components/config-panel/ConfigField.vue'
@@ -29,8 +30,9 @@ describe('configuration field migration', () => {
     const value = field.kind === 'boolean' ? true : field.kind === 'select' ? field.options![0].value
       : field.kind === 'color' ? '#123456' : field.kind === 'number' || field.kind === 'range' ? String(field.min ?? 1)
         : field.path.includes('tickFormat') ? '.2f' : field.path === 'width' || field.path === 'height' ? '800' : 'Example'
-    const control = wrapper.find(field.kind === 'select' ? 'select' : field.kind === 'color' ? 'input[type=text]' : field.kind === 'range' ? 'input[type=number]' : 'input')
-    await control.setValue(value)
+    if (field.kind === 'select') wrapper.findComponent(Select).vm.$emit('update:value', value)
+    else if (field.kind === 'boolean') await wrapper.find('[role="switch"]').trigger('click')
+    else await wrapper.find('input').setValue(value)
     expect(wrapper.emitted('change')?.length, field.path).toBeGreaterThan(0)
     expect(wrapper.find('[role=alert]').exists()).toBe(false)
     wrapper.unmount()

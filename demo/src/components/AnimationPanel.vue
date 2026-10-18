@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { Button } from 'ant-design-vue'
+import { tabKeyboard } from '../composables/tabKeyboard'
+import { ref } from 'vue'
+import { Button, Switch, Tabs, TabPane } from 'ant-design-vue'
 import type { WaveformOptions } from '../../../src/index'
+import OptionsForm from './config-panel/OptionsForm.vue'
+import type { FieldDefinition } from '../config/fields'
 defineProps<{ options: WaveformOptions; replayDisabled?: boolean }>()
 const emit = defineEmits<{
   field: [path: string, value: unknown]
@@ -8,32 +12,38 @@ const emit = defineEmits<{
   scenario: [name: 'append' | 'window' | 'domain' | 'extreme' | 'auto-padding']
   replay: []
 }>()
-function number(event: Event) { return Number((event.target as HTMLInputElement).value) }
+const active = ref('entrance')
+const entrance: FieldDefinition[] = [
+  { kind: 'boolean', label: '入场动画', path: 'animation.enabled' },
+  { kind: 'select', label: '入场方向', path: 'animation.direction', options: [{ label: '从左到右', value: 'left-to-right' }, { label: '从右到左', value: 'right-to-left' }, { label: '从中心展开', value: 'center-out' }] },
+  { kind: 'number', label: '入场时长（ms）', path: 'animation.duration', min: 0 },
+  { kind: 'number', label: '入场延迟（ms）', path: 'animation.delay', min: 0 },
+  { kind: 'number', label: '错峰间隔（ms）', path: 'animation.staggerDelay', min: 0 },
+]
+const update: FieldDefinition[] = [
+  { kind: 'boolean', label: '更新动画', path: 'animationUpdate.enabled' },
+  { kind: 'number', label: '更新时长（ms）', path: 'animationUpdate.duration', min: 0 },
+  { kind: 'select', label: '更新缓动', path: 'animationUpdate.easing', options: [{ label: '平滑加减速', value: 'cubicInOut' }, { label: '匀速', value: 'linear' }] },
+]
+const scenarios = [
+  { label: '追加点', value: 'append' }, { label: '滑动窗口', value: 'window' },
+  { label: '坐标域变化', value: 'domain' }, { label: '极端位移', value: 'extreme' }, { label: '自动留白变化', value: 'auto-padding' },
+] as const
 </script>
 <template>
-  <details class="animation-panel">
-    <summary>动画与数据更新</summary>
-    <div class="animation-panel__fields">
-      <label><input type="checkbox" :checked="options.animationEnabled" @change="emit('field', 'animationEnabled', ($event.target as HTMLInputElement).checked)">启用动画（影响后续数据更新）</label>
-      <label><input type="checkbox" :checked="options.animation?.enabled" @change="emit('field', 'animation.enabled', ($event.target as HTMLInputElement).checked)">入场动画</label>
-      <label><input type="checkbox" :checked="options.animationUpdate?.enabled" @change="emit('field', 'animationUpdate.enabled', ($event.target as HTMLInputElement).checked)">更新动画</label>
-      <label>入场方向<select :value="options.animation?.direction" @change="emit('field', 'animation.direction', ($event.target as HTMLSelectElement).value)"><option value="left-to-right">从左到右</option><option value="right-to-left">从右到左</option><option value="center-out">从中心展开</option></select></label>
-      <label>入场时长（ms）<input type="number" min="0" :value="options.animation?.duration" @change="emit('field', 'animation.duration', number($event))"></label>
-      <label>入场延迟（ms）<input type="number" min="0" :value="options.animation?.delay" @change="emit('field', 'animation.delay', number($event))"></label>
-      <label>错峰间隔（ms）<input type="number" min="0" :value="options.animation?.staggerDelay" @change="emit('field', 'animation.staggerDelay', number($event))"></label>
-      <label>更新时长（ms）<input type="number" min="0" :value="options.animationUpdate?.duration" @change="emit('field', 'animationUpdate.duration', number($event))"></label>
-      <label>更新缓动<select :value="options.animationUpdate?.easing" @change="emit('field', 'animationUpdate.easing', ($event.target as HTMLSelectElement).value)"><option value="cubicInOut">平滑加减速</option><option value="linear">匀速</option></select></label>
+  <section class="animation-panel" aria-label="动画与数据更新">
+    <div class="config-panel__heading"><h2>动画与数据更新</h2><div class="animation-toggle"><span>启用动画</span><Switch :checked="options.animationEnabled" aria-label="启用动画（影响后续数据更新）" @update:checked="emit('field', 'animationEnabled', $event)" /></div></div>
+    <Tabs @keydown="tabKeyboard" v-model:activeKey="active" size="small" class="config-tabs">
+      <TabPane key="entrance" tab="入场动画" /><TabPane key="update" tab="更新动画" /><TabPane key="scenarios" tab="数据场景" />
+    </Tabs>
+    <div class="animation-content">
+      <template v-if="active === 'entrance'">
+        <OptionsForm :fields="entrance" :options="options" @field="(path, value) => emit('field', path, value)" />
+        <Button :disabled="replayDisabled || !options.animationEnabled || !options.animation?.enabled" @click="emit('replay')">重播入场</Button>
+      </template>
+      <OptionsForm v-else-if="active === 'update'" :fields="update" :options="options" @field="(path, value) => emit('field', path, value)" />
+      <div v-else class="scenario-buttons"><Button v-for="item in scenarios" :key="item.value" @click="emit('scenario', item.value)">{{ item.label }}</Button></div>
+      <div class="animation-actions" role="group" aria-label="动画控制"><Button @click="emit('control', 'pause')">暂停</Button><Button @click="emit('control', 'resume')">恢复</Button><Button @click="emit('control', 'finish')">结束动画</Button></div>
     </div>
-    <div class="preview-datasets" role="group" aria-label="动画控制"><Button :disabled="replayDisabled || !options.animationEnabled || !options.animation?.enabled" @click="emit('replay')">重播入场</Button><Button @click="emit('control', 'pause')">暂停</Button><Button @click="emit('control', 'resume')">恢复</Button><Button @click="emit('control', 'finish')">结束动画</Button></div>
-    <div class="preview-datasets" role="group" aria-label="数据更新场景"><Button @click="emit('scenario', 'append')">追加点</Button><Button @click="emit('scenario', 'window')">滑动窗口</Button><Button @click="emit('scenario', 'domain')">坐标域变化</Button><Button @click="emit('scenario', 'extreme')">极端位移</Button><Button @click="emit('scenario', 'auto-padding')">自动留白变化</Button></div>
-  </details>
+  </section>
 </template>
-<style scoped>
-.animation-panel { flex: 0 0 auto; max-height: min(60dvh, 520px); padding: 10px 12px; border-bottom: 1px solid #334155; color: #e2e8f0; overflow-y: auto; }
-.animation-panel summary { cursor: pointer; font-weight: 600; }
-.animation-panel__fields { display: grid; gap: 10px; margin: 12px 0; }
-.animation-panel__fields label { display: flex; gap: 6px; align-items: center; justify-content: space-between; }
-.animation-panel__fields input[type=number] { width: 90px; }
-.animation-panel__fields input[type=number], .animation-panel__fields select { background: #0f172a; color: #e2e8f0; border: 1px solid #475569; border-radius: 4px; padding: 4px; }
-.animation-panel .preview-datasets { flex-wrap: wrap; justify-content: flex-start; margin: 8px 0 0; }
-</style>

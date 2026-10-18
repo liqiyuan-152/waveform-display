@@ -12,27 +12,27 @@ describe('Y-axis scientific formatting', () => {
     expect(formatScientificAxisHeader([-1000, 0])).toBe('E+03')
   })
 
-  it('rounds directly to at most two decimal places', () => {
-    expect(formatScientificAxisTick(1234.56, [0, 9999])).toBe('1.23')
-    expect(formatScientificAxisTick(12.34567, [0, 999])).toBe('12.35')
-    expect(formatScientificAxisTick(0.123456, [0, 1])).toBe('0.12')
+  it('rounds to five significant digits and at most four decimal places', () => {
+    expect(formatScientificAxisTick(1234.56, [0, 9999])).toBe('1.2346')
+    expect(formatScientificAxisTick(12.34567, [0, 999])).toBe('12.346')
+    expect(formatScientificAxisTick(0.123456, [0, 1])).toBe('0.1235')
     expect(formatScientificAxisTick(3.1, [0, 5])).toBe('3.1')
     expect(formatScientificAxisTick(-0.00001, [-1, 1])).toBe('0')
   })
 
   it.each([
-    [7.9999, '8'],
-    [43.999, '44'],
+    [7.9999, '7.9999'],
+    [43.999, '43.999'],
     [1.2, '1.2'],
-    [1.236, '1.24'],
+    [1.236, '1.236'],
     [0, '0'],
     [-0, '0'],
-    [-0.0049, '0'],
-    [-0.005, '-0.01'],
-    [1.23499, '1.23'],
-    [43.9949, '43.99'],
-    [-7.9999, '-8'],
-  ])('formats %s as %s without significant-digit pre-rounding', (value, expected) => {
+    [-0.0049, '-0.0049'],
+    [-0.005, '-0.005'],
+    [1.23499, '1.235'],
+    [43.9949, '43.995'],
+    [-7.9999, '-7.9999'],
+  ])('formats %s as %s with reference precision', (value, expected) => {
     expect(formatScientificAxisTick(value, [-100, 100])).toBe(expected)
     expect(formatScientificAxisTick(value * 1000, [-1000, 1000])).toBe(expected)
   })
@@ -59,9 +59,14 @@ describe('Y-axis scientific formatting', () => {
 
   it('uses scientific notation at the supported magnitude boundaries', () => {
     expect(resolveScientificExponent(0, 0)).toBeNull()
-    expect(resolveScientificExponent(0, 0.00999)).toBe(-3)
+    expect(resolveScientificExponent(0, 0.00999)).toBeNull()
+    expect(resolveScientificExponent(0, 0.001001)).toBeNull()
+    expect(resolveScientificExponent(0, 0.001)).toBe(-3)
+    expect(resolveScientificExponent(-0.001, 0)).toBe(-3)
+    expect(resolveScientificExponent(-0.001, 0.001)).toBe(-3)
+    expect(resolveScientificExponent(0, 0.000999)).toBe(-4)
     expect(resolveScientificExponent(0, 0.01)).toBeNull()
-    expect(resolveScientificExponent(-0.00999, -0.001)).toBe(-3)
+    expect(resolveScientificExponent(-0.00999, -0.001)).toBeNull()
     expect(resolveScientificExponent(0, 999.999)).toBeNull()
     expect(resolveScientificExponent(0, 1000)).toBe(3)
   })

@@ -34,13 +34,13 @@ describe('Waveform horizontal padding coordination', () => {
     })
     const labels = () => Array.from(container.querySelectorAll('.waveform-axis-y .tick text'), node => node.textContent)
     const frameWidth = () => Number(container.querySelector('.waveform-frame-border')!.getAttribute('width'))
-    expect(labels()).toEqual(['0', '8'])
+    expect(labels()).toEqual(['0', '7.9999'])
     await flushLayoutChange()
     const naturalPadding = { ...onLayoutChange.mock.lastCall![0].naturalPadding }
     const naturalWidth = frameWidth()
-    // The header uses the same measured one-character labels as the rendered ticks.
+    // The header uses the same measured six-character labels as the rendered ticks.
     expect(Number(container.querySelector('.waveform-axis-y-header')!.getAttribute('x')))
-      .toBeCloseTo((position === 'left' ? -1 : 1) * (2 + 11 * 0.6))
+      .toBeCloseTo((position === 'left' ? -1 : 1) * (2 + 6 * 11 * 0.6))
 
     chart.updateOptions({ layout: { horizontalPadding: { left: 100, right: 100 } } })
     await flushLayoutChange()
@@ -51,7 +51,7 @@ describe('Waveform horizontal padding coordination', () => {
     for (const [max, header] of [[7999.9, 'E+03'], [0.00079999, 'E-04']] as const) {
       chart.updateData([{ x: 0, y: 0 }, { x: 1, y: max }])
       await flushLayoutChange()
-      expect(labels()).toEqual(['0', '8'])
+      expect(labels()).toEqual(['0', '7.9999'])
       expect(container.querySelector('.waveform-axis-y-header')?.textContent)
         .toBe(position === 'left' ? `V\u00a0\u00a0${header}` : `${header}\u00a0\u00a0V`)
       expect(onLayoutChange.mock.lastCall![0].naturalPadding).toEqual(naturalPadding)

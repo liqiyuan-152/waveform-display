@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { Select } from 'ant-design-vue'
 import { nextTick } from 'vue'
 import App from '../../demo/src/App.vue'
 
@@ -10,31 +11,31 @@ describe('demo data selection', () => {
     const wrapper = mount(App, { attachTo: '#app' })
     await nextTick()
 
-    const original = document.querySelector<HTMLButtonElement>('[data-dataset="original"]')!
-    const scientific = document.querySelector<HTMLButtonElement>('[data-dataset="scientific"]')!
+    const original = Array.from(document.querySelectorAll<HTMLElement>('.ant-segmented-item')).find(item => item.textContent === '原始数据')!
+    const scientific = Array.from(document.querySelectorAll<HTMLElement>('.ant-segmented-item')).find(item => item.textContent === '小数值测试')!
     scientific.click()
     await nextTick(); await nextTick()
 
-    expect(scientific.getAttribute('aria-pressed')).toBe('true')
+    expect(String(scientific.classList.contains('ant-segmented-item-selected'))).toBe('true')
     expect(document.querySelector('.waveform-axis-y--left .waveform-axis-y-header')?.textContent)
-      .toBe('ms\u00a0\u00a0E-03')
+      .toBe('ms\u00a0\u00a0E-04')
     const seriesTab = Array.from(document.querySelectorAll<HTMLButtonElement>('[role="tab"]'))
       .find(button => button.textContent === '曲线')!
     seriesTab.click()
     await nextTick()
-    expect(document.querySelector<HTMLSelectElement>('select[aria-label="选择曲线"]')?.options.length).toBe(1)
+    expect(wrapper.findAllComponents(Select).find(select => select.attributes('aria-label') === '选择曲线')?.props('options')?.length).toBe(1)
 
     original.click()
     await nextTick(); await nextTick()
-    expect(original.getAttribute('aria-pressed')).toBe('true')
-    expect(scientific.getAttribute('aria-pressed')).toBe('false')
+    expect(String(original.classList.contains('ant-segmented-item-selected'))).toBe('true')
+    expect(String(scientific.classList.contains('ant-segmented-item-selected'))).toBe('false')
     expect(document.querySelector('.waveform-axis-y--left .waveform-axis-y-header')?.textContent)
-      .not.toContain('E-03')
+      .not.toContain('E-04')
     const originalSeriesTab = Array.from(document.querySelectorAll<HTMLButtonElement>('[role="tab"]'))
       .find(button => button.textContent === '曲线')!
     originalSeriesTab.click()
     await nextTick()
-    expect(document.querySelector<HTMLSelectElement>('select[aria-label="选择曲线"]')?.options.length).toBe(4)
+    expect(wrapper.findAllComponents(Select).find(select => select.attributes('aria-label') === '选择曲线')?.props('options')?.length).toBe(4)
     wrapper.unmount()
   })
 })

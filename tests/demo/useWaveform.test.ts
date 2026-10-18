@@ -5,8 +5,39 @@ import { describe, expect, it, vi } from 'vitest'
 import { useWaveform } from '../../demo/src/composables/useWaveform'
 import { Waveform } from '../../src/index'
 import WaveformPreview from '../../demo/src/components/WaveformPreview.vue'
+import { initialOptions } from '../../demo/src/config/initial'
 
 describe('Vue preview ownership', () => {
+  it('fits the preview container on resize and releases its observer on unmount', () => {
+    let notifyResize = () => {}
+    const disconnect = vi.fn()
+    vi.stubGlobal('ResizeObserver', class {
+      constructor(callback: () => void) { notifyResize = callback }
+      observe() {}
+      disconnect = disconnect
+    })
+    try {
+      const wrapper = mount(WaveformPreview, { props: { data: [], options: initialOptions } })
+      const host = wrapper.element as HTMLElement
+      let height = 700
+      Object.defineProperties(host, {
+        clientWidth: { get: () => 960 },
+        clientHeight: { get: () => height },
+      })
+      notifyResize()
+      expect(host.querySelector('svg')?.getAttribute('viewBox')).toBe('0 0 960 700')
+      height = 480
+      notifyResize()
+      expect(host.querySelector('svg')?.getAttribute('viewBox')).toBe('0 0 960 480')
+      wrapper.unmount()
+      expect(disconnect).toHaveBeenCalledOnce()
+      notifyResize()
+      expect(host.querySelector('svg')).toBeNull()
+    } finally {
+      vi.unstubAllGlobals()
+    }
+  })
+
   it('keeps two preview instances isolated while one unmounts', async () => {
     const first = mount(WaveformPreview, { props: { data: [{ x: 0, y: 1 }], options: {} } })
     const secondData = ref([{ x: 0, y: 2 }])

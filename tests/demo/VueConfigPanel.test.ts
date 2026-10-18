@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
+import { Select } from 'ant-design-vue'
 import { defineComponent, h, nextTick, shallowRef } from 'vue'
 import { Waveform, type WaveformSeries } from '../../src/index'
 import ConfigPanel from '../../demo/src/components/config-panel/ConfigPanel.vue'
@@ -26,7 +27,7 @@ function setup() {
   const wrapper = mount(Component, { attachTo: document.body })
   cleanup.push(() => { wrapper.unmount(); chart.destroy() })
   const button = async (label: string) => {
-    const entry = wrapper.findAll('button').find(button => button.text().replace(/\s/g, '') === label)
+    const entry = wrapper.findAll('[role=tab], .ant-segmented-item, button').find(button => button.text().replace(/\s/g, '') === label)
     if (!entry) throw new Error(`Missing button ${label}`)
     await entry.trigger('click')
   }
@@ -78,18 +79,20 @@ describe('Vue configuration behavior', () => {
     await field('零线透明度').find('input').setValue('0.25')
     expect(chart.getOptions().zeroLine).toMatchObject({ color: 'rgba(255, 0, 0, 0.5)', opacity: 0.25 })
     await button('网格线')
-    await field('辅助线样式').find('select').setValue('solid')
+    field('辅助线样式').findComponent(Select).vm.$emit('update:value', 'solid')
+    await nextTick()
     await field('辅助线宽度').find('input').setValue('1.5')
     expect(chart.getOptions().grid).toMatchObject({ style: 'solid', width: 1.5, x: { visible: true }, y: { visible: true } })
     await button('文字'); await button('空状态')
-    await field('预览空数据状态').find('input').setValue(true)
+    await field('预览空数据状态').find('[role=switch]').trigger('click')
     expect(chart.toSVGString()).toContain('No waveform data')
   })
 
   it('keeps raw axis defaults absent and restores axes and bindings through mode changes', async () => {
     const { wrapper, button, field, draft, series, chart } = setup()
     await button('坐标轴'); await button('值轴')
-    await wrapper.find('select[aria-label="选择值轴"]').setValue('1')
+    wrapper.findAllComponents(Select).find(select => select.attributes('aria-label') === '选择值轴')!.vm.$emit('update:value', 1)
+    await nextTick()
     await field('轴线颜色').find('input[type="text"]').setValue('#123456')
     expect(draft.options.yAxes?.[1].title).toBeUndefined()
     await button('单值轴')
