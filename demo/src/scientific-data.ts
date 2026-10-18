@@ -18,5 +18,5 @@ export const scientificSeries: WaveformSeries[] = [{
     { x: 9, y: 0.0038 },
     { x: 10, y: 0.0027 },
   ],
-  style: { color: '#2dd4bf', lineWidth: 3 },
+  style: { color: '#2dd4bf' },
 }]

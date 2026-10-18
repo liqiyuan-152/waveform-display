@@ -31,7 +31,30 @@ button, input, select { font: inherit; }
   border-radius: 6px;
 }
 
-.control-pane { min-height: 560px; }
+.control-pane {
+  display: flex;
+  min-height: 560px;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.control-pane > .config-panel {
+  height: auto;
+  flex: 1;
+}
+
+.dataset-toolbar {
+  display: flex;
+  min-height: var(--pane-header-height);
+  flex: 0 0 var(--pane-header-height);
+  align-items: center;
+  gap: 8px;
+  padding: 0 12px;
+  border-bottom: 1px solid #334155;
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 600;
+}
 
 .preview-pane {
   display: flex;

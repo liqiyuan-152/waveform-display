@@ -13,7 +13,7 @@ export const originalSeries: WaveformSeries[] = waveformData.map((waveform, inde
   order: index + 1,
   yAxis: index < rightAxisStart ? 'left' : 'right',
   data: waveform.data.map((y, pointIndex) => ({ x: waveform.time[pointIndex], y })),
-  style: { color: colors[index % colors.length], lineWidth: 3 },
+  style: { color: colors[index % colors.length], lineWidth: 1.5 },
 }))
 export const initialOptions: WaveformOptions = {
   width: '100%',
@@ -41,8 +41,10 @@ export const initialOptions: WaveformOptions = {
     borderWidth: 2,
   },
   point: { visible: false },
+  animationEnabled: true,
   xDomainStrategy: { type: 'nice', bounds: 'both', tickCount: 10 },
   xAxis: {
+    tickStrategy: 'nice',
     color: '#e2e8f0',
     fontColor: '#78E8FF',
     fontSize: 14,
@@ -53,11 +55,13 @@ export const initialOptions: WaveformOptions = {
   yAxes: [
     {
       id: 'left', position: 'left', color: colors[0], fontColor: colors[0], fontSize: 14,
+      tickStrategy: 'nice',
       tickSize: 3, tickPadding: 5, unit: waveformData[0].dat_unit,
       title: { visible: true, text: waveformData[0].chnl, unit: waveformData[0].dat_unit, color: colors[0], fontSize: 14 },
     },
     {
       id: 'right', position: 'right', color: colors[rightAxisStart], fontColor: colors[rightAxisStart], fontSize: 14,
+      tickStrategy: 'nice',
       tickSize: 3, tickPadding: 5, unit: waveformData[rightAxisStart].dat_unit,
       title: {
         visible: true, text: waveformData[rightAxisStart].chnl, unit: waveformData[rightAxisStart].dat_unit,

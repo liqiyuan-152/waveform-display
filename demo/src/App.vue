@@ -35,6 +35,11 @@ function mode(value: 'single' | 'multiple') {
 function switchDataset(key: 'original' | 'scientific') {
   active.value = key; series.value = datasets[key]; empty.value = false
 }
+function replayEntrance() {
+  if (!chart.value || empty.value || !series.value.length) return
+  chart.value.updateData([])
+  chart.value.updateData(series.value)
+}
 function scenario(name: string) {
   const data = animationScenario(name, ++scenarioVersion)
   const patch = draft.set('layout.horizontalPadding', name === 'auto-padding' ? undefined : { left: 90, right: 90 })
@@ -54,11 +59,17 @@ function scenario(name: string) {
 </script>
 <template>
   <main class="workspace">
-    <aside class="control-pane" aria-label="图表配置"><ConfigPanel v-if="chart" :options="options" :series="series" :empty="empty" @field="edit" @series="updateSeries" @mode="mode" @empty="empty = $event" /></aside>
+    <aside class="control-pane" aria-label="图表配置与动画测试">
+      <div class="dataset-toolbar">
+        <span>测试数据</span>
+        <div class="preview-datasets" role="group" aria-label="测试数据"><Button v-for="entry in [{ id: 'original' as const, label: '原始数据' }, { id: 'scientific' as const, label: '小数值测试' }]" :key="entry.id" :data-dataset="entry.id" :aria-pressed="active === entry.id" @click="switchDataset(entry.id)">{{ entry.label }}</Button></div>
+      </div>
+      <AnimationPanel v-if="chart" :options="options" :replay-disabled="empty || !series.length" @field="edit" @control="chart?.animation[$event]()" @scenario="scenario" @replay="replayEntrance" />
+      <ConfigPanel v-if="chart" :options="options" :series="series" :empty="empty" @field="edit" @series="updateSeries" @mode="mode" @empty="empty = $event" />
+    </aside>
     <section class="preview-pane" aria-labelledby="page-title">
-      <header class="preview-pane__header"><h1 id="page-title">波形图预览</h1><div class="preview-datasets" role="group" aria-label="测试数据"><Button v-for="entry in [{ id: 'original' as const, label: '原始数据' }, { id: 'scientific' as const, label: '小数值测试' }]" :key="entry.id" :data-dataset="entry.id" :aria-pressed="active === entry.id" @click="switchDataset(entry.id)">{{ entry.label }}</Button></div></header>
+      <header class="preview-pane__header"><h1 id="page-title">波形图预览</h1></header>
       <Alert v-if="error" :message="error" type="error" role="alert" />
-      <AnimationPanel v-if="chart" :options="options" @field="edit" @control="chart?.animation[$event]()" @scenario="scenario" />
       <div class="preview-stage"><WaveformPreview :data="previewData" :options="initialOptions" @ready="ready" @error="error = $event.message" /></div>
     </section>
   </main>
